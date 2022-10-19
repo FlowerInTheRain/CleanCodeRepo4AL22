@@ -6,5 +6,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserRestService {
-    Optional<List<UserRequest>> getUser(String lastName, String FirstName);
+    Optional<List<UserRequest>> searchPaginatedUserListByUserName(String lastName, String FirstName);
 }
