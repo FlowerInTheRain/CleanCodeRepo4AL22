@@ -1,4 +1,4 @@
-package com.cleancode.cleancodeapi.pojo;
+package com.cleancode.cleancodeapi.beans.user;
 
 import java.util.Optional;
 

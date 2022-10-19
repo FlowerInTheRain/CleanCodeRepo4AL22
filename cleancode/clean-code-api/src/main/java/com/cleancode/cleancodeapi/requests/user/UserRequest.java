@@ -1,7 +1,7 @@
-package com.cleancode.cleancodeapi.requests;
+package com.cleancode.cleancodeapi.requests.user;
 
-import com.cleancode.cleancodeapi.pojo.UserClientInfo;
-import com.cleancode.cleancodeapi.pojo.UserName;
+import com.cleancode.cleancodeapi.beans.user.UserClientInfo;
+import com.cleancode.cleancodeapi.beans.user.UserName;
 
 public class UserRequest {
     private final UserName userName;

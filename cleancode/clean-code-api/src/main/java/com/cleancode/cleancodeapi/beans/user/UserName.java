@@ -1,4 +1,4 @@
-package com.cleancode.cleancodeapi.pojo;
+package com.cleancode.cleancodeapi.beans.user;
 
 public class UserName {
     private final String firstName;
