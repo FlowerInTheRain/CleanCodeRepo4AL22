@@ -85,7 +85,7 @@ Project initial architecture :
 
 => Module API contains Beans used for data exchange, mapper...
 
-=> Module Client is a client of the app. I put it in the project so that any change to the app will impact the client, securize it's configuration so that we don't expose it elsewhere, using the client simply require to create a dependency. Useful for microservices purpose.
+=> Module Client is a client of the app. I put it in the project so that any change to the app will impact the client, securize it's configuration so that we don't expose it elsewhere, using the client simply require to create a dependency using the submodule POM version (SNAPSHOT for dev / without for releases). Useful for microservices purpose.
 
 => Module IMPL contains functional code. Business logic.
 
