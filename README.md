@@ -19,6 +19,27 @@ To run this project you'll need :
 
 => SonarQube https://www.sonarqube.org/downloads/ (Download free version, extract folder, run startSonar.bat in bin/{YourOs}/startSonar.bat
 
+=> GitHub VCS (collaborative work/reviews)
+
+Project Purpose :
+
+=> Our aim was to create a multiple modules SpringBoot app using the strength of Maven to manage the dependencies, testing, code analysis and packaging of the app.
+
+=> This app tries to implement as best as it can given the architecture the Clean Code principles. Those principles include :
+- Hexagonal Architecture
+- SOLID concept
+- no external effect
+
+=> Use the strength of Maven for building multimodule app and handling our modules as artifacts. Any module can be a dependency of any module.
+
+Example :
+I have 2 projects 
+- CleanCode (the rest app). A multimodule app with a rest module, an impl.
+- A CleanCodeDB (the DB transaction manager app). A multimodule app with a rest module, an impl module, a client module that creates a client to call it's rest API) and a db impl module that does the transaction stuff.
+
+If I want to use the client package of CleanCodeDB into CleanCode (because I don't want to pair my app with a client that doesn't get packaged with the APP it works with (dup issues if we set the client in the CleanCodeApp, if I create another toplevel app I'll need another client). All I need to do is to add it's dependency and it's version SNAPSHOT (or not SNAPSHOT if released) to use it.
+
+
 Project Specs :
 
 => Agile Methodology, Sprint usage with Jira.
