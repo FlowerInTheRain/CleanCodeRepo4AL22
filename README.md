@@ -64,7 +64,7 @@ Project Specs :
 => Why make an UI when Swagger exists ?
 
 
-![image](https://user-images.githubusercontent.com/39587466/197031823-3afa238d-2025-4f6a-8aa4-013ac0e75faf.png)
+![image](https://user-images.githubusercontent.com/39587466/197039651-65d45830-6246-4933-ac3e-aada7111c48c.png)
 
 
 Project initial architecture :
