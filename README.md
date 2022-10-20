@@ -12,6 +12,9 @@ Arnaud Jourdain / Sid Bennaceur
 App local url :
 http://localhost:8090/
 
+Required repository :
+
+=> https://github.com/Sid-Athos/clean-code-conf/
 
 
 To run this project you'll need :
