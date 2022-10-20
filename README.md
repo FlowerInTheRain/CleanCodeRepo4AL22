@@ -9,6 +9,11 @@ https://kelinis.atlassian.net/jira/software/projects/CC/boards/1
 Team Members :
 Arnaud Jourdain / Sid Bennaceur
 
+App local url :
+http://localhost:8090/
+
+
+
 To run this project you'll need :
 
 => Maven ^3.6 (easily installable with Chocolatey)
@@ -55,6 +60,12 @@ Project Specs :
 => PairProgramming
 
 => Conception + Mutual review > Trial and Error
+
+=> Why make an UI when Swagger exists ?
+
+
+![image](https://user-images.githubusercontent.com/39587466/197031823-3afa238d-2025-4f6a-8aa4-013ac0e75faf.png)
+
 
 Project initial architecture :
 
