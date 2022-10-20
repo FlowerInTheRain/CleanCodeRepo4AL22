@@ -1,17 +1,16 @@
 package com.cleancode.cleancodeapi.requests.user;
 
-import com.cleancode.cleancodeapi.beans.user.UserBirthInformation;
-import com.cleancode.cleancodeapi.beans.user.UserClientInfo;
-import com.cleancode.cleancodeapi.beans.user.UserName;
+import com.cleancode.cleancodeapi.dto.user.UserBirthInformation;
+import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
 
 public class UserCompleteInfoRequest {
-    private final UserName userName;
+    private final UserFullNameRequest userName;
     private final UserBirthInformation birthDate;
     private final UserClientInfo userClientInfo;
 
     private UserCompleteInfoRequest(String lastName, String firstName, UserBirthInformation birthDate, UserClientInfo userClientInfo) {
         this.userClientInfo = userClientInfo;
-        this.userName = UserName.createOneUserName(firstName, lastName);
+        this.userName = UserFullNameRequest.createOneUserFullNameRequest(firstName, lastName);
         this.birthDate = birthDate;
     }
 

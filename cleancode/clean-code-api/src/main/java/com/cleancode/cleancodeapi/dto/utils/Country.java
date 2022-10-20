@@ -1,4 +1,4 @@
-package com.cleancode.cleancodeapi.beans.utils;
+package com.cleancode.cleancodeapi.dto.utils;
 
 // A bouger dans un package common
 public enum Country {
