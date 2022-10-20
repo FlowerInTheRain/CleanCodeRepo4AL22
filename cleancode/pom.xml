@@ -18,7 +18,6 @@
     <modules>
         <module>clean-code-spring-rest</module>
         <module>clean-code-api</module>
-        <module>clean-code-conf</module>
     </modules>
 
     <properties>
