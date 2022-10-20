@@ -4,6 +4,8 @@ import com.cleancode.cleancodeapi.requests.user.UserCompleteInfoRequest;
 import com.cleancode.cleancodespringrest.entrypoints.restservice.rest.interfaces.user.UserCardCollectionOperationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,25 +21,23 @@ public class UserCardCollectionOperationsServiceImpl implements UserCardCollecti
     @ApiOperation(value = "Hello bois",
             response = Optional.class,
             notes = "A simple swagger note")
+    @ApiResponse(code=200, message="You can always say hello to the world. Unless the server is down. Or the world.")
     @Override
-    public String HelloWorld(){
+    public String HelloWorld() {
         return "Hello";
     }
 
-    /**
-     *
-     * @param lastName represents a nom
-     * @param firstName represents a prenom
-     * @return search users according to last name and first name with all details
-     *
-     */
-    @GetMapping(value = "/test")
-    @ApiOperation(value = "Search users by UserName",
-            response = Optional.class,
-            notes = "Customer must exist")
+    @GetMapping(value = "/searchPaginatedUsersCompleteInfosByUserFirstNameAndLastName")
     @ResponseBody
     @Override
-    public Optional<List<UserCompleteInfoRequest>> searchPaginatedUserListByUserName(String lastName, String firstName) {
+    // Swagger doc
+    @ApiOperation(value = "Search users by UserName with full user details",
+            response = Optional.class,
+            notes = "Customer must exist")
+    @ApiResponse(code=200, message="Fetch all users according to pagination criterias")
+    public Optional<List<UserCompleteInfoRequest>> searchUserCompleteInfoListByUserFirstNameAndLastName(
+            @ApiParam(name="Nom",value="Le nom de famille du fdp", required = true) String lastName,
+            @ApiParam(name="Prénom",value="Le prénom du fdp", required = true) String firstName) {
         return Optional.empty();
     }
 }

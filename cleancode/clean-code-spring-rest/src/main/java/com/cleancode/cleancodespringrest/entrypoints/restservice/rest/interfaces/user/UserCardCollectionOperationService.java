@@ -12,5 +12,5 @@ public interface UserCardCollectionOperationService {
     String HelloWorld();
     @GetMapping("/searchUser")
 
-    Optional<List<UserCompleteInfoRequest>> searchPaginatedUserListByUserName(String lastName, String FirstName);
+    Optional<List<UserCompleteInfoRequest>> searchUserCompleteInfoListByUserFirstNameAndLastName(String lastName, String FirstName);
 }
