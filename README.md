@@ -63,16 +63,14 @@ Project Specs :
 
 => Why make an UI when Swagger exists ?
 
-
-![image](https://user-images.githubusercontent.com/39587466/197039651-65d45830-6246-4933-ac3e-aada7111c48c.png)
+![image](https://user-images.githubusercontent.com/39587466/197059727-6463c308-5771-45ea-bb1e-9c4919c416fc.png)
 
 => IntelliJ application conf (find the before launch task in the modify option under the browser selection window)
 
-![image](https://user-images.githubusercontent.com/39587466/197053718-f91d639b-795d-4e17-ab50-1ae6354e33b0.png)
+![image](https://user-images.githubusercontent.com/39587466/197059590-5e20bde3-73c1-446c-9499-a95a31b16961.png)
 
 
 Project initial architecture :
-
 
 => One Pom to rule them all. POM at root project is the dependency big boss.
 
