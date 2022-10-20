@@ -15,9 +15,9 @@ To run this project you'll need :
 
 => Java 19
 
-=> IntellijUltimate makes life easier for embedded maven usage and launching app localy (Free with student license using your GES mail adress, visit http://jetbrains.com )
+=> IntellijUltimate makes life easier for embedded maven usage and launching app localy (Free with student license using your GES mail adress, visit http://jetbrains.com)
 
-=> SonarQube https://www.sonarqube.org/downloads/ (Download free version, extract folder, run startSonar.bat in bin/{YourOs}/startSonar.bat )
+=> SonarQube https://www.sonarqube.org/downloads/ (Download free version, extract folder, run startSonar.bat in bin/{YourOs}/startSonar.bat)
 
 => GitHub VCS (collaborative work/reviews)
 
