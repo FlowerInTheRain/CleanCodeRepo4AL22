@@ -17,7 +17,10 @@ To run this project you'll need :
 
 => IntellijUltimate makes life easier for embedded maven usage and launching app localy
 
+=> SonarQube https://www.sonarqube.org/downloads/ (Download free version, extract folder, run startSonar.bat in bin/{YourOs}/startSonar.bat
+
 Project Specs :
+
 => Agile Methodology, Sprint usage with Jira.
 
 => Constant 80% Code Coverage minimum (UT done using JUNIT and Mockito).
@@ -33,14 +36,17 @@ Project Specs :
 => Conception + Mutual review > Trial and Error
 
 Project initial architecture :
+
 => One Pom to rule them all. POM at root project is the dependency big boss.
 
 ![image](https://user-images.githubusercontent.com/39587466/196554650-c5e63bbf-f874-4457-8d1a-aee3ec1d9cbe.png)
 
 => Child get reference using 
+
 ![image](https://user-images.githubusercontent.com/39587466/196554737-5c6c4ce7-09c6-4bdb-a98c-5f1782671092.png)
 
 => Each module (Rest / API / CLIENT / CONF / IMPL / DBIMPL) has it's own POM and uses the dependencies he needs by calling them explicitly in its own POM
+
 ![image](https://user-images.githubusercontent.com/39587466/196554940-eb93fc9a-b2a5-4d6a-a428-4da1cf4325b0.png)
 
 => Module Rest Exposes EntryPoints
