@@ -67,7 +67,7 @@ Project Specs :
 
 => IntelliJ application conf (find the before launch task in the modify option under the browser selection window)
 
-![image](https://user-images.githubusercontent.com/39587466/197059590-5e20bde3-73c1-446c-9499-a95a31b16961.png)
+![image](https://user-images.githubusercontent.com/39587466/197062001-09ab51ae-850d-43e5-a664-de80ae035347.png)
 
 
 Project initial architecture :
