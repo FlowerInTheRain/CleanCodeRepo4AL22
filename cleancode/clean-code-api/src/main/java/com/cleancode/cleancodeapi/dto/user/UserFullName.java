@@ -37,10 +37,10 @@ public class UserFullName extends User {
         List<UserName> createdUserNameList = firstNameAndLastNamePairs.stream().map(entry -> {
             return createOneUserName(entry.getKey(), entry.getValue());
          }).toList();*/
-        List<UserFullName> createdUserNameList = new ArrayList<>();
+        List<UserFullName> createdUserFullNameList = new ArrayList<>();
         firstNameAndLaseNameMap.ifPresent(stringStringMap -> stringStringMap.forEach((firstName, lastName) -> {
-            createdUserNameList.add(createOneUserName(firstName, lastName));
+            createdUserFullNameList.add(createOneUserName(firstName, lastName));
         }));
-        return createdUserNameList;
+        return createdUserFullNameList;
     }
 }
