@@ -1,6 +1,8 @@
 package cleancodetests.ut.impl.user;
 
 // Packages
+
+import com.esgi.arlo.entities.users.UsersEntity;
 import com.esgi.arlo.impl.userservices.UserRepositoryServiceImpl;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -8,14 +10,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import com.esgi.arlo.entities.users.UsersEntity;
-import com.esgi.arlo.repositories.user.UserRepository;
 
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-// Static methods
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
