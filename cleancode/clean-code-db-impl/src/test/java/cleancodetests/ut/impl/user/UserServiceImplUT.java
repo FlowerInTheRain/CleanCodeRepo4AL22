@@ -1,5 +1,6 @@
 package cleancodetests.ut.impl.user;
 
+// Packages
 import com.esgi.arlo.entities.users.UsersEntity;
 import com.esgi.arlo.repositories.user.UserRepository;
 import org.junit.Test;
@@ -10,7 +11,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.Assert;
 
-import static org.mockito.Mockito.*;
+// Static methods
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.atMostOnce;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {UsersEntity.class})
@@ -29,10 +34,10 @@ public class UserServiceImplUT {
         UsersEntity mockedUserEntity = mock(UsersEntity.class);
         when(userRepository.save(mockedUserEntity)).thenReturn(usersEntityToReturn);
 
-        // TEST
+        // ACT
         UsersEntity returnedUserEntity = userRepository.save(mockedUserEntity);
 
-        // VERIFY
+        // CHECK
         verify(userRepository, atMostOnce()).save(mockedUserEntity);
         Assert.isTrue(usersEntityToReturn.getId().equals(returnedUserEntity.getId()));
     }
