@@ -9,24 +9,23 @@ public class UserFullName extends User {
     private final String firstName;
     private final String lastName;
 
-    public UserFullName(String firstName, String lastName) {
+    protected UserFullName(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
-    public String getFirstName(){
+    protected String getFirstName(){
         return firstName;
     }
 
-    public String getLastName(){
+    protected String getLastName(){
         return lastName;
     }
 
-    public static UserFullName createOneUserName(String firstName, String lastName){
+    protected static UserFullName createOneUserName(String firstName, String lastName){
         return new UserFullName(firstName, lastName);
     }
     // Optional shouldn't be sent. We move the if present to the caller and take a map into argument
-    public static List<UserFullName> createMultipleUserNames(Optional<Map<String, String>> firstNameAndLaseNameMap){
+    protected static List<UserFullName> createMultipleUserNames(Optional<Map<String, String>> firstNameAndLaseNameMap){
         // Avec des streams
         /**List<Map.Entry<String, String>> firstNameAndLastNamePairs = new ArrayList<>();
         pairs.add(new AbstractMap.SimpleImmutableEntry <>(
