@@ -10,13 +10,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/")
 @CrossOrigin
 @Api
 public class UserCardCollectionOperationsServiceImpl implements UserCardCollectionOperationService {
-
+    // SISI LES ARCHIS
+    private static final Logger LOGGER = Logger.getLogger(UserCardCollectionOperationsServiceImpl.class.getName());
     @GetMapping
     @ApiOperation(value = "Hello bois",
             response = Optional.class,
@@ -24,6 +27,7 @@ public class UserCardCollectionOperationsServiceImpl implements UserCardCollecti
     @ApiResponse(code=200, message="You can always say hello to the world. Unless the server is down. Or the world.")
     @Override
     public String HelloWorld() {
+        LOGGER.log(Level.INFO, "Calling Hello World");
         return "Hello";
     }
 
@@ -38,6 +42,9 @@ public class UserCardCollectionOperationsServiceImpl implements UserCardCollecti
     public Optional<List<UserCompleteInfoRequest>> searchUserCompleteInfoListByUserFirstNameAndLastName(
             @ApiParam(name="Nom",value="Le nom de famille du fdp", required = true) String lastName,
             @ApiParam(name="Prénom",value="Le prénom du fdp", required = true) String firstName) {
+        LOGGER.log(Level.INFO, "Calling searchUserCompleteInfoListByUserFirstNameAndLastName");
+        LOGGER.log(Level.SEVERE, "Grosse erreur");
+        LOGGER.log(Level.WARNING, "Self explanatory");
         return Optional.empty();
     }
 }

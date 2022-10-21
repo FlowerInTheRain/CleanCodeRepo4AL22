@@ -3,13 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>cleancode-spring-app</artifactId>
+    <artifactId>clean-code-spring-rest</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cleancode-spring-app</name>
-    <description>cleancode-spring-app</description>
+    <name>clean-code-spring-rest</name>
+    <description>Rest Application EntryPoint</description>
     <parent>
         <groupId>com.esgi.arlo</groupId>
-        <artifactId>cleancode</artifactId>
+        <artifactId>clean-code</artifactId>
         <version>${revision}</version>
     </parent>
     <packaging>

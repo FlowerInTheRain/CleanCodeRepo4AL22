@@ -14,7 +14,6 @@ public class UserFullName extends User {
         this.lastName = lastName;
     }
 
-
     public String getFirstName(){
         return firstName;
     }
