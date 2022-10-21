@@ -5,12 +5,10 @@ import com.esgi.arlo.repositories.user.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.Assert;
-import java.util.Objects;
 
 import static org.mockito.Mockito.*;
 
@@ -36,6 +34,6 @@ public class UserServiceImplUT {
 
         // VERIFY
         verify(userRepository, atMostOnce()).save(mockedUserEntity);
-        Assert.isTrue(Objects.equals(usersEntityToReturn.getId(), returnedUserEntity.getId()));
+        Assert.isTrue(usersEntityToReturn.getId().equals(returnedUserEntity.getId()));
     }
 }
