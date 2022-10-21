@@ -2,7 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.esgi.arlo</groupId>
     <artifactId>clean-code</artifactId>
     <version>${revision}</version>
@@ -16,8 +15,9 @@
         <relativePath/>
     </parent>
     <modules>
-        <module>clean-code-spring-rest</module>
+        <module>clean-code-db-impl</module>
         <module>clean-code-api</module>
+        <module>clean-code-spring-rest</module>
     </modules>
 
     <properties>
@@ -41,6 +41,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>2.7.5</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -62,7 +63,8 @@
             <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
-                <scope>runtime</scope>
+                <version>2.1.214</version>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>

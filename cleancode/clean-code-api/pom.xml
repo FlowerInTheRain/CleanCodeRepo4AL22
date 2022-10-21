@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <parent>
         <groupId>com.esgi.arlo</groupId>
-        <artifactId>cleancode</artifactId>
+        <artifactId>clean-code</artifactId>
         <version>${revision}</version>
     </parent>
     <packaging>
