@@ -1,14 +1,13 @@
 package com.esgi.arlo.impl.userservices;
 
 import com.esgi.arlo.entities.users.UsersEntity;
+import com.esgi.arlo.generators.UUIDGenerator;
 import com.esgi.arlo.interfaces.userservices.UserService;
 import com.esgi.arlo.repositories.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
-import java.util.UUID;
 
-import static java.util.UUID.randomUUID;
+import java.util.Optional;
 
 @Service
 public class UserRepositoryServiceImpl implements UserService {
@@ -30,9 +29,7 @@ public class UserRepositoryServiceImpl implements UserService {
     @Override
     public UsersEntity saveUser(UsersEntity userToSave) {
         if(userToSave.getUserReference() == null){
-            UUID userUUID = randomUUID();
-            String newClientBusinessReferenceToBindWithoutUnionTrails = String.join("", userUUID.toString().split("-"));
-            userToSave.setUserReference(newClientBusinessReferenceToBindWithoutUnionTrails);
+            userToSave.setUserReference(UUIDGenerator.generateUUIDWithoutUnionTrails());
         }
         return userRepository.save(userToSave);
     }
