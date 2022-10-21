@@ -1,9 +1,10 @@
 package com.cleancode.cleancodeapi.dto.user;
 
 import com.cleancode.cleancodeapi.dto.utils.Address;
+import lombok.Data;
 
 import java.util.Date;
-
+@Data
 public class UserBirthInformation {
     private final Date birthDate;
     private final Address birthAddress;

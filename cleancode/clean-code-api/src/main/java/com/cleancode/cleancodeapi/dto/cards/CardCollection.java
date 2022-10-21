@@ -1,11 +1,12 @@
 package com.cleancode.cleancodeapi.dto.cards;
 
+import lombok.Data;
 import org.codehaus.plexus.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+@Data
 public class CardCollection {
     private final String collectionReference;
     private final List<Card> collectionCardList;

@@ -1,5 +1,8 @@
 package com.cleancode.cleancodeapi.dto.utils;
 
+import lombok.Data;
+
+@Data
 public class Address {
     private Integer number;
     private String street;

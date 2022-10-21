@@ -2,9 +2,10 @@ package com.cleancode.cleancodeapi.dto.user;
 
 import com.cleancode.cleancodeapi.dto.cards.CardCollection;
 import com.cleancode.cleancodeapi.dto.utils.Address;
+import lombok.Data;
 
 import java.util.List;
-
+@Data
 public class UserClientInfo extends UserFullName {
     private final String clientReference;
     private final String clientCreationDate;
