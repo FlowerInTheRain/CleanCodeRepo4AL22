@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.Assert;
 import java.util.Objects;
 
+import static org.mockito.Mockito.*;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {UsersEntity.class})
 @AutoConfigureMockMvc
@@ -26,14 +28,14 @@ public class UserServiceImplUT {
         UsersEntity usersEntityToReturn = new UsersEntity();
         usersEntityToReturn.setUserReference("X12OP2");
         usersEntityToReturn.setId(1L);
-        UsersEntity mockedUserEntity = Mockito.mock(UsersEntity.class);
-        Mockito.when(userRepository.save(mockedUserEntity)).thenReturn(usersEntityToReturn);
+        UsersEntity mockedUserEntity = mock(UsersEntity.class);
+        when(userRepository.save(mockedUserEntity)).thenReturn(usersEntityToReturn);
 
         // TEST
         UsersEntity returnedUserEntity = userRepository.save(mockedUserEntity);
 
         // VERIFY
-        Mockito.verify(userRepository, Mockito.times(1)).save(mockedUserEntity);
+        verify(userRepository, atMostOnce()).save(mockedUserEntity);
         Assert.isTrue(Objects.equals(usersEntityToReturn.getId(), returnedUserEntity.getId()));
     }
 }
