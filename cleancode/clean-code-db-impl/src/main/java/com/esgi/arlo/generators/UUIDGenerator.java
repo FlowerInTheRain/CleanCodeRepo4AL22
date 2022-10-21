@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import static java.util.UUID.randomUUID;
 
+// To move in business logic module
 public class UUIDGenerator {
     public static final UUID generatedUUID = randomUUID();
 
