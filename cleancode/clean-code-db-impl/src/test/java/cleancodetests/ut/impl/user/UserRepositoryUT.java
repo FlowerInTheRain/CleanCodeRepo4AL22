@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import com.esgi.arlo.entities.users.UsersEntity;
-import com.esgi.arlo.repositories.user.UserRepository;
+import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
+import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

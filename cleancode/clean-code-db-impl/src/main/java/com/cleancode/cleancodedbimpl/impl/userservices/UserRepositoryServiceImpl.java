@@ -1,9 +1,9 @@
-package com.esgi.arlo.impl.userservices;
+package com.cleancode.cleancodedbimpl.impl.userservices;
 
-import com.esgi.arlo.entities.users.UsersEntity;
-import com.esgi.arlo.generators.UUIDGenerator;
-import com.esgi.arlo.interfaces.userservices.UserService;
-import com.esgi.arlo.repositories.user.UserRepository;
+import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
+import com.cleancode.cleancodedbimpl.generators.UUIDGenerator;
+import com.cleancode.cleancodedbimpl.interfaces.userservices.UserService;
+import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

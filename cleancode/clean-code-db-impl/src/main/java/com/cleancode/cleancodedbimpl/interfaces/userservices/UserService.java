@@ -1,6 +1,6 @@
-package com.esgi.arlo.interfaces.userservices;
+package com.cleancode.cleancodedbimpl.interfaces.userservices;
 
-import com.esgi.arlo.entities.users.UsersEntity;
+import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 
 import java.util.Optional;
 

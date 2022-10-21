@@ -2,8 +2,8 @@ package cleancodetests.ut.impl.user;
 
 // Packages
 
-import com.esgi.arlo.entities.users.UsersEntity;
-import com.esgi.arlo.impl.userservices.UserRepositoryServiceImpl;
+import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
+import com.cleancode.cleancodedbimpl.impl.userservices.UserRepositoryServiceImpl;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;

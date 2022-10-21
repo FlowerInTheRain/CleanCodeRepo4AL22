@@ -1,4 +1,4 @@
-package com.esgi.arlo.entities.users;
+package com.cleancode.cleancodedbimpl.entities.users;
 
 import javax.persistence.*;
 

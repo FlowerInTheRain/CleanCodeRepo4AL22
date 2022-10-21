@@ -1,8 +1,6 @@
-package com.cleancode.cleancodeapi.dto.utils;
+package com.cleancode.cleancodeapi.enums.address;
 
-// A bouger dans un package common
 public enum Country {
-
     AFGHANISTAN("Afghanistan"),
     ALBANIA("Albania"),
     ALGERIA("Algeria"),
