@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {UsersEntity.class})
 public class UserRepositoryUT {
 
     private static final Logger LOGGER = Logger.getLogger(UserRepositoryUT.class.getName());

@@ -12,9 +12,13 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
-public class TestIT {
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+@RunWith(SpringRunner.class)
+public class UserRepositoryServiceImplIT {
+
+    private static final Logger LOGGER = Logger.getLogger(UserRepositoryServiceImplIT.class.getName());
     @InjectMocks
     private UserRepositoryServiceImpl userService;
 
@@ -22,21 +26,23 @@ public class TestIT {
     private UserRepository userRepository;
 
     @Test
-    public void testSave(){
+    public void shouldCreateNewUserAndGenerateClientReference(){
+        LOGGER.log(Level.INFO,"Starting test shouldCreateNewUserAndGenerateClientReference");
 
-        // Arrange
+        // PREPARE
          UsersEntity usersEntityToSave = new UsersEntity();
          UsersEntity usersEntityToReturn = new UsersEntity();
          usersEntityToReturn.setId(1L);
          usersEntityToReturn.setUserReference(UUIDGenerator.generateUUIDWithoutUnionTrails());
 
-         // Test
+         // ACT
          Mockito.when(userRepository.save(usersEntityToSave)).thenReturn(usersEntityToReturn);
          usersEntityToSave = userService.saveUser(usersEntityToSave);
 
-         // Verify
+         // CHECK
         Mockito.verify(userRepository, Mockito.atMostOnce()).save(usersEntityToSave);
         Assertions.assertNotNull(usersEntityToSave.getUserReference());
+        LOGGER.log(Level.INFO,"Starting test shouldCreateNewUserAndGenerateClientReference");
     }
 }
 
