@@ -1,6 +1,8 @@
 package com.cleancode.bsimpl.services.impl.user;
 
-import com.cleancode.bsimpl.BusinessUserClientInfo;
+import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
+import com.cleancode.bsimpl.exceptionsmanagement.DBIMPLCommunicationException;
+import com.cleancode.bsimpl.exceptionsmanagement.DBIMPLExceptionEnum;
 import com.cleancode.bsimpl.mappers.users.UserClientInfoMapper;
 import com.cleancode.bsimpl.services.interfaces.user.UserBusinessService;
 import com.cleancode.bsimpl.utils.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
@@ -13,7 +15,6 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Optional;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
@@ -31,7 +32,7 @@ public class UserBusinessServiceImpl implements UserBusinessService {
      * @return something
      */
     @Override
-    public UserClientInfo saveUser(UserClientInfo userFromApi) {
+    public UserClientInfo saveUser(UserClientInfo userFromApi) throws DBIMPLCommunicationException {
         BusinessUserClientInfo businessUserClientInfo = UserClientInfoMapper.INSTANCE.fromApiToBs(userFromApi);
 
         if(userFromApi.getClientReference() == null){
@@ -42,11 +43,16 @@ public class UserBusinessServiceImpl implements UserBusinessService {
             formattedUUIDToBind.ifPresent(businessUserClientInfo::setBusinessReference);
             businessUserClientInfo.setClientCreationDate(new Timestamp(new Date().getTime()));
         }
+        throw new DBIMPLCommunicationException(DBIMPLExceptionEnum.DB_TIMEOUT_EXCEPTION);
+        /**
+        try {
 
+        } catch (Exception e){
+        }
         Long usersEntity = userRepositoryService.saveUserInDb(UserEntityMapper.INSTANCE.fromBsToDb(businessUserClientInfo));
         LOGGER.log(Level.INFO, "UserFromApi User : " + userFromApi + " Returned usersEntity : " + usersEntity);
         businessUserClientInfo.setTechnicalId(usersEntity);
-        return UserClientInfoMapper.INSTANCE.fromBsToApi(businessUserClientInfo);
+        return UserClientInfoMapper.INSTANCE.fromBsToApi(businessUserClientInfo);*/
 
     }
 }

@@ -1,5 +1,6 @@
 package com.cleancode.cleancodespringrest.entrypoints.restservice.rest.impl.user;
 
+import com.cleancode.bsimpl.exceptionsmanagement.DBIMPLCommunicationException;
 import com.cleancode.bsimpl.services.interfaces.user.UserBusinessService;
 import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
 import com.cleancode.cleancodespringrest.entrypoints.restservice.rest.interfaces.user.UserCardCollectionOperationService;
@@ -65,7 +66,7 @@ public class UserCardCollectionOperationsServiceImpl implements UserCardCollecti
     @ApiResponse(code=200, message="User Added")
     @PutMapping(value = "/addNewUser", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public UserClientInfo saveUser(@RequestBody  UserClientInfo userCompleteInfoRequest) {
+    public UserClientInfo saveUser(@RequestBody  UserClientInfo userCompleteInfoRequest) throws DBIMPLCommunicationException {
         return userBusinessService.saveUser(userCompleteInfoRequest);
     }
 }
