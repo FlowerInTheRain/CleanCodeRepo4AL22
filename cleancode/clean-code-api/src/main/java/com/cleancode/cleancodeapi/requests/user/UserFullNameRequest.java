@@ -14,4 +14,12 @@ public class UserFullNameRequest extends User {
     public static UserFullNameRequest createOneUserFullNameRequest(String firstName, String lastName){
         return new UserFullNameRequest(firstName, lastName);
     }
+
+    @Override
+    public String toString() {
+        return "UserFullNameRequest{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

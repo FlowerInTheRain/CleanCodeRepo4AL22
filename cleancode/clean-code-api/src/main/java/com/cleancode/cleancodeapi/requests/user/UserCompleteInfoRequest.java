@@ -2,7 +2,9 @@ package com.cleancode.cleancodeapi.requests.user;
 
 import com.cleancode.cleancodeapi.dto.user.UserBirthInformation;
 import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserCompleteInfoRequest {
     private final UserFullNameRequest userName;
     private final UserBirthInformation birthDate;
@@ -14,7 +16,16 @@ public class UserCompleteInfoRequest {
         this.birthDate = birthDate;
     }
 
-    public static UserCompleteInfoRequest createOne(String lastName, String firstName, UserBirthInformation birthDate, UserClientInfo userClientInfo){
-        return  new UserCompleteInfoRequest(lastName, firstName, birthDate, userClientInfo);
+    public static UserCompleteInfoRequest createOne(String lastName, String firstName, UserBirthInformation birthDate, UserClientInfo userClientInfo) {
+        return new UserCompleteInfoRequest(lastName, firstName, birthDate, userClientInfo);
+    }
+
+    @Override
+    public String toString() {
+        return "UserCompleteInfoRequest{" +
+                "userName=" + userName.toString() +
+                ", birthDate=" + birthDate.toString() +
+                ", userClientInfo=" + userClientInfo.toString() +
+                '}';
     }
 }

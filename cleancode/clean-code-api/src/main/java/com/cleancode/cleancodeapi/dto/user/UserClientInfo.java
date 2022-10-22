@@ -17,4 +17,12 @@ public class UserClientInfo extends UserFullName {
         return new UserClientInfo(userFullName, clientReference, clientCreationDate);
 
     }
+
+    @Override
+    public String toString() {
+        return "UserClientInfo{" +
+                "clientReference='" + clientReference + '\'' +
+                ", clientCreationDate=" + clientCreationDate + '\'' +
+                '}';
+    }
 }

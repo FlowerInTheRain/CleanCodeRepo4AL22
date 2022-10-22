@@ -11,4 +11,12 @@ public class UserBirthInformation {
         this.birthDate = birthDate;
         this.birthAddress = birthAddress;
     }
+
+    @Override
+    public String toString() {
+        return "UserBirthInformation{" +
+                "birthDate='" + birthDate.toString() + '\'' +
+                ", birthAddress=" + birthAddress.toString() +
+                '}';
+    }
 }
