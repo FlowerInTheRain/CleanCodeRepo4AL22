@@ -10,6 +10,8 @@ import com.cleancode.cleancodedbimpl.interfaces.userservices.UserRepositoryServi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,9 +40,9 @@ public class UserBusinessServiceImpl implements UserBusinessService {
                 throw new RuntimeException();
             }
             formattedUUIDToBind.ifPresent(businessUserClientInfo::setBusinessReference);
-
+            businessUserClientInfo.setClientCreationDate(new Timestamp(new Date().getTime()));
         }
-        ;
+
         Long usersEntity = userRepositoryService.saveUserInDb(UserEntityMapper.INSTANCE.fromBsToDb(businessUserClientInfo));
         LOGGER.log(Level.INFO, "UserFromApi User : " + userFromApi + " Returned usersEntity : " + usersEntity);
         businessUserClientInfo.setTechnicalId(usersEntity);

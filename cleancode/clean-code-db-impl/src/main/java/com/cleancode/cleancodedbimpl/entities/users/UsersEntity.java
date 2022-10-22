@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Getter
@@ -18,6 +19,9 @@ public class UsersEntity {
 
     @Column(unique = true, nullable = false, length=32)
     private String userReference;
+
+    @Column(columnDefinition = "timestamp default CURRENT_TIMESTAMP")
+    private Timestamp creationDate;
 
     public Long getId() {
         return id;
@@ -35,11 +39,20 @@ public class UsersEntity {
         this.userReference = userReference;
     }
 
+    public Timestamp getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Timestamp creationDate) {
+        this.creationDate = creationDate;
+    }
+
     @Override
     public String toString() {
         return "UserEntity{" +
                 "id=" + id +
                 ", userReference='" + userReference + '\'' +
+                ", creationDate='" + creationDate + '\'' +
                 '}';
     }
 

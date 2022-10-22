@@ -3,12 +3,13 @@ package com.cleancode.cleancodeapi.dto.user;
 import com.cleancode.cleancodeapi.dto.address.Address;
 import com.cleancode.cleancodeapi.dto.cards.CardCollection;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 
 public class UserClientInfo extends User {
     private String clientReference;
-    private String clientCreationDate;
+    private Timestamp clientCreationDate;
 
     private final UserBirthInformation userBirthInformation;
     private Address clientAddress;
@@ -17,7 +18,7 @@ public class UserClientInfo extends User {
         this.clientReference = clientReference;
     }
 
-    public void setClientCreationDate(String clientCreationDate) {
+    public void setClientCreationDate(Timestamp clientCreationDate) {
         this.clientCreationDate = clientCreationDate;
     }
 
@@ -29,7 +30,7 @@ public class UserClientInfo extends User {
 
     private List<CardCollection> userCardCollectionsList;
 
-    public UserClientInfo(String clientReference, String clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress, List<CardCollection> userCardCollectionsList) {
+    public UserClientInfo(String clientReference, Timestamp clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress, List<CardCollection> userCardCollectionsList) {
         this.clientReference = clientReference;
         this.clientCreationDate = clientCreationDate;
         this.userBirthInformation = userBirthInformation;
@@ -41,7 +42,7 @@ public class UserClientInfo extends User {
         return clientReference;
     }
 
-    public String getClientCreationDate() {
+    public Timestamp getClientCreationDate() {
         return clientCreationDate;
     }
 
@@ -58,7 +59,7 @@ public class UserClientInfo extends User {
     }
 
     public static UserClientInfo createOneUserClientInfo(
-             String clientReference, String clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress, List<CardCollection> userCardCollectionsList
+             String clientReference, Timestamp clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress, List<CardCollection> userCardCollectionsList
             ){
         return new UserClientInfo( clientReference, clientCreationDate, userBirthInformation, clientAddress, userCardCollectionsList);
     }
