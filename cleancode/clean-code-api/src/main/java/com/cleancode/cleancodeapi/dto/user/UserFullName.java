@@ -1,14 +1,27 @@
 package com.cleancode.cleancodeapi.dto.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 public class UserFullName {
-    private final String firstName;
-    private final String lastName;
+    @JsonIgnore
 
+    private String firstName;
+    @JsonIgnore
+
+    private String lastName;
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     protected UserFullName(String firstName, String lastName) {
         this.firstName = firstName;

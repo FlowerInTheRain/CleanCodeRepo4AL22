@@ -62,10 +62,10 @@ public class UserCardCollectionOperationsServiceImpl implements UserCardCollecti
     @ApiOperation(value = "Adds a user",
             response = UserClientInfo.class,
             notes = "Customer must not exist")
-    @ApiResponse(code=200, message="Card collections retrieved")
+    @ApiResponse(code=200, message="User Added")
     @PutMapping(value = "/addNewUser", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public UserClientInfo saveUser(UserClientInfo userCompleteInfoRequest) {
+    public UserClientInfo saveUser(@RequestBody  UserClientInfo userCompleteInfoRequest) {
         return userBusinessService.saveUser(userCompleteInfoRequest);
     }
 }

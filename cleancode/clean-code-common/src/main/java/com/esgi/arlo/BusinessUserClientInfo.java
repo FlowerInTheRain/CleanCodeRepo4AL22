@@ -1,12 +1,11 @@
 package com.esgi.arlo;
 
 import com.esgi.arlo.dto.cards.CardCollection;
-import com.esgi.arlo.dto.user.UserFullName;
 import com.esgi.arlo.dto.utils.Address;
 
 import java.util.List;
 
-public class BusinessUserClientInfo extends UserFullName {
+public class BusinessUserClientInfo {
 
 
 
@@ -17,8 +16,7 @@ public class BusinessUserClientInfo extends UserFullName {
     private final Address clientAddress;
     private List<CardCollection> userCardCollectionsList;
 
-    public BusinessUserClientInfo(UserFullName userFullName, String businessReference, String clientCreationDate, Address clientAddress, List<CardCollection> userCardCollectionsList) {
-        super(userFullName.getFirstName(),userFullName.getLastName());
+    public BusinessUserClientInfo(String businessReference, String clientCreationDate, Address clientAddress, List<CardCollection> userCardCollectionsList) {
         this.businessReference = businessReference;
         this.clientCreationDate = clientCreationDate;
         this.clientAddress = clientAddress;
@@ -54,9 +52,8 @@ public class BusinessUserClientInfo extends UserFullName {
         this.userCardCollectionsList = userCardCollectionsList;
     }
 
-    public static BusinessUserClientInfo createOneUserClientInfo(
-            UserFullName userFullName, String clientReference, String clientCreationDate, Address clientAddress, List<CardCollection> userCardCollectionsList
+    public static BusinessUserClientInfo createOneUserClientInfo( String clientReference, String clientCreationDate, Address clientAddress, List<CardCollection> userCardCollectionsList
             ){
-        return new BusinessUserClientInfo(userFullName, clientReference, clientCreationDate, clientAddress, userCardCollectionsList);
+        return new BusinessUserClientInfo(clientReference, clientCreationDate, clientAddress, userCardCollectionsList);
     }
 }

@@ -2,20 +2,33 @@ package com.cleancode.cleancodeapi.dto.user;
 
 import com.cleancode.cleancodeapi.dto.cards.CardCollection;
 import com.cleancode.cleancodeapi.dto.utils.Address;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
 
-public class UserClientInfo implements HasUserName {
-    private final String clientReference;
-    private final String clientCreationDate;
-    private UserFullName clientFullName;
+public class UserClientInfo extends User {
+    private String clientReference;
+    private String clientCreationDate;
+    private Address clientAddress;
 
-    private final Address clientAddress;
+    public void setClientReference(String clientReference) {
+        this.clientReference = clientReference;
+    }
+
+    public void setClientCreationDate(String clientCreationDate) {
+        this.clientCreationDate = clientCreationDate;
+    }
+
+
+
+    public void setClientAddress(Address clientAddress) {
+        this.clientAddress = clientAddress;
+    }
+
     private List<CardCollection> userCardCollectionsList;
 
-    public UserClientInfo(String firstName, String lastName, String clientReference, String clientCreationDate, Address clientAddress, List<CardCollection> userCardCollectionsList) {
-        clientFullName = UserFullName.createOneUserName(firstName,lastName);
+    public UserClientInfo(String clientReference, String clientCreationDate, Address clientAddress, List<CardCollection> userCardCollectionsList) {
         this.clientReference = clientReference;
         this.clientCreationDate = clientCreationDate;
         this.clientAddress = clientAddress;
@@ -43,16 +56,8 @@ public class UserClientInfo implements HasUserName {
     }
 
     public static UserClientInfo createOneUserClientInfo(
-            UserFullName userFullName, String clientReference, String clientCreationDate, Address clientAddress,List<CardCollection> userCardCollectionsList
+             String clientReference, String clientCreationDate, Address clientAddress,List<CardCollection> userCardCollectionsList
             ){
-        return new UserClientInfo(userFullName.getFirstName(), userFullName.getLastName(), clientReference, clientCreationDate, clientAddress, userCardCollectionsList);
-    }
-
-    /**
-     * @return userFullName
-     */
-    @Override
-    public UserFullName getUserFullName() {
-        return clientFullName;
+        return new UserClientInfo( clientReference, clientCreationDate, clientAddress, userCardCollectionsList);
     }
 }

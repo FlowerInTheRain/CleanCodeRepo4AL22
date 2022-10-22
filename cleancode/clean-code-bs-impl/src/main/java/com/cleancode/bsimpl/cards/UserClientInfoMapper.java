@@ -13,7 +13,6 @@ public interface UserClientInfoMapper {
     @Mappings({
             @Mapping(source = "clientReference", target = "businessReference"),
             @Mapping(source = "userCardCollectionsList", target="userCardCollectionsList")
-
     })
     BusinessUserClientInfo fromApiToBs(UserClientInfo userClientInfo);
 

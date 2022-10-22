@@ -8,7 +8,7 @@ public class UsersEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false, length=32, columnDefinition = "A user functional identifier")
+    @Column(unique = true, nullable = false, length=32)
     private String userReference;
 
     public Long getId() {
