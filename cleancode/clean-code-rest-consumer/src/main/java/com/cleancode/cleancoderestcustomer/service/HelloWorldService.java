@@ -1,19 +1,20 @@
 package com.cleancode.cleancoderestcustomer.service;
 
+import com.cleancode.cleancoderestcustomer.api.ApiConf;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @Service
-public class HelloWorldService {
+public class HelloWorldService extends ApiConf {
 
     private final WebClient webClient;
 
     public HelloWorldService() {
-        this.webClient = WebClient.create("http://localhost:8090/api");
+        this.webClient = WebClient.create(this.getUrl());
     }
 
-    public String HelloWorld() {
-        return this.webClient.get().uri("/").retrieve().bodyToMono(String.class).block();
+    public Mono<String> HelloWorld() {
+        return this.webClient.get().uri("/").retrieve().bodyToMono(String.class);
     }
 }

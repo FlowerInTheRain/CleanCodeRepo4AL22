@@ -9,5 +9,14 @@ import org.springframework.context.annotation.PropertySource;
 public class ApiConf {
 
     @Value( "${api.url:default}" )
-    public String apiUrl;
+    private String apiUrl;
+    private static final String url = "http://localhost:8090/api";
+
+    public String getApiUrl() {
+        return apiUrl;
+    }
+
+    public String getUrl() {
+        return url;
+    }
 }

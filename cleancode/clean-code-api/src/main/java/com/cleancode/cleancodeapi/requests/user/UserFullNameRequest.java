@@ -6,9 +6,17 @@ public class UserFullNameRequest extends User {
     private String firstName;
     private String lastName;
 
-    private UserFullNameRequest(String firstName, String lastName) {
+    public UserFullNameRequest(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public static UserFullNameRequest createOneUserFullNameRequest(String firstName, String lastName){
