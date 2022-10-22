@@ -6,15 +6,16 @@ import com.cleancode.cleancodeapi.dto.utils.Address;
 import java.util.List;
 
 
-public class UserClientInfo extends UserFullName {
+public class UserClientInfo implements HasUserName {
     private final String clientReference;
     private final String clientCreationDate;
+    private UserFullName clientFullName;
 
     private final Address clientAddress;
     private List<CardCollection> userCardCollectionsList;
 
     public UserClientInfo(String firstName, String lastName, String clientReference, String clientCreationDate, Address clientAddress, List<CardCollection> userCardCollectionsList) {
-        super(firstName, lastName);
+        clientFullName = UserFullName.createOneUserName(firstName,lastName);
         this.clientReference = clientReference;
         this.clientCreationDate = clientCreationDate;
         this.clientAddress = clientAddress;
@@ -45,5 +46,13 @@ public class UserClientInfo extends UserFullName {
             UserFullName userFullName, String clientReference, String clientCreationDate, Address clientAddress,List<CardCollection> userCardCollectionsList
             ){
         return new UserClientInfo(userFullName.getFirstName(), userFullName.getLastName(), clientReference, clientCreationDate, clientAddress, userCardCollectionsList);
+    }
+
+    /**
+     * @return userFullName
+     */
+    @Override
+    public UserFullName getUserFullName() {
+        return clientFullName;
     }
 }

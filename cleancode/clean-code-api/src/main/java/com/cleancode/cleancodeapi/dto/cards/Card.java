@@ -1,8 +1,7 @@
 package com.cleancode.cleancodeapi.dto.cards;
 
-import lombok.Data;
+import com.cleancode.cleancodeapi.enums.cards.CardRarityEnum;
 
-@Data
-public class Card {
-    private String test;
+public record Card(String cardReference, String cardLabel, Integer cardValue, CardRarityEnum cardRarityEnum,Integer roundedPrice) {
+
 }

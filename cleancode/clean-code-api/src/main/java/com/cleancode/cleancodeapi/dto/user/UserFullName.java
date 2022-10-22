@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class UserFullName extends User {
+public class UserFullName {
     private final String firstName;
     private final String lastName;
+
 
     protected UserFullName(String firstName, String lastName) {
         this.firstName = firstName;
@@ -19,10 +20,6 @@ public class UserFullName extends User {
 
     public String getLastName(){
         return lastName;
-    }
-
-    public UserFullName getUserFullName(){
-        return this;
     }
 
     protected static UserFullName createOneUserName(String firstName, String lastName){

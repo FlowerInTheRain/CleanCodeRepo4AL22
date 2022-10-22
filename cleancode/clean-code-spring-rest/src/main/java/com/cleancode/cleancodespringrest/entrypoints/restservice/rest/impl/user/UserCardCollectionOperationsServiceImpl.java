@@ -2,7 +2,6 @@ package com.cleancode.cleancodespringrest.entrypoints.restservice.rest.impl.user
 
 import com.cleancode.bsimpl.services.interfaces.user.UserBusinessService;
 import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
-import com.cleancode.cleancodeapi.requests.user.UserCompleteInfoRequest;
 import com.cleancode.cleancodespringrest.entrypoints.restservice.rest.interfaces.user.UserCardCollectionOperationService;
 import io.swagger.annotations.*;
 import jakarta.ws.rs.core.Response;
@@ -43,13 +42,13 @@ public class UserCardCollectionOperationsServiceImpl implements UserCardCollecti
     }
     // Swagger doc
     @ApiOperation(value = "Search a specific user card collections",
-            response = UserCompleteInfoRequest.class,
+            response = UserClientInfo.class,
             notes = "Customer must exist")
     @ApiResponse(code=200, message="Card collections retrieved")
     @GetMapping(value = "/searchUserCardCollections", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public Optional<List<UserCompleteInfoRequest>> searchUserCardCollections(
-            @RequestBody UserCompleteInfoRequest userCompleteInfoRequest) {
+    public Optional<List<UserClientInfo>> searchUserCardCollections(
+            @RequestBody UserClientInfo userCompleteInfoRequest) {
         LOGGER.log(Level.INFO, "Calling searchUserCompleteInfoListByUserFirstNameAndLastName");
         LOGGER.log(Level.SEVERE, "Grosse erreur");
         LOGGER.log(Level.WARNING, "Self explanatory");
@@ -60,6 +59,11 @@ public class UserCardCollectionOperationsServiceImpl implements UserCardCollecti
      * @param userCompleteInfoRequest
      * @return
      */
+    @ApiOperation(value = "Adds a user",
+            response = UserClientInfo.class,
+            notes = "Customer must not exist")
+    @ApiResponse(code=200, message="Card collections retrieved")
+    @PutMapping(value = "/addNewUser", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public UserClientInfo saveUser(UserClientInfo userCompleteInfoRequest) {
         return userBusinessService.saveUser(userCompleteInfoRequest);
