@@ -54,15 +54,14 @@ public class UserBusinessServiceImpl implements UserBusinessService {
             LOGGER.log(Level.INFO, "UserFromApi User : " + userFromApi + " Returned usersEntity : " + usersEntity);
             return UserClientInfoMapper.INSTANCE.fromBsToApi(businessUserClientInfo);
         } catch (Exception e){
-            handleDBImplQueryExceptions(businessUserClientInfo, isClientRegistered);
+            handleDBImplQueryExceptions(new DBIMPLCommunicationException(DBIMPLExceptionEnum.DB_TIMEOUT_EXCEPTION));
+            revertReferenceAndCreationDateAttributionOnDbErrorForNonExistingUsers(businessUserClientInfo, isClientRegistered);
         }
         return userFromApi;
     }
 
-    private void handleDBImplQueryExceptions(BusinessUserClientInfo businessUserClientInfo, boolean isClientRegistered) throws DBIMPLCommunicationException {
-        DBIMPLCommunicationException dbimplCommunicationException = new DBIMPLCommunicationException(DBIMPLExceptionEnum.DB_TIMEOUT_EXCEPTION);
+    private void handleDBImplQueryExceptions(DBIMPLCommunicationException dbimplCommunicationException) throws DBIMPLCommunicationException {
         LOGGER.log(Level.WARNING, "Error while connecting to db : " + dbimplCommunicationException);
-        revertReferenceAndCreationDateAttributionOnDbErrorForNonExistingUsers(businessUserClientInfo, isClientRegistered);
         throw dbimplCommunicationException;
     }
 
