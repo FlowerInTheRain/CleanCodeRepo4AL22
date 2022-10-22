@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Optional;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
@@ -43,16 +44,17 @@ public class UserBusinessServiceImpl implements UserBusinessService {
             formattedUUIDToBind.ifPresent(businessUserClientInfo::setBusinessReference);
             businessUserClientInfo.setClientCreationDate(new Timestamp(new Date().getTime()));
         }
-        throw new DBIMPLCommunicationException(DBIMPLExceptionEnum.DB_TIMEOUT_EXCEPTION);
         /**
+         *    Custom exception management with specific status code, check it out
+         *    throw new DBIMPLCommunicationException(DBIMPLExceptionEnum.DB_TIMEOUT_EXCEPTION);
+         */
         try {
-
+            Long usersEntity = userRepositoryService.saveUserInDb(UserEntityMapper.INSTANCE.fromBsToDb(businessUserClientInfo));
+            LOGGER.log(Level.INFO, "UserFromApi User : " + userFromApi + " Returned usersEntity : " + usersEntity);
+            businessUserClientInfo.setTechnicalId(usersEntity);
+            return UserClientInfoMapper.INSTANCE.fromBsToApi(businessUserClientInfo);
         } catch (Exception e){
+            throw new DBIMPLCommunicationException(DBIMPLExceptionEnum.DB_TIMEOUT_EXCEPTION);
         }
-        Long usersEntity = userRepositoryService.saveUserInDb(UserEntityMapper.INSTANCE.fromBsToDb(businessUserClientInfo));
-        LOGGER.log(Level.INFO, "UserFromApi User : " + userFromApi + " Returned usersEntity : " + usersEntity);
-        businessUserClientInfo.setTechnicalId(usersEntity);
-        return UserClientInfoMapper.INSTANCE.fromBsToApi(businessUserClientInfo);*/
-
     }
 }
