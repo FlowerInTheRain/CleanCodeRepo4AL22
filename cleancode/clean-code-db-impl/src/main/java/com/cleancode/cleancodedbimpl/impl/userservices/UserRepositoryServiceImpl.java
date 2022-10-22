@@ -1,6 +1,7 @@
 package com.cleancode.cleancodedbimpl.impl.userservices;
 
 import com.cleancode.cleancodedbimpl.UserEntityMapper;
+import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 import com.cleancode.cleancodedbimpl.interfaces.userservices.UserRepositoryService;
 import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
 import com.esgi.arlo.BusinessUserClientInfo;
@@ -8,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Service
 public class UserRepositoryServiceImpl implements UserRepositoryService {
+    private static final Logger LOGGER = Logger.getLogger(UserRepositoryServiceImpl.class.getName());
 
     private UserRepository userRepository;
 
@@ -25,7 +29,11 @@ public class UserRepositoryServiceImpl implements UserRepositoryService {
      */
     @Override
     public Optional<BusinessUserClientInfo> findOneUserByUserFunctionalId(String userBusinessReference) {
-        return Optional.ofNullable(UserEntityMapper.INSTANCE.fromDbToBs(userRepository.findByUserReference(userBusinessReference)));
+        LOGGER.log(Level.INFO, "Calling DB service findOneUserByUserFunctionalId");
+        UsersEntity foundUser = userRepository.findByUserReference(userBusinessReference);
+        LOGGER.log(Level.INFO, "Found User : " + foundUser);
+        BusinessUserClientInfo mappedFoundUser = UserEntityMapper.INSTANCE.fromDbToBs(foundUser);
+        return Optional.ofNullable(mappedFoundUser);
     }
 
     /**
@@ -34,6 +42,11 @@ public class UserRepositoryServiceImpl implements UserRepositoryService {
      */
     @Override
     public BusinessUserClientInfo saveUser(BusinessUserClientInfo userToSave) {
-        return UserEntityMapper.INSTANCE.fromDbToBs(userRepository.save(UserEntityMapper.INSTANCE.fromBsToDb(userToSave)));
+        LOGGER.log(Level.INFO, "Calling DB service saveUser");
+        UsersEntity mappedUserEntityFromBs = UserEntityMapper.INSTANCE.fromBsToDb(userToSave);
+        LOGGER.log(Level.INFO, "Mapped User : " + mappedUserEntityFromBs);
+        mappedUserEntityFromBs = userRepository.save(mappedUserEntityFromBs);
+        LOGGER.log(Level.INFO, "Saved User : " + mappedUserEntityFromBs);
+        return UserEntityMapper.INSTANCE.fromDbToBs(mappedUserEntityFromBs);
     }
 }
