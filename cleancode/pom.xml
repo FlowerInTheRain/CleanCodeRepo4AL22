@@ -19,7 +19,6 @@
         <module>clean-code-api</module>
         <module>clean-code-spring-rest</module>
         <module>clean-code-bs-impl</module>
-        <module>clean-code-common</module>
     </modules>
 
     <properties>

@@ -1,6 +1,6 @@
-package com.cleancode.bsimpl.cards;
+package com.cleancode.bsimpl.mappers.cards;
 
-import com.esgi.arlo.dto.cards.Card;
+import com.cleancode.bsimpl.Card;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

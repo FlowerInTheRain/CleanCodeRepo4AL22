@@ -27,10 +27,6 @@
             <version>3.1.0</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.esgi.arlo</groupId>
             <artifactId>clean-code-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
@@ -43,9 +39,13 @@
         </dependency>
         <dependency>
             <groupId>com.esgi.arlo</groupId>
-            <artifactId>clean-codbs-impl</artifactId>
+            <artifactId>clean-code-bs-impl</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
     <build>

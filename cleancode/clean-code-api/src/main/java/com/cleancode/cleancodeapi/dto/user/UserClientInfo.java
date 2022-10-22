@@ -1,8 +1,7 @@
 package com.cleancode.cleancodeapi.dto.user;
 
+import com.cleancode.cleancodeapi.dto.address.Address;
 import com.cleancode.cleancodeapi.dto.cards.CardCollection;
-import com.cleancode.cleancodeapi.dto.utils.Address;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
@@ -10,6 +9,8 @@ import java.util.List;
 public class UserClientInfo extends User {
     private String clientReference;
     private String clientCreationDate;
+
+    private final UserBirthInformation userBirthInformation;
     private Address clientAddress;
 
     public void setClientReference(String clientReference) {
@@ -28,9 +29,10 @@ public class UserClientInfo extends User {
 
     private List<CardCollection> userCardCollectionsList;
 
-    public UserClientInfo(String clientReference, String clientCreationDate, Address clientAddress, List<CardCollection> userCardCollectionsList) {
+    public UserClientInfo(String clientReference, String clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress, List<CardCollection> userCardCollectionsList) {
         this.clientReference = clientReference;
         this.clientCreationDate = clientCreationDate;
+        this.userBirthInformation = userBirthInformation;
         this.clientAddress = clientAddress;
         this.userCardCollectionsList = userCardCollectionsList;
     }
@@ -56,8 +58,8 @@ public class UserClientInfo extends User {
     }
 
     public static UserClientInfo createOneUserClientInfo(
-             String clientReference, String clientCreationDate, Address clientAddress,List<CardCollection> userCardCollectionsList
+             String clientReference, String clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress, List<CardCollection> userCardCollectionsList
             ){
-        return new UserClientInfo( clientReference, clientCreationDate, clientAddress, userCardCollectionsList);
+        return new UserClientInfo( clientReference, clientCreationDate, userBirthInformation, clientAddress, userCardCollectionsList);
     }
 }

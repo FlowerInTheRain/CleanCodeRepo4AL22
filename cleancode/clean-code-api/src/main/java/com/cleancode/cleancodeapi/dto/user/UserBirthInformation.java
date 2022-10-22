@@ -1,6 +1,6 @@
 package com.cleancode.cleancodeapi.dto.user;
 
-import com.cleancode.cleancodeapi.dto.utils.Address;
+import com.cleancode.cleancodeapi.dto.address.Address;
 import lombok.Data;
 
 import java.util.Date;

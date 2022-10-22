@@ -1,4 +1,4 @@
-package com.cleancode.bsimpl.cards;
+package com.cleancode.bsimpl.mappers.cards;
 
 import com.cleancode.cleancodeapi.dto.cards.CardCollection;
 import org.mapstruct.Mapper;
@@ -9,10 +9,10 @@ import org.mapstruct.factory.Mappers;
 public interface CardCollectionMapper {
     CardCollectionMapper INSTANCE = Mappers.getMapper(CardCollectionMapper.class);
     @Mapping(source = "collectionCardList", target = "collectionCardList")
-    CardCollection fromBusinessServiceCardCollectionToApiCardCollection(com.esgi.arlo.dto.cards.CardCollection cardCollection);
+    CardCollection fromBusinessServiceCardCollectionToApiCardCollection(com.cleancode.bsimpl.CardCollection cardCollection);
     @Mapping(source = "collectionCardList", target = "collectionCardList")
 
-    com.esgi.arlo.dto.cards.CardCollection fromApiToBs(CardCollection cardCollection);
+    com.cleancode.bsimpl.CardCollection  fromApiToBs(CardCollection cardCollection);
 
     // fromApiCardCollectionToBusinessLogicCardCollection(CardCollection cardCollection);
     //List<CardCollection> fromBusinessServiceCardCollectionToApiCardCollection(List<Object> businessServiceCollectionList);

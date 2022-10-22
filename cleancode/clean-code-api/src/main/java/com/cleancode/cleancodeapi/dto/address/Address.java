@@ -1,9 +1,8 @@
-package com.esgi.arlo.dto.utils;
+package com.cleancode.cleancodeapi.dto.address;
 
-import com.esgi.arlo.enums.address.CountryEnum;
-import lombok.Data;
 
-@Data
+import com.cleancode.cleancodeapi.enums.address.CountryEnum;
+
 public class Address {
     private Integer number;
     private String street;

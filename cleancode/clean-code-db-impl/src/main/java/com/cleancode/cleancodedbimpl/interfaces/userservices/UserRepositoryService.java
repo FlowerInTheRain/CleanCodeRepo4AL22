@@ -1,11 +1,11 @@
 package com.cleancode.cleancodedbimpl.interfaces.userservices;
 
-import com.esgi.arlo.BusinessUserClientInfo;
+import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 
 import java.util.Optional;
 
 public interface UserRepositoryService {
-    Optional<BusinessUserClientInfo> findOneUserByUserFunctionalId(String functionalId);
+    Optional<UsersEntity> findOneUserByUserFunctionalId(String functionalId);
 
-    BusinessUserClientInfo saveUser(BusinessUserClientInfo userToSave);
+    Long saveUserInDb(UsersEntity userToSave);
 }

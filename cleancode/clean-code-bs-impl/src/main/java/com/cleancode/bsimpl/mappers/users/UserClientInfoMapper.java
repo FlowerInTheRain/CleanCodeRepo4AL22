@@ -1,7 +1,7 @@
-package com.cleancode.bsimpl.cards;
+package com.cleancode.bsimpl.mappers.users;
 
+import com.cleancode.bsimpl.BusinessUserClientInfo;
 import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
-import com.esgi.arlo.BusinessUserClientInfo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -16,6 +16,9 @@ public interface UserClientInfoMapper {
     })
     BusinessUserClientInfo fromApiToBs(UserClientInfo userClientInfo);
 
-
+    @Mappings({
+            @Mapping(source = "businessReference", target = "clientReference"),
+            @Mapping(source = "userCardCollectionsList", target="userCardCollectionsList")
+    })
     UserClientInfo fromBsToApi(BusinessUserClientInfo userClientInfo);
 }
