@@ -2,14 +2,14 @@ package com.cleancode.bsimpl.exceptionsmanagement;
 
 
 public class DBIMPLCommunicationException extends Exception {
-    private final CleanCodeBodyResponse exceptionEnum;
+    private final CleanCodeErrorBodyResponse exceptionEnum;
 
 
-    public CleanCodeBodyResponse getResponse() {
+    public CleanCodeErrorBodyResponse getResponse() {
         return exceptionEnum;
     }
 
     public DBIMPLCommunicationException(DBIMPLExceptionEnum exception) {
-        this.exceptionEnum = new CleanCodeBodyResponse(exception.getHttpStatusToReturn(), exception.getMessageForUser(), exception.getComponentFailure().getComponentValue());
+        this.exceptionEnum = new CleanCodeErrorBodyResponse(exception.getHttpStatusToReturn(), exception.getMessageForUser(), exception.getComponentFailure().getComponentValue());
     }
 }

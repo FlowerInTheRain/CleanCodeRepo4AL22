@@ -1,7 +1,6 @@
 package com.cleancode.bsimpl.exceptionsmanagement;
 
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,6 +14,6 @@ public class ExceptionResponse extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleConflict(
             DBIMPLCommunicationException ex, WebRequest request) {
         return handleExceptionInternal(ex, ex.getResponse(),
-                new HttpHeaders(), HttpStatus.CONFLICT, request);
+                new HttpHeaders(), ex.getResponse().responseStatus(), request);
     }
 }

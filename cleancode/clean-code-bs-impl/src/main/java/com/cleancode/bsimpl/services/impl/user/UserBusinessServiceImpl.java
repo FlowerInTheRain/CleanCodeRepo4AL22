@@ -35,8 +35,9 @@ public class UserBusinessServiceImpl implements UserBusinessService {
     @Override
     public UserClientInfo saveUser(UserClientInfo userFromApi) throws DBIMPLCommunicationException {
         BusinessUserClientInfo businessUserClientInfo = UserClientInfoMapper.INSTANCE.fromApiToBs(userFromApi);
-
+        boolean isClientRegistered = true;
         if(userFromApi.getClientReference() == null){
+            isClientRegistered = false;
             Optional<String> formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
             if(formattedUUIDToBind.isEmpty()){
                 throw new RuntimeException();
@@ -51,10 +52,24 @@ public class UserBusinessServiceImpl implements UserBusinessService {
         try {
             Long usersEntity = userRepositoryService.saveUserInDb(UserEntityMapper.INSTANCE.fromBsToDb(businessUserClientInfo));
             LOGGER.log(Level.INFO, "UserFromApi User : " + userFromApi + " Returned usersEntity : " + usersEntity);
-            businessUserClientInfo.setTechnicalId(usersEntity);
             return UserClientInfoMapper.INSTANCE.fromBsToApi(businessUserClientInfo);
         } catch (Exception e){
-            throw new DBIMPLCommunicationException(DBIMPLExceptionEnum.DB_TIMEOUT_EXCEPTION);
+            handleDBImplQueryExceptions(businessUserClientInfo, isClientRegistered);
+        }
+        return userFromApi;
+    }
+
+    private void handleDBImplQueryExceptions(BusinessUserClientInfo businessUserClientInfo, boolean isClientRegistered) throws DBIMPLCommunicationException {
+        DBIMPLCommunicationException dbimplCommunicationException = new DBIMPLCommunicationException(DBIMPLExceptionEnum.DB_TIMEOUT_EXCEPTION);
+        LOGGER.log(Level.WARNING, "Error while connecting to db : " + dbimplCommunicationException);
+        revertReferenceAndCreationDateAttributionOnDbErrorForNonExistingUsers(businessUserClientInfo, isClientRegistered);
+        throw dbimplCommunicationException;
+    }
+
+    protected void revertReferenceAndCreationDateAttributionOnDbErrorForNonExistingUsers(BusinessUserClientInfo businessUserClientInfo, boolean isClientRegistered) {
+        if(!isClientRegistered){
+            businessUserClientInfo.setBusinessReference(null);
+            businessUserClientInfo.setClientCreationDate(null);
         }
     }
 }

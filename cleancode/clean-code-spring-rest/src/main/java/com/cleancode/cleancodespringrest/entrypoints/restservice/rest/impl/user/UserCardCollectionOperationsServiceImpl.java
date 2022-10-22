@@ -28,8 +28,8 @@ public class UserCardCollectionOperationsServiceImpl implements UserCardCollecti
     private void setUserBusinessService(UserBusinessService userBusinessService){
         this.userBusinessService = userBusinessService;
     }
-    @GetMapping(value = "/test")
 
+    @GetMapping(value = "/test")
     @ApiOperation(value = "Hello bois",
             response = String.class,
             notes = "A simple swagger note")
@@ -41,6 +41,7 @@ public class UserCardCollectionOperationsServiceImpl implements UserCardCollecti
         String message = "Hello" + " " + "World";
         return Response.status(Response.Status.OK).entity(message).build();
     }
+
     // Swagger doc
     @ApiOperation(value = "Search a specific user card collections",
             response = UserClientInfo.class,

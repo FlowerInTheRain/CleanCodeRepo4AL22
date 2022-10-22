@@ -9,12 +9,7 @@ import java.util.List;
 
 public class BusinessUserClientInfo {
 
-
-    private final Long technicalId;
-
-    public Long getTechnicalId() {
-        return technicalId;
-    }
+    protected final Long technicalId;
 
     private String businessReference;
 
@@ -31,11 +26,10 @@ public class BusinessUserClientInfo {
         setUserCardCollectionsList(userCardCollectionsList);
     }
 
-    public void setTechnicalId(Long technicalId) {
+    public Long getTechnicalId() {
+        return technicalId;
     }
 
-    public void getTechnicalId(Long technicalId) {
-    }
     public String getBusinessReference() {
         return businessReference;
     }
@@ -62,11 +56,5 @@ public class BusinessUserClientInfo {
 
     public void setUserCardCollectionsList(List<CardCollection> userCardCollectionsList) {
         this.userCardCollectionsList = userCardCollectionsList;
-    }
-
-    public static BusinessUserClientInfo createOneUserClientInfo( Long technicalId, String clientReference, Timestamp clientCreationDate, Address clientAddress,
-                                                                  List<CardCollection> userCardCollectionsList
-    ){
-        return new BusinessUserClientInfo(technicalId, clientReference, clientCreationDate, clientAddress, userCardCollectionsList);
     }
 }
