@@ -1,17 +1,16 @@
 package com.cleancode.cleancodedbimpl.impl.userservices;
 
-import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
-import com.cleancode.cleancodedbimpl.generators.UUIDGenerator;
-import com.cleancode.cleancodedbimpl.generators.formatters.UUIDFormatter;
-import com.cleancode.cleancodedbimpl.interfaces.userservices.UserService;
+import com.cleancode.cleancodedbimpl.UserEntityMapper;
+import com.cleancode.cleancodedbimpl.interfaces.userservices.UserRepositoryService;
 import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
+import com.esgi.arlo.BusinessUserClientInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class UserRepositoryServiceImpl implements UserService {
+public class UserRepositoryServiceImpl implements UserRepositoryService {
 
     private UserRepository userRepository;
 
@@ -25,8 +24,8 @@ public class UserRepositoryServiceImpl implements UserService {
      * @return an optional of a user
      */
     @Override
-    public Optional<UsersEntity> findOneUserByUserTechnicalId(String userBusinessReference) {
-        return Optional.ofNullable(userRepository.findByUserReference(userBusinessReference));
+    public Optional<BusinessUserClientInfo> findOneUserByUserFunctionalId(String userBusinessReference) {
+        return Optional.ofNullable(UserEntityMapper.INSTANCE.fromDbToBs(userRepository.findByUserReference(userBusinessReference)));
     }
 
     /**
@@ -34,14 +33,7 @@ public class UserRepositoryServiceImpl implements UserService {
      * @return a user
      */
     @Override
-    public UsersEntity saveUser(UsersEntity userToSave) {
-        if(userToSave.getUserReference() == null){
-            Optional<String> formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
-            if(formattedUUIDToBind.isEmpty()){
-                throw new RuntimeException();
-            }
-            formattedUUIDToBind.ifPresent(userToSave::setUserReference);
-        }
-        return userRepository.save(userToSave);
+    public BusinessUserClientInfo saveUser(BusinessUserClientInfo userToSave) {
+        return UserEntityMapper.INSTANCE.fromDbToBs(userRepository.save(UserEntityMapper.INSTANCE.fromBsToDb(userToSave)));
     }
 }

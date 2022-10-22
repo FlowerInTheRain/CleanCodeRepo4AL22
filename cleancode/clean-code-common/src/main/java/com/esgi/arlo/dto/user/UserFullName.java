@@ -1,4 +1,4 @@
-package com.cleancode.cleancodeapi.dto.user;
+package com.esgi.arlo.dto.user;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ public class UserFullName extends User {
     private final String firstName;
     private final String lastName;
 
-    protected UserFullName(String firstName, String lastName) {
+    public UserFullName(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -21,11 +21,7 @@ public class UserFullName extends User {
         return lastName;
     }
 
-    public UserFullName getUserFullName(){
-        return this;
-    }
-
-    protected static UserFullName createOneUserName(String firstName, String lastName){
+    public static UserFullName createOneUserName(String firstName, String lastName){
         return new UserFullName(firstName, lastName);
     }
     // Optional shouldn't be sent. We move the if present to the caller and take a map into argument

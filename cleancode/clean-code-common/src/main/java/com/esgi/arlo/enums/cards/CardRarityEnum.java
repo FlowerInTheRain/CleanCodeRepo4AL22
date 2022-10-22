@@ -1,6 +1,6 @@
-package com.cleancode.cleancodeapi.enums.cards;
+package com.esgi.arlo.enums.cards;
 
-public enum CardRarity {
+public enum CardRarityEnum {
 
     COMMON("Commune"),
     UNCOMMON("Peu commune"),
@@ -9,7 +9,7 @@ public enum CardRarity {
     UNIQUE("Unique");
 
     private final String rarity;
-    CardRarity(String rarity) {
+    CardRarityEnum(String rarity) {
         this.rarity = rarity;
     }
 

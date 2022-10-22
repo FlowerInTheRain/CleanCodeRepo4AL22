@@ -5,10 +5,12 @@ package cleancodetests.ut.user.repositoryservice;
 import cleancodetests.ut.user.repository.UserRepositoryUT;
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 import com.cleancode.cleancodedbimpl.impl.userservices.UserRepositoryServiceImpl;
+import com.esgi.arlo.BusinessUserClientInfo;
+import org.junit.Assert;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.UUID;
@@ -29,18 +31,18 @@ public class UserRepositoryServiceImplUT {
         LOGGER.log(Level.INFO,"Starting UT shouldSaveAnExistingUser");
         
         // PREPARE
-        UsersEntity usersEntityToReturn = new UsersEntity();
-        usersEntityToReturn.setUserReference("X12OP2");
-        usersEntityToReturn.setId(1L);
-        UsersEntity mockedUserEntity = mock(UsersEntity.class);
+        BusinessUserClientInfo usersEntityToReturn = Mockito.mock(BusinessUserClientInfo.class);
+        usersEntityToReturn.setBusinessReference("X12OP2");
+        usersEntityToReturn.setTechnicalId(1L);
+        BusinessUserClientInfo mockedUserEntity = mock(BusinessUserClientInfo.class);
         when(userRepositoryServiceImpl.saveUser(mockedUserEntity)).thenReturn(usersEntityToReturn);
 
         // ACT
-        UsersEntity returnedUserEntity = userRepositoryServiceImpl.saveUser(mockedUserEntity);
+        BusinessUserClientInfo returnedUserEntity = userRepositoryServiceImpl.saveUser(mockedUserEntity);
 
         // CHECK
         verify(userRepositoryServiceImpl, atMostOnce()).saveUser(mockedUserEntity);
-        Assertions.assertEquals(usersEntityToReturn.getId(), returnedUserEntity.getId());
+        Assert.assertEquals(usersEntityToReturn.getBusinessReference(), returnedUserEntity.getBusinessReference());
         
         LOGGER.log(Level.INFO,"Correctly ended UT shouldSaveAnExistingUser");
     }
@@ -50,18 +52,18 @@ public class UserRepositoryServiceImplUT {
         LOGGER.log(Level.INFO,"Starting UT shouldSaveANoNExistingUserAndSetHisBusinessReference");
         
         // PREPARE
-        UsersEntity usersEntityToReturn = new UsersEntity();
-        usersEntityToReturn.setUserReference(String.join("",UUID.randomUUID().toString().split("-")));
-        usersEntityToReturn.setId(1L);
-        UsersEntity mockedUserEntity = mock(UsersEntity.class);
+        BusinessUserClientInfo usersEntityToReturn = Mockito.mock(BusinessUserClientInfo.class);
+        usersEntityToReturn.setBusinessReference(String.join("",UUID.randomUUID().toString().split("-")));
+        usersEntityToReturn.setTechnicalId(1L);
+        BusinessUserClientInfo mockedUserEntity = mock(BusinessUserClientInfo.class);
         when(userRepositoryServiceImpl.saveUser(mockedUserEntity)).thenReturn(usersEntityToReturn);
 
         // ACT
-        UsersEntity returnedUserEntity = userRepositoryServiceImpl.saveUser(mockedUserEntity);
+        BusinessUserClientInfo returnedUserEntity = userRepositoryServiceImpl.saveUser(mockedUserEntity);
 
         // CHECK
         verify(userRepositoryServiceImpl, atMostOnce()).saveUser(mockedUserEntity);
-        Assertions.assertNotNull(returnedUserEntity.getUserReference());
+        Assert.assertNotNull(returnedUserEntity.getBusinessReference());
         
         LOGGER.log(Level.INFO,"Correctly ended UT shouldSaveANoNExistingUserAndSetHisBusinessReference");
     }

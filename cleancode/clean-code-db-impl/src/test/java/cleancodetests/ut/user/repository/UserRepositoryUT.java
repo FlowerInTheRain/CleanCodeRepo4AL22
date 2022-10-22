@@ -1,17 +1,18 @@
 package cleancodetests.ut.user.repository;
 
 // Packages
+
+import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
+import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
+import org.junit.Assert;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
-import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
-import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-// Static methods
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
@@ -36,7 +37,7 @@ public class UserRepositoryUT {
 
         // CHECK
         verify(userRepository, atMostOnce()).save(mockedUserEntity);
-        Assertions.assertEquals(usersEntityToReturn.getId(), returnedUserEntity.getId());
+        Assert.assertEquals(usersEntityToReturn.getId(), returnedUserEntity.getId());
         LOGGER.log(Level.INFO,"Correctly ended UT shouldSearchForOneUser");
     }
 }

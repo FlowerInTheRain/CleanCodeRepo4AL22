@@ -1,9 +1,12 @@
 package com.cleancode.cleancodespringrest.entrypoints.restservice.rest.impl.user;
 
+import com.cleancode.bsimpl.services.interfaces.user.UserBusinessService;
+import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
 import com.cleancode.cleancodeapi.requests.user.UserCompleteInfoRequest;
 import com.cleancode.cleancodespringrest.entrypoints.restservice.rest.interfaces.user.UserCardCollectionOperationService;
 import io.swagger.annotations.*;
 import jakarta.ws.rs.core.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +22,12 @@ import java.util.logging.Logger;
 public class UserCardCollectionOperationsServiceImpl implements UserCardCollectionOperationService {
     // SISI LES ARCHIS
     private static final Logger LOGGER = Logger.getLogger(UserCardCollectionOperationsServiceImpl.class.getName());
+    private UserBusinessService userBusinessService;
+
+    @Autowired
+    private void setUserBusinessService(UserBusinessService userBusinessService){
+        this.userBusinessService = userBusinessService;
+    }
     @GetMapping(value = "/test")
 
     @ApiOperation(value = "Hello bois",
@@ -45,5 +54,14 @@ public class UserCardCollectionOperationsServiceImpl implements UserCardCollecti
         LOGGER.log(Level.SEVERE, "Grosse erreur");
         LOGGER.log(Level.WARNING, "Self explanatory");
         return Optional.empty();
+    }
+
+    /**
+     * @param userCompleteInfoRequest
+     * @return
+     */
+    @Override
+    public UserClientInfo saveUser(UserClientInfo userCompleteInfoRequest) {
+        return userBusinessService.saveUser(userCompleteInfoRequest);
     }
 }

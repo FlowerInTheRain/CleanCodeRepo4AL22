@@ -1,4 +1,4 @@
-package com.cleancode.cleancodedbimpl.generators;
+package com.cleancode.bsimpl.utils.businessreferenceutils.businessidgeneratorutils.uuid;
 
 import java.util.UUID;
 import java.util.logging.Level;

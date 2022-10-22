@@ -1,6 +1,6 @@
-package com.cleancode.cleancodeapi.dto.utils;
+package com.esgi.arlo.dto.utils;
 
-import com.cleancode.cleancodeapi.enums.address.CountryEnum;
+import com.esgi.arlo.enums.address.CountryEnum;
 import lombok.Data;
 
 @Data

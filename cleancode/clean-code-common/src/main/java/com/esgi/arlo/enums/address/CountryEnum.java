@@ -1,6 +1,6 @@
-package com.cleancode.cleancodeapi.enums.address;
+package com.esgi.arlo.enums.address;
 
-public enum Country {
+public enum CountryEnum {
     AFGHANISTAN("Afghanistan"),
     ALBANIA("Albania"),
     ALGERIA("Algeria"),
@@ -206,11 +206,11 @@ public enum Country {
 
     private final String country;
 
-    Country(String country) {
+    CountryEnum(String country) {
         this.country = country;
     }
 
-    public String getValue() {
+    public String getCountryValue() {
         return country;
     }
 }

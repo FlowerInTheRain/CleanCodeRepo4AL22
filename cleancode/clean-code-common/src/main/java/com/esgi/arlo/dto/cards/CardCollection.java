@@ -1,4 +1,8 @@
-package com.cleancode.cleancodeapi.dto.cards;
+package com.esgi.arlo.dto.cards;
+
+
+
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
