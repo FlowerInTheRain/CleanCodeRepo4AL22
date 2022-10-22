@@ -2,6 +2,7 @@ package com.cleancode.cleancodedbimpl.impl.userservices;
 
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 import com.cleancode.cleancodedbimpl.generators.UUIDGenerator;
+import com.cleancode.cleancodedbimpl.generators.formatters.UUIDFormatter;
 import com.cleancode.cleancodedbimpl.interfaces.userservices.UserService;
 import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,11 @@ public class UserRepositoryServiceImpl implements UserService {
     @Override
     public UsersEntity saveUser(UsersEntity userToSave) {
         if(userToSave.getUserReference() == null){
-            userToSave.setUserReference(UUIDGenerator.generateUUIDWithoutUnionTrails());
+            Optional<String> formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
+            if(formattedUUIDToBind.isEmpty()){
+                throw new RuntimeException();
+            }
+            formattedUUIDToBind.ifPresent(userToSave::setUserReference);
         }
         return userRepository.save(userToSave);
     }

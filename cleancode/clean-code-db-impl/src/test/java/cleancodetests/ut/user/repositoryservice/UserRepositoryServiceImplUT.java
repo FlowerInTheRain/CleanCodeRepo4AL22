@@ -1,7 +1,8 @@
-package cleancodetests.ut.impl.user;
+package cleancodetests.ut.user.repositoryservice;
 
 // Packages
 
+import cleancodetests.ut.user.repository.UserRepositoryUT;
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 import com.cleancode.cleancodedbimpl.impl.userservices.UserRepositoryServiceImpl;
 import org.junit.Test;

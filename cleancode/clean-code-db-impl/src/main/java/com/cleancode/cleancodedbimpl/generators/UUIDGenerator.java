@@ -10,13 +10,12 @@ import static java.util.UUID.randomUUID;
 public class UUIDGenerator {
 
     private static final Logger LOGGER = Logger.getLogger(UUIDGenerator.class.getName());
-    public static final UUID generatedUUID = randomUUID();
+    private static final UUID generatedUUID = randomUUID();
 
-    public static String generateUUIDWithoutUnionTrails(){
+    public static UUID generateUUID(){
         LOGGER.log(Level.INFO, "Generating business reference.");
-        String newBusinessReferenceToBindWithoutUnionTrails = generatedUUID.toString();
-        newBusinessReferenceToBindWithoutUnionTrails = String.join("", newBusinessReferenceToBindWithoutUnionTrails.split("-"));
-        LOGGER.log(Level.INFO, "Business Reference ".concat(newBusinessReferenceToBindWithoutUnionTrails).concat(" Successfully generated."));
+        UUID newBusinessReferenceToBindWithoutUnionTrails = generatedUUID;
+        LOGGER.log(Level.INFO, "Business Reference ".concat(newBusinessReferenceToBindWithoutUnionTrails.toString()).concat(" Successfully generated."));
         return newBusinessReferenceToBindWithoutUnionTrails;
     }
 }

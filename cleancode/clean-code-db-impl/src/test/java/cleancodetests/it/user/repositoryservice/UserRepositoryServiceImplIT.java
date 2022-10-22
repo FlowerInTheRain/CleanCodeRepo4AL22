@@ -1,7 +1,8 @@
-package cleancodetests.ut.impl.user;
+package cleancodetests.it.user.repositoryservice;
 
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 import com.cleancode.cleancodedbimpl.generators.UUIDGenerator;
+import com.cleancode.cleancodedbimpl.generators.formatters.UUIDFormatter;
 import com.cleancode.cleancodedbimpl.impl.userservices.UserRepositoryServiceImpl;
 import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
 import org.junit.Test;
@@ -33,7 +34,7 @@ public class UserRepositoryServiceImplIT {
          UsersEntity usersEntityToSave = new UsersEntity();
          UsersEntity usersEntityToReturn = new UsersEntity();
          usersEntityToReturn.setId(1L);
-         usersEntityToReturn.setUserReference(UUIDGenerator.generateUUIDWithoutUnionTrails());
+         usersEntityToReturn.setUserReference(String.valueOf(UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"")));
 
          // ACT
          Mockito.when(userRepository.save(usersEntityToSave)).thenReturn(usersEntityToReturn);
