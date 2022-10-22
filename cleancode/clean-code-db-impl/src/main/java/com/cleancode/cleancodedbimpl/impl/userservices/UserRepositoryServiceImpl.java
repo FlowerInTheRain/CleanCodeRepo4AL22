@@ -11,8 +11,14 @@ import java.util.Optional;
 
 @Service
 public class UserRepositoryServiceImpl implements UserService {
-    @Autowired
+
     private UserRepository userRepository;
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     /**
      * @param userBusinessReference a user unique function identifier
      * @return an optional of a user
