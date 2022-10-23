@@ -8,12 +8,12 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class ExceptionResponse extends ResponseEntityExceptionHandler {
+public class RequestExceptionInterceptorResponse extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value
-            = { DBIMPLCommunicationException.class})
+            = { CleanCodeException.class})
     protected ResponseEntity<Object> handleConflict(
-            DBIMPLCommunicationException ex, WebRequest request) {
+            CleanCodeException ex, WebRequest request) {
         return handleExceptionInternal(ex, ex.getResponse(),
-                new HttpHeaders(), ex.getResponse().responseStatus(), request);
+                new HttpHeaders(), ex.getResponse().httpResponseStatus(), request);
     }
 }

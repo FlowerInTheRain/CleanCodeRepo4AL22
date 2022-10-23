@@ -1,8 +1,8 @@
 package com.cleancode.bsimpl.services.impl.user;
 
 import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
-import com.cleancode.bsimpl.exceptionsmanagement.DBIMPLCommunicationException;
-import com.cleancode.bsimpl.exceptionsmanagement.DBIMPLExceptionEnum;
+import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
+import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeExceptionsEnum;
 import com.cleancode.bsimpl.mappers.users.UserClientInfoMapper;
 import com.cleancode.bsimpl.services.interfaces.user.UserBusinessService;
 import com.cleancode.bsimpl.utils.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
@@ -33,7 +33,7 @@ public class UserBusinessServiceImpl implements UserBusinessService {
      * @return something
      */
     @Override
-    public UserClientInfo saveUser(UserClientInfo userFromApi) throws DBIMPLCommunicationException {
+    public UserClientInfo saveUser(UserClientInfo userFromApi) throws CleanCodeException {
         BusinessUserClientInfo businessUserClientInfo = UserClientInfoMapper.INSTANCE.fromApiToBs(userFromApi);
         boolean isClientRegistered = true;
         if(userFromApi.getClientReference() == null){
@@ -54,15 +54,15 @@ public class UserBusinessServiceImpl implements UserBusinessService {
             LOGGER.log(Level.INFO, "UserFromApi User : " + userFromApi + " Returned usersEntity : " + usersEntity);
             return UserClientInfoMapper.INSTANCE.fromBsToApi(businessUserClientInfo);
         } catch (Exception e){
-            handleDBImplQueryExceptions(new DBIMPLCommunicationException(DBIMPLExceptionEnum.DB_TIMEOUT_EXCEPTION));
+            handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
             revertReferenceAndCreationDateAttributionOnDbErrorForNonExistingUsers(businessUserClientInfo, isClientRegistered);
         }
         return userFromApi;
     }
 
-    private void handleDBImplQueryExceptions(DBIMPLCommunicationException dbimplCommunicationException) throws DBIMPLCommunicationException {
-        LOGGER.log(Level.WARNING, "Error while connecting to db : " + dbimplCommunicationException);
-        throw dbimplCommunicationException;
+    private void handleDBImplQueryExceptions(CleanCodeException dbImplCommunicationException) throws CleanCodeException {
+        LOGGER.log(Level.WARNING, "Error while connecting to db : " + dbImplCommunicationException);
+        throw dbImplCommunicationException;
     }
 
     protected void revertReferenceAndCreationDateAttributionOnDbErrorForNonExistingUsers(BusinessUserClientInfo businessUserClientInfo, boolean isClientRegistered) {

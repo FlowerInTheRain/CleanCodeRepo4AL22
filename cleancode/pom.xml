@@ -114,9 +114,7 @@
                     <releaseProfiles>release</releaseProfiles>
                     <releaseVersion>true</releaseVersion>
                     <tag>${project.version}</tag>
-                    <localRepoDirectory>${project.basedir}</localRepoDirectory>
                     <branchName>main</branchName>
-                    <arguments>-DbranchName={project.version}.y</arguments>
                 </configuration>
             </plugin>
             <plugin>
