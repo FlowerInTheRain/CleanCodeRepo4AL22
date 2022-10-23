@@ -23,7 +23,7 @@
         <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.8</version>
+            <version>${jacoco.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -36,7 +36,7 @@
         <dependency>
             <groupId>com.esgi.arlo</groupId>
             <artifactId>clean-code-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -45,13 +45,7 @@
         <dependency>
             <groupId>com.esgi.arlo</groupId>
             <artifactId>clean-code-db-impl</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.esgi.arlo</groupId>
-            <artifactId>clean-code-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
