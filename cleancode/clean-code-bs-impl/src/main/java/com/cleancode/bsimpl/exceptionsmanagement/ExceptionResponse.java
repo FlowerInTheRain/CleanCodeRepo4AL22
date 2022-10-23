@@ -14,6 +14,6 @@ public class ExceptionResponse extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleConflict(
             DBIMPLCommunicationException ex, WebRequest request) {
         return handleExceptionInternal(ex, ex.getResponse(),
-                new HttpHeaders(), ex.getResponse().responseStatus(), request);
+                new HttpHeaders(), ex.getResponse().httpResponseStatus(), request);
     }
 }

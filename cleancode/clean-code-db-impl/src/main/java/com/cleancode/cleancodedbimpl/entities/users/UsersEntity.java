@@ -11,7 +11,6 @@ import java.util.Objects;
 @Setter
 @RequiredArgsConstructor
 @Entity
-
 public class UsersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
