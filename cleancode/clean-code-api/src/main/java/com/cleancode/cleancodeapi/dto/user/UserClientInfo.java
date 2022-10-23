@@ -28,9 +28,10 @@ public class UserClientInfo extends User {
         this.clientAddress = clientAddress;
     }
 
-    private List<CardCollection> userCardCollectionsList;
+    private CardCollection userCardCollectionsList;
 
-    public UserClientInfo(String clientReference, Timestamp clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress, List<CardCollection> userCardCollectionsList) {
+    public UserClientInfo(String clientReference, Timestamp clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress,
+                          CardCollection userCardCollectionsList) {
         this.clientReference = clientReference;
         this.clientCreationDate = clientCreationDate;
         this.userBirthInformation = userBirthInformation;
@@ -50,16 +51,16 @@ public class UserClientInfo extends User {
         return clientAddress;
     }
 
-    public List<CardCollection> getUserCardCollectionsList() {
+    public CardCollection getUserCardCollectionsList() {
         return userCardCollectionsList;
     }
 
-    public void setUserCardCollectionsList(List<CardCollection> userCardCollectionsList) {
+    public void setUserCardCollectionsList(CardCollection userCardCollectionsList) {
         this.userCardCollectionsList = userCardCollectionsList;
     }
 
     public static UserClientInfo createOneUserClientInfo(
-             String clientReference, Timestamp clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress, List<CardCollection> userCardCollectionsList
+             String clientReference, Timestamp clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress, CardCollection userCardCollectionsList
             ){
         return new UserClientInfo( clientReference, clientCreationDate, userBirthInformation, clientAddress, userCardCollectionsList);
     }
