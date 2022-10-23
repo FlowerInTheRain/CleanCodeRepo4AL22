@@ -2,12 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.esgi.arlo</groupId>
-    <artifactId>cleancode</artifactId>
-    <version>${revision}</version>
-    <name>cleancode</name>
-    <description>cleancode</description>
+    <artifactId>clean-code</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>clean-code</name>
+    <description>ESGI 4A AL 22/23 Clean Code project. Authors : Sid Bennaceur, Arnaud Kelinis</description>
     <packaging>pom</packaging>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -16,26 +15,66 @@
         <relativePath/>
     </parent>
     <modules>
-        <module>clean-code-spring-rest</module>
+        <module>clean-code-db-impl</module>
         <module>clean-code-api</module>
-        <module>clean-code-conf</module>
+        <module>clean-code-spring-rest</module>
+        <module>clean-code-bs-impl</module>
     </modules>
-
     <properties>
+        <!-- Java version property -->
         <java.version>19</java.version>
+        <!-- JaCoCo Properties -->
+        <jacoco.version>0.8.8</jacoco.version>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.language>java</sonar.language>
     </properties>
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>1.5.3.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.24</version>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>2.7.5</version>
+
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.3.0</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>2.7.4</version>
             </dependency>
+            <!-- Sonar -->
+            <dependency>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.8</version>
+            </dependency>
 
+            <dependency>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.12.0</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-devtools</artifactId>
@@ -45,7 +84,8 @@
             <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
-                <scope>runtime</scope>
+                <version>2.1.214</version>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -57,14 +97,52 @@
                 <artifactId>spring-restdocs-mockmvc</artifactId>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.0-M6</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.0-M6</version>
+                <configuration>
+                    <releaseProfiles>release</releaseProfiles>
+                    <releaseVersion>true</releaseVersion>
+                    <tag>${project.version}</tag>
+                    <branchName>main</branchName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+
+                <configuration>
+                    <source>19</source>
+                    <target>19</target>
+                    <compilerArgs>--enable-preview</compilerArgs>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>1.5.3.Final</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>1.5.8</version>
                 <executions>
                     <execution>
                         <id>generate-docs</id>
@@ -86,7 +164,26 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
-
 </project>
