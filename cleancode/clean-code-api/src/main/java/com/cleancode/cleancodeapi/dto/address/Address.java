@@ -4,7 +4,6 @@ package com.cleancode.cleancodeapi.dto.address;
 import com.cleancode.cleancodeapi.enums.address.CountryEnum;
 
 public class Address {
-    private Integer number;
     private String street;
     private String town;
     private String zipCode;
