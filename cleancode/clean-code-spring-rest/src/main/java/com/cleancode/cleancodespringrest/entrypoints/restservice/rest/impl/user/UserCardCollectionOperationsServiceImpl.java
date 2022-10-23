@@ -1,6 +1,7 @@
 package com.cleancode.cleancodespringrest.entrypoints.restservice.rest.impl.user;
 
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
+
 import com.cleancode.bsimpl.services.interfaces.user.UserBusinessService;
 import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
 import com.cleancode.cleancodespringrest.entrypoints.restservice.rest.interfaces.user.UserCardCollectionOperationService;

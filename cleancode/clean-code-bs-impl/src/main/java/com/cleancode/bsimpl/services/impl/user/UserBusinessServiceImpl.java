@@ -60,6 +60,7 @@ public class UserBusinessServiceImpl implements UserBusinessService {
         return userFromApi;
     }
 
+
     private void handleDBImplQueryExceptions(CleanCodeException dbImplCommunicationException) throws CleanCodeException {
         LOGGER.log(Level.WARNING, "Error while connecting to db : " + dbImplCommunicationException);
         throw dbImplCommunicationException;
