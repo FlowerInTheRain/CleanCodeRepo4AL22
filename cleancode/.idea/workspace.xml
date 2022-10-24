@@ -5,29 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="162f065f-a510-4949-bcab-ab30d4e25e35" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-api/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-api/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-api/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-api/src/main/java/com/cleancode/cleancodeapi/dto/cards/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-api/src/main/java/com/cleancode/cleancodeapi/dto/cards/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-api/src/main/java/com/cleancode/cleancodeapi/requests/UserRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-api/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/dto/user/BusinessUserClientInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/dto/user/BusinessUserClientInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserBusinessServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserBusinessServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-conf/src/main/java/com/esgi/arlo/SwaggerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +53,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "ToolWindowCommit.ShowToolbar": "false",
-    "WebServerToolWindowFactoryState": "false"
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm"
   }
 }]]></component>
   <component name="RunManager">
@@ -101,7 +80,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1666549220884</updated>
-      <workItem from="1666549222619" duration="3173000" />
+      <workItem from="1666549222619" duration="4374000" />
     </task>
     <servers />
   </component>
