@@ -20,9 +20,7 @@ import java.util.logging.Logger;
 
 @Service
 public class UserBusinessServiceImpl implements UserBusinessService {
-
     private static final Logger LOGGER = Logger.getLogger(UserBusinessServiceImpl.class.getName());
-
     private UserRepositoryService userRepositoryService;
 
     @Autowired

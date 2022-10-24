@@ -1,6 +1,5 @@
 package com.cleancode.bsimpl.dto.user;
 
-
 import com.cleancode.bsimpl.Address;
 import com.cleancode.bsimpl.CardCollection;
 
@@ -16,9 +15,13 @@ public class BusinessUserClientInfo {
     private Timestamp clientCreationDate;
 
     private final Address clientAddress;
-    private List<CardCollection> userCardCollectionsList;
+    private CardCollection userCardCollectionsList;
 
-    public BusinessUserClientInfo(Long technicalId, String businessReference, Timestamp clientCreationDate, Address clientAddress, List<CardCollection> userCardCollectionsList) {
+    /**
+     *  TODO
+     *  Don't forget to erase this TODO !
+     */
+    public BusinessUserClientInfo(Long technicalId, String businessReference, Timestamp clientCreationDate, Address clientAddress, CardCollection userCardCollectionsList) {
         this.technicalId = technicalId;
         this.businessReference = businessReference;
         this.clientCreationDate = clientCreationDate;
@@ -50,11 +53,11 @@ public class BusinessUserClientInfo {
         return clientAddress;
     }
 
-    public List<CardCollection> getUserCardCollectionsList() {
+    public CardCollection getUserCardCollectionsList() {
         return userCardCollectionsList;
     }
 
-    public void setUserCardCollectionsList(List<CardCollection> userCardCollectionsList) {
+    public void setUserCardCollectionsList(CardCollection userCardCollectionsList) {
         this.userCardCollectionsList = userCardCollectionsList;
     }
 }

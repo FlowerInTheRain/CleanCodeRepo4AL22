@@ -33,12 +33,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.esgi.arlo</groupId>
-            <artifactId>clean-code-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
         </dependency>
@@ -54,13 +48,18 @@
             <version>4.5.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>1.5.8</version>
+                <version>2.2.2</version>
                 <executions>
                     <execution>
                         <id>generate-docs</id>
