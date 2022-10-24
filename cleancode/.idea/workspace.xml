@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="162f065f-a510-4949-bcab-ab30d4e25e35" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/entities/users/Agents.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/entities/users/UsersEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/entities/users/UsersEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/impl/userservices/UserRepositoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/impl/userservices/UserRepositoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/repositories/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/repositories/user/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserAccountBusinessServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserAccountOperationBusinessServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/impl/userservices/UserAccountRepositoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/impl/userservices/UserAccountRepositoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/repositories/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/impl/userservices/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/it/user/repositoryservice/UserRepositoryServiceImplIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/it/user/repositoryservice/UserRepositoryServiceImplIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/ut/user/repository/UserRepositoryUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/ut/user/repository/UserRepositoryUT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/CleanCodeSpringAppApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/CleanCodeSpringAppApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/impl/user/UserAccountOperationResServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/impl/user/UserAccountOperationRestServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,17 +68,28 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ToolWindowCommit.ShowToolbar": "false",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Sid/code/esgi/CleanCodeRepo4AL22/cleancode",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.cleancode.cleancodedbimpl.repositories" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.SpringApplication">
     <configuration name="SpringApplication" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -82,6 +100,18 @@
         <option name="LaunchBrowser.Before.Run" url="http://localhost:8090/api/swagger-ui/" />
       </method>
     </configuration>
+    <configuration name="CleanCodeSpringAppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ACTIVE_PROFILES" />
+      <module name="clean-code-spring-rest" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cleancode.cleancodespringrest.entrypoints.restservice.rest.CleanCodeSpringAppApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.SpringApplication" />
+      <item itemvalue="Spring Boot.CleanCodeSpringAppApplication" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SpringBeansView">
@@ -94,7 +124,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1666549220884</updated>
-      <workItem from="1666549222619" duration="5192000" />
+      <workItem from="1666549222619" duration="8704000" />
     </task>
     <servers />
   </component>

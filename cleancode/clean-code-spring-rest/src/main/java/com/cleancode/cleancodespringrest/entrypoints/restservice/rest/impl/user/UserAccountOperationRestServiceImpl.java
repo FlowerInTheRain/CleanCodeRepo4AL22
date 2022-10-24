@@ -18,9 +18,9 @@ import java.util.logging.Logger;
 @RequestMapping("/")
 @CrossOrigin
 @Api
-public class UserAccountOperationResServiceImpl implements UserAccountOperationRestService {
+public class UserAccountOperationRestServiceImpl implements UserAccountOperationRestService {
     // SISI LES ARCHIS
-    private static final Logger LOGGER = Logger.getLogger(UserAccountOperationResServiceImpl.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(UserAccountOperationRestServiceImpl.class.getName());
     private UserAccountOperationBusinessService userBusinessService;
 
     @Autowired

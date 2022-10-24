@@ -4,7 +4,7 @@ import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeExceptionsEnum;
 import com.cleancode.bsimpl.mappers.users.UserClientInfoMapper;
-import com.cleancode.bsimpl.services.interfaces.user.UserAccountBusinessService;
+import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusinessService;
 import com.cleancode.bsimpl.utils.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
 import com.cleancode.bsimpl.utils.formatutils.uuid.UUIDFormatter;
 import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
@@ -19,8 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
-public class UserAccountBusinessServiceImpl implements UserAccountBusinessService {
-    private static final Logger LOGGER = Logger.getLogger(UserAccountBusinessServiceImpl.class.getName());
+public class UserAccountOperationBusinessServiceImpl implements UserAccountOperationBusinessService {
+    private static final Logger LOGGER = Logger.getLogger(UserAccountOperationBusinessServiceImpl.class.getName());
     private UserAccountRepositoryService userRepositoryService;
 
     @Autowired
@@ -33,7 +33,7 @@ public class UserAccountBusinessServiceImpl implements UserAccountBusinessServic
      * @return something
      */
     @Override
-    public UserClientInfo saveUser(UserClientInfo userFromApi) throws CleanCodeException {
+    public UserClientInfo saveUserAccount(UserClientInfo userFromApi) throws CleanCodeException {
         BusinessUserClientInfo businessUserClientInfo = UserClientInfoMapper.INSTANCE.fromApiToBs(userFromApi);
         boolean isClientRegistered = true;
         if(userFromApi.getClientReference() == null){
