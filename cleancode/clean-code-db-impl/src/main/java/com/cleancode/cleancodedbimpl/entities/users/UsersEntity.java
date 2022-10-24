@@ -11,13 +11,19 @@ import java.util.Objects;
 @Setter
 @RequiredArgsConstructor
 @Entity
-public class UsersEntity {
+public class UsersEntity implements Agents{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true, nullable = false, length=32)
     private String userReference;
+
+    @Column(unique = true, nullable = false, length=32)
+    private String userName;
+
+    @Column(nullable = false, length=32, columnDefinition = "int default 4")
+    private Long userCCCoinWallet;
 
     @Column(columnDefinition = "timestamp default CURRENT_TIMESTAMP")
     private Timestamp creationDate;
@@ -38,6 +44,17 @@ public class UsersEntity {
         this.userReference = userReference;
     }
 
+    @Override
+    public String getUserName() {
+        return userName;
+    }
+
+    @Override
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public Timestamp getCreationDate() {
         return creationDate;
     }
@@ -46,12 +63,21 @@ public class UsersEntity {
         this.creationDate = creationDate;
     }
 
+    public Long getUserWallet() {
+        return userCCCoinWallet;
+    }
+
+    public void setUserWallet(Long userCCCoinWallet) {
+        this.userCCCoinWallet = userCCCoinWallet;
+    }
     @Override
     public String toString() {
         return "UserEntity{" +
                 "id=" + id +
                 ", userReference='" + userReference + '\'' +
+                ", userName='" + userName + '\'' +
                 ", creationDate='" + creationDate + '\'' +
+                ", userWallet='" + userCCCoinWallet + '\'' +
                 '}';
     }
 

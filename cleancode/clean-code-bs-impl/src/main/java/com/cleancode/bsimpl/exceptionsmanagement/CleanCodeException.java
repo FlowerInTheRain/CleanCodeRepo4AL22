@@ -10,6 +10,6 @@ public class CleanCodeException extends Exception {
     }
 
     public CleanCodeException(CleanCodeExceptionsEnum exception) {
-        this.exceptionEnum = new CleanCodeErrorBodyResponse(exception.getHttpResponseStatus(), exception.getUserMessageToDisplay(), exception.getComponent().getComponentDisplayableName());
+        exceptionEnum = new CleanCodeErrorBodyResponse(exception.getHttpResponseStatus(), exception.getUserMessageToDisplay(), exception.getComponent().getComponentDisplayableName());
     }
 }

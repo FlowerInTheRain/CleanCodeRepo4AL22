@@ -1,7 +1,7 @@
 package com.cleancode.cleancodedbimpl.impl.userservices;
 
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
-import com.cleancode.cleancodedbimpl.interfaces.userservices.UserRepositoryService;
+import com.cleancode.cleancodedbimpl.interfaces.userservices.UserAccountRepositoryService;
 import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +13,8 @@ import java.util.logging.Logger;
 
 @Service
 @Transactional
-public class UserRepositoryServiceImpl implements UserRepositoryService {
-    private static final Logger LOGGER = Logger.getLogger(UserRepositoryServiceImpl.class.getName());
+public class UserAccountRepositoryServiceImpl implements UserAccountRepositoryService {
+    private static final Logger LOGGER = Logger.getLogger(UserAccountRepositoryServiceImpl.class.getName());
 
     private UserRepository userRepository;
 

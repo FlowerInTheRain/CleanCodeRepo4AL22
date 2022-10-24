@@ -4,11 +4,11 @@ import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeExceptionsEnum;
 import com.cleancode.bsimpl.mappers.users.UserClientInfoMapper;
-import com.cleancode.bsimpl.services.interfaces.user.UserBusinessService;
+import com.cleancode.bsimpl.services.interfaces.user.UserAccountBusinessService;
 import com.cleancode.bsimpl.utils.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
 import com.cleancode.bsimpl.utils.formatutils.uuid.UUIDFormatter;
 import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
-import com.cleancode.cleancodedbimpl.interfaces.userservices.UserRepositoryService;
+import com.cleancode.cleancodedbimpl.interfaces.userservices.UserAccountRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +19,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
-public class UserBusinessServiceImpl implements UserBusinessService {
-    private static final Logger LOGGER = Logger.getLogger(UserBusinessServiceImpl.class.getName());
-    private UserRepositoryService userRepositoryService;
+public class UserAccountBusinessServiceImpl implements UserAccountBusinessService {
+    private static final Logger LOGGER = Logger.getLogger(UserAccountBusinessServiceImpl.class.getName());
+    private UserAccountRepositoryService userRepositoryService;
 
     @Autowired
-    private void setUserRepositoryService(UserRepositoryService userRepositoryService){
+    private void setUserRepositoryService(UserAccountRepositoryService userRepositoryService){
         this.userRepositoryService = userRepositoryService;
     }
 

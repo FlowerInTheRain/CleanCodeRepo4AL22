@@ -4,7 +4,7 @@ package cleancodetests.ut.user.repositoryservice;
 
 import cleancodetests.ut.user.repository.UserRepositoryUT;
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
-import com.cleancode.cleancodedbimpl.impl.userservices.UserRepositoryServiceImpl;
+import com.cleancode.cleancodedbimpl.impl.userservices.UserAccountRepositoryServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +23,7 @@ public class ShouldTestUserRepositoryServiceImplUT {
 
     private static final Logger LOGGER = Logger.getLogger(UserRepositoryUT.class.getName());
     @Mock
-    private UserRepositoryServiceImpl userRepositoryServiceImpl;
+    private UserAccountRepositoryServiceImpl userRepositoryServiceImpl;
 
     @Test
     public void shouldSaveAnExistingUser(){
