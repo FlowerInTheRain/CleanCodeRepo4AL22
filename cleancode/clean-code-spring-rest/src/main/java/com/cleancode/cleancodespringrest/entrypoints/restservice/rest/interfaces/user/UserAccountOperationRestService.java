@@ -2,8 +2,8 @@ package com.cleancode.cleancodespringrest.entrypoints.restservice.rest.interface
 
 
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
-import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
+import com.cleancode.cleancodeapi.dto.user.UserAccountInfo;
 
 public interface UserAccountOperationRestService {
-    UserClientInfo saveUserAccount(UserClientInfo userCompleteInfoRequest) throws CleanCodeException;
+    UserAccountInfo saveUserAccount(UserAccountInfo userCompleteInfoRequest) throws CleanCodeException;
 }

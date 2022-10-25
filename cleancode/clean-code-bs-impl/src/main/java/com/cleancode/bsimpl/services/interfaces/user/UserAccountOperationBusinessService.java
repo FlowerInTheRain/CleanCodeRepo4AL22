@@ -1,8 +1,8 @@
 package com.cleancode.bsimpl.services.interfaces.user;
 
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
-import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
+import com.cleancode.cleancodeapi.dto.user.UserAccountInfo;
 
 public interface UserAccountOperationBusinessService {
-    UserClientInfo saveUserAccount(UserClientInfo user) throws CleanCodeException;
+    UserAccountInfo saveUserAccount(UserAccountInfo user) throws CleanCodeException;
 }

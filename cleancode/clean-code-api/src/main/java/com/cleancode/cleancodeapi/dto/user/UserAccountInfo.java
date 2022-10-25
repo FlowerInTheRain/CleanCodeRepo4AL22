@@ -7,10 +7,9 @@ import java.sql.Timestamp;
 import java.util.List;
 
 
-public class UserClientInfo extends User {
+public class UserAccountInfo extends User {
     private String clientReference;
     private Timestamp clientCreationDate;
-
     private final UserBirthInformation userBirthInformation;
     private Address clientAddress;
 
@@ -30,7 +29,7 @@ public class UserClientInfo extends User {
 
     private CardCollection userCardCollectionsList;
 
-    public UserClientInfo(String clientReference, Timestamp clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress,
+    public UserAccountInfo(String clientReference, Timestamp clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress,
                           CardCollection userCardCollectionsList) {
         this.clientReference = clientReference;
         this.clientCreationDate = clientCreationDate;
@@ -59,9 +58,9 @@ public class UserClientInfo extends User {
         this.userCardCollectionsList = userCardCollectionsList;
     }
 
-    public static UserClientInfo createOneUserClientInfo(
+    public static UserAccountInfo createOneUserClientInfo(
              String clientReference, Timestamp clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress, CardCollection userCardCollectionsList
             ){
-        return new UserClientInfo( clientReference, clientCreationDate, userBirthInformation, clientAddress, userCardCollectionsList);
+        return new UserAccountInfo( clientReference, clientCreationDate, userBirthInformation, clientAddress, userCardCollectionsList);
     }
 }

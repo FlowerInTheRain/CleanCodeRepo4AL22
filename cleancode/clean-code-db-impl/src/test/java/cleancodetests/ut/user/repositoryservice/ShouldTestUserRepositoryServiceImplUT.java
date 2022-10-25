@@ -2,15 +2,14 @@ package cleancodetests.ut.user.repositoryservice;
 
 // Packages
 
-import cleancodetests.ut.user.repository.UserRepositoryUT;
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 import com.cleancode.cleancodedbimpl.impl.userservices.UserAccountRepositoryServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.UUID;
 import java.util.logging.Level;
@@ -18,10 +17,10 @@ import java.util.logging.Logger;
 
 import static org.mockito.Mockito.*;
 
-@RunWith(SpringRunner.class)
+@RunWith(JUnit4.class)
 public class ShouldTestUserRepositoryServiceImplUT {
 
-    private static final Logger LOGGER = Logger.getLogger(UserRepositoryUT.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ShouldTestUserRepositoryServiceImplUT.class.getName());
     @Mock
     private UserAccountRepositoryServiceImpl userRepositoryServiceImpl;
 

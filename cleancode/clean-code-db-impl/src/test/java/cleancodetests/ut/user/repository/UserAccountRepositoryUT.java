@@ -7,18 +7,18 @@ import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static org.mockito.Mockito.*;
 
-@RunWith(SpringRunner.class)
-public class UserRepositoryUT {
+@RunWith(JUnit4.class)
+public class UserAccountRepositoryUT {
 
-    private static final Logger LOGGER = Logger.getLogger(UserRepositoryUT.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(UserAccountRepositoryUT.class.getName());
     @Mock
     private UserRepository userRepository;
 

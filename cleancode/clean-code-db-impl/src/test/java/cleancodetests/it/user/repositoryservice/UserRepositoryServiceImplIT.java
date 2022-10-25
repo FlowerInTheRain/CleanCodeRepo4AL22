@@ -6,15 +6,15 @@ import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@RunWith(SpringRunner.class)
+@RunWith(JUnit4.class)
 public class UserRepositoryServiceImplIT {
 
     private static final Logger LOGGER = Logger.getLogger(UserRepositoryServiceImplIT.class.getName());
