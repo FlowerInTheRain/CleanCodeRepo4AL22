@@ -2,7 +2,7 @@ package com.cleancode.cleancodespringrest.entrypoints.restservice.rest.impl.user
 
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
 import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusinessService;
-import com.cleancode.cleancodeapi.dto.user.UserAccountInfo;
+import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
 import com.cleancode.cleancodespringrest.entrypoints.restservice.rest.interfaces.user.UserAccountOperationRestService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,16 +29,16 @@ public class UserAccountOperationRestServiceImpl implements UserAccountOperation
     }
 
     /**
-     * @param userCompleteInfoRequest a user with all account information for account creation
-     * @return the user with its functionalID
+     * @param userCompleteInfoRequest
+     * @return
      */
     @ApiOperation(value = "Adds a user",
-            response = UserAccountInfo.class,
+            response = UserClientInfo.class,
             notes = "Customer must not exist")
     @ApiResponse(code=200, message="User Added")
     @PutMapping(value = "/addNewUser", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public UserAccountInfo saveUserAccount(@RequestBody  UserAccountInfo userCompleteInfoRequest) throws CleanCodeException {
+    public UserClientInfo saveUserAccount(@RequestBody  UserClientInfo userCompleteInfoRequest) throws CleanCodeException {
         LOGGER.log(Level.INFO, "Calling saveUserAcount");
         return userBusinessService.saveUserAccount(userCompleteInfoRequest);
     }

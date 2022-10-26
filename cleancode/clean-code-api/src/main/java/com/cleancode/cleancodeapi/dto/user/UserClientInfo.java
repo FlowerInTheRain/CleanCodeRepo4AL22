@@ -4,18 +4,23 @@ import com.cleancode.cleancodeapi.dto.address.Address;
 import com.cleancode.cleancodeapi.dto.cards.CardCollection;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 
-public class UserAccountInfo extends User {
+public class UserClientInfo extends User {
     private String clientReference;
     private Timestamp clientCreationDate;
+
     private final UserBirthInformation userBirthInformation;
     private Address clientAddress;
     private CardCollection userCardCollection;
 
+<<<<<<< HEAD:cleancode/clean-code-api/src/main/java/com/cleancode/cleancodeapi/dto/user/UserAccountInfo.java
     public UserAccountInfo(String clientReference, Timestamp clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress,
                            CardCollection userCardCollection) {
+=======
+    public UserClientInfo(String clientReference, Timestamp clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress,
+                          CardCollection userCardCollectionsList) {
+>>>>>>> parent of 32c4186 (wip):cleancode/clean-code-api/src/main/java/com/cleancode/cleancodeapi/dto/user/UserClientInfo.java
         this.clientReference = clientReference;
         this.clientCreationDate = clientCreationDate;
         this.userBirthInformation = userBirthInformation;
@@ -48,9 +53,13 @@ public class UserAccountInfo extends User {
         this.userCardCollection = userCardCollection;
     }
 
-    public static UserAccountInfo createOneUserClientInfo(
+    public static UserClientInfo createOneUserClientInfo(
              String clientReference, Timestamp clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress, CardCollection userCardCollectionsList
             ){
-        return new UserAccountInfo( clientReference, clientCreationDate, userBirthInformation, clientAddress, userCardCollectionsList);
+        return new UserClientInfo( clientReference, clientCreationDate, userBirthInformation, clientAddress, userCardCollectionsList);
     }
 }
+
+    public UserClientInfo(UserBirthInformation userBirthInformation) {
+        this.userBirthInformation = userBirthInformation;
+    }
