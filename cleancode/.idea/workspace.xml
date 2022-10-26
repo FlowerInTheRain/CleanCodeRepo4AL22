@@ -5,17 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="162f065f-a510-4949-bcab-ab30d4e25e35" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/entities/cardcollections/CardCollectionsEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-api/src/main/java/com/cleancode/cleancodeapi/dto/user/UserClientInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-api/src/main/java/com/cleancode/cleancodeapi/dto/user/UserAccountInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/mappers/users/UserClientInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/mappers/users/UserClientInfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserAccountOperationBusinessServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserAccountOperationBusinessServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/interfaces/user/UserAccountOperationBusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/interfaces/user/UserAccountOperationBusinessService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/it/user/repositoryservice/UserRepositoryServiceImplIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/it/user/repositoryservice/UserRepositoryServiceImplIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/ut/user/repository/UserRepositoryUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/ut/user/repository/UserAccountRepositoryUT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/ut/user/repositoryservice/ShouldTestUserRepositoryServiceImplUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/ut/user/repositoryservice/ShouldTestUserRepositoryServiceImplUT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/impl/user/UserAccountOperationRestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/impl/user/UserAccountOperationRestServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/interfaces/user/UserAccountOperationRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/interfaces/user/UserAccountOperationRestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-api/src/main/java/com/cleancode/cleancodeapi/dto/user/UserAccountInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-api/src/main/java/com/cleancode/cleancodeapi/dto/user/UserAccountInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/dto/user/BusinessUserClientInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/dto/user/BusinessUserClientInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/entities/cards/CardsCollectionsEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/entities/cards/CardsEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/entities/cards/CardsEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/entities/cards/CardsRaritiesEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/entities/users/UsersEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/entities/users/UsersEntity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +23,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -64,27 +62,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ToolWindowCommit.ShowToolbar": "false",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Sid/code/esgi/CleanCodeRepo4AL22/cleancode",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ToolWindowCommit.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Sid/code/esgi/CleanCodeRepo4AL22/cleancode&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.cleancode.cleancodedbimpl.entities.cardcollectionsentity" />
       <recent name="com.cleancode.cleancodedbimpl.repositories" />
     </key>
   </component>

@@ -12,50 +12,40 @@ public class UserAccountInfo extends User {
     private Timestamp clientCreationDate;
     private final UserBirthInformation userBirthInformation;
     private Address clientAddress;
-
-    public void setClientReference(String clientReference) {
-        this.clientReference = clientReference;
-    }
-
-    public void setClientCreationDate(Timestamp clientCreationDate) {
-        this.clientCreationDate = clientCreationDate;
-    }
-
-
-
-    public void setClientAddress(Address clientAddress) {
-        this.clientAddress = clientAddress;
-    }
-
-    private CardCollection userCardCollectionsList;
+    private CardCollection userCardCollection;
 
     public UserAccountInfo(String clientReference, Timestamp clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress,
-                          CardCollection userCardCollectionsList) {
+                           CardCollection userCardCollection) {
         this.clientReference = clientReference;
         this.clientCreationDate = clientCreationDate;
         this.userBirthInformation = userBirthInformation;
         this.clientAddress = clientAddress;
-        this.userCardCollectionsList = userCardCollectionsList;
+        this.userCardCollection = userCardCollection;
     }
 
+    public void setClientReference(String clientReference) {
+        this.clientReference = clientReference;
+    }
+    public void setClientCreationDate(Timestamp clientCreationDate) {
+        this.clientCreationDate = clientCreationDate;
+    }
+    public void setClientAddress(Address clientAddress) {
+        this.clientAddress = clientAddress;
+    }
     public String getClientReference() {
         return clientReference;
     }
-
     public Timestamp getClientCreationDate() {
         return clientCreationDate;
     }
-
     public Address getClientAddress() {
         return clientAddress;
     }
-
-    public CardCollection getUserCardCollectionsList() {
-        return userCardCollectionsList;
+    public CardCollection getUserCardCollections() {
+        return userCardCollection;
     }
-
-    public void setUserCardCollectionsList(CardCollection userCardCollectionsList) {
-        this.userCardCollectionsList = userCardCollectionsList;
+    public void setUserCardCollections(CardCollection userCardCollection) {
+        this.userCardCollection = userCardCollection;
     }
 
     public static UserAccountInfo createOneUserClientInfo(
