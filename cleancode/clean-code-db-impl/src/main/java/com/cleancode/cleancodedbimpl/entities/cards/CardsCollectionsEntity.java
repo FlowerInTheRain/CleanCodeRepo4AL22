@@ -23,8 +23,4 @@ public class CardsCollectionsEntity {
 
     @Column(nullable = false, length=32)
     private String userReference;
-
-    @Type(type = "list-array")
-    @Column(nullable = false, length=32)
-    private List<String> CardReference;
 }
