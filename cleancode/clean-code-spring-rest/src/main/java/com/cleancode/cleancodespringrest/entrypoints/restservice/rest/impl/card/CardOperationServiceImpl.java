@@ -38,6 +38,6 @@ public class CardOperationServiceImpl implements CardOperationService {
     @PutMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public Card saveCard(@RequestBody CardCreateRequestInfo cardCreateRequestInfo) throws CleanCodeException {
-        return CardBusinessService.createCard(cardCreateRequestInfo);
+        return cardBusinessService.createCard(cardCreateRequestInfo);
     }
 }
