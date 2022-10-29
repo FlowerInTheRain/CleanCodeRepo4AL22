@@ -28,6 +28,9 @@ public class CardEntity {
     @Column(nullable = false, length=32)
     private String cardSpecialty;
 
+    @Column(nullable = false, length=32)
+    private String cardName;
+
     @Column(nullable = false)
     private Integer xp;
 

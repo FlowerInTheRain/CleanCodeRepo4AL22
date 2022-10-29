@@ -1,5 +1,6 @@
 package com.cleancode.bsimpl.dto.card;
 
+import com.cleancode.cleancodeapi.enums.cards.CardNameEnum;
 import com.cleancode.cleancodeapi.enums.cards.CardRarityEnum;
 import com.cleancode.cleancodeapi.enums.cards.CardSpecialtyEnum;
 import org.springframework.stereotype.Repository;
@@ -11,17 +12,27 @@ public class BusinessCardCreateInfo {
     private String cardCollectionReference;
     private CardSpecialtyEnum cardSpecialty;
     private CardRarityEnum cardRarity;
+    private CardNameEnum cardName;
     private int xp;
     private int level;
 
-    public BusinessCardCreateInfo(Long technicalId, String businessReference, String cardCollectionReference, CardSpecialtyEnum cardSpecialty, CardRarityEnum cardRarity, int xp, int level) {
+    public BusinessCardCreateInfo(Long technicalId, String businessReference, String cardCollectionReference, CardSpecialtyEnum cardSpecialty, CardRarityEnum cardRarity, CardNameEnum cardName, int xp, int level) {
         this.technicalId = technicalId;
         this.businessReference = businessReference;
         this.cardCollectionReference = cardCollectionReference;
         this.cardSpecialty = cardSpecialty;
         this.cardRarity = cardRarity;
+        this.cardName = cardName;
         this.xp = xp;
         this.level = level;
+    }
+
+    public CardNameEnum getCardName() {
+        return cardName;
+    }
+
+    public void setCardName(CardNameEnum cardName) {
+        this.cardName = cardName;
     }
 
     public Long getTechnicalId() {
