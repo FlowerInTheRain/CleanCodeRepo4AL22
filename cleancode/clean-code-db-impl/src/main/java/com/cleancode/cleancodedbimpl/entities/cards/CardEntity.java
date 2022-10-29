@@ -25,6 +25,9 @@ public class CardEntity {
     @Column(nullable = false, length=32)
     private String cardTemplateReference;
 
+    @Column(nullable = false, length=32)
+    private String cardRarity;
+
     @Column(nullable = false)
     private int xp;
 

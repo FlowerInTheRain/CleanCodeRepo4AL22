@@ -3,10 +3,8 @@ package com.cleancode.cleancodedbimpl.entities.cards;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter
