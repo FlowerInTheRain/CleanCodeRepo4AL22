@@ -1,9 +1,7 @@
 package com.cleancode.bsimpl.services.impl.card;
 
 import com.cleancode.bsimpl.dto.card.BusinessCardCreateInfo;
-import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
 import com.cleancode.cleancodedbimpl.entities.cards.CardEntity;
-import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;

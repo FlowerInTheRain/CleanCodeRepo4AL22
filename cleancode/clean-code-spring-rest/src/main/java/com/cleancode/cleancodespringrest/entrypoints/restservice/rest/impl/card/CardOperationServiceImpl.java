@@ -2,10 +2,8 @@ package com.cleancode.cleancodespringrest.entrypoints.restservice.rest.impl.card
 
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
 import com.cleancode.bsimpl.services.interfaces.card.CardBusinessService;
-import com.cleancode.bsimpl.services.interfaces.user.UserBusinessService;
 import com.cleancode.cleancodeapi.dto.cards.Card;
 import com.cleancode.cleancodeapi.dto.cards.CardCreateRequestInfo;
-import com.cleancode.cleancodespringrest.entrypoints.restservice.rest.impl.user.UserCardCollectionOperationsServiceImpl;
 import com.cleancode.cleancodespringrest.entrypoints.restservice.rest.interfaces.card.CardOperationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

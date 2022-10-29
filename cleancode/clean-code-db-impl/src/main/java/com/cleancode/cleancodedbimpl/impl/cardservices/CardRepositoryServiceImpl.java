@@ -1,17 +1,18 @@
 package com.cleancode.cleancodedbimpl.impl.cardservices;
 
 import com.cleancode.cleancodedbimpl.entities.cards.CardEntity;
-import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
-import com.cleancode.cleancodedbimpl.impl.userservices.UserRepositoryServiceImpl;
 import com.cleancode.cleancodedbimpl.interfaces.cardservices.CardRepositoryService;
 import com.cleancode.cleancodedbimpl.repositories.card.CardRepository;
-import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Service
+@Transactional
 public class CardRepositoryServiceImpl implements CardRepositoryService {
 
     private static final Logger LOGGER = Logger.getLogger(CardRepositoryServiceImpl.class.getName());
