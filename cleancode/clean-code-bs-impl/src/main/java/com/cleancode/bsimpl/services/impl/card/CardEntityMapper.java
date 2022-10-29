@@ -2,10 +2,12 @@ package com.cleancode.bsimpl.services.impl.card;
 
 import com.cleancode.bsimpl.dto.card.BusinessCardCreateInfo;
 import com.cleancode.cleancodedbimpl.entities.cards.CardEntity;
+import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
+@Mapper
 public interface CardEntityMapper {
 
     CardEntityMapper INSTANCE = Mappers.getMapper(CardEntityMapper.class);
