@@ -1,20 +1,21 @@
 package com.cleancode.cleancodeapi.dto.cards;
 
 import com.cleancode.cleancodeapi.enums.cards.CardRarityEnum;
+import com.cleancode.cleancodeapi.enums.cards.CardSpecialtyEnum;
 
 public class Card {
 
     private String cardReference;
     private String cardCollectionReference;
-    private String cardTemplateReference;
+    private CardSpecialtyEnum cardSpecialty;
     private CardRarityEnum cardRarity;
     private int xp;
     private int level;
 
-    public Card(String cardReference, String cardCollectionReference, String cardTemplateReference, CardRarityEnum cardRarity, int xp, int level) {
+    public Card(String cardReference, String cardCollectionReference, CardSpecialtyEnum cardSpecialty, CardRarityEnum cardRarity, int xp, int level) {
         this.cardReference = cardReference;
         this.cardCollectionReference = cardCollectionReference;
-        this.cardTemplateReference = cardTemplateReference;
+        this.cardSpecialty = cardSpecialty;
         this.cardRarity = cardRarity;
         this.xp = xp;
         this.level = level;
@@ -44,12 +45,12 @@ public class Card {
         this.cardCollectionReference = cardCollectionReference;
     }
 
-    public String getCardTemplateReference() {
-        return cardTemplateReference;
+    public CardSpecialtyEnum getCardSpecialty() {
+        return cardSpecialty;
     }
 
-    public void setCardTemplateReference(String cardTemplateReference) {
-        this.cardTemplateReference = cardTemplateReference;
+    public void setCardSpecialty(CardSpecialtyEnum cardSpecialty) {
+        this.cardSpecialty = cardSpecialty;
     }
 
     public int getXp() {

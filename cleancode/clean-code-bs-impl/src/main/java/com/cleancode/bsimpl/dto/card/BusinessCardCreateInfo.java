@@ -1,6 +1,7 @@
 package com.cleancode.bsimpl.dto.card;
 
 import com.cleancode.cleancodeapi.enums.cards.CardRarityEnum;
+import com.cleancode.cleancodeapi.enums.cards.CardSpecialtyEnum;
 import org.springframework.stereotype.Repository;
 
 public class BusinessCardCreateInfo {
@@ -8,16 +9,16 @@ public class BusinessCardCreateInfo {
     protected final Long technicalId;
     private String businessReference;
     private String cardCollectionReference;
-    private String cardTemplateReference;
+    private CardSpecialtyEnum cardSpecialty;
     private CardRarityEnum cardRarity;
     private int xp;
     private int level;
 
-    public BusinessCardCreateInfo(Long technicalId, String businessReference, String cardCollectionReference, String cardTemplateReference, CardRarityEnum cardRarity, int xp, int level) {
+    public BusinessCardCreateInfo(Long technicalId, String businessReference, String cardCollectionReference, CardSpecialtyEnum cardSpecialty, CardRarityEnum cardRarity, int xp, int level) {
         this.technicalId = technicalId;
         this.businessReference = businessReference;
         this.cardCollectionReference = cardCollectionReference;
-        this.cardTemplateReference = cardTemplateReference;
+        this.cardSpecialty = cardSpecialty;
         this.cardRarity = cardRarity;
         this.xp = xp;
         this.level = level;
@@ -43,12 +44,12 @@ public class BusinessCardCreateInfo {
         this.cardCollectionReference = cardCollectionReference;
     }
 
-    public String getCardTemplateReference() {
-        return cardTemplateReference;
+    public CardSpecialtyEnum getCardSpecialty() {
+        return cardSpecialty;
     }
 
-    public void setCardTemplateReference(String cardTemplateReference) {
-        this.cardTemplateReference = cardTemplateReference;
+    public void setCardSpecialty(CardSpecialtyEnum cardSpecialty) {
+        this.cardSpecialty = cardSpecialty;
     }
 
     public CardRarityEnum getCardRarity() {

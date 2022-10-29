@@ -23,14 +23,14 @@ public class CardEntity {
     private String cardCollectionReference;
 
     @Column(nullable = false, length=32)
-    private String cardTemplateReference;
-
-    @Column(nullable = false, length=32)
     private String cardRarity;
 
-    @Column(nullable = false)
-    private int xp;
+    @Column(nullable = false, length=32)
+    private String cardSpecialty;
 
     @Column(nullable = false)
-    private int level;
+    private Integer xp;
+
+    @Column(nullable = false)
+    private Integer level;
 }

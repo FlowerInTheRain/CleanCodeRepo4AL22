@@ -53,8 +53,8 @@ public class CardBusinessServiceImpl implements CardBusinessService {
          */
 
         try {
-            Long usersEntity = cardRepositoryService.saveCardInDb(CardEntityMapper.INSTANCE.fromBsToDb(businessCardCreateInfo));
-            LOGGER.log(Level.INFO, "UserFromApi User : " + cardInfo + " Returned usersEntity : " + usersEntity);
+            Long cardEntity = cardRepositoryService.saveCardInDb(CardEntityMapper.INSTANCE.fromBsToDb(businessCardCreateInfo));
+            LOGGER.log(Level.INFO, "Card cardInfo : " + cardInfo + " Returned cardEntity : " + cardEntity);
             return CardMapper.INSTANCE.fromBsToApi(businessCardCreateInfo);
         } catch (Exception e){
             handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));

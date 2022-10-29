@@ -3,7 +3,6 @@ package com.cleancode.cleancodeapi.enums.cards;
 public enum SilverPackCardRarityDistributionEnum implements CardRarityDistributionEnumInterface {
 
     SILVER_PACK_COMMON_CARD(CardRarityEnum.COMMON,0.75f),
-    SILVER_PACK_UNCOMMON_CARD(CardRarityEnum.UNCOMMON,0.2f),
     SILVER_PACK_RARE_CARD(CardRarityEnum.RARE,0.04f),
     SILVER_PACK_UNIQUE_CARD(CardRarityEnum.RARE,0.01f);
 
