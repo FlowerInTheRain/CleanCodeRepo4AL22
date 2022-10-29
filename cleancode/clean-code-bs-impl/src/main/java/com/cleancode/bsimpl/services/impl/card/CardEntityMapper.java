@@ -14,7 +14,6 @@ public interface CardEntityMapper {
     @Mappings({
             @Mapping(source = "businessReference", target = "cardReference"),
             @Mapping(source = "technicalId", target = "id"),
-
     })
     CardEntity fromBsToDb(BusinessCardCreateInfo card);
 
@@ -24,5 +23,4 @@ public interface CardEntityMapper {
 
     })
     BusinessCardCreateInfo fromDbToBs(CardEntity card);
-
 }

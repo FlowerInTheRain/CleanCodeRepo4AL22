@@ -3,7 +3,6 @@ package com.cleancode.cleancodespringrest.entrypoints.restservice.rest.impl.card
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
 import com.cleancode.bsimpl.services.interfaces.card.CardBusinessService;
 import com.cleancode.cleancodeapi.dto.cards.Card;
-import com.cleancode.cleancodeapi.dto.cards.CardCreateRequestInfo;
 import com.cleancode.cleancodespringrest.entrypoints.restservice.rest.interfaces.card.CardOperationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,9 +32,9 @@ public class CardOperationServiceImpl implements CardOperationService {
             response = Card.class,
             notes = "Customer must not exist")
     @ApiResponse(code=200, message="Card Created")
-    @PutMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/saveCard", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public Card saveCard(@RequestBody CardCreateRequestInfo cardCreateRequestInfo) throws CleanCodeException {
-        return cardBusinessService.createCard(cardCreateRequestInfo);
+    public Card saveCard(@RequestBody Card card) throws CleanCodeException {
+        return cardBusinessService.saveCard(card);
     }
 }
