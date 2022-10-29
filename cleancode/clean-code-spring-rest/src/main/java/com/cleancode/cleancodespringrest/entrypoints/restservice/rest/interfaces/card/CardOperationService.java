@@ -2,8 +2,9 @@ package com.cleancode.cleancodespringrest.entrypoints.restservice.rest.interface
 
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
 import com.cleancode.cleancodeapi.dto.cards.Card;
+import com.cleancode.cleancodeapi.dto.cards.CardCreateRequestInfo;
 
 public interface CardOperationService {
 
-    Card saveCard(Card cardRequest) throws CleanCodeException;
+    Card saveCard(CardCreateRequestInfo cardCreateRequestInfo) throws CleanCodeException;
 }
