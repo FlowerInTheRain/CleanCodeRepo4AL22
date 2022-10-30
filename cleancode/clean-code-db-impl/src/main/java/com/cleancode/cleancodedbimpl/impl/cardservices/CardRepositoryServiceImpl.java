@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +35,14 @@ public class CardRepositoryServiceImpl implements CardRepositoryService {
         CardEntity foundCard = cardRepository.findByCardReference(cardBusinessReference);
         LOGGER.log(Level.INFO, "Found Card : " + foundCard);
         return Optional.ofNullable(foundCard);
+    }
+
+    @Override
+    public Optional<List<CardEntity>> findAllCards() {
+        LOGGER.log(Level.INFO, "Calling DB service findAllCards");
+        List<CardEntity> foundCards = cardRepository.findAll();
+        LOGGER.log(Level.INFO, "Found Cards : " + foundCards);
+        return Optional.ofNullable(foundCards);
     }
 
     /**

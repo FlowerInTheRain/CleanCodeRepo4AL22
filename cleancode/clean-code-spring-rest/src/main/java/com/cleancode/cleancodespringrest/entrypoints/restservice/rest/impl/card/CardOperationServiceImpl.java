@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 
@@ -30,11 +31,29 @@ public class CardOperationServiceImpl implements CardOperationService {
 
     @ApiOperation(value = "Create a card",
             response = Card.class,
-            notes = "Customer must not exist")
+            notes = "Card must not exist")
     @ApiResponse(code=200, message="Card Created")
     @PutMapping(value = "/saveCard", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public Card saveCard(@RequestBody Card card) throws CleanCodeException {
         return cardBusinessService.saveCard(card);
+    }
+
+    @ApiOperation(value = "Find all cards",
+            response = Card.class)
+    @ApiResponse(code=200, message="Card found")
+    @GetMapping(value = "/findAllCards", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Override
+    public List<Card> findAllCards() throws CleanCodeException {
+        return cardBusinessService.findAllCards();
+    }
+
+    @ApiOperation(value = "Find one card by reference",
+            response = Card.class)
+    @ApiResponse(code=200, message="Card found")
+    @GetMapping(value = "/findOneCardByReference", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Override
+    public Card findOneCardByReference(String cardReference) throws CleanCodeException {
+        return cardBusinessService.findOneCardByReference(cardReference);
     }
 }
