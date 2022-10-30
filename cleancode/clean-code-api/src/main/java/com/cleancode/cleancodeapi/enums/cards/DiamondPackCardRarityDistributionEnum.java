@@ -2,7 +2,6 @@ package com.cleancode.cleancodeapi.enums.cards;
 
 public enum DiamondPackCardRarityDistributionEnum implements CardRarityDistributionEnumInterface {
     DIAMOND_PACK_COMMON_CARD(CardRarityEnum.COMMON,0.75f),
-    DIAMOND_PACK_UNCOMMON_CARD(CardRarityEnum.UNCOMMON,0.2f),
     DIAMOND_PACK_RARE_CARD(CardRarityEnum.RARE,0.04f),
     DIAMOND_PACK_UNIQUE_CARD(CardRarityEnum.RARE,0.01f);
 

@@ -1,13 +1,22 @@
 package com.cleancode.bsimpl.mappers.cards;
 
-import com.cleancode.bsimpl.Card;
+import com.cleancode.cleancodeapi.dto.cards.Card;
+import com.cleancode.bsimpl.dto.card.BusinessCardCreateInfo;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface CardMapper {
     CardMapper INSTANCE = Mappers.getMapper(CardMapper.class);
+    @Mappings({
+            @Mapping(source = "cardReference", target = "businessReference")
+    })
+    BusinessCardCreateInfo fromApiToBs(Card card);
 
-    Card map(com.cleancode.cleancodeapi.dto.cards.Card card);
-    com.cleancode.cleancodeapi.dto.cards.Card map(Card card);
+    @Mappings({
+            @Mapping(source = "businessReference", target = "cardReference")
+    })
+    Card fromBsToApi(BusinessCardCreateInfo businessCard);
 }
