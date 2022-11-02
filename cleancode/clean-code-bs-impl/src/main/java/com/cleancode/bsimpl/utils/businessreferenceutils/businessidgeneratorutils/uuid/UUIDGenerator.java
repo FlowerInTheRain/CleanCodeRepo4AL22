@@ -13,8 +13,8 @@ public class UUIDGenerator {
 
     public static UUID generateUUID(){
         LOGGER.log(Level.INFO, "Generating business reference.");
-        UUID newBusinessReferenceToBindWithoutUnionTrails = randomUUID();
-        LOGGER.log(Level.INFO, "Business Reference ".concat(newBusinessReferenceToBindWithoutUnionTrails.toString()).concat(" Successfully generated."));
-        return newBusinessReferenceToBindWithoutUnionTrails;
+        UUID newRandomBusinessReference = randomUUID();
+        LOGGER.log(Level.INFO, "Business Reference ".concat(newRandomBusinessReference.toString()).concat(" Successfully generated."));
+        return newRandomBusinessReference;
     }
 }

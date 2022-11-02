@@ -2,7 +2,7 @@ package com.cleancode.bsimpl.exceptionsmanagement;
 
 import org.springframework.http.HttpStatus;
 
-public record CleanCodeErrorBodyResponse(HttpStatus httpResponseStatus, String message, String origin) {
+public record CleanCodeErrorBodyResponse(HttpStatus httpResponseStatus, String errorMessage, String errorOrigin) {
 
     @Override
     public boolean equals(Object o) {
@@ -12,16 +12,16 @@ public record CleanCodeErrorBodyResponse(HttpStatus httpResponseStatus, String m
         CleanCodeErrorBodyResponse that = (CleanCodeErrorBodyResponse) o;
 
         if (httpResponseStatus != that.httpResponseStatus) return false;
-        if (!message.equals(that.message)) return false;
-        return origin.equals(that.origin);
+        if (!errorMessage.equals(that.errorMessage)) return false;
+        return errorOrigin.equals(that.errorOrigin);
     }
 
     @Override
     public String toString() {
         return "CleanCodeBodyResponse{" +
                 "responseStatus=" + httpResponseStatus +
-                ", message='" + message + '\'' +
-                ", origin='" + origin + '\'' +
+                ", errorMessage='" + errorMessage + '\'' +
+                ", errorOrigin='" + errorOrigin + '\'' +
                 '}';
     }
 }

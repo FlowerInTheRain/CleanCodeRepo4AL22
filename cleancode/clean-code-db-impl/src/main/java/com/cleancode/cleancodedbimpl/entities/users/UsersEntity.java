@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@RequiredArgsConstructor
 @Entity(name="USERS")
 public class UsersEntity implements Agents{
     @Id

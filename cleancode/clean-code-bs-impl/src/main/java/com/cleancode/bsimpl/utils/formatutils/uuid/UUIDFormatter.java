@@ -30,19 +30,23 @@ public class UUIDFormatter {
             throw new IllegalArgumentException("UUID can not be null");
         }
 
-        String newBusinessReferenceToBindWithoutUnionTrails = uuidToFormat.toString();
+        String newFormattedBusinessReferenceToBind = uuidToFormat.toString();
         if(withPrefix){
-            newBusinessReferenceToBindWithoutUnionTrails = prefix.concat(newBusinessReferenceToBindWithoutUnionTrails);
+            newFormattedBusinessReferenceToBind = prefix.concat(newFormattedBusinessReferenceToBind);
         }
 
         if(withSuffix){
-            newBusinessReferenceToBindWithoutUnionTrails = newBusinessReferenceToBindWithoutUnionTrails.concat(suffix);
+            newFormattedBusinessReferenceToBind = newFormattedBusinessReferenceToBind.concat(suffix);
         }
 
         if(!withUnionTrailRemoval){
-            return Optional.ofNullable(newBusinessReferenceToBindWithoutUnionTrails);
+            return Optional.ofNullable(newFormattedBusinessReferenceToBind);
         }
+        CharSequence checkedJoiner = getCheckedJoiner(joiner);
+        return Optional.of(String.join(checkedJoiner, newFormattedBusinessReferenceToBind.split("-")));
+    }
 
-        return Optional.of(String.join(Objects.requireNonNullElse(joiner, ""), newBusinessReferenceToBindWithoutUnionTrails.split("-")));
+    private static CharSequence getCheckedJoiner(CharSequence joiner) {
+        return Objects.requireNonNullElse(joiner, "");
     }
 }

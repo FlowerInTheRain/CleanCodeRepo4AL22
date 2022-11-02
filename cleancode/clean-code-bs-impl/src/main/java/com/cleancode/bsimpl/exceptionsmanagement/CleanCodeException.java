@@ -3,8 +3,6 @@ package com.cleancode.bsimpl.exceptionsmanagement;
 
 public class CleanCodeException extends Exception {
     private final CleanCodeErrorBodyResponse exceptionEnum;
-
-
     public CleanCodeErrorBodyResponse getResponse() {
         return exceptionEnum;
     }
