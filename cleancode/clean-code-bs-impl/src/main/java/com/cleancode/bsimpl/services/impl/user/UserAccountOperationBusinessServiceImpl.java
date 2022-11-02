@@ -7,7 +7,7 @@ import com.cleancode.bsimpl.mappers.users.UserClientInfoMapper;
 import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusinessService;
 import com.cleancode.bsimpl.utils.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
 import com.cleancode.bsimpl.utils.formatutils.uuid.UUIDFormatter;
-import com.cleancode.cleancodeapi.dto.user.UserAccountInfo;
+import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
 import com.cleancode.cleancodedbimpl.interfaces.userservices.UserAccountRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +33,7 @@ public class UserAccountOperationBusinessServiceImpl implements UserAccountOpera
      * @return something
      */
     @Override
-    public UserAccountInfo saveUserAccount(UserAccountInfo userFromApi) throws CleanCodeException {
+    public UserClientInfo saveUserAccount(UserClientInfo userFromApi) throws CleanCodeException {
         BusinessUserClientInfo businessUserClientInfo = UserClientInfoMapper.INSTANCE.fromApiToBs(userFromApi);
         boolean isClientRegistered = true;
         if(userFromApi.getClientReference() == null){

@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="162f065f-a510-4949-bcab-ab30d4e25e35" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/exceptionsmanagement/CleanCodeErrorBodyResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/exceptionsmanagement/CleanCodeErrorBodyResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/exceptionsmanagement/CleanCodeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/exceptionsmanagement/CleanCodeException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/utils/formatutils/uuid/UUIDFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/utils/formatutils/uuid/UUIDFormatter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/entities/users/UsersEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/entities/users/UsersEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserAccountBusinessServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserAccountOperationBusinessServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/impl/userservices/UserAccountRepositoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/impl/userservices/UserAccountRepositoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/repositories/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/impl/userservices/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/it/user/repositoryservice/UserRepositoryServiceImplIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/it/user/repositoryservice/UserRepositoryServiceImplIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/ut/user/repository/UserRepositoryUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/ut/user/repository/UserRepositoryUT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/CleanCodeSpringAppApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/CleanCodeSpringAppApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/impl/user/UserAccountOperationResServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/impl/user/UserAccountOperationRestServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +56,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
@@ -73,7 +81,7 @@
     "last_opened_file_path": "C:/Users/Sid/code/esgi/CleanCodeRepo4AL22/cleancode",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
+
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "MavenSettings",
     "spring.configuration.checksum": "b938f9c45fdc6c9208cd3d618dc3d408"
