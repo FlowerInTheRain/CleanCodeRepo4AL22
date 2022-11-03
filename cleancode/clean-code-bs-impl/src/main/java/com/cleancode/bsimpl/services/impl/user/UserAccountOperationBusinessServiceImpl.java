@@ -5,18 +5,16 @@ import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeExceptionsEnum;
 import com.cleancode.bsimpl.mappers.users.UserClientInfoMapper;
 import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusinessService;
-import com.cleancode.bsimpl.utils.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
-import com.cleancode.bsimpl.utils.formatutils.uuid.UUIDFormatter;
 import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
 import com.cleancode.cleancodedbimpl.interfaces.userservices.UserAccountRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static com.cleancode.bsimpl.services.impl.user.userserviceutils.UserAccountOperationUtils.*;
 
 @Service
 public class UserAccountOperationBusinessServiceImpl implements UserAccountOperationBusinessService {
@@ -38,12 +36,9 @@ public class UserAccountOperationBusinessServiceImpl implements UserAccountOpera
         boolean isClientRegistered = true;
         if(userFromApi.getClientReference() == null){
             isClientRegistered = false;
-            Optional<String> formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
-            if(formattedUUIDToBind.isEmpty()){
-                throw new RuntimeException();
-            }
-            formattedUUIDToBind.ifPresent(businessUserClientInfo::setBusinessReference);
+            handleBusinessUserReferenceCreation(businessUserClientInfo);
             businessUserClientInfo.setClientCreationDate(new Timestamp(new Date().getTime()));
+            handleInitBusinessUserCardCollection(businessUserClientInfo);
         }
         /**
          *    Custom exception management with specific status code, check it out
@@ -60,16 +55,8 @@ public class UserAccountOperationBusinessServiceImpl implements UserAccountOpera
         return userFromApi;
     }
 
-
     private void handleDBImplQueryExceptions(CleanCodeException dbImplCommunicationException) throws CleanCodeException {
         LOGGER.log(Level.WARNING, "Error while connecting to db : " + dbImplCommunicationException);
         throw dbImplCommunicationException;
-    }
-
-    protected void revertReferenceAndCreationDateAttributionOnDbErrorForNonExistingUsers(BusinessUserClientInfo businessUserClientInfo, boolean isClientRegistered) {
-        if(!isClientRegistered){
-            businessUserClientInfo.setBusinessReference(null);
-            businessUserClientInfo.setClientCreationDate(null);
-        }
     }
 }

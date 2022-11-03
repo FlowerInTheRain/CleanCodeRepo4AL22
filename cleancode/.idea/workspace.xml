@@ -5,18 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="162f065f-a510-4949-bcab-ab30d4e25e35" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserAccountBusinessServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserAccountOperationBusinessServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/impl/userservices/UserAccountRepositoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/impl/userservices/UserAccountRepositoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/repositories/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/impl/userservices/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/it/user/repositoryservice/UserRepositoryServiceImplIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/it/user/repositoryservice/UserRepositoryServiceImplIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/ut/user/repository/UserRepositoryUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/test/java/cleancodetests/ut/user/repository/UserRepositoryUT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/CleanCodeSpringAppApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/CleanCodeSpringAppApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/impl/user/UserAccountOperationResServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/impl/user/UserAccountOperationRestServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/dto/user/BusinessUserClientInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/dto/user/BusinessUserClientInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserAccountOperationBusinessServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserAccountOperationBusinessServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/userserviceutils/UserAccountOperationUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/userserviceutils/UserAccountOperationUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/repositories/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/repositories/user/UserRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -69,6 +64,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "OverrideImplement.generate.javadoc": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -81,7 +77,6 @@
     "last_opened_file_path": "C:/Users/Sid/code/esgi/CleanCodeRepo4AL22/cleancode",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
-
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "MavenSettings",
     "spring.configuration.checksum": "b938f9c45fdc6c9208cd3d618dc3d408"
@@ -91,6 +86,10 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.cleancode.cleancodedbimpl.entities.cardcollectionsentity" />
       <recent name="com.cleancode.cleancodedbimpl.repositories" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.cleancode.bsimpl.services.utils.userserviceutils" />
+      <recent name="com.cleancode.bsimpl.services.dsqds.test" />
     </key>
   </component>
   <component name="RunManager" selected="Application.SpringApplication">

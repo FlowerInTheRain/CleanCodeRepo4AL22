@@ -9,6 +9,12 @@ public class BusinessUserClientInfo {
 
     protected final Long technicalId;
 
+    protected final Long businessUserCCCoinWallet;
+
+    public Long getBusinessUserCCCoinWallet() {
+        return businessUserCCCoinWallet;
+    }
+
     private String businessReference;
 
     private Timestamp clientCreationDate;
@@ -20,11 +26,12 @@ public class BusinessUserClientInfo {
      *  TODO
      *  Don't forget to erase this TODO !
      */
-    public BusinessUserClientInfo(Long technicalId, String businessReference, Timestamp clientCreationDate, Address clientAddress, CardCollection userCardCollection) {
+    public BusinessUserClientInfo(Long technicalId, String businessReference, Timestamp clientCreationDate, Address clientAddress, CardCollection userCardCollection, Long businessUserCCCoinWallet) {
         this.technicalId = technicalId;
         this.businessReference = businessReference;
         this.clientCreationDate = clientCreationDate;
         this.clientAddress = clientAddress;
+        this.businessUserCCCoinWallet = businessUserCCCoinWallet;
         setUserCardCollection(userCardCollection);
     }
 
