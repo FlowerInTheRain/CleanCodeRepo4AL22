@@ -11,14 +11,12 @@ import org.mapstruct.factory.Mappers;
 public interface UserClientInfoMapper {
     UserClientInfoMapper INSTANCE = Mappers.getMapper(UserClientInfoMapper.class);
     @Mappings({
-            @Mapping(source = "clientReference", target = "businessReference"),
-            @Mapping(source = "userCardCollectionsList", target="userCardCollectionsList")
+            @Mapping(source = "clientReference", target = "businessReference")
     })
     BusinessUserClientInfo fromApiToBs(UserClientInfo userClientInfo);
 
     @Mappings({
-            @Mapping(source = "businessReference", target = "clientReference"),
-            @Mapping(source = "userCardCollectionsList", target="userCardCollectionsList")
+            @Mapping(source = "businessReference", target = "clientReference")
     })
     UserClientInfo fromBsToApi(BusinessUserClientInfo userClientInfo);
 }
