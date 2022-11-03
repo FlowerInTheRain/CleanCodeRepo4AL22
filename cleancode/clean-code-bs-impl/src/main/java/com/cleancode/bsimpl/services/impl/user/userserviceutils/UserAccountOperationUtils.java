@@ -2,7 +2,6 @@ package com.cleancode.bsimpl.services.impl.user.userserviceutils;
 
 import com.cleancode.bsimpl.CardCollection;
 import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
-import com.cleancode.bsimpl.services.impl.user.UserAccountOperationBusinessServiceImpl;
 import com.cleancode.bsimpl.utils.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
 import com.cleancode.bsimpl.utils.formatutils.uuid.UUIDFormatter;
 

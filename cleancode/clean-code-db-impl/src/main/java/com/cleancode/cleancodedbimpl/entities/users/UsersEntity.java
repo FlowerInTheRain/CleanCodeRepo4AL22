@@ -1,7 +1,6 @@
 package com.cleancode.cleancodedbimpl.entities.users;
 
 import com.cleancode.cleancodedbimpl.entities.cardcollections.CardCollectionsEntity;
-import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

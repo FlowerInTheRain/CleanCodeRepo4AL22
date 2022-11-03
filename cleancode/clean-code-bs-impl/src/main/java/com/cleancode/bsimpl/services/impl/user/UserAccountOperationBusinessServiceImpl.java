@@ -9,6 +9,7 @@ import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
 import com.cleancode.cleancodedbimpl.interfaces.userservices.UserAccountRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.logging.Level;
