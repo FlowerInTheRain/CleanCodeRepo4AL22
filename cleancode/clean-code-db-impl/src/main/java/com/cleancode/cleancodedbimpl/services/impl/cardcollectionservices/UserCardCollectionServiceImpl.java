@@ -1,26 +1,26 @@
 package com.cleancode.cleancodedbimpl.services.impl.cardcollectionservices;
 
-import com.cleancode.cleancodedbimpl.entities.cardcollections.CardCollectionsEntity;
-import com.cleancode.cleancodedbimpl.services.interfaces.cardcollectionservices.UserCardCollectionRepositoryService;
+import com.cleancode.bsimpl.dto.cardcollection.CardCollection;
+import com.cleancode.bsimpl.repositories.services.interfaces.cardcollectionservices.UserCardCollectionRepositoryService;
+import com.cleancode.cleancodedbimpl.mappers.cardcollections.CardCollectionEntityMapper;
 import com.cleancode.cleancodedbimpl.repositories.cardcollection.CardCollectionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserCardCollectionServiceImpl implements UserCardCollectionRepositoryService {
 
-    private CardCollectionRepository cardCollectionRepository;
+    private final CardCollectionRepository cardCollectionRepository;
 
-    @Autowired
-    private void setCardCollectionRepository(CardCollectionRepository cardCollectionRepository){
+    public UserCardCollectionServiceImpl(CardCollectionRepository cardCollectionRepository) {
         this.cardCollectionRepository = cardCollectionRepository;
     }
+
     /**
-     * @param userCardCollection
-     * @return
+     * @param newUserCardCollection the user newly created card collection
+     * @return savedUserCardCollection
      */
     @Override
-    public Long saveUserCardCollection(CardCollectionsEntity userCardCollection) {
-        return cardCollectionRepository.save(userCardCollection).getId();
+    public CardCollection saveUserCardCollection(CardCollection newUserCardCollection) {
+        return CardCollectionEntityMapper.INSTANCE.fromDBImplCardCollectionToBSCardCollection(cardCollectionRepository.save(CardCollectionEntityMapper.INSTANCE.fromBSCardCollectionToDBImplCardCollection(newUserCardCollection)));
     }
 }

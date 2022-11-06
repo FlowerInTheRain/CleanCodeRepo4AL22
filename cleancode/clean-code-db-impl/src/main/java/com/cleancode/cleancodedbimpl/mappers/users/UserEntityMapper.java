@@ -1,8 +1,8 @@
-package com.cleancode.bsimpl.mappers.bsdbmappers.users;
+package com.cleancode.cleancodedbimpl.mappers.users;
 
 import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
-import com.cleancode.bsimpl.mappers.bsdbmappers.cardcollections.CardCollectionEntityMapper;
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
+import com.cleancode.cleancodedbimpl.mappers.cardcollections.CardCollectionEntityMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

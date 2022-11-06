@@ -53,6 +53,11 @@
             <version>5.3.23</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.esgi.arlo</groupId>
+            <artifactId>clean-code-bs-impl</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

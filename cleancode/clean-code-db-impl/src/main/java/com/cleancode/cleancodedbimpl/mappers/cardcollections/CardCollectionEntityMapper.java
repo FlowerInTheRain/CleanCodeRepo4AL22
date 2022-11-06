@@ -1,4 +1,4 @@
-package com.cleancode.bsimpl.mappers.bsdbmappers.cardcollections;
+package com.cleancode.cleancodedbimpl.mappers.cardcollections;
 
 import com.cleancode.bsimpl.dto.cardcollection.CardCollection;
 import com.cleancode.cleancodedbimpl.entities.cardcollections.CardCollectionsEntity;
