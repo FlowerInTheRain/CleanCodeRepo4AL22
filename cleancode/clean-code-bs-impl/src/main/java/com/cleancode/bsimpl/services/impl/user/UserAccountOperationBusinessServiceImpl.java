@@ -1,26 +1,26 @@
 package com.cleancode.bsimpl.services.impl.user;
 
 import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
-import com.cleancode.bsimpl.mappers.users.UserClientInfoMapper;
+import com.cleancode.bsimpl.mappers.apibsmappers.users.UserClientInfoMapper;
+import com.cleancode.bsimpl.mappers.bsdbmappers.users.UserEntityMapper;
 import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusinessService;
-import com.cleancode.bsimpl.utils.exceptionsmanagement.enums.CleanCodeExceptionsEnum;
-import com.cleancode.bsimpl.utils.exceptionsmanagement.exceptions.CleanCodeException;
+import com.cleancode.bsimpl.utils.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
+import com.cleancode.bsimpl.utils.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
 import com.cleancode.cleancodedbimpl.entities.cardcollections.CardCollectionsEntity;
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
-import com.cleancode.cleancodedbimpl.interfaces.cardcollectionservices.UserCardCollectionRepositoryService;
-import com.cleancode.cleancodedbimpl.interfaces.userservices.UserAccountRepositoryService;
+import com.cleancode.cleancodedbimpl.services.interfaces.cardcollectionservices.UserCardCollectionRepositoryService;
+import com.cleancode.cleancodedbimpl.services.interfaces.userservices.UserAccountRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.cleancode.bsimpl.services.impl.user.userserviceutils.UserAccountOperationUtils.*;
+import static com.cleancode.bsimpl.utils.userserviceutils.UserAccountOperationUtils.*;
 
 @Service
 public class UserAccountOperationBusinessServiceImpl implements UserAccountOperationBusinessService {

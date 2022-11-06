@@ -1,6 +1,6 @@
 package com.cleancode.cleancodeapi.dto.user;
 
-import com.cleancode.cleancodeapi.dto.cards.CardCollection;
+import com.cleancode.cleancodeapi.dto.cardcollection.CardCollection;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

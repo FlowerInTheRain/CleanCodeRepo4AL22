@@ -4,7 +4,7 @@ package cleancodetests.ut.user.repositoryservice;
 
 import cleancodetests.ut.user.repository.UserRepositoryUT;
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
-import com.cleancode.cleancodedbimpl.impl.userservices.UserAccountRepositoryServiceImpl;
+import com.cleancode.cleancodedbimpl.services.impl.userservices.UserAccountRepositoryServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

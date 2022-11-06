@@ -1,7 +1,7 @@
 package cleancodetests.it.user.repositoryservice;
 
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
-import com.cleancode.cleancodedbimpl.impl.userservices.UserAccountRepositoryServiceImpl;
+import com.cleancode.cleancodedbimpl.services.impl.userservices.UserAccountRepositoryServiceImpl;
 import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
