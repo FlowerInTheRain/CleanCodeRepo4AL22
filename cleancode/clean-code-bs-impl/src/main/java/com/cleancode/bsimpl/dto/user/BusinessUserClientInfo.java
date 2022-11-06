@@ -1,32 +1,27 @@
 package com.cleancode.bsimpl.dto.user;
 
-import com.cleancode.bsimpl.CardCollection;
+import com.cleancode.bsimpl.dto.cardcollection.CardCollection;
 
 import java.sql.Timestamp;
 
-public class BusinessUserClientInfo {
-
+public class BusinessUserClientInfo extends BusinessUserInfo {
     protected final Long technicalId;
-
     private Long businessUserCCCoinWallet;
-
-
-
     private String businessReference;
-
     private Timestamp clientCreationDate;
-
     private CardCollection userCardCollection;
 
     /**
      *  TODO
      *  Don't forget to erase this TODO !
      */
-    public BusinessUserClientInfo(Long technicalId, String businessReference, Timestamp clientCreationDate, CardCollection userCardCollection, Long businessUserCCCoinWallet) {
+    public BusinessUserClientInfo(String userName, Long technicalId, String businessReference, Timestamp clientCreationDate, CardCollection userCardCollection,
+                                  Long businessUserCCCoinWallet) {
+        super(userName);
         this.technicalId = technicalId;
-        this.businessReference = businessReference;
-        this.clientCreationDate = clientCreationDate;
-        this.businessUserCCCoinWallet = businessUserCCCoinWallet;
+        setBusinessReference(businessReference);
+        setClientCreationDate(clientCreationDate);
+        setBusinessUserCCCoinWallet(businessUserCCCoinWallet);
         setUserCardCollection(userCardCollection);
     }
 
@@ -51,11 +46,9 @@ public class BusinessUserClientInfo {
     public void setUserCardCollection(CardCollection userCardCollection) {
         this.userCardCollection = userCardCollection;
     }
-
     public Long getBusinessUserCCCoinWallet() {
         return businessUserCCCoinWallet;
     }
-
     public void setBusinessUserCCCoinWallet(Long cardCollectionWallet){
         this.businessUserCCCoinWallet = cardCollectionWallet;
     }

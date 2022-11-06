@@ -1,5 +1,6 @@
-package com.cleancode.bsimpl.exceptionsmanagement;
+package com.cleancode.bsimpl.utils.exceptionsmanagement.interceptor;
 
+import com.cleancode.bsimpl.utils.exceptionsmanagement.exceptions.CleanCodeException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -8,11 +9,11 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class ExceptionResponse extends ResponseEntityExceptionHandler {
+public class RequestExceptionInterceptor extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value
-            = { DBIMPLCommunicationException.class})
+            = { CleanCodeException.class})
     protected ResponseEntity<Object> handleConflict(
-            DBIMPLCommunicationException ex, WebRequest request) {
+            CleanCodeException ex, WebRequest request) {
         return handleExceptionInternal(ex, ex.getResponse(),
                 new HttpHeaders(), ex.getResponse().httpResponseStatus(), request);
     }

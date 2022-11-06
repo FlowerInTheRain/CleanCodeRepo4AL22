@@ -15,7 +15,6 @@ import java.util.logging.Logger;
 @Transactional
 public class UserAccountRepositoryServiceImpl implements UserAccountRepositoryService {
     private static final Logger LOGGER = Logger.getLogger(UserAccountRepositoryServiceImpl.class.getName());
-
     private UserRepository userRepository;
 
     @Autowired
@@ -31,6 +30,14 @@ public class UserAccountRepositoryServiceImpl implements UserAccountRepositorySe
     public Optional<UsersEntity> findOneUserByUserFunctionalId(String userBusinessReference) {
         LOGGER.log(Level.INFO, "Calling DB service findOneUserByUserFunctionalId");
         UsersEntity foundUser = userRepository.findByUserReference(userBusinessReference);
+        LOGGER.log(Level.INFO, "Found User : " + foundUser);
+        return Optional.ofNullable(foundUser);
+    }
+
+    @Override
+    public Optional<UsersEntity> findUserByUserName(String userName) {
+        LOGGER.log(Level.INFO, "Calling DB service findOneUserByUserFunctionalId");
+        UsersEntity foundUser = userRepository.findByUserName(userName);
         LOGGER.log(Level.INFO, "Found User : " + foundUser);
         return Optional.ofNullable(foundUser);
     }

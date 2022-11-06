@@ -7,12 +7,13 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(uses = {CardCollectionEntityMapper.class})
 public interface UserEntityMapper {
     UserEntityMapper INSTANCE = Mappers.getMapper(UserEntityMapper.class);
     @Mappings({
             @Mapping(source = "businessReference", target = "userReference"),
             @Mapping(source = "technicalId", target = "id"),
+            @Mapping(source = "userCardCollection", target = "userCardCollection"),
 
     })
     UsersEntity fromBsToDb(BusinessUserClientInfo userClientInfo);

@@ -1,22 +1,34 @@
 package com.cleancode.cleancodeapi.dto.cards;
 
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 
-public record CardCollection(String collectionReference, List<Card> collectionCardList) {
+@JsonIgnoreProperties(value = {"collectionReference", "collectionCardList"})
+public record CardCollection(String collectionName, String collectionReference, List<Card> collectionCardList) {
 
-    public static CardCollection createOne(String collectionReference, List<Card> collectionCardListFromService) {
-        return new CardCollection(collectionReference, collectionCardListFromService);
+    public static CardCollection createOne(String collectionName, String collectionReference, List<Card> collectionCardListFromService) {
+        return new CardCollection(collectionName, collectionReference, collectionCardListFromService);
     }
 
-    public static List<CardCollection> createMultiple(Map<String, List<Card>> collectionReferenceAndCollectionCardListMapFromService) {
-        List<CardCollection> cardCollectionListToReturn = new ArrayList<>();
-        if (!collectionReferenceAndCollectionCardListMapFromService.isEmpty()) {
-            collectionReferenceAndCollectionCardListMapFromService.forEach((collectionReference, collectionCardList) -> {
-                cardCollectionListToReturn.add(new CardCollection(collectionReference, collectionCardList));
-            });
-        }
-        return cardCollectionListToReturn;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+        var that = (CardCollection) obj;
+        return Objects.equals(this.collectionName, that.collectionName) &&
+                Objects.equals(this.collectionReference, that.collectionReference) &&
+                Objects.equals(this.collectionCardList, that.collectionCardList);
     }
+
+    @Override
+    public String toString() {
+        return "CardCollection[" +
+                "collectionName=" + collectionName + ", " +
+                "collectionReference=" + collectionReference + ", " +
+                "collectionCardList=" + collectionCardList + ']';
+    }
+
+
 }

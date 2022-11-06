@@ -4,6 +4,7 @@ import com.cleancode.cleancodedbimpl.entities.cardcollections.CardCollectionsEnt
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.Instant;
 
 @Entity(name="USERS")
 public class UsersEntity implements Agents{
@@ -15,10 +16,10 @@ public class UsersEntity implements Agents{
     private String userReference;
     @Column(name = "USERNAME", unique = true, nullable = false, length=32)
     private String userName;
-    @Column(name="CCCOIN_WALLET", nullable = false, columnDefinition = "int default 4")
-    private Long userCCCoinWallet;
-    @Column(name="CREATION_DATE", columnDefinition = "timestamp default CURRENT_TIMESTAMP")
-    private Timestamp creationDate;
+    @Column(name="CCCOIN_WALLET", nullable = false)
+    private Long userCCCoinWallet = 4L;
+    @Column(name="CREATION_DATE", nullable = false)
+    private Timestamp creationDate = Timestamp.from(Instant.now());
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CARD_COLLECTION_ID")
     private CardCollectionsEntity userCardCollection;

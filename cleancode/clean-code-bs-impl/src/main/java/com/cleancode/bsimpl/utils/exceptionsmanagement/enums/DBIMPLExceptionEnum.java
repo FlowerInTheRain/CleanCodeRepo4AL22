@@ -1,4 +1,4 @@
-package com.cleancode.bsimpl.exceptionsmanagement;
+package com.cleancode.bsimpl.utils.exceptionsmanagement.enums;
 
 import org.springframework.http.HttpStatus;
 

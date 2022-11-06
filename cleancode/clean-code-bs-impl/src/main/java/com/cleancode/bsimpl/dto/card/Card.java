@@ -1,4 +1,4 @@
-package com.cleancode.bsimpl;
+package com.cleancode.bsimpl.dto.card;
 
 import com.cleancode.cleancodeapi.enums.cards.CardRarityEnum;
 

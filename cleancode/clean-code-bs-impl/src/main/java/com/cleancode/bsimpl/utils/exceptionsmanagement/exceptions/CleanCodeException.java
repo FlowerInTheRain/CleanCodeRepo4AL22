@@ -1,5 +1,8 @@
-package com.cleancode.bsimpl.exceptionsmanagement;
+package com.cleancode.bsimpl.utils.exceptionsmanagement.exceptions;
 
+
+import com.cleancode.bsimpl.utils.exceptionsmanagement.dto.CleanCodeErrorBodyResponse;
+import com.cleancode.bsimpl.utils.exceptionsmanagement.enums.CleanCodeExceptionsEnum;
 
 public class CleanCodeException extends Exception {
     private final CleanCodeErrorBodyResponse exceptionEnum;

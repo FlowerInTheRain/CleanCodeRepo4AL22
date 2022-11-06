@@ -1,17 +1,22 @@
 package com.cleancode.bsimpl.services.impl.user;
 
 import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
-import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
-import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeExceptionsEnum;
 import com.cleancode.bsimpl.mappers.users.UserClientInfoMapper;
 import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusinessService;
+import com.cleancode.bsimpl.utils.exceptionsmanagement.enums.CleanCodeExceptionsEnum;
+import com.cleancode.bsimpl.utils.exceptionsmanagement.exceptions.CleanCodeException;
 import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
+import com.cleancode.cleancodedbimpl.entities.cardcollections.CardCollectionsEntity;
+import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
+import com.cleancode.cleancodedbimpl.interfaces.cardcollectionservices.UserCardCollectionRepositoryService;
 import com.cleancode.cleancodedbimpl.interfaces.userservices.UserAccountRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.util.Date;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,9 +27,21 @@ public class UserAccountOperationBusinessServiceImpl implements UserAccountOpera
     private static final Logger LOGGER = Logger.getLogger(UserAccountOperationBusinessServiceImpl.class.getName());
     private UserAccountRepositoryService userRepositoryService;
 
+    private CacheManager cacheManager;
+
+    private UserCardCollectionRepositoryService userCardCollectionRepositoryService;
+
+    @Autowired
+    private void setCacheManager(CacheManager cacheManager){
+        this.cacheManager = cacheManager;
+    }
     @Autowired
     private void setUserRepositoryService(UserAccountRepositoryService userRepositoryService){
         this.userRepositoryService = userRepositoryService;
+    }
+    @Autowired
+    private void setUserCardCollectionRepositoryService(UserCardCollectionRepositoryService userCardCollectionRepositoryService){
+        this.userCardCollectionRepositoryService = userCardCollectionRepositoryService;
     }
 
     /**
@@ -32,32 +49,42 @@ public class UserAccountOperationBusinessServiceImpl implements UserAccountOpera
      * @return something
      */
     @Override
+    @Cacheable(value = "Users", unless = "#userFromApi.clientReference == null")
     public UserClientInfo saveUserAccount(UserClientInfo userFromApi) throws CleanCodeException {
-        BusinessUserClientInfo businessUserClientInfo = UserClientInfoMapper.INSTANCE.fromApiToBs(userFromApi);
-        boolean isClientRegistered = true;
-        if(userFromApi.getClientReference() == null){
-            isClientRegistered = false;
-            handleBusinessUserReferenceCreation(businessUserClientInfo);
-            businessUserClientInfo.setClientCreationDate(new Timestamp(new Date().getTime()));
-            handleInitBusinessUserCardCollection(businessUserClientInfo);
+        LOGGER.log(Level.INFO,"oui" + Objects.requireNonNull(cacheManager.getCache("Users")).toString());
+        BusinessUserClientInfo businessUserClientInfo = UserClientInfoMapper.INSTANCE.fromAPIUserClientInfoToBSUserClientInfo(userFromApi);
+        if(userRepositoryService.findUserByUserName(businessUserClientInfo.getUserName()).isPresent()){
+            throw new CleanCodeException(CleanCodeExceptionsEnum.BS_COMPONENT_USERNAME_ALREADY_TAKEN);
         }
-        /**
-         *    Custom exception management with specific status code, check it out
-         *    throw new DBIMPLCommunicationException(DBIMPLExceptionEnum.DB_TIMEOUT_EXCEPTION);
-         */
+        handleBusinessUserReferenceCreation(businessUserClientInfo);
+        handleInitBusinessUserCardCollection(businessUserClientInfo.getUserCardCollection().collectionName(), businessUserClientInfo);
+        UsersEntity userToSave = UserEntityMapper.INSTANCE.fromBsToDb(businessUserClientInfo);
+        CardCollectionsEntity cardCollectionToSave = userToSave.getUserCardCollection();
         try {
-            Long usersEntity = userRepositoryService.saveUserInDb(UserEntityMapper.INSTANCE.fromBsToDb(businessUserClientInfo));
-            LOGGER.log(Level.INFO, "UserFromApi User : " + userFromApi + " Returned usersEntity : " + usersEntity);
-            return UserClientInfoMapper.INSTANCE.fromBsToApi(businessUserClientInfo);
-        } catch (Exception e){
-            handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
-            revertReferenceAndCreationDateAttributionOnDbErrorForNonExistingUsers(businessUserClientInfo, isClientRegistered);
+            Long userCardCollectionId =
+                    userCardCollectionRepositoryService.saveUserCardCollection(cardCollectionToSave);
+            userToSave.getUserCardCollection().setId(userCardCollectionId);
+            /**
+             *    Custom exception management with specific status code, check it out
+             *    throw new DBIMPLCommunicationException(DBIMPLExceptionEnum.DB_TIMEOUT_EXCEPTION);
+             */
+            try {
+                Long usersEntity = userRepositoryService.saveUserInDb(userToSave);
+                LOGGER.log(Level.INFO, "UserFromApi User : " + userFromApi + " Returned usersEntity : " + usersEntity);
+                return UserClientInfoMapper.INSTANCE.fromBSUserClientInfoToAPIUserClientInfo(businessUserClientInfo);
+            } catch (Exception cardCollectionCreationException){
+                handleDBImplQueryExceptions(cardCollectionCreationException);
+                revertReferenceAndCreationDateAttributionOnDbErrorForNonExistingUsers(businessUserClientInfo);
+            }
+        } catch (Exception userAccountCreationException){
+            handleDBImplQueryExceptions(userAccountCreationException);
+            revertReferenceAndCreationDateAttributionOnDbErrorForNonExistingUsers(businessUserClientInfo);
         }
         return userFromApi;
     }
 
-    private void handleDBImplQueryExceptions(CleanCodeException dbImplCommunicationException) throws CleanCodeException {
-        LOGGER.log(Level.WARNING, "Error while connecting to db : " + dbImplCommunicationException);
-        throw dbImplCommunicationException;
+    private void handleDBImplQueryExceptions(Exception initialException) throws CleanCodeException {
+        LOGGER.log(Level.SEVERE, "Critical error while saving user" + initialException.toString());
+        throw new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT);
     }
 }

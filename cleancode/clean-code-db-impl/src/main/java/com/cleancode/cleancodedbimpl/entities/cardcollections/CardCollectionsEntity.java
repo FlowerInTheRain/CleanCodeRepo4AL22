@@ -4,6 +4,7 @@ import com.cleancode.cleancodedbimpl.entities.cards.CardsEntity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity(name="CARD_COLLECTIONS")
 public class CardCollectionsEntity {
@@ -20,6 +21,7 @@ public class CardCollectionsEntity {
             joinColumns = @JoinColumn(name = "CARD_COLLECTION_ID"),
             inverseJoinColumns = @JoinColumn(name = "CARD_ID"))
     private List<CardsEntity> cardCollectionCards;
+
 
     public Long getId() {
         return id;
@@ -51,5 +53,37 @@ public class CardCollectionsEntity {
 
     public void setCardCollectionCards(List<CardsEntity> cardCollectionCards) {
         this.cardCollectionCards = cardCollectionCards;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CardCollectionsEntity that = (CardCollectionsEntity) o;
+
+        if (!id.equals(that.id)) return false;
+        if (!cardCollectionReference.equals(that.cardCollectionReference)) return false;
+        if (!cardCollectionName.equals(that.cardCollectionName)) return false;
+        return Objects.equals(cardCollectionCards, that.cardCollectionCards);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + cardCollectionReference.hashCode();
+        result = 31 * result + cardCollectionName.hashCode();
+        result = 31 * result + (cardCollectionCards != null ? cardCollectionCards.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "CardCollectionsEntity{" +
+                "id=" + id +
+                ", cardCollectionReference='" + cardCollectionReference + '\'' +
+                ", cardCollectionName='" + cardCollectionName + '\'' +
+                ", cardCollectionCards=" + cardCollectionCards +
+                '}';
     }
 }

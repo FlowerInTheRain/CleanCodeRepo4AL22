@@ -1,9 +1,9 @@
-package com.cleancode.cleancodeapi.dto.user;
+package com.cleancode.bsimpl.dto.user;
 
-public class User {
+public class BusinessUserInfo {
     private String userName;
 
-    public User(String userName) {
+    public BusinessUserInfo(String userName) {
         this.userName = userName;
     }
 

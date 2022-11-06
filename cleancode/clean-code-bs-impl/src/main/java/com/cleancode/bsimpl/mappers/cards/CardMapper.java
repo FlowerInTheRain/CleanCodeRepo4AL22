@@ -1,6 +1,6 @@
 package com.cleancode.bsimpl.mappers.cards;
 
-import com.cleancode.bsimpl.Card;
+import com.cleancode.bsimpl.dto.card.Card;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
