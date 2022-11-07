@@ -50,7 +50,7 @@ public class UserAccountOperationBusinessServiceImpl implements UserAccountOpera
             throw new CleanCodeException(CleanCodeExceptionsEnum.BS_COMPONENT_USERNAME_ALREADY_TAKEN);
         }
         handleBusinessUserReferenceCreation(businessUserClientInfo);
-        handleInitBusinessUserCardCollection(businessUserClientInfo.getUserCardCollection().collectionName(), businessUserClientInfo);
+        handleInitBusinessUserCardCollection(businessUserClientInfo.getUserCardCollection().getCollectionName(), businessUserClientInfo);
         CardCollection cardCollectionToSave = businessUserClientInfo.getUserCardCollection();
         try {
             CardCollection savedCardCollection = userCardCollectionRepositoryService.saveUserCardCollection(cardCollectionToSave);

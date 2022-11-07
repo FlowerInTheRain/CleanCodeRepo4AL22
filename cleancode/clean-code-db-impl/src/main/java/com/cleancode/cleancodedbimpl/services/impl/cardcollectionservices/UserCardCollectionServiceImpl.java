@@ -4,6 +4,7 @@ import com.cleancode.bsimpl.dto.cardcollection.CardCollection;
 import com.cleancode.bsimpl.repositories.services.interfaces.cardcollectionservices.UserCardCollectionRepositoryService;
 import com.cleancode.cleancodedbimpl.mappers.cardcollections.CardCollectionEntityMapper;
 import com.cleancode.cleancodedbimpl.repositories.cardcollection.CardCollectionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +12,7 @@ public class UserCardCollectionServiceImpl implements UserCardCollectionReposito
 
     private final CardCollectionRepository cardCollectionRepository;
 
+    @Autowired
     public UserCardCollectionServiceImpl(CardCollectionRepository cardCollectionRepository) {
         this.cardCollectionRepository = cardCollectionRepository;
     }

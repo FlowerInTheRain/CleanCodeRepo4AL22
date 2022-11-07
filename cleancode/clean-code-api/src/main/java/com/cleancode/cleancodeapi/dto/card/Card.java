@@ -1,6 +1,8 @@
 package com.cleancode.cleancodeapi.dto.card;
 
 
-public record Card(String cardReference, String cardLabel, Integer cardValue, CardRarityEnum cardRarityEnum, Integer roundedPrice) {
+import com.cleancode.cleancodeapi.enums.rarities.RaritiesEnum;
+
+public record Card(String cardReference, String cardLabel, Integer cardValue, RaritiesEnum cardRarityEnum, Integer roundedPrice) {
 
 }
