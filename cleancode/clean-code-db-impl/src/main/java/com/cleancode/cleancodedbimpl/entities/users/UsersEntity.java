@@ -1,26 +1,29 @@
 package com.cleancode.cleancodedbimpl.entities.users;
 
-import lombok.*;
-import org.hibernate.Hibernate;
+import com.cleancode.cleancodedbimpl.entities.cardcollections.CardCollectionsEntity;
+import com.cleancode.cleancodedbimpl.entities.interfaces.Agents;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Objects;
+import java.time.Instant;
 
-@Getter
-@Setter
-@RequiredArgsConstructor
-@Entity
-public class UsersEntity {
+@Entity(name="USERS")
+public class UsersEntity implements Agents {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "USER_ID", nullable = false)
     private Long id;
-
-    @Column(unique = true, nullable = false, length=32)
+    @Column(name="USER_REFERENCE", unique = true, nullable = false, length=32)
     private String userReference;
-
-    @Column(columnDefinition = "timestamp default CURRENT_TIMESTAMP")
-    private Timestamp creationDate;
+    @Column(name = "USERNAME", unique = true, nullable = false, length=32)
+    private String userName;
+    @Column(name="CCCOIN_WALLET", nullable = false)
+    private Long userCCCoinWallet = 4L;
+    @Column(name="CREATION_DATE", nullable = false)
+    private Timestamp creationDate = Timestamp.from(Instant.now());
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CARD_COLLECTION_ID")
+    private CardCollectionsEntity userCardCollection;
 
     public Long getId() {
         return id;
@@ -38,6 +41,22 @@ public class UsersEntity {
         this.userReference = userReference;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Long getUserCCCoinWallet() {
+        return userCCCoinWallet;
+    }
+
+    public void setUserCCCoinWallet(Long userCCCoinWallet) {
+        this.userCCCoinWallet = userCCCoinWallet;
+    }
+
     public Timestamp getCreationDate() {
         return creationDate;
     }
@@ -46,25 +65,49 @@ public class UsersEntity {
         this.creationDate = creationDate;
     }
 
-    @Override
-    public String toString() {
-        return "UserEntity{" +
-                "id=" + id +
-                ", userReference='" + userReference + '\'' +
-                ", creationDate='" + creationDate + '\'' +
-                '}';
+    public CardCollectionsEntity getUserCardCollection() {
+        return userCardCollection;
+    }
+
+    public void setUserCardCollection(CardCollectionsEntity userCardCollection) {
+        this.userCardCollection = userCardCollection;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+
         UsersEntity that = (UsersEntity) o;
-        return id != null && Objects.equals(id, that.id);
+
+        if (!id.equals(that.id)) return false;
+        if (!userReference.equals(that.userReference)) return false;
+        if (!userName.equals(that.userName)) return false;
+        if (!userCCCoinWallet.equals(that.userCCCoinWallet)) return false;
+        if (!creationDate.equals(that.creationDate)) return false;
+        return userCardCollection.equals(that.userCardCollection);
     }
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        int result = id.hashCode();
+        result = 31 * result + userReference.hashCode();
+        result = 31 * result + userName.hashCode();
+        result = 31 * result + userCCCoinWallet.hashCode();
+        result = 31 * result + creationDate.hashCode();
+        result = 31 * result + userCardCollection.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "UsersEntity{" +
+                "id=" + id +
+                ", userReference='" + userReference + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userCCCoinWallet=" + userCCCoinWallet +
+                ", creationDate=" + creationDate +
+                ", userCardCollection=" + userCardCollection +
+                '}';
     }
 }

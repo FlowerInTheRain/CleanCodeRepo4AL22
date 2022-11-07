@@ -1,63 +1,55 @@
 package com.cleancode.bsimpl.dto.user;
 
-import com.cleancode.bsimpl.Address;
-import com.cleancode.bsimpl.CardCollection;
+import com.cleancode.bsimpl.dto.cardcollection.CardCollection;
 
 import java.sql.Timestamp;
-import java.util.List;
 
-public class BusinessUserClientInfo {
-
+public class BusinessUserClientInfo extends BusinessUserInfo {
     protected final Long technicalId;
-
+    private Long businessUserCCCoinWallet;
     private String businessReference;
-
     private Timestamp clientCreationDate;
-
-    private final Address clientAddress;
-    private CardCollection userCardCollectionsList;
+    private CardCollection userCardCollection;
 
     /**
-     *  TODO
+     *  TODO Check Intellij TODO !!
      *  Don't forget to erase this TODO !
      */
-    public BusinessUserClientInfo(Long technicalId, String businessReference, Timestamp clientCreationDate, Address clientAddress, CardCollection userCardCollectionsList) {
+    public BusinessUserClientInfo(String userName, Long technicalId, String businessReference, Timestamp clientCreationDate, CardCollection userCardCollection,
+                                  Long businessUserCCCoinWallet) {
+        super(userName);
         this.technicalId = technicalId;
-        this.businessReference = businessReference;
-        this.clientCreationDate = clientCreationDate;
-        this.clientAddress = clientAddress;
-        setUserCardCollectionsList(userCardCollectionsList);
+        setBusinessReference(businessReference);
+        setClientCreationDate(clientCreationDate);
+        setBusinessUserCCCoinWallet(businessUserCCCoinWallet);
+        setUserCardCollection(userCardCollection);
     }
 
     public Long getTechnicalId() {
         return technicalId;
     }
-
     public String getBusinessReference() {
         return businessReference;
     }
-
     public void setBusinessReference(String businessReference) {
         this.businessReference = businessReference;
     }
-
     public Timestamp getClientCreationDate() {
         return clientCreationDate;
     }
-
     public void setClientCreationDate(Timestamp clientCreationDate) {
         this.clientCreationDate = clientCreationDate;
     }
-
-    public Address getClientAddress() {
-        return clientAddress;
+    public CardCollection getUserCardCollection() {
+        return userCardCollection;
     }
-
-    public CardCollection getUserCardCollectionsList() {
-        return userCardCollectionsList;
+    public void setUserCardCollection(CardCollection userCardCollection) {
+        this.userCardCollection = userCardCollection;
     }
-
-    public void setUserCardCollectionsList(CardCollection userCardCollectionsList) {
-        this.userCardCollectionsList = userCardCollectionsList;
+    public Long getBusinessUserCCCoinWallet() {
+        return businessUserCCCoinWallet;
+    }
+    public void setBusinessUserCCCoinWallet(Long cardCollectionWallet){
+        this.businessUserCCCoinWallet = cardCollectionWallet;
     }
 }

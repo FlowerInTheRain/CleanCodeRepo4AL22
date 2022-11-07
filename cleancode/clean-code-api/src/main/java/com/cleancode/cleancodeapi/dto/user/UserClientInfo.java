@@ -1,67 +1,50 @@
 package com.cleancode.cleancodeapi.dto.user;
 
-import com.cleancode.cleancodeapi.dto.address.Address;
-import com.cleancode.cleancodeapi.dto.cards.CardCollection;
+import com.cleancode.cleancodeapi.dto.cardcollection.CardCollection;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 
 public class UserClientInfo extends User {
     private String clientReference;
+    @JsonIgnore
     private Timestamp clientCreationDate;
 
-    private final UserBirthInformation userBirthInformation;
-    private Address clientAddress;
+    private CardCollection userCardCollection;
 
-    public void setClientReference(String clientReference) {
-        this.clientReference = clientReference;
-    }
-
-    public void setClientCreationDate(Timestamp clientCreationDate) {
-        this.clientCreationDate = clientCreationDate;
-    }
-
-
-
-    public void setClientAddress(Address clientAddress) {
-        this.clientAddress = clientAddress;
-    }
-
-    private CardCollection userCardCollectionsList;
-
-    public UserClientInfo(String clientReference, Timestamp clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress,
-                          CardCollection userCardCollectionsList) {
+    public UserClientInfo(String userName, String clientReference, Timestamp clientCreationDate, CardCollection userCardCollection) {
+        super(userName);
         this.clientReference = clientReference;
         this.clientCreationDate = clientCreationDate;
-        this.userBirthInformation = userBirthInformation;
-        this.clientAddress = clientAddress;
-        this.userCardCollectionsList = userCardCollectionsList;
+        this.userCardCollection = userCardCollection;
     }
 
+    @JsonIgnore
     public String getClientReference() {
         return clientReference;
     }
-
     public Timestamp getClientCreationDate() {
         return clientCreationDate;
     }
-
-    public Address getClientAddress() {
-        return clientAddress;
+    public CardCollection getUserCardCollection() {
+        return userCardCollection;
     }
-
-    public CardCollection getUserCardCollectionsList() {
-        return userCardCollectionsList;
+    @JsonProperty
+    public void setClientReference(String clientReference) {
+        this.clientReference = clientReference;
     }
-
-    public void setUserCardCollectionsList(CardCollection userCardCollectionsList) {
-        this.userCardCollectionsList = userCardCollectionsList;
+    public void setClientCreationDate(Timestamp clientCreationDate) {
+        this.clientCreationDate = clientCreationDate;
+    }
+    public void setUserCardCollection(CardCollection userCardCollection) {
+        this.userCardCollection = userCardCollection;
     }
 
     public static UserClientInfo createOneUserClientInfo(
-             String clientReference, Timestamp clientCreationDate, UserBirthInformation userBirthInformation, Address clientAddress, CardCollection userCardCollectionsList
+             String userName, String clientReference, Timestamp clientCreationDate, CardCollection userCardCollectionsList
             ){
-        return new UserClientInfo( clientReference, clientCreationDate, userBirthInformation, clientAddress, userCardCollectionsList);
+        return new UserClientInfo( userName, clientReference, clientCreationDate,  userCardCollectionsList);
     }
 }

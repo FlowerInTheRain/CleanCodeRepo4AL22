@@ -1,7 +1,7 @@
 package cleancodetests.it.user.repositoryservice;
 
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
-import com.cleancode.cleancodedbimpl.impl.userservices.UserRepositoryServiceImpl;
+import com.cleancode.cleancodedbimpl.services.impl.userservices.UserAccountRepositoryServiceImpl;
 import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class UserRepositoryServiceImplIT {
 
     private static final Logger LOGGER = Logger.getLogger(UserRepositoryServiceImplIT.class.getName());
     @InjectMocks
-    private UserRepositoryServiceImpl userService;
+    private UserAccountRepositoryServiceImpl userService;
     @Mock
     private UserRepository userRepository;
 
