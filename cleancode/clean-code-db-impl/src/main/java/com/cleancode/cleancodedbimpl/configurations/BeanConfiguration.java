@@ -16,18 +16,29 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@EnableJpaRepositories
-@EntityScan(basePackages = {"com.cleancode"})
-@ComponentScan(basePackages = {"com.cleancode"})
+@EnableJpaRepositories("com.cleancode.cleancodedbimpl.repositories")
+@EntityScan(basePackages = {"com.cleancode.cleancodedbimpl.entities"})
+@ComponentScan(basePackages = {"com.cleancode.cleancodedbimpl.services.impl"})
 public class BeanConfiguration {
     @Bean
-    UserAccountOperationBusinessService userAccountRepositoryService(UserAccountRepositoryService userAccountRepositoryService, CacheManager cacheManager,
+    UserAccountOperationBusinessService userAccountOperationBusinessService(UserAccountRepositoryService userAccountRepositoryService, CacheManager cacheManager,
                                                                      UserCardCollectionRepositoryService userCardCollectionRepositoryService) {
         return new UserAccountOperationBusinessServiceImpl(userAccountRepositoryService, cacheManager, userCardCollectionRepositoryService);
     }
 
     @Bean
+<<<<<<< Updated upstream
     UserAccountRepositoryService userAccountRepositoryService(UserRepository userRepository) {
         return new UserAccountRepositoryServiceImpl(userRepository);
     }
+=======
+    UserAccountRepositoryService userAccountRepositoryService(UserRepository userRepository){
+        return new UserAccountRepositoryServiceImpl(userRepository);
+    }
+
+    @Bean
+    UserCardCollectionRepositoryService userCardCollectionRepositoryService(CardCollectionRepository cardCollectionRepository){
+        return new UserCardCollectionServiceImpl(cardCollectionRepository);
+    }
+>>>>>>> Stashed changes
 }

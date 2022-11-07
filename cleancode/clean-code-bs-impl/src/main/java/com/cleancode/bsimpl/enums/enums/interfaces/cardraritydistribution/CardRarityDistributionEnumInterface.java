@@ -1,7 +1,7 @@
-package com.cleancode.cleancodeapi.enums.interfaces.cardraritydistribution;
+package com.cleancode.bsimpl.enums.enums.interfaces.cardraritydistribution;
 
 
-import com.cleancode.cleancodeapi.enums.rarities.RaritiesEnum;
+import com.cleancode.bsimpl.enums.enums.rarities.RaritiesEnum;
 
 public interface CardRarityDistributionEnumInterface {
     RaritiesEnum cardRarityEnum = null;

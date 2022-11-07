@@ -2,6 +2,7 @@ package com.cleancode.cleancodespringrest.entrypoints.restservice.rest.impl.user
 
 import com.cleancode.bsimpl.utils.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusinessService;
+import com.cleancode.cleancodeapi.apibsmappers.users.UserClientInfoMapper;
 import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
 import com.cleancode.cleancodedbimpl.configurations.BeanConfiguration;
 import com.cleancode.cleancodespringrest.entrypoints.restservice.rest.interfaces.user.UserAccountOperationRestService;
@@ -47,6 +48,6 @@ public class UserAccountOperationRestServiceImpl implements UserAccountOperation
     @Override
     public UserClientInfo saveUserAccount(@RequestBody  UserClientInfo userCompleteInfoRequest) throws CleanCodeException {
         LOGGER.log(Level.INFO, "Calling saveUserAcount");
-        return userAccountOperationBusinessService.saveUserAccount(userCompleteInfoRequest);
+        return UserClientInfoMapper.INSTANCE.fromBSUserClientInfoToAPIUserClientInfo(userAccountOperationBusinessService.saveUserAccount(UserClientInfoMapper.INSTANCE.fromAPIUserClientInfoToBSUserClientInfo(userCompleteInfoRequest)));
     }
 }

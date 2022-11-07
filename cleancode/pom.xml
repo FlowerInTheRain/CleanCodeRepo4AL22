@@ -119,6 +119,11 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>3.0.0-M6</version>
             </dependency>
+            <dependency>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.9.1.2184</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>

@@ -1,4 +1,4 @@
-package com.cleancode.bsimpl.mappers.apibsmappers.cardcollections;
+package com.cleancode.cleancodeapi.apibsmappers.cardcollections;
 
 import com.cleancode.cleancodeapi.dto.cardcollection.CardCollection;
 import org.mapstruct.Mapper;
