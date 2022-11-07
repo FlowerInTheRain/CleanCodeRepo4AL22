@@ -9,10 +9,8 @@ import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusines
 import com.cleancode.bsimpl.utils.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.bsimpl.utils.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -21,7 +19,6 @@ import java.util.logging.Logger;
 
 import static com.cleancode.bsimpl.utils.userserviceutils.UserAccountOperationUtils.*;
 
-@Service
 public class UserAccountOperationBusinessServiceImpl implements UserAccountOperationBusinessService {
     private static final Logger LOGGER = Logger.getLogger(UserAccountOperationBusinessServiceImpl.class.getName());
     private final UserAccountRepositoryService userRepositoryService;

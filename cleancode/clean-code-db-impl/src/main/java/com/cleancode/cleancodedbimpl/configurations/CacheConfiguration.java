@@ -1,4 +1,4 @@
-package com.cleancode.bsimpl.utils.userserviceutils;
+package com.cleancode.cleancodedbimpl.configurations;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -8,8 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableCaching
-public class CacheConfig {
-
+public class CacheConfiguration {
     /**
      *  TODO Move to a config package
      */
