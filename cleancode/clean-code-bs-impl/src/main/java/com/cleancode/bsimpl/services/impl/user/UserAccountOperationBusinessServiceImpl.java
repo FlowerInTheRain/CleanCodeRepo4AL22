@@ -2,8 +2,8 @@ package com.cleancode.bsimpl.services.impl.user;
 
 import com.cleancode.bsimpl.dto.cardcollection.CardCollection;
 import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
-import com.cleancode.bsimpl.repositories.services.interfaces.cardcollectionservices.UserCardCollectionRepositoryService;
-import com.cleancode.bsimpl.repositories.services.interfaces.userservices.UserAccountRepositoryService;
+import com.cleancode.bsimpl.adapters.persistence.cardcollectionservices.UserCardCollectionRepositoryService;
+import com.cleancode.bsimpl.adapters.persistence.userservices.UserAccountRepositoryService;
 import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusinessService;
 import com.cleancode.bsimpl.utils.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.bsimpl.utils.exceptionsmanagementutils.exceptions.CleanCodeException;
