@@ -28,10 +28,10 @@ import java.util.logging.Logger;
 public class UserAccountOperationRestServiceImpl implements UserAccountOperationRestService {
     // SISI LES ARCHIS
     private static final Logger LOGGER = Logger.getLogger(UserAccountOperationRestServiceImpl.class.getName());
-    private UserAccountOperationBusinessService userAccountOperationBusinessService;
+    private final UserAccountOperationBusinessService userAccountOperationBusinessService;
 
     @Autowired
-    private void setUserBusinessService(UserAccountOperationBusinessService userAccountOperationBusinessService){
+    public UserAccountOperationRestServiceImpl(UserAccountOperationBusinessService userAccountOperationBusinessService){
         this.userAccountOperationBusinessService = userAccountOperationBusinessService;
     }
 

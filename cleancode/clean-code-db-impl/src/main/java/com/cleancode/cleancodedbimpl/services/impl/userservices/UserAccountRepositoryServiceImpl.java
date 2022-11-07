@@ -5,6 +5,7 @@ import com.cleancode.bsimpl.repositories.services.interfaces.userservices.UserAc
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 import com.cleancode.cleancodedbimpl.mappers.users.UserEntityMapper;
 import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,6 +19,7 @@ public class UserAccountRepositoryServiceImpl implements UserAccountRepositorySe
     private static final Logger LOGGER = Logger.getLogger(UserAccountRepositoryServiceImpl.class.getName());
     private final UserRepository userRepository;
 
+    @Autowired
     public UserAccountRepositoryServiceImpl(UserRepository userRepository){
         this.userRepository = userRepository;
     }

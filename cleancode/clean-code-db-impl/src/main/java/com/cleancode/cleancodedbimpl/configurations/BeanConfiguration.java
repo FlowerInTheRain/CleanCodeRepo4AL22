@@ -25,4 +25,9 @@ public class BeanConfiguration {
                                                                      UserCardCollectionRepositoryService userCardCollectionRepositoryService) {
         return new UserAccountOperationBusinessServiceImpl(userAccountRepositoryService, cacheManager, userCardCollectionRepositoryService);
     }
+
+    @Bean
+    UserAccountRepositoryService userAccountRepositoryService(UserRepository userRepository) {
+        return new UserAccountRepositoryServiceImpl(userRepository);
+    }
 }
