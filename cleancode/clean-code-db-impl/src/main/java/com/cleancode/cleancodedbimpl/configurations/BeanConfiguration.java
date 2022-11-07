@@ -27,12 +27,7 @@ public class BeanConfiguration {
     }
 
     @Bean
-<<<<<<< Updated upstream
     UserAccountRepositoryService userAccountRepositoryService(UserRepository userRepository) {
-        return new UserAccountRepositoryServiceImpl(userRepository);
-    }
-=======
-    UserAccountRepositoryService userAccountRepositoryService(UserRepository userRepository){
         return new UserAccountRepositoryServiceImpl(userRepository);
     }
 
@@ -40,5 +35,4 @@ public class BeanConfiguration {
     UserCardCollectionRepositoryService userCardCollectionRepositoryService(CardCollectionRepository cardCollectionRepository){
         return new UserCardCollectionServiceImpl(cardCollectionRepository);
     }
->>>>>>> Stashed changes
 }
