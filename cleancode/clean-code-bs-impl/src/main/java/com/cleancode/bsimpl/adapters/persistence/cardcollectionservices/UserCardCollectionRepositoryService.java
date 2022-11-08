@@ -1,4 +1,4 @@
-package com.cleancode.bsimpl.repositories.services.interfaces.cardcollectionservices;
+package com.cleancode.bsimpl.adapters.persistence.cardcollectionservices;
 
 import com.cleancode.bsimpl.dto.cardcollection.CardCollection;
 

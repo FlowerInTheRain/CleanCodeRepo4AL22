@@ -1,4 +1,4 @@
-package com.cleancode.bsimpl.repositories.services.interfaces.userservices;
+package com.cleancode.bsimpl.adapters.persistence.userservices;
 
 import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
 

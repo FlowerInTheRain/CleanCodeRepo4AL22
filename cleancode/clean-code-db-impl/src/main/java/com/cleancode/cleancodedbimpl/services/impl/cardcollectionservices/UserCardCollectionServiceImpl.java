@@ -1,7 +1,7 @@
 package com.cleancode.cleancodedbimpl.services.impl.cardcollectionservices;
 
 import com.cleancode.bsimpl.dto.cardcollection.CardCollection;
-import com.cleancode.bsimpl.repositories.services.interfaces.cardcollectionservices.UserCardCollectionRepositoryService;
+import com.cleancode.bsimpl.adapters.persistence.cardcollectionservices.UserCardCollectionRepositoryService;
 import com.cleancode.cleancodedbimpl.mappers.cardcollections.CardCollectionEntityMapper;
 import com.cleancode.cleancodedbimpl.repositories.cardcollection.CardCollectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
