@@ -1,7 +1,7 @@
 package cleancodetests.ut.user.cardcollection.repository;
 
 // Packages
-
+import com.cleancode.cleancodedbimpl.configurations.BeanConfiguration;
 import com.cleancode.cleancodedbimpl.entities.cardcollections.CardCollectionsEntity;
 import com.cleancode.cleancodedbimpl.repositories.cardcollection.CardCollectionRepository;
 import org.junit.Assert;
@@ -9,7 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -17,10 +18,12 @@ import java.util.logging.Logger;
 
 import static org.mockito.Mockito.*;
 
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {BeanConfiguration.class})
 public class CardCollectionRepositoryUT {
 
     private static final Logger LOGGER = Logger.getLogger(CardCollectionRepositoryUT.class.getName());
+
     @Mock
     private CardCollectionRepository cardCollectionRepository;
 
