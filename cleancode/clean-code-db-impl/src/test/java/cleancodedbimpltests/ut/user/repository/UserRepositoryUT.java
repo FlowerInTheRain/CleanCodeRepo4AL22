@@ -41,6 +41,7 @@ public class UserRepositoryUT {
 
         // CHECK
         verify(userRepository, atMostOnce()).save(mockedUserEntity);
+        verifyNoMoreInteractions(userRepository);
         assertEquals(returnedUserEntity.getId(), usersEntityToReturn.getId());
         LOGGER.log(Level.INFO,"Correctly ended UT shouldSearchForOneUser");
     }

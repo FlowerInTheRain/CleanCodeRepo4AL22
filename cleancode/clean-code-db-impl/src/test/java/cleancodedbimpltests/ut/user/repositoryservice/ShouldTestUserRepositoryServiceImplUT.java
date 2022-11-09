@@ -66,6 +66,7 @@ public class ShouldTestUserRepositoryServiceImplUT {
         // CHECK
         if(returnedBusinessUserFromTestedMethods.isPresent()){
             verify(userAccountRepositoryService, atMostOnce()).saveUserInDb(businessUserClientInfoToTestMethods);
+            verifyNoMoreInteractions(userAccountRepositoryService);
             Assert.assertEquals(usersEntityToReturn.getUserName(), returnedBusinessUserFromTestedMethods.get().getUserName());
             Assert.assertEquals(usersEntityToReturn.getUserCardCollection().getCardCollectionName(), returnedBusinessUserFromTestedMethods.get().getUserCardCollection().getCollectionName());
         }
@@ -97,6 +98,8 @@ public class ShouldTestUserRepositoryServiceImplUT {
         CleanCodeException thrownException = Assertions.assertThrows(CleanCodeException.class,() -> {
             verify(userAccountRepositoryService, atMostOnce()).saveUserInDb(businessUserClientInfoToTestMethods);
             userAccountRepositoryService.saveUserInDb(businessUserClientInfoToTestMethods);
+            verifyNoMoreInteractions(userAccountRepositoryService);
+
         });
         Assertions.assertNotNull(thrownException);
         // CHECK
