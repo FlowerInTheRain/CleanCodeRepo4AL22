@@ -2,25 +2,29 @@ package cleancodedbimpltests.ut.user.repository;
 
 // Packages
 
+import com.cleancode.cleancodedbimpl.configurations.BeanConfiguration;
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.Mockito;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-@RunWith(SpringRunner.class)
+@ContextConfiguration(classes = BeanConfiguration.class)
 public class UserRepositoryUT {
 
     private static final Logger LOGGER = Logger.getLogger(UserRepositoryUT.class.getName());
+
     @Mock
-    private UserRepository userRepository;
+    private UserRepository userRepository = Mockito.mock(UserRepository.class);
+
+
 
     @Test
     public void shouldSearchForOneUser(){
@@ -37,7 +41,7 @@ public class UserRepositoryUT {
 
         // CHECK
         verify(userRepository, atMostOnce()).save(mockedUserEntity);
-        Assert.assertEquals(usersEntityToReturn.getId(), returnedUserEntity.getId());
+        assertEquals(returnedUserEntity.getId(), usersEntityToReturn.getId());
         LOGGER.log(Level.INFO,"Correctly ended UT shouldSearchForOneUser");
     }
 }
