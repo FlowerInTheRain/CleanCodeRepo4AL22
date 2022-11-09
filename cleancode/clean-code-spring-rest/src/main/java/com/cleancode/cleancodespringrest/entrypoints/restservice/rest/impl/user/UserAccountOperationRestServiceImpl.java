@@ -1,8 +1,12 @@
 package com.cleancode.cleancodespringrest.entrypoints.restservice.rest.impl.user;
 
+import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
 import com.cleancode.bsimpl.utils.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusinessService;
+import com.cleancode.cleancodeapi.apibsmappers.cardcollections.CardCollectionMapper;
 import com.cleancode.cleancodeapi.apibsmappers.users.UserClientInfoMapper;
+import com.cleancode.cleancodeapi.dto.user.UserAccountCreationRequest;
+import com.cleancode.cleancodeapi.dto.user.UserAccountResponse;
 import com.cleancode.cleancodeapi.dto.user.UserClientInfo;
 import com.cleancode.cleancodedbimpl.configurations.BeanConfiguration;
 import com.cleancode.cleancodespringrest.entrypoints.restservice.rest.interfaces.user.UserAccountOperationRestService;
@@ -31,7 +35,6 @@ public class UserAccountOperationRestServiceImpl implements UserAccountOperation
     private static final Logger LOGGER = Logger.getLogger(UserAccountOperationRestServiceImpl.class.getName());
     private final UserAccountOperationBusinessService userAccountOperationBusinessService;
 
-    @Autowired
     public UserAccountOperationRestServiceImpl(UserAccountOperationBusinessService userAccountOperationBusinessService){
         this.userAccountOperationBusinessService = userAccountOperationBusinessService;
     }
@@ -46,8 +49,12 @@ public class UserAccountOperationRestServiceImpl implements UserAccountOperation
     @ApiResponse(code=200, message="User Added")
     @PutMapping(value = "/addNewUser", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public UserClientInfo saveUserAccount(@RequestBody  UserClientInfo userCompleteInfoRequest) throws CleanCodeException {
+    public UserAccountResponse saveUserAccount(@RequestBody UserAccountCreationRequest userCompleteInfoRequest) throws CleanCodeException {
         LOGGER.log(Level.INFO, "Calling saveUserAcount");
-        return UserClientInfoMapper.INSTANCE.fromBSUserClientInfoToAPIUserClientInfo(userAccountOperationBusinessService.saveUserAccount(UserClientInfoMapper.INSTANCE.fromAPIUserClientInfoToBSUserClientInfo(userCompleteInfoRequest)));
+        BusinessUserClientInfo businessUserClientInfoToCreate = UserClientInfoMapper.INSTANCE.fromAPIUserAccountCreationRequestToBSUserAccountCreation(userCompleteInfoRequest);
+        BusinessUserClientInfo createdBusinessUserAccount = userAccountOperationBusinessService.saveUserAccount(businessUserClientInfoToCreate);
+        UserAccountResponse createdUserAccount = UserAccountResponse.createOneFromBusinessUserAccount(createdBusinessUserAccount.getUserName(), createdBusinessUserAccount.getBusinessReference(), CardCollectionMapper.INSTANCE.fromBusinessServiceCardCollectionToApiCardCollection(createdBusinessUserAccount.getUserCardCollection()));
+        LOGGER.log(Level.INFO, "Returning createdUserAccount from domain : "+ createdUserAccount.toString());
+        return createdUserAccount;
     }
 }
