@@ -1,4 +1,4 @@
-package cleancodetests.ut.user.repository;
+package cleancodedbimpltests.ut.user.repository;
 
 // Packages
 

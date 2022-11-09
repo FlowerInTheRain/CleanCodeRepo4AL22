@@ -1,8 +1,8 @@
-package cleancodetests.ut.user.repositoryservice;
+package cleancodedbimpltests.ut.user.repositoryservice;
 
 // Packages
 
-import cleancodetests.ut.user.repository.UserRepositoryUT;
+import cleancodedbimpltests.ut.user.repository.UserRepositoryUT;
 import com.cleancode.bsimpl.dto.cardcollection.CardCollection;
 import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
 import com.cleancode.bsimpl.utils.exceptionsmanagementutils.exceptions.CleanCodeException;
@@ -20,7 +20,6 @@ import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,7 +27,6 @@ import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 public class ShouldTestUserRepositoryServiceImplUT {
-
     private static final Logger LOGGER = Logger.getLogger(UserRepositoryUT.class.getName());
     @InjectMocks
     private UserAccountRepositoryServiceImpl userRepositoryServiceImpl;
