@@ -13,8 +13,4 @@ import org.mapstruct.factory.Mappers;
 public interface UserClientInfoMapper {
     UserClientInfoMapper INSTANCE = Mappers.getMapper(UserClientInfoMapper.class);
     BusinessUserClientInfo fromAPIUserAccountCreationRequestToBSUserAccountCreation(UserAccountCreationRequest userClientInfo);
-    @Mappings({
-            @Mapping(source = "businessReference", target = "functionalReference")
-    })
-    UserAccountResponse fromBSCreatedUserAccountToAPIUserAccountResponse(BusinessUserClientInfo userClientInfo);
 }

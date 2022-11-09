@@ -7,7 +7,7 @@ public class UserAccountResponse extends User{
 
     private final CardCollection cardCollection;
 
-    public UserAccountResponse(String userName, String userFunctionalReference, CardCollection cardCollection) {
+    private UserAccountResponse(String userName, String userFunctionalReference, CardCollection cardCollection) {
         super(userName);
         this.functionalReference = userFunctionalReference;
         this.cardCollection = cardCollection;
@@ -19,5 +19,9 @@ public class UserAccountResponse extends User{
 
     public CardCollection getCardCollection() {
         return cardCollection;
+    }
+
+    public static UserAccountResponse createOneFromBusinessUserAccount(String businessUserUserName, String businessUserFunctionalReference, CardCollection businessUserCardCollection){
+        return new UserAccountResponse(businessUserUserName, businessUserFunctionalReference, businessUserCardCollection);
     }
 }
