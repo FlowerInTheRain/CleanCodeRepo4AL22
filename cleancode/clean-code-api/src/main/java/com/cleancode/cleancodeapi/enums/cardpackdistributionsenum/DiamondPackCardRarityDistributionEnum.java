@@ -1,41 +1,52 @@
 package com.cleancode.cleancodeapi.enums.cardpackdistributionsenum;
 
-import com.cleancode.cleancodeapi.enums.interfaces.cardraritydistribution.CardRarityDistributionEnumInterface;
 import com.cleancode.cleancodeapi.enums.rarities.RaritiesEnum;
 
-public enum DiamondPackCardRarityDistributionEnum implements CardRarityDistributionEnumInterface {
-    DIAMOND_PACK_COMMON_CARD(RaritiesEnum.COMMON,0.75f),
-    DIAMOND_PACK_UNCOMMON_CARD(RaritiesEnum.UNCOMMON,0.2f),
-    DIAMOND_PACK_RARE_CARD(RaritiesEnum.RARE,0.04f),
-    DIAMOND_PACK_UNIQUE_CARD(RaritiesEnum.RARE,0.01f);
+import java.util.List;
+
+public enum DiamondPackCardRarityDistributionEnum {
+    DIAMOND_PACK_COMMON_CARD(RaritiesEnum.COMMON,0L, 75L),
+    DIAMOND_PACK_UNCOMMON_CARD(RaritiesEnum.UNCOMMON,75L,95L),
+    DIAMOND_PACK_RARE_CARD(RaritiesEnum.RARE,95L, 99L),
+    DIAMOND_PACK_UNIQUE_CARD(RaritiesEnum.UNIQUE,99L,100L);
 
     private final RaritiesEnum cardRarityEnum;
-    private float probability;
+    private final Long minProbability;
+    private final Long maxProbability;
 
-    DiamondPackCardRarityDistributionEnum(RaritiesEnum rarity, float probability) {
+    private static final List<DiamondPackCardRarityDistributionEnum> diamondPackCardRarityDistributionEnumValues = List.of(DiamondPackCardRarityDistributionEnum.values());
+
+    DiamondPackCardRarityDistributionEnum(RaritiesEnum rarity, Long minProbability, Long maxProbability) {
         this.cardRarityEnum = rarity;
-        this.probability = probability;
+        this.minProbability = minProbability;
+        this.maxProbability = maxProbability;
     }
 
-    @Override
+
     public RaritiesEnum getCardRarityEnum() {
         return cardRarityEnum;
     }
 
-    @Override
-    public float getProbability() {
-        return probability;
+
+    public Long getMinProbability() {
+        return minProbability;
+    }
+
+
+    public Long getMaxProbability() {
+        return maxProbability;
+    }
+    public static DiamondPackCardRarityDistributionEnum getByProbability(Long probability){
+        return diamondPackCardRarityDistributionEnumValues.stream().filter(card -> card.getMinProbability() < probability && probability <= card.getMaxProbability()).findFirst().orElseThrow();
     }
 
     @Override
-    public void setProbability(float probability) {
-         this.probability = probability;
-    }
-
     public String toString() {
-        return "SilverPackCardRarityEnum{" +
-                "rarity=" + cardRarityEnum +
-                ", probability=" + probability +
+        return "DiamondPackCardRarityDistributionEnum{" +
+                "cardRarityEnum=" + cardRarityEnum +
+                ", minProbability=" + minProbability +
+                ", maxProbability=" + maxProbability +
+                ", diamondPackCardRarityDistributionEnumValues=" + diamondPackCardRarityDistributionEnumValues +
                 '}';
     }
 }

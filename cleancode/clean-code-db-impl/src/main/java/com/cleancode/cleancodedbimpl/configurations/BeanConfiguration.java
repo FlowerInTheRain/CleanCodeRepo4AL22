@@ -1,7 +1,7 @@
 package com.cleancode.cleancodedbimpl.configurations;
 
-import com.cleancode.bsimpl.adapters.persistence.cardcollectionservices.UserCardCollectionRepositoryService;
-import com.cleancode.bsimpl.adapters.persistence.userservices.UserAccountRepositoryService;
+import com.cleancode.bsimpl.ports.persistence.cardcollectionservices.UserCardCollectionRepositoryService;
+import com.cleancode.bsimpl.ports.persistence.userservices.UserAccountRepositoryService;
 import com.cleancode.bsimpl.services.impl.user.UserAccountOperationBusinessServiceImpl;
 import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusinessService;
 import com.cleancode.cleancodedbimpl.repositories.cardcollection.CardCollectionRepository;

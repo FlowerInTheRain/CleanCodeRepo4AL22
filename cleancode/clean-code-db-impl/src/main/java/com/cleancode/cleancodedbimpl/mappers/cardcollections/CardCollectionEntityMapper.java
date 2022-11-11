@@ -16,6 +16,7 @@ public interface CardCollectionEntityMapper {
 
     })
     CardCollectionsEntity fromBSCardCollectionToDBImplCardCollection(CardCollection cardCollection);
+
     @Mappings({
             @Mapping(source="cardCollectionName", target="collectionName"),
             @Mapping(source="cardCollectionReference", target="collectionReference")

@@ -2,6 +2,7 @@ package com.cleancode.bsimpl.utils.exceptionsmanagementutils.interceptor;
 
 import com.cleancode.bsimpl.utils.exceptionsmanagementutils.exceptions.CleanCodeException;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,5 +17,13 @@ public class RequestExceptionInterceptor extends ResponseEntityExceptionHandler 
             CleanCodeException ex, WebRequest request) {
         return handleExceptionInternal(ex, ex.getResponse(),
                 new HttpHeaders(), ex.getResponse().httpResponseStatus(), request);
+    }
+
+    @ExceptionHandler(value
+            = { IllegalArgumentException.class})
+    protected ResponseEntity<Object> handleConflict(
+            IllegalArgumentException ex, WebRequest request) {
+        return handleExceptionInternal(ex, ex.getMessage(),
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 }

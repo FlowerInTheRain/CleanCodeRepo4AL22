@@ -59,6 +59,11 @@
                 <version>1.18.24</version>
             </dependency>
             <dependency>
+                <groupId>org.injava.lang</groupId>
+                <artifactId>DesignByContract</artifactId>
+                <version>0</version>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
                 <version>2.7.5</version>

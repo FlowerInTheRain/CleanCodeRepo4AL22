@@ -36,4 +36,8 @@ public enum CleanCodeExceptionsEnum {
         return httpResponseStatus;
     }
 
+    public static CleanCodeExceptionsEnum byComponent(String component) {
+        return CleanCodeExceptionsEnum.valueOf(component);
+    }
+
 }

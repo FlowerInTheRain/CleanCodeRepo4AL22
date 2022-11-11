@@ -12,7 +12,6 @@ import com.cleancode.cleancodedbimpl.entities.cardcollections.CardCollectionsEnt
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 import com.cleancode.cleancodedbimpl.repositories.cardcollection.CardCollectionRepository;
 import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
-import com.cleancode.cleancodedbimpl.services.impl.userservices.UserAccountRepositoryServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -58,9 +57,7 @@ public class ShouldTestUserRepositoryServiceImplUT {
         businessUserClientInfoToTestMethods.setUserName("Sid");
         businessUserClientInfoToTestMethods.setUserCardCollection(new CardCollection("Sid Deck",null,null));
 
-
         // ACT
-
         Optional<BusinessUserClientInfo> returnedBusinessUserFromTestedMethods = userAccountRepositoryService.saveUserInDb(businessUserClientInfoToTestMethods);
 
         // CHECK
@@ -93,13 +90,11 @@ public class ShouldTestUserRepositoryServiceImplUT {
         businessUserClientInfoToTestMethods.setUserName("Sid");
         businessUserClientInfoToTestMethods.setUserCardCollection(new CardCollection("Sid Deck",null,null));
 
-
         // ACT
         CleanCodeException thrownException = Assertions.assertThrows(CleanCodeException.class,() -> {
-            verify(userAccountRepositoryService, atMostOnce()).saveUserInDb(businessUserClientInfoToTestMethods);
             userAccountRepositoryService.saveUserInDb(businessUserClientInfoToTestMethods);
+            verify(userAccountRepositoryService, atMostOnce()).saveUserInDb(businessUserClientInfoToTestMethods);
             verifyNoMoreInteractions(userAccountRepositoryService);
-
         });
         Assertions.assertNotNull(thrownException);
         // CHECK

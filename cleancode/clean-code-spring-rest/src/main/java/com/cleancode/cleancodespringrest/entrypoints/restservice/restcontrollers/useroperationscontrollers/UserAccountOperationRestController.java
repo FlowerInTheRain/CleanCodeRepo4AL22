@@ -12,6 +12,7 @@ import com.cleancode.cleancodedbimpl.configurations.BeanConfiguration;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,6 @@ import java.util.logging.Logger;
  * Todo
  * enlever le couplage db impl
  */
-@Import(BeanConfiguration.class)
 public class UserAccountOperationRestController {
     // SISI LES ARCHIS
     private static final Logger LOGGER = Logger.getLogger(UserAccountOperationRestController.class.getName());

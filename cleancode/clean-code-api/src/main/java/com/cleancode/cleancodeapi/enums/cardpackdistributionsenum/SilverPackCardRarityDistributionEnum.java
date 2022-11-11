@@ -1,9 +1,8 @@
 package com.cleancode.cleancodeapi.enums.cardpackdistributionsenum;
 
-import com.cleancode.cleancodeapi.enums.interfaces.cardraritydistribution.CardRarityDistributionEnumInterface;
 import com.cleancode.cleancodeapi.enums.rarities.RaritiesEnum;
 
-public enum SilverPackCardRarityDistributionEnum implements CardRarityDistributionEnumInterface {
+public enum SilverPackCardRarityDistributionEnum {
 
     SILVER_PACK_COMMON_CARD(RaritiesEnum.COMMON,0.75f),
     SILVER_PACK_UNCOMMON_CARD(RaritiesEnum.UNCOMMON,0.2f),
@@ -19,20 +18,7 @@ public enum SilverPackCardRarityDistributionEnum implements CardRarityDistributi
         this.probability = probability;
     }
 
-    @Override
-    public RaritiesEnum getCardRarityEnum() {
-        return cardRarityEnum;
-    }
 
-    @Override
-    public float getProbability() {
-        return probability;
-    }
-
-    @Override
-    public void setProbability(float probability) {
-        this.probability = probability;
-    }
 
     public String toString() {
         return "SilverPackCardRarityEnum{" +

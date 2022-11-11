@@ -1,7 +1,7 @@
 package com.cleancode.cleancodedbimpl.services.impl.userservices;
 
 import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
-import com.cleancode.bsimpl.adapters.persistence.userservices.UserAccountRepositoryService;
+import com.cleancode.bsimpl.ports.persistence.userservices.UserAccountRepositoryService;
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 import com.cleancode.cleancodedbimpl.mappers.users.UserEntityMapper;
 import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;

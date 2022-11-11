@@ -1,14 +1,21 @@
 package com.cleancode.bsimpl.dto.cardcollection;
 
 import com.cleancode.bsimpl.dto.card.Card;
+import net.sf.oval.constraint.MatchPattern;
+import net.sf.oval.constraint.NotNull;
+import net.sf.oval.constraint.Size;
 
 import java.util.List;
 import java.util.Objects;
 
 public final class CardCollection {
+    @NotNull
+    @Size(min = 3)
     private String collectionName;
+    @MatchPattern(pattern = "^[a-zA-Z0-9]{32}$", errorCode = "400")
     private String collectionReference;
     private List<Card> collectionCardList;
+
 
     public CardCollection(String collectionName, String collectionReference, List<Card> collectionCardList) {
         this.collectionName = collectionName;

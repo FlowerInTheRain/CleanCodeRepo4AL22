@@ -6,12 +6,15 @@ public enum ComponentsEnum {
     Clean_Code_Rest_Client("Client Service"),
     Clean_Code_DB("Database Service");
 
-    private final String componentDisplayableName;
+    private String componentDisplayableName;
     ComponentsEnum(String componentOrigin) {
         this.componentDisplayableName = componentOrigin;
     }
 
     public String getComponentDisplayableName() {
         return componentDisplayableName;
+    }
+    public void setComponentDisplayableName(String cdn) {
+        this.componentDisplayableName= cdn;
     }
 }

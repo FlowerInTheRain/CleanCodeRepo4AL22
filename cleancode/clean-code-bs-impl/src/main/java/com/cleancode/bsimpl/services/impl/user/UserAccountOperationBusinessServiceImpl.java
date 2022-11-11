@@ -2,8 +2,8 @@ package com.cleancode.bsimpl.services.impl.user;
 
 import com.cleancode.bsimpl.dto.cardcollection.CardCollection;
 import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
-import com.cleancode.bsimpl.adapters.persistence.cardcollectionservices.UserCardCollectionRepositoryService;
-import com.cleancode.bsimpl.adapters.persistence.userservices.UserAccountRepositoryService;
+import com.cleancode.bsimpl.ports.persistence.cardcollectionservices.UserCardCollectionRepositoryService;
+import com.cleancode.bsimpl.ports.persistence.userservices.UserAccountRepositoryService;
 import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusinessService;
 import com.cleancode.bsimpl.utils.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.bsimpl.utils.exceptionsmanagementutils.exceptions.CleanCodeException;
@@ -19,8 +19,8 @@ import static com.cleancode.bsimpl.utils.userserviceutils.UserAccountOperationUt
 
 public class UserAccountOperationBusinessServiceImpl implements UserAccountOperationBusinessService {
     private static final Logger LOGGER = Logger.getLogger(UserAccountOperationBusinessServiceImpl.class.getName());
-    private final UserAccountRepositoryService userRepositoryService;
 
+    private final UserAccountRepositoryService userRepositoryService;
     private final CacheManager cacheManager;
 
     private final UserCardCollectionRepositoryService userCardCollectionRepositoryService;

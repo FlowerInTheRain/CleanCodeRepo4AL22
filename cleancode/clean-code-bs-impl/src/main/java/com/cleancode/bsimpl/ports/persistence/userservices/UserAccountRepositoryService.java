@@ -1,4 +1,4 @@
-package com.cleancode.bsimpl.adapters.persistence.userservices;
+package com.cleancode.bsimpl.ports.persistence.userservices;
 
 import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
 
