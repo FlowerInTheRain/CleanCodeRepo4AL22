@@ -10,21 +10,13 @@ import java.util.Optional;
 
 public class UserAccountOperationUtils {
     public static void handleInitBusinessUserCardCollection(String cardCollectionName, BusinessUserClientInfo businessUserClientInfo) {
-        Optional<String> formattedUUIDToBindToCardCollectionReference = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, "");
-        if (formattedUUIDToBindToCardCollectionReference.isEmpty()) {
-            throw new RuntimeException();
-        }
-        // Functional trickier
-        businessUserClientInfo.setUserCardCollection(new CardCollection(cardCollectionName, formattedUUIDToBindToCardCollectionReference.get(), new ArrayList<>()));
+        String formattedUUIDToBindToCardCollectionReference = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, "");
+        businessUserClientInfo.setUserCardCollection(new CardCollection(cardCollectionName, formattedUUIDToBindToCardCollectionReference, new ArrayList<>()));
     }
 
     public static void handleBusinessUserReferenceCreation(BusinessUserClientInfo businessUserClientInfo) {
-        Optional<String> formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, "");
-        if (formattedUUIDToBind.isEmpty()) {
-            throw new RuntimeException();
-        }
-        // Can do functional
-        formattedUUIDToBind.ifPresent(businessUserClientInfo::setBusinessReference);
+        String formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, "");
+        //
     }
 
     public static void revertReferenceAndCreationDateAttributionOnDbErrorForNonExistingUsers(BusinessUserClientInfo businessUserClientInfo) {

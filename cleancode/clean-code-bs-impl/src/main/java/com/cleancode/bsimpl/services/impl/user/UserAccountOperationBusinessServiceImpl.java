@@ -38,10 +38,10 @@ public class UserAccountOperationBusinessServiceImpl implements UserAccountOpera
      */
     @Override
     @Cacheable(value = "Users", unless = "#userFromApi.clientReference == null")
-    public BusinessUserClientInfo saveUserAccount(BusinessUserClientInfo userFromApi) throws CleanCodeException {
+    public BusinessUserClientInfo saveUserAccount(BusinessUserClientInfo userFromApi) {
         LOGGER.log(Level.INFO,"oui" + Objects.requireNonNull(cacheManager.getCache("Users")));
         if(userRepositoryService.findUserByUserName(userFromApi.getUserName()).isPresent()){
-            throw new CleanCodeException(CleanCodeExceptionsEnum.BS_COMPONENT_USERNAME_ALREADY_TAKEN);
+            throw new IllegalArgumentException("UserName is already taken");
         }
         handleBusinessUserReferenceCreation(userFromApi);
         handleInitBusinessUserCardCollection(userFromApi.getUserCardCollection().getCollectionName(), userFromApi);
@@ -70,8 +70,8 @@ public class UserAccountOperationBusinessServiceImpl implements UserAccountOpera
         return userFromApi;
     }
 
-    private void handleDBImplQueryExceptions(Exception initialException) throws CleanCodeException {
+    private void handleDBImplQueryExceptions(Exception initialException) {
         LOGGER.log(Level.SEVERE, "Critical error while saving user" + initialException.toString());
-        throw new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT);
+        throw new IllegalArgumentException("yo");
     }
 }

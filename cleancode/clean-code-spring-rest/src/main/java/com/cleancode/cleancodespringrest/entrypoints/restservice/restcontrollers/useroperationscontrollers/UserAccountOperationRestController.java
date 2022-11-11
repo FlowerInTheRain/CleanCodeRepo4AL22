@@ -9,10 +9,13 @@ import com.cleancode.cleancodeapi.dto.cardcollection.CardCollection;
 import com.cleancode.cleancodeapi.dto.user.UserAccountCreationRequest;
 import com.cleancode.cleancodeapi.dto.user.UserAccountResponse;
 import com.cleancode.cleancodedbimpl.configurations.BeanConfiguration;
+import io.micrometer.observation.Observation;
+import io.micrometer.observation.ObservationRegistry;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +36,11 @@ public class UserAccountOperationRestController {
     private static final Logger LOGGER = Logger.getLogger(UserAccountOperationRestController.class.getName());
     private final UserAccountOperationBusinessService userAccountOperationBusinessService;
 
-    public UserAccountOperationRestController(UserAccountOperationBusinessService userAccountOperationBusinessService){
+    private final ObservationRegistry observationRegistry;
+
+    public UserAccountOperationRestController(UserAccountOperationBusinessService userAccountOperationBusinessService, ObservationRegistry observationRegistry){
         this.userAccountOperationBusinessService = userAccountOperationBusinessService;
+        this.observationRegistry = observationRegistry;
     }
 
     /**
@@ -47,11 +53,21 @@ public class UserAccountOperationRestController {
     @ApiResponse(code=200, message="User Added")
     @PutMapping(value = "/addNewUser", produces = MediaType.APPLICATION_JSON_VALUE)
     public UserAccountResponse createUserAccount(@RequestBody  UserAccountCreationRequest userCompleteInfoRequest) throws CleanCodeException {
-        LOGGER.log(Level.INFO, "Calling createUserAccount");
-        BusinessUserClientInfo businessUserClientInfo = UserClientInfoMapper.INSTANCE.fromAPIUserAccountCreationRequestToBSUserAccountCreation(userCompleteInfoRequest);
-        businessUserClientInfo = userAccountOperationBusinessService.saveUserAccount(businessUserClientInfo);
-        LOGGER.log(Level.INFO, "Executed createUserAccount");
-        final CardCollection apiUserCardCollection = CardCollectionMapper.INSTANCE.fromBusinessServiceCardCollectionToApiCardCollection(businessUserClientInfo.getUserCardCollection());
-        return UserAccountResponse.createOneFromBusinessUserAccount(businessUserClientInfo.getUserName(), businessUserClientInfo.getBusinessReference(), apiUserCardCollection);
+        return Observation.createNotStarted("CreatingUserAccount", observationRegistry).observe(() -> {
+            LOGGER.log(Level.INFO, "Calling createUserAccount");
+            BusinessUserClientInfo businessUserClientInfoToCreate = UserClientInfoMapper.INSTANCE.fromAPIUserAccountCreationRequestToBSUserAccountCreation(userCompleteInfoRequest);
+            final CardCollection apiUserCardCollection = CardCollectionMapper.INSTANCE.fromBusinessServiceCardCollectionToApiCardCollection(businessUserClientInfoToCreate.getUserCardCollection());
+            BusinessUserClientInfo responseClientInfo = userAccountOperationBusinessService.saveUserAccount(businessUserClientInfoToCreate);
+            LOGGER.log(Level.INFO, "Executed createUserAccount. Returning created account");
+            return UserAccountResponse.createOneFromBusinessUserAccount(responseClientInfo.getUserName(), responseClientInfo.getBusinessReference(),
+                    apiUserCardCollection);
+        });
     }
+
+
+
+}
+
+interface Client {
+    @GetExchange
 }
