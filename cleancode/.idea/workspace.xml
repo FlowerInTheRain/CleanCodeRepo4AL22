@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="162f065f-a510-4949-bcab-ab30d4e25e35" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/dto/card/BusinessCardCreateInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/dto/card/BusinessCardCreateInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/enums/cards/CardRarityEnum.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +45,9 @@
     </option>
   </component>
   <component name="ProjectId" id="2GXyRfwE2ZwfYfNxl2mZJEOjp5p" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -54,10 +58,17 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "ToolWindowCommit.ShowToolbar": "false",
     "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm"
+    "last_opened_file_path": "C:/Users/arnau/OneDrive/Documents/CC/CleanCodeRepo4AL22/cleancode/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/enums/cards",
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "905eb4573355e92bcd9528de50a85629"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\arnau\OneDrive\Documents\CC\CleanCodeRepo4AL22\cleancode\clean-code-bs-impl\src\main\java\com\cleancode\bsimpl\enums\cards" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.CleanCodeSpringAppApplication">
     <configuration name="SpringApplication" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -66,6 +77,13 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="LaunchBrowser.Before.Run" url="http://localhost:8090/api/swagger-ui/" />
+      </method>
+    </configuration>
+    <configuration name="CleanCodeSpringAppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="clean-code-spring-rest" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cleancode.cleancodespringrest.entrypoints.restservice.rest.CleanCodeSpringAppApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -81,6 +99,8 @@
       <option name="presentableId" value="Default" />
       <updated>1666549220884</updated>
       <workItem from="1666549222619" duration="4374000" />
+      <workItem from="1668245482515" duration="379000" />
+      <workItem from="1668245871096" duration="1366000" />
     </task>
     <servers />
   </component>

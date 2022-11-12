@@ -1,8 +1,8 @@
 package com.cleancode.bsimpl.dto.card;
 
-import com.cleancode.cleancodeapi.enums.cards.CardNameEnum;
-import com.cleancode.cleancodeapi.enums.cards.CardRarityEnum;
-import com.cleancode.cleancodeapi.enums.cards.CardSpecialtyEnum;
+import com.cleancode.bsimpl.enums.cards.CardNameEnum;
+import com.cleancode.bsimpl.enums.cards.CardRarityEnum;
+import com.cleancode.bsimpl.enums.cards.CardSpecialtyEnum;
 import org.springframework.stereotype.Repository;
 
 public class BusinessCardCreateInfo {
