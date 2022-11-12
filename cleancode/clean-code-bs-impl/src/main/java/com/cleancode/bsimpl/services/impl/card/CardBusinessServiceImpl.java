@@ -36,10 +36,8 @@ public class CardBusinessServiceImpl implements CardBusinessService {
     public Card saveCard(Card cardInfo) throws CleanCodeException {
 
         BusinessCardCreateInfo businessCardCreateInfo = CardMapper.INSTANCE.fromApiToBs(cardInfo);
-        boolean isCardCreated = true;
 
         if(cardInfo.getCardReference() == null) {
-            isCardCreated = false;
             Optional<String> formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
             if(formattedUUIDToBind.isEmpty()){
                 throw new RuntimeException();
@@ -58,9 +56,7 @@ public class CardBusinessServiceImpl implements CardBusinessService {
             return CardMapper.INSTANCE.fromBsToApi(businessCardCreateInfo);
         } catch (Exception e){
             handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
-            if (!isCardCreated) {
-                businessCardCreateInfo.setBusinessReference(null);
-            }
+            businessCardCreateInfo.setBusinessReference(null);
         }
 
         return cardInfo;
