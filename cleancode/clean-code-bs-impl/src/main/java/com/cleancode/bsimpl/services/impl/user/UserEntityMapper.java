@@ -1,6 +1,7 @@
 package com.cleancode.bsimpl.services.impl.user;
 
 import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
+import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -8,7 +9,6 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface UserEntityMapper {
-    /*
     UserEntityMapper INSTANCE = Mappers.getMapper(UserEntityMapper.class);
     @Mappings({
             @Mapping(source = "businessReference", target = "userReference"),
@@ -22,5 +22,5 @@ public interface UserEntityMapper {
             @Mapping(source = "userReference", target = "businessReference")
 
     })
-    BusinessUserClientInfo fromDbToBs(UsersEntity userClientInfo);*/
+    BusinessUserClientInfo fromDbToBs(UsersEntity userClientInfo);
 }

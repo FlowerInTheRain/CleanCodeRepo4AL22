@@ -3,11 +3,13 @@ package com.cleancode.bsimpl.services.impl.card;
 import com.cleancode.bsimpl.dto.card.BusinessCardCreateInfo;
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeExceptionsEnum;
+import com.cleancode.bsimpl.mappers.cards.CardMapper;
 import com.cleancode.bsimpl.services.impl.user.UserBusinessServiceImpl;
 import com.cleancode.bsimpl.services.interfaces.card.CardBusinessService;
 import com.cleancode.bsimpl.utils.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
 import com.cleancode.bsimpl.utils.formatutils.uuid.UUIDFormatter;
-import com.cleancode.bsimpl.ports.persistence.cardrepositoryservices.CardRepositoryService;
+import com.cleancode.cleancodeapi.dto.cards.Card;
+import com.cleancode.cleancodedbimpl.interfaces.cardservices.CardRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,9 +33,11 @@ public class CardBusinessServiceImpl implements CardBusinessService {
      * @return something
      */
     @Override
-    public BusinessCardCreateInfo saveCard(BusinessCardCreateInfo businessCardCreateInfo) throws CleanCodeException {
+    public Card saveCard(Card cardInfo) throws CleanCodeException {
 
-        if(businessCardCreateInfo.getBusinessReference() == null) {
+        BusinessCardCreateInfo businessCardCreateInfo = CardMapper.INSTANCE.fromApiToBs(cardInfo);
+
+        if(cardInfo.getCardReference() == null) {
             Optional<String> formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
             if(formattedUUIDToBind.isEmpty()){
                 throw new RuntimeException();
@@ -47,15 +51,15 @@ public class CardBusinessServiceImpl implements CardBusinessService {
          */
 
         try {
-            Long cardEntity = cardRepositoryService.saveCardInDb(businessCardCreateInfo);
-            LOGGER.log(Level.INFO, "Card cardInfo : " + businessCardCreateInfo + " Returned cardEntity : " + cardEntity);
-            return businessCardCreateInfo;
+            Long cardEntity = cardRepositoryService.saveCardInDb(CardEntityMapper.INSTANCE.fromBsToDb(businessCardCreateInfo));
+            LOGGER.log(Level.INFO, "Card cardInfo : " + cardInfo + " Returned cardEntity : " + cardEntity);
+            return CardMapper.INSTANCE.fromBsToApi(businessCardCreateInfo);
         } catch (Exception e){
             handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
             businessCardCreateInfo.setBusinessReference(null);
         }
 
-        return businessCardCreateInfo;
+        return cardInfo;
     }
 
     private void handleDBImplQueryExceptions(CleanCodeException dbImplCommunicationException) throws CleanCodeException {

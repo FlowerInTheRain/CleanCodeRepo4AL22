@@ -1,6 +1,6 @@
 package com.cleancode.bsimpl.enums.cards;
 
-import com.cleancode.bsimpl.dto.card.CardSpecialty;
+import com.cleancode.cleancodeapi.dto.cards.CardSpecialty;
 
 public enum CardSpecialtyEnum {
 

@@ -27,6 +27,12 @@
             <version>3.1.0</version>
         </dependency>
         <dependency>
+            <groupId>com.esgi.arlo</groupId>
+            <artifactId>clean-code-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
             <version>3.0.0</version>
@@ -34,12 +40,6 @@
         <dependency>
             <groupId>com.esgi.arlo</groupId>
             <artifactId>clean-code-bs-impl</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.esgi.arlo</groupId>
-            <artifactId>clean-code-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

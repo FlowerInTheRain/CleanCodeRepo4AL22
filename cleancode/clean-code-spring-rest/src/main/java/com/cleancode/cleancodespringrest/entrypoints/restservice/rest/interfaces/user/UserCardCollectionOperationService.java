@@ -11,5 +11,5 @@ public interface UserCardCollectionOperationService {
     Response HelloWorld();
     Optional<List<UserClientInfo>> searchUserCardCollections(UserClientInfo userCompleteInfoRequest);
 
-    //UserClientInfo saveUser(UserClientInfo userCompleteInfoRequest) throws CleanCodeException;
+    UserClientInfo saveUser(UserClientInfo userCompleteInfoRequest) throws CleanCodeException;
 }

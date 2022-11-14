@@ -1,4 +1,4 @@
-package com.cleancode.bsimpl.dto.card;
+package com.cleancode.cleancodeapi.dto.cards;
 
 public class CardSpecialty {
 
