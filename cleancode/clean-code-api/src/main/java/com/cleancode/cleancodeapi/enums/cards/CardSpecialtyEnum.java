@@ -1,6 +1,8 @@
 package com.cleancode.cleancodeapi.enums.cards;
 
 
+import com.cleancode.bsimpl.dto.card.CardSpecialty;
+
 public enum CardSpecialtyEnum {
 
     TANK(new CardSpecialty("Tank", 1000, 100, 20)),
