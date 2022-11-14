@@ -27,7 +27,7 @@ public class CardBusinessServiceImplUT {
     private CardRepositoryService cardRepositoryService;
 
     @Before
-    public void setUp(){
+    private void setUp(){
         card = new BusinessCardCreateInfo(
                 1L,
                 "card1",
