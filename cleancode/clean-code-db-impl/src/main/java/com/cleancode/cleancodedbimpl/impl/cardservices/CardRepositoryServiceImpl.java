@@ -1,6 +1,7 @@
 package com.cleancode.cleancodedbimpl.impl.cardservices;
 
 import com.cleancode.cleancodedbimpl.entities.cards.CardEntity;
+
 import com.cleancode.cleancodedbimpl.interfaces.cardservices.CardRepositoryService;
 import com.cleancode.cleancodedbimpl.repositories.card.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;

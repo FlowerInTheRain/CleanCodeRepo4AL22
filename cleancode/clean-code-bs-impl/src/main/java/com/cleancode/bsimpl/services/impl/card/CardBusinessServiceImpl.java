@@ -3,12 +3,9 @@ package com.cleancode.bsimpl.services.impl.card;
 import com.cleancode.bsimpl.dto.card.BusinessCardCreateInfo;
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeExceptionsEnum;
-import com.cleancode.bsimpl.mappers.cards.CardMapper;
-import com.cleancode.bsimpl.services.impl.user.UserBusinessServiceImpl;
 import com.cleancode.bsimpl.services.interfaces.card.CardBusinessService;
 import com.cleancode.bsimpl.utils.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
 import com.cleancode.bsimpl.utils.formatutils.uuid.UUIDFormatter;
-import com.cleancode.cleancodeapi.dto.cards.Card;
 import com.cleancode.cleancodedbimpl.interfaces.cardservices.CardRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +17,7 @@ import java.util.logging.Logger;
 @Service
 public class CardBusinessServiceImpl implements CardBusinessService {
 
-    private static final Logger LOGGER = Logger.getLogger(UserBusinessServiceImpl.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CardBusinessServiceImpl.class.getName());
     private CardRepositoryService cardRepositoryService;
 
     @Autowired
@@ -29,15 +26,13 @@ public class CardBusinessServiceImpl implements CardBusinessService {
     }
 
     /**
-     * @param cardInfo a card from api
+     * @param businessCardCreateInfo a business card
      * @return something
      */
     @Override
-    public Card saveCard(Card cardInfo) throws CleanCodeException {
+    public BusinessCardCreateInfo saveCard(BusinessCardCreateInfo businessCardCreateInfo) throws CleanCodeException {
 
-        BusinessCardCreateInfo businessCardCreateInfo = CardMapper.INSTANCE.fromApiToBs(cardInfo);
-
-        if(cardInfo.getCardReference() == null) {
+        if(businessCardCreateInfo.getBusinessReference() == null) {
             Optional<String> formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
             if(formattedUUIDToBind.isEmpty()){
                 throw new RuntimeException();
@@ -52,14 +47,14 @@ public class CardBusinessServiceImpl implements CardBusinessService {
 
         try {
             Long cardEntity = cardRepositoryService.saveCardInDb(CardEntityMapper.INSTANCE.fromBsToDb(businessCardCreateInfo));
-            LOGGER.log(Level.INFO, "Card cardInfo : " + cardInfo + " Returned cardEntity : " + cardEntity);
-            return CardMapper.INSTANCE.fromBsToApi(businessCardCreateInfo);
+            LOGGER.log(Level.INFO, "BusinessCardCreateInfo businessCardCreateInfo : " + businessCardCreateInfo + " Returned cardEntity : " + cardEntity);
+            return businessCardCreateInfo;
         } catch (Exception e){
             handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
             businessCardCreateInfo.setBusinessReference(null);
         }
 
-        return cardInfo;
+        return businessCardCreateInfo;
     }
 
     private void handleDBImplQueryExceptions(CleanCodeException dbImplCommunicationException) throws CleanCodeException {

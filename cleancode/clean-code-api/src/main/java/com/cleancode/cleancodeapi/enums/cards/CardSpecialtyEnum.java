@@ -1,6 +1,5 @@
 package com.cleancode.cleancodeapi.enums.cards;
 
-import com.cleancode.cleancodeapi.dto.cards.CardSpecialty;
 
 public enum CardSpecialtyEnum {
 

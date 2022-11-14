@@ -3,6 +3,7 @@ package com.cleancode.cleancodespringrest.entrypoints.restservice.rest.impl.card
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
 import com.cleancode.bsimpl.services.interfaces.card.CardBusinessService;
 import com.cleancode.cleancodeapi.dto.cards.Card;
+import com.cleancode.cleancodeapi.mappers.cards.CardMapper;
 import com.cleancode.cleancodespringrest.entrypoints.restservice.rest.interfaces.card.CardOperationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,6 +36,6 @@ public class CardOperationServiceImpl implements CardOperationService {
     @PutMapping(value = "/saveCard", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public Card saveCard(@RequestBody Card card) throws CleanCodeException {
-        return cardBusinessService.saveCard(card);
+        return CardMapper.INSTANCE.fromBsToApi(cardBusinessService.saveCard(CardMapper.INSTANCE.fromApiToBs(card)));
     }
 }
