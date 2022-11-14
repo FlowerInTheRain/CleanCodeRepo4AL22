@@ -5,14 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="162f065f-a510-4949-bcab-ab30d4e25e35" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/ports/persistence/cardrepositoryservices/CardRepositoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/dto/card/BusinessCardCreateInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/dto/card/BusinessCardCreateInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/enums/cards/CardRarityEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-api/src/main/java/com/cleancode/cleancodeapi/dto/cards/CardSpecialty.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/dto/card/CardSpecialty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-api/src/main/java/com/cleancode/cleancodeapi/enums/cards/CardSpecialtyEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-api/src/main/java/com/cleancode/cleancodeapi/enums/cards/CardSpecialtyEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/Card.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/CardCollection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/dto/user/BusinessUserClientInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/dto/user/BusinessUserClientInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/enums/cards/CardSpecialtyEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/enums/cards/CardSpecialtyEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/mappers/cards/CardCollectionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-api/src/main/java/com/cleancode/cleancodeapi/mappers/card/CardCollectionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/mappers/cards/CardMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-api/src/main/java/com/cleancode/cleancodeapi/mappers/card/CardMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/mappers/users/UserClientInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/mappers/users/UserClientInfoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/card/CardBusinessServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/card/CardBusinessServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/card/CardEntityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/mappers/card/CardEntityMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserBusinessServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserBusinessServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserEntityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/impl/user/UserEntityMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/interfaces/card/CardBusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/interfaces/card/CardBusinessService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/interfaces/user/UserBusinessService.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/services/interfaces/user/UserBusinessService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/impl/cardservices/CardRepositoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/impl/cardservices/CardRepositoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-db-impl/src/main/java/com/cleancode/cleancodedbimpl/interfaces/cardservices/CardRepositoryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/CleanCodeSpringAppApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/CleanCodeSpringAppApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/impl/card/CardOperationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/impl/card/CardOperationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/impl/user/UserCardCollectionOperationsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/impl/user/UserCardCollectionOperationsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/interfaces/user/UserCardCollectionOperationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/clean-code-spring-rest/src/main/java/com/cleancode/cleancodespringrest/entrypoints/restservice/rest/interfaces/user/UserCardCollectionOperationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="package-info" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -54,21 +87,29 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "ToolWindowCommit.ShowToolbar": "false",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/arnau/OneDrive/Documents/CC/CleanCodeRepo4AL22/cleancode/clean-code-bs-impl/src/main/java/com/cleancode/bsimpl/enums/cards",
+    "last_opened_file_path": "C:/Users/arnau/OneDrive/Documents/CC/CleanCodeRepo4AL22/cleancode",
     "nodejs_package_manager_path": "npm",
-    "spring.configuration.checksum": "905eb4573355e92bcd9528de50a85629"
+    "settings.editor.selected.configurable": "MavenSettings",
+    "spring.configuration.checksum": "df9aa3674fcb1547a8869443d1227b88"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\arnau\OneDrive\Documents\CC\CleanCodeRepo4AL22\cleancode\clean-code-bs-impl\src\main\java\com\cleancode\bsimpl\enums\cards" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.cleancode.bsimpl.dto.card" />
+    </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.CleanCodeSpringAppApplication">
+  <component name="RunManager" selected="JUnit.CardBusinessServiceImplUT">
     <configuration name="SpringApplication" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -79,6 +120,21 @@
         <option name="LaunchBrowser.Before.Run" url="http://localhost:8090/api/swagger-ui/" />
       </method>
     </configuration>
+    <configuration name="CardBusinessServiceImplUT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="clean-code-bs-impl" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cleancodetests.ut.services.card.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cleancodetests.ut.services.card" />
+      <option name="MAIN_CLASS_NAME" value="cleancodetests.ut.services.card.CardBusinessServiceImplUT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CleanCodeSpringAppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="clean-code-spring-rest" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cleancode.cleancodespringrest.entrypoints.restservice.rest.CleanCodeSpringAppApplication" />
@@ -86,6 +142,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CardBusinessServiceImplUT" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SpringBeansView">
@@ -100,7 +161,10 @@
       <updated>1666549220884</updated>
       <workItem from="1666549222619" duration="4374000" />
       <workItem from="1668245482515" duration="379000" />
-      <workItem from="1668245871096" duration="1366000" />
+      <workItem from="1668245871096" duration="9627000" />
+      <workItem from="1668283382738" duration="4776000" />
+      <workItem from="1668341560674" duration="4247000" />
+      <workItem from="1668448814274" duration="2992000" />
     </task>
     <servers />
   </component>

@@ -1,7 +1,9 @@
 package com.cleancode.cleancodedbimpl.impl.cardservices;
 
+import com.cleancode.bsimpl.dto.card.BusinessCardCreateInfo;
+import com.cleancode.bsimpl.ports.persistence.cardrepositoryservices.CardRepositoryService;
+import com.cleancode.cleancodedbimpl.mappers.card.CardEntityMapper;
 import com.cleancode.cleancodedbimpl.entities.cards.CardEntity;
-import com.cleancode.cleancodedbimpl.interfaces.cardservices.CardRepositoryService;
 import com.cleancode.cleancodedbimpl.repositories.card.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,11 +31,11 @@ public class CardRepositoryServiceImpl implements CardRepositoryService {
      * @return an optional of a card
      */
     @Override
-    public Optional<CardEntity> findOneCardByCardFunctionalId(String cardBusinessReference) {
+    public Optional<BusinessCardCreateInfo> findOneCardByCardFunctionalId(String cardBusinessReference) {
         LOGGER.log(Level.INFO, "Calling DB service findOneCardByCardFunctionalId");
         CardEntity foundCard = cardRepository.findByCardReference(cardBusinessReference);
         LOGGER.log(Level.INFO, "Found Card : " + foundCard);
-        return Optional.ofNullable(foundCard);
+        return Optional.ofNullable(CardEntityMapper.INSTANCE.fromDbToBs(foundCard));
     }
 
     /**
@@ -41,9 +43,9 @@ public class CardRepositoryServiceImpl implements CardRepositoryService {
      * @return a card
      */
     @Override
-    public Long saveCardInDb(CardEntity cardToSave) {
+    public Long saveCardInDb(BusinessCardCreateInfo cardToSave) {
         LOGGER.log(Level.INFO, "Calling DB service saveCard");
-        Long savedCard = cardRepository.save(cardToSave).getId();
+        Long savedCard = cardRepository.save(CardEntityMapper.INSTANCE.fromBsToDb(cardToSave)).getId();
         LOGGER.log(Level.INFO, "Saved Card : " + cardToSave + " Returned card : " + savedCard);
         return savedCard;
     }

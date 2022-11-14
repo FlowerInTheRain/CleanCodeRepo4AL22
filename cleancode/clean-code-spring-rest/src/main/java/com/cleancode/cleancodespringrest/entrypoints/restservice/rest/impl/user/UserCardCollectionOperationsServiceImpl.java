@@ -62,6 +62,7 @@ public class UserCardCollectionOperationsServiceImpl implements UserCardCollecti
      * @param userCompleteInfoRequest
      * @return
      */
+    /*
     @ApiOperation(value = "Adds a user",
             response = UserClientInfo.class,
             notes = "Customer must not exist")
@@ -70,5 +71,5 @@ public class UserCardCollectionOperationsServiceImpl implements UserCardCollecti
     @Override
     public UserClientInfo saveUser(@RequestBody  UserClientInfo userCompleteInfoRequest) throws CleanCodeException {
         return userBusinessService.saveUser(userCompleteInfoRequest);
-    }
+    }*/
 }

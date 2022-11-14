@@ -14,8 +14,13 @@
         </processorPath>
         <module name="clean-code-db-impl" />
         <module name="clean-code-bs-impl" />
-        <module name="clean-code-api" />
         <module name="clean-code-spring-rest" />
+        <module name="clean-code-api" />
+      </profile>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
       </profile>
     </annotationProcessing>
   </component>

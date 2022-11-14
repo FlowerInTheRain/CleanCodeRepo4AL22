@@ -1,10 +1,8 @@
 package com.cleancode.bsimpl.dto.user;
 
 import com.cleancode.bsimpl.Address;
-import com.cleancode.bsimpl.CardCollection;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 public class BusinessUserClientInfo {
 
@@ -15,18 +13,18 @@ public class BusinessUserClientInfo {
     private Timestamp clientCreationDate;
 
     private final Address clientAddress;
-    private CardCollection userCardCollectionsList;
+    private String userCardCollectionsList;
 
     /**
      *  TODO
      *  Don't forget to erase this TODO !
      */
-    public BusinessUserClientInfo(Long technicalId, String businessReference, Timestamp clientCreationDate, Address clientAddress, CardCollection userCardCollectionsList) {
+    public BusinessUserClientInfo(Long technicalId, String businessReference, Timestamp clientCreationDate, Address clientAddress, String userCardCollectionsList) {
         this.technicalId = technicalId;
         this.businessReference = businessReference;
         this.clientCreationDate = clientCreationDate;
         this.clientAddress = clientAddress;
-        setUserCardCollectionsList(userCardCollectionsList);
+        this.userCardCollectionsList = userCardCollectionsList;
     }
 
     public Long getTechnicalId() {
@@ -53,11 +51,11 @@ public class BusinessUserClientInfo {
         return clientAddress;
     }
 
-    public CardCollection getUserCardCollectionsList() {
+    public String getUserCardCollectionsList() {
         return userCardCollectionsList;
     }
 
-    public void setUserCardCollectionsList(CardCollection userCardCollectionsList) {
+    public void setUserCardCollectionsList(String userCardCollectionsList) {
         this.userCardCollectionsList = userCardCollectionsList;
     }
 }
