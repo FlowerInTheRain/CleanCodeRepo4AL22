@@ -11,8 +11,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@EntityScan("com.cleancode.cleancodedbimpl")
-@EnableJpaRepositories("com.cleancode.cleancodedbimpl")
+@EntityScan("com.cleancode.cleancodebsimpl")
+@EnableJpaRepositories("com.cleancode.cleancodebsimpl")
 @ComponentScan(basePackages = {"com.cleancode"})
 public class CleanCodeSpringAppApplication {
     public static void main(String[] args) {

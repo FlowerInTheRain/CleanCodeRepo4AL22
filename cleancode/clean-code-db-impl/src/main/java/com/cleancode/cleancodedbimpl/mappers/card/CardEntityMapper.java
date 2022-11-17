@@ -1,4 +1,4 @@
-package com.cleancode.bsimpl.services.impl.card;
+package com.cleancode.cleancodedbimpl.mappers.card;
 
 import com.cleancode.bsimpl.dto.card.BusinessCardCreateInfo;
 import com.cleancode.cleancodedbimpl.entities.cards.CardEntity;

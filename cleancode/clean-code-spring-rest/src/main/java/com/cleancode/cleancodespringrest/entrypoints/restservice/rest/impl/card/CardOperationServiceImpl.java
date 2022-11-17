@@ -1,6 +1,7 @@
 package com.cleancode.cleancodespringrest.entrypoints.restservice.rest.impl.card;
 
 import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeException;
+import com.cleancode.bsimpl.services.impl.card.CardBusinessServiceImpl;
 import com.cleancode.bsimpl.services.interfaces.card.CardBusinessService;
 import com.cleancode.cleancodeapi.dto.cards.Card;
 import com.cleancode.cleancodeapi.mappers.cards.CardMapper;
@@ -26,7 +27,7 @@ public class CardOperationServiceImpl implements CardOperationService {
 
     @Autowired
     private void setCardBusinessService(CardBusinessService cardBusinessService){
-        this.cardBusinessService = cardBusinessService;
+        this.cardBusinessService = new CardBusinessServiceImpl();
     }
 
     @ApiOperation(value = "Create a card",

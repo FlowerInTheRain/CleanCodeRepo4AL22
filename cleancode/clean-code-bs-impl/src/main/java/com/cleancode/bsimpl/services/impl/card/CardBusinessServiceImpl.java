@@ -6,8 +6,7 @@ import com.cleancode.bsimpl.exceptionsmanagement.CleanCodeExceptionsEnum;
 import com.cleancode.bsimpl.services.interfaces.card.CardBusinessService;
 import com.cleancode.bsimpl.utils.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
 import com.cleancode.bsimpl.utils.formatutils.uuid.UUIDFormatter;
-import com.cleancode.cleancodedbimpl.interfaces.cardservices.CardRepositoryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.cleancode.bsimpl.ports.persistence.cardrepositoryservices.CardRepositoryService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -18,10 +17,9 @@ import java.util.logging.Logger;
 public class CardBusinessServiceImpl implements CardBusinessService {
 
     private static final Logger LOGGER = Logger.getLogger(CardBusinessServiceImpl.class.getName());
-    private CardRepositoryService cardRepositoryService;
+    private final CardRepositoryService cardRepositoryService;
 
-    @Autowired
-    private void setCardRepositoryService(CardRepositoryService cardRepositoryService){
+    public CardBusinessServiceImpl(CardRepositoryService cardRepositoryService) {
         this.cardRepositoryService = cardRepositoryService;
     }
 
@@ -46,7 +44,7 @@ public class CardBusinessServiceImpl implements CardBusinessService {
          */
 
         try {
-            Long cardEntity = cardRepositoryService.saveCardInDb(CardEntityMapper.INSTANCE.fromBsToDb(businessCardCreateInfo));
+            Long cardEntity = cardRepositoryService.saveCardInDb(businessCardCreateInfo);
             LOGGER.log(Level.INFO, "BusinessCardCreateInfo businessCardCreateInfo : " + businessCardCreateInfo + " Returned cardEntity : " + cardEntity);
             return businessCardCreateInfo;
         } catch (Exception e){

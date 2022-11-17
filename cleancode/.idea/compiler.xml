@@ -14,8 +14,8 @@
         </processorPath>
         <module name="clean-code-db-impl" />
         <module name="clean-code-bs-impl" />
-        <module name="clean-code-spring-rest" />
         <module name="clean-code-api" />
+        <module name="clean-code-spring-rest" />
       </profile>
     </annotationProcessing>
   </component>
