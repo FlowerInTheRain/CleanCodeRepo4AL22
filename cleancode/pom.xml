@@ -18,7 +18,7 @@
         <module>clean-code-db-impl</module>
         <module>clean-code-api</module>
         <module>clean-code-spring-rest</module>
-        <module>clean-code-bs-impl</module>
+        <module>clean-code-domain</module>
         <module>clean-code-kernel</module>
 
     </modules>
