@@ -1,6 +1,6 @@
 package com.cleancode.cleancodedbimpl.mappers.cardcollections;
 
-import com.cleancode.bsimpl.dto.cardcollection.CardCollection;
+import com.cleancode.domain.dto.cardcollection.CardCollection;
 import com.cleancode.cleancodedbimpl.entities.cardcollections.CardCollectionsEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

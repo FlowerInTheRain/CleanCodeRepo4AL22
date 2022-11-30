@@ -1,8 +1,8 @@
 package com.cleancode.cleancodedbimpl.configurations;
 
 
-import com.cleancode.bsimpl.ports.out.useraccount.UserAccountRepositoryService;
-import com.cleancode.bsimpl.ports.out.usercardcollection.UserCardCollectionRepositoryPort;
+import com.cleancode.domain.ports.out.useraccount.UserAccountRepositoryService;
+import com.cleancode.domain.ports.out.usercardcollection.UserCardCollectionRepositoryPort;
 import com.cleancode.cleancodedbimpl.repositories.cardcollection.CardCollectionRepository;
 import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
 import com.cleancode.cleancodedbimpl.services.impl.cardcollectionservices.UserCardCollectionPortImpl;

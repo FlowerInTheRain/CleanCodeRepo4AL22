@@ -1,6 +1,6 @@
 package com.cleancode.cleancodedbimpl.mappers.users;
 
-import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
+import com.cleancode.domain.dto.user.BusinessUserClientInfo;
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 import com.cleancode.cleancodedbimpl.mappers.cardcollections.CardCollectionEntityMapper;
 import org.mapstruct.Mapper;

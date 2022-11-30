@@ -3,10 +3,10 @@ package cleancodedbimpltests.ut.user.repositoryservice;
 // Packages
 
 import cleancodedbimpltests.ut.user.repository.UserRepositoryUT;
-import com.cleancode.bsimpl.dto.cardcollection.CardCollection;
-import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
-import com.cleancode.bsimpl.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.bsimpl.ports.out.useraccount.UserAccountRepositoryService;
+import com.cleancode.domain.dto.cardcollection.CardCollection;
+import com.cleancode.domain.dto.user.BusinessUserClientInfo;
+import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
+import com.cleancode.domain.ports.out.useraccount.UserAccountRepositoryService;
 import com.cleancode.cleancodedbimpl.entities.cardcollections.CardCollectionsEntity;
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 import com.cleancode.cleancodedbimpl.repositories.cardcollection.CardCollectionRepository;
