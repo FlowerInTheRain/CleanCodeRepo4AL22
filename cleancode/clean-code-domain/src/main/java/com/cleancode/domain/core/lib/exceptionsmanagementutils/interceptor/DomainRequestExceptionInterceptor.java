@@ -9,7 +9,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class RequestExceptionInterceptor extends ResponseEntityExceptionHandler {
+public class DomainRequestExceptionInterceptor extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value
             = { CleanCodeException.class})
     protected ResponseEntity<Object> handleConflict(
