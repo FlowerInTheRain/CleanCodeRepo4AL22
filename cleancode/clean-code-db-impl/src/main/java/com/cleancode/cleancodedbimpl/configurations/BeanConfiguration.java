@@ -1,15 +1,12 @@
 package com.cleancode.cleancodedbimpl.configurations;
 
-import com.cleancode.bsimpl.adapters.persistence.cardcollectionservices.UserCardCollectionRepositoryService;
-import com.cleancode.bsimpl.adapters.persistence.userservices.UserAccountRepositoryService;
-import com.cleancode.bsimpl.services.impl.user.UserAccountOperationBusinessServiceImpl;
-import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusinessService;
+import com.cleancode.bsimpl.ports.out.usercardcollection.UserCardCollectionRepositoryPort;
+import com.cleancode.bsimpl.ports.out.useraccount.UserAccountRepositoryService;
 import com.cleancode.cleancodedbimpl.repositories.cardcollection.CardCollectionRepository;
 import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
-import com.cleancode.cleancodedbimpl.services.impl.cardcollectionservices.UserCardCollectionServiceImpl;
+import com.cleancode.cleancodedbimpl.services.impl.cardcollectionservices.UserCardCollectionPortImpl;
 import com.cleancode.cleancodedbimpl.services.impl.userservices.UserAccountRepositoryServiceImpl;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -20,11 +17,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan(basePackages = {"com.cleancode.cleancodedbimpl.entities"})
 @ComponentScan(basePackages = {"com.cleancode.cleancodedbimpl.services.impl"})
 public class BeanConfiguration {
-    @Bean
-    UserAccountOperationBusinessService userAccountOperationBusinessService(UserAccountRepositoryService userAccountRepositoryService, CacheManager cacheManager,
-                                                                     UserCardCollectionRepositoryService userCardCollectionRepositoryService) {
-        return new UserAccountOperationBusinessServiceImpl(userAccountRepositoryService, cacheManager, userCardCollectionRepositoryService);
-    }
 
     @Bean
     UserAccountRepositoryService userAccountRepositoryService(UserRepository userRepository) {
@@ -32,7 +24,7 @@ public class BeanConfiguration {
     }
 
     @Bean
-    UserCardCollectionRepositoryService userCardCollectionRepositoryService(CardCollectionRepository cardCollectionRepository){
-        return new UserCardCollectionServiceImpl(cardCollectionRepository);
+    UserCardCollectionRepositoryPort userCardCollectionRepositoryService(CardCollectionRepository cardCollectionRepository){
+        return new UserCardCollectionPortImpl(cardCollectionRepository);
     }
 }

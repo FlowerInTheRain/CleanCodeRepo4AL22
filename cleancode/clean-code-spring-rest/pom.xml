@@ -52,8 +52,8 @@
             <artifactId>spring-data-jpa</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.esgi.arlo</groupId>
-            <artifactId>clean-code-db-impl</artifactId>
+            <groupId>com.example</groupId>
+            <artifactId>conf</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

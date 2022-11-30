@@ -19,6 +19,8 @@
         <module>clean-code-api</module>
         <module>clean-code-spring-rest</module>
         <module>clean-code-bs-impl</module>
+        <module>clean-code-kernel</module>
+
     </modules>
     <properties>
         <!-- Java version property -->
@@ -79,7 +81,11 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.8</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.jnape.palatable</groupId>
+                <artifactId>lambda</artifactId>
+                <version>5.4.0</version>
+            </dependency>
             <dependency>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>

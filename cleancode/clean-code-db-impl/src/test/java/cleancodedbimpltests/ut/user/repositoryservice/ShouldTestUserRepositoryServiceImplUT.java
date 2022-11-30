@@ -6,20 +6,17 @@ import cleancodedbimpltests.ut.user.repository.UserRepositoryUT;
 import com.cleancode.bsimpl.dto.cardcollection.CardCollection;
 import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
 import com.cleancode.bsimpl.repositories.services.interfaces.userservices.UserAccountRepositoryService;
-import com.cleancode.bsimpl.utils.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.cleancodedbimpl.configurations.BeanConfiguration;
+import com.cleancode.bsimpl.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.cleancodedbimpl.entities.cardcollections.CardCollectionsEntity;
 import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
 import com.cleancode.cleancodedbimpl.repositories.cardcollection.CardCollectionRepository;
 import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
-import com.cleancode.cleancodedbimpl.services.impl.userservices.UserAccountRepositoryServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.util.Optional;
 import java.util.logging.Level;
@@ -27,7 +24,6 @@ import java.util.logging.Logger;
 
 import static org.mockito.Mockito.*;
 
-@ContextConfiguration(classes = BeanConfiguration.class)
 public class ShouldTestUserRepositoryServiceImplUT {
     private static final Logger LOGGER = Logger.getLogger(UserRepositoryUT.class.getName());
     @Mock
