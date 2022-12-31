@@ -1,8 +1,7 @@
 package com.cleancode.cleancodespringrest.entrypoints.restservice.restcontrollers.useroperationscontrollers;
 
 import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
-import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusinessService;
-import com.cleancode.bsimpl.utils.exceptionsmanagementutils.exceptions.CleanCodeException;
+import com.cleancode.bsimpl.ports.application.UserAccountOperationBusinessService;
 import com.cleancode.cleancodeapi.apibsmappers.cardcollections.CardCollectionMapper;
 import com.cleancode.cleancodeapi.apibsmappers.users.UserClientInfoMapper;
 import com.cleancode.cleancodeapi.dto.cardcollection.CardCollection;
@@ -22,7 +21,6 @@ import java.util.logging.Logger;
 @CrossOrigin
 @Api
 public class UserAccountOperationRestController {
-    // SISI LES ARCHIS
     private static final Logger LOGGER = Logger.getLogger(UserAccountOperationRestController.class.getName());
     private final UserAccountOperationBusinessService userAccountOperationBusinessService;
     public UserAccountOperationRestController(UserAccountOperationBusinessService userAccountOperationBusinessService){
@@ -33,12 +31,12 @@ public class UserAccountOperationRestController {
      * @param userCompleteInfoRequest user with userName and deck name
      * @return saved user or throws exception
      */
-    @ApiOperation(value = "Adds a user",
-            response = UserAccountCreationRequest.class,
+    @ApiOperation(value = "Creates user account",
+            response = UserAccountResponse.class,
             notes = "Customer must not exist")
     @ApiResponse(code=200, message="User Added")
-    @PutMapping(value = "/addNewUser", produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserAccountResponse createUserAccount(@RequestBody  UserAccountCreationRequest userCompleteInfoRequest) throws CleanCodeException {
+    @PutMapping(value = "/createUserAccount", produces = MediaType.APPLICATION_JSON_VALUE)
+    public UserAccountResponse createUserAccount(@RequestBody  UserAccountCreationRequest userCompleteInfoRequest) {
             LOGGER.log(Level.INFO, "Calling createUserAccount");
             BusinessUserClientInfo businessUserClientInfoToCreate = UserClientInfoMapper.INSTANCE.fromAPIUserAccountCreationRequestToBSUserAccountCreation(userCompleteInfoRequest);
             final CardCollection apiUserCardCollection = CardCollectionMapper.INSTANCE.fromBSCardCollectionToAPICardCollection(businessUserClientInfoToCreate.getUserCardCollection());
