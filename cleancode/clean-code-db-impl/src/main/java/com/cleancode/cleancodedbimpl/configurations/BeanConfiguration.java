@@ -28,7 +28,7 @@ public class BeanConfiguration {
     }
 
     @Bean
-    CardRepositoryService cardsRepositoryService(CardRepository cardRepository) {
+    CardRepositoryService cardRepositoryService(CardRepository cardRepository) {
         return new CardRepositoryServiceImpl(cardRepository);
     }
 
