@@ -1,6 +1,9 @@
 package com.cleancode.cleancodedbimpl.configurations;
 
 
+import com.cleancode.bsimpl.ports.persistence.cardrepositoryservices.CardRepositoryService;
+import com.cleancode.cleancodedbimpl.repositories.card.CardRepository;
+import com.cleancode.cleancodedbimpl.services.impl.card.CardRepositoryServiceImpl;
 import com.cleancode.domain.ports.out.useraccount.UserAccountRepositoryService;
 import com.cleancode.domain.ports.out.usercardcollection.UserCardCollectionRepositoryPort;
 import com.cleancode.cleancodedbimpl.repositories.cardcollection.CardCollectionRepository;
@@ -22,6 +25,11 @@ public class BeanConfiguration {
     @Bean
     UserAccountRepositoryService userAccountRepositoryService(UserRepository userRepository) {
         return new UserAccountRepositoryServiceImpl(userRepository);
+    }
+
+    @Bean
+    CardRepositoryService cardsRepositoryService(CardRepository cardRepository) {
+        return new CardRepositoryServiceImpl(cardRepository);
     }
 
     @Bean
