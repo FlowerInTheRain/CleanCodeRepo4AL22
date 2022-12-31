@@ -1,10 +1,12 @@
 package com.cleancode.cleancodedbimpl.services.impl.card;
 
-import com.cleancode.bsimpl.dto.card.BusinessCardCreateInfo;
-import com.cleancode.bsimpl.ports.persistence.cardrepositoryservices.CardRepositoryService;
 import com.cleancode.cleancodedbimpl.entities.cards.CardEntity;
 import com.cleancode.cleancodedbimpl.mappers.card.CardEntityMapper;
+import com.cleancode.cleancodedbimpl.mappers.users.UserEntityMapper;
 import com.cleancode.cleancodedbimpl.repositories.card.CardRepository;
+import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
+import com.cleancode.domain.dto.user.BusinessUserClientInfo;
+import com.cleancode.domain.ports.out.card.CardRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,10 +45,11 @@ public class CardRepositoryServiceImpl implements CardRepositoryService {
      * @return a card
      */
     @Override
-    public Long saveCardInDb(BusinessCardCreateInfo cardToSave) {
+    public Optional<BusinessCardCreateInfo> saveCardInDb(BusinessCardCreateInfo cardToSave) {
         LOGGER.log(Level.INFO, "Calling DB service saveCard");
-        Long savedCard = cardRepository.save(CardEntityMapper.INSTANCE.fromBsToDb(cardToSave)).getId();
+        CardEntity savedCard = cardRepository.save(CardEntityMapper.INSTANCE.fromBsToDb(cardToSave));
         LOGGER.log(Level.INFO, "Saved Card : " + cardToSave + " Returned card : " + savedCard);
-        return savedCard;
+        BusinessCardCreateInfo mappedCardToBsCard = CardEntityMapper.INSTANCE.fromDbToBs(savedCard);
+        return Optional.ofNullable(mappedCardToBsCard);
     }
 }

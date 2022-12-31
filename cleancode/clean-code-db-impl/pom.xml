@@ -53,11 +53,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.esgi.arlo</groupId>
-            <artifactId>clean-code-bs-impl</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.9.0</version>

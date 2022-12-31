@@ -8,6 +8,6 @@ public interface CardRepositoryService {
 
     Optional<BusinessCardCreateInfo> findOneCardByCardFunctionalId(String functionalId);
 
-    Long saveCardInDb(BusinessCardCreateInfo cardToSave);
+    Optional<BusinessCardCreateInfo> saveCardInDb(BusinessCardCreateInfo cardToSave);
 }
 

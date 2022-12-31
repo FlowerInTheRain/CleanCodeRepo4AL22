@@ -34,9 +34,11 @@ public class CardOperationUserCase implements CardOperation {
         }
 
         try {
-            Long cardEntity = cardRepositoryService.saveCardInDb(businessCardCreateInfo);
+            Optional<BusinessCardCreateInfo> cardEntity = cardRepositoryService.saveCardInDb(businessCardCreateInfo);
             LOGGER.log(Level.INFO, "BusinessCardCreateInfo businessCardCreateInfo : " + businessCardCreateInfo + " Returned cardEntity : " + cardEntity);
-            return businessCardCreateInfo;
+            if(cardEntity.isPresent()){
+                return cardEntity.get();
+            }
         } catch (Exception e){
             handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
             businessCardCreateInfo.setBusinessReference(null);

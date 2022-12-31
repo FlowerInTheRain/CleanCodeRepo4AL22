@@ -1,7 +1,7 @@
 package com.cleancode.cleancodedbimpl.mappers.card;
 
-import com.cleancode.bsimpl.dto.card.BusinessCardCreateInfo;
 import com.cleancode.cleancodedbimpl.entities.cards.CardEntity;
+import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
