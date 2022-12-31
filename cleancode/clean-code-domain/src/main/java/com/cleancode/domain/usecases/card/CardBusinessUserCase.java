@@ -1,0 +1,51 @@
+package com.cleancode.domain.usecases.card;
+
+import com.cleancode.domain.core.lib.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
+import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
+import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
+import com.cleancode.domain.core.lib.formatutils.uuidformatterutils.UUIDFormatter;
+import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
+import com.cleancode.domain.ports.out.card.CardRepositoryService;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+@Service
+public class CardBusinessUserCase {
+
+    private static final Logger LOGGER = Logger.getLogger(CardBusinessUserCase.class.getName());
+    private final CardRepositoryService cardRepositoryService;
+
+    public CardBusinessUserCase(CardRepositoryService cardRepositoryService) {
+        this.cardRepositoryService = cardRepositoryService;
+    }
+
+    public BusinessCardCreateInfo saveCard(BusinessCardCreateInfo businessCardCreateInfo) throws CleanCodeException {
+
+        if(businessCardCreateInfo.getBusinessReference() == null) {
+            Optional<String> formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
+            if(formattedUUIDToBind.isEmpty()){
+                throw new RuntimeException();
+            }
+            formattedUUIDToBind.ifPresent(businessCardCreateInfo::setBusinessReference);
+        }
+
+        try {
+            Long cardEntity = cardRepositoryService.saveCardInDb(businessCardCreateInfo);
+            LOGGER.log(Level.INFO, "BusinessCardCreateInfo businessCardCreateInfo : " + businessCardCreateInfo + " Returned cardEntity : " + cardEntity);
+            return businessCardCreateInfo;
+        } catch (Exception e){
+            handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
+            businessCardCreateInfo.setBusinessReference(null);
+        }
+
+        return businessCardCreateInfo;
+    }
+
+    private void handleDBImplQueryExceptions(CleanCodeException dbImplCommunicationException) throws CleanCodeException {
+        LOGGER.log(Level.WARNING, "Error while connecting to db : " + dbImplCommunicationException);
+        throw dbImplCommunicationException;
+    }
+}
