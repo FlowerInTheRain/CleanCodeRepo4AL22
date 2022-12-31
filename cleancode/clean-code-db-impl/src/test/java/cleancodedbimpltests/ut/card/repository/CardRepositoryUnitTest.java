@@ -15,7 +15,7 @@ public class CardRepositoryUnitTest {
     private CardRepository cardRepository = Mockito.mock(CardRepository.class);
 
     @Test
-    public void findByCardReference_shouldReturnCardEntity() {
+    public void findByCardReferenceShouldReturnCardEntity() {
         String cardReference = "12345";
         CardEntity expectedCardEntity = new CardEntity();
         expectedCardEntity.setCardReference(cardReference);
@@ -27,7 +27,7 @@ public class CardRepositoryUnitTest {
     }
 
     @Test
-    public void save_shouldSaveCardEntity() {
+    public void saveShouldSaveCardEntity() {
         CardEntity cardEntity = new CardEntity();
         when(cardRepository.save(cardEntity)).thenReturn(cardEntity);
 
