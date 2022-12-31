@@ -16,10 +16,8 @@ import org.mockito.Mock;
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.doCallRealMethod;
-import static org.mockito.Mockito.when;
 
 public class UserCardPackOperationsUT {
-
     private BusinessUserClientInfo businessUserClientInfo;
     @Mock
     private CardCollectionCardsRepositoryService cardCollectionCardsRepositoryService;
@@ -28,7 +26,7 @@ public class UserCardPackOperationsUT {
     private UserCardCollectionOperationBusinessService userCardCollectionOperationsBusinessService;
 
     @Before
-    private void setUp(){
+    public void setUp(){
         businessUserClientInfo = new BusinessUserClientInfo(
                 "Sid",
                 1L,
@@ -44,7 +42,6 @@ public class UserCardPackOperationsUT {
         Card cardToAddToUserCollection = new Card(UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(),true,""), RaritiesEnum.COMMON);
         businessUserClientInfo.getUserCardCollection().getCollectionCardList().add(cardToAddToUserCollection);
         doCallRealMethod().when(cardCollectionCardsRepositoryService).addCardToUserCardCollection(businessUserClientInfo.getUserCardCollection());
-
         userCardCollectionOperationsBusinessService.addCardToUserCardCollection(businessUserClientInfo.getUserCardCollection(), cardToAddToUserCollection);
 ;    }
 }

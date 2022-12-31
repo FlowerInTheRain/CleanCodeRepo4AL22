@@ -2,7 +2,7 @@ package com.cleancode.cleancodedbimpl.configurations;
 
 import com.cleancode.bsimpl.ports.persistence.cardcollectionservices.UserCardCollectionRepositoryService;
 import com.cleancode.bsimpl.ports.persistence.userservices.UserAccountRepositoryService;
-import com.cleancode.bsimpl.services.impl.user.UserAccountOperationBusinessServiceImpl;
+import com.cleancode.bsimpl.services.impl.user.UserAccountOperationCommands;
 import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusinessService;
 import com.cleancode.cleancodedbimpl.repositories.cardcollection.CardCollectionRepository;
 import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
@@ -23,7 +23,7 @@ public class BeanConfiguration {
     @Bean
     UserAccountOperationBusinessService userAccountOperationBusinessService(UserAccountRepositoryService userAccountRepositoryService, CacheManager cacheManager,
                                                                      UserCardCollectionRepositoryService userCardCollectionRepositoryService) {
-        return new UserAccountOperationBusinessServiceImpl(userAccountRepositoryService, cacheManager, userCardCollectionRepositoryService);
+        return new UserAccountOperationCommands(userAccountRepositoryService, cacheManager, userCardCollectionRepositoryService);
     }
 
     @Bean

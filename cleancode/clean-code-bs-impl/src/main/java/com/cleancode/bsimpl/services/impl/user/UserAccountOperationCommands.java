@@ -5,8 +5,7 @@ import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
 import com.cleancode.bsimpl.ports.persistence.cardcollectionservices.UserCardCollectionRepositoryService;
 import com.cleancode.bsimpl.ports.persistence.userservices.UserAccountRepositoryService;
 import com.cleancode.bsimpl.services.interfaces.user.UserAccountOperationBusinessService;
-import com.cleancode.bsimpl.utils.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
-import com.cleancode.bsimpl.utils.exceptionsmanagementutils.exceptions.CleanCodeException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
 
@@ -17,20 +16,16 @@ import java.util.logging.Logger;
 
 import static com.cleancode.bsimpl.utils.userserviceutils.UserAccountOperationUtils.*;
 
-public class UserAccountOperationBusinessServiceImpl implements UserAccountOperationBusinessService {
-    private static final Logger LOGGER = Logger.getLogger(UserAccountOperationBusinessServiceImpl.class.getName());
+@RequiredArgsConstructor
+public class UserAccountOperationCommands implements UserAccountOperationBusinessService {
+    private static final Logger LOGGER = Logger.getLogger(UserAccountOperationCommands.class.getName());
 
     private final UserAccountRepositoryService userRepositoryService;
     private final CacheManager cacheManager;
 
     private final UserCardCollectionRepositoryService userCardCollectionRepositoryService;
 
-    public UserAccountOperationBusinessServiceImpl(UserAccountRepositoryService userAccountRepositoryService, CacheManager cacheManager,
-                                                   UserCardCollectionRepositoryService userCardCollectionRepositoryService){
-        this.userRepositoryService = userAccountRepositoryService;
-        this.cacheManager = cacheManager;
-        this.userCardCollectionRepositoryService = userCardCollectionRepositoryService;
-    }
+   
 
     /**
      * @param userFromApi a user from api

@@ -10,11 +10,11 @@ public class test {
 
     @Test
     public void Common(){
-        Assert.assertEquals(DiamondPackCardRarityDistributionEnum.getByProbability(30L).getCardRarityEnum(), RaritiesEnum.COMMON);
+        Assert.assertEquals(DiamondPackCardRarityDistributionEnum.getByProbability(30L), RaritiesEnum.COMMON);
     }
 
     @Test
     public void Unique(){
-        Assert.assertEquals(DiamondPackCardRarityDistributionEnum.getByProbability(100L).getCardRarityEnum(), RaritiesEnum.UNIQUE);
+        Assert.assertEquals(DiamondPackCardRarityDistributionEnum.getByProbability(100L), RaritiesEnum.UNIQUE);
     }
 }

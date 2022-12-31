@@ -13,7 +13,6 @@ public enum DiamondPackCardRarityDistributionEnum {
     private final RaritiesEnum cardRarityEnum;
     private final Long minProbability;
     private final Long maxProbability;
-
     private static final List<DiamondPackCardRarityDistributionEnum> diamondPackCardRarityDistributionEnumValues = List.of(DiamondPackCardRarityDistributionEnum.values());
 
     DiamondPackCardRarityDistributionEnum(RaritiesEnum rarity, Long minProbability, Long maxProbability) {
@@ -22,22 +21,22 @@ public enum DiamondPackCardRarityDistributionEnum {
         this.maxProbability = maxProbability;
     }
 
-
     public RaritiesEnum getCardRarityEnum() {
         return cardRarityEnum;
     }
-
-
     public Long getMinProbability() {
         return minProbability;
     }
 
-
     public Long getMaxProbability() {
         return maxProbability;
     }
-    public static DiamondPackCardRarityDistributionEnum getByProbability(Long probability){
-        return diamondPackCardRarityDistributionEnumValues.stream().filter(card -> card.getMinProbability() < probability && probability <= card.getMaxProbability()).findFirst().orElseThrow();
+    public static RaritiesEnum getByProbability(Long probability){
+        return diamondPackCardRarityDistributionEnumValues
+                .stream()
+                .filter(card -> card.getMinProbability() < probability && probability <= card.getMaxProbability())
+                .findFirst().orElseThrow()
+                .getCardRarityEnum();
     }
 
     @Override
@@ -46,7 +45,6 @@ public enum DiamondPackCardRarityDistributionEnum {
                 "cardRarityEnum=" + cardRarityEnum +
                 ", minProbability=" + minProbability +
                 ", maxProbability=" + maxProbability +
-                ", diamondPackCardRarityDistributionEnumValues=" + diamondPackCardRarityDistributionEnumValues +
                 '}';
     }
 }
