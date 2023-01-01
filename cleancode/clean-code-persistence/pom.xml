@@ -55,7 +55,7 @@
         </dependency>
         <dependency>
             <groupId>com.esgi.arlo</groupId>
-            <artifactId>clean-code-bs-impl</artifactId>
+            <artifactId>clean-code-domain</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

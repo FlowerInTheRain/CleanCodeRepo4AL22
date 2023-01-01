@@ -39,7 +39,7 @@
         </dependency>
         <dependency>
             <groupId>com.esgi.arlo</groupId>
-            <artifactId>clean-code-bs-impl</artifactId>
+            <artifactId>clean-code-domain</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
@@ -50,17 +50,6 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.esgi.arlo</groupId>
-            <artifactId>clean-code-db-impl</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-observation</artifactId>
-            <version>1.10.0</version>
         </dependency>
     </dependencies>
     <build>

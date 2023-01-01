@@ -1,5 +1,4 @@
 package com.cleancode.cleancodepersistence.mappers.cardcollections;
-
 import com.cleancode.domain.dto.cardcollection.CardCollection;
 import com.cleancode.cleancodepersistence.entities.cardcollections.CardCollectionsEntity;
 import org.mapstruct.Mapper;
