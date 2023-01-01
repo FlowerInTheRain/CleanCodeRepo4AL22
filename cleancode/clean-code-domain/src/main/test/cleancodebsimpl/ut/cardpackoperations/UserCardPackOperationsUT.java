@@ -1,13 +1,13 @@
 package cleancodebsimpl.ut.cardpackoperations;
 
-import com.cleancode.bsimpl.dto.card.Card;
-import com.cleancode.bsimpl.dto.cardcollection.CardCollection;
-import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
-import com.cleancode.bsimpl.enums.enums.rarities.RaritiesEnum;
-import com.cleancode.bsimpl.ports.persistence.cardcollectioncardsrepositoryservices.CardCollectionCardsRepositoryService;
-import com.cleancode.bsimpl.ports.application.UserCardCollectionOperationBusinessService;
-import com.cleancode.bsimpl.utils.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
-import com.cleancode.bsimpl.utils.formatutils.uuidformatterutils.UUIDFormatter;
+import com.cleancode.domain.dto.card.Card;
+import com.cleancode.domain.dto.cardcollection.CardCollection;
+import com.cleancode.domain.dto.user.BusinessUserClientInfo;
+import com.cleancode.domain.enums.enums.rarities.RaritiesEnum;
+import com.cleancode.domain.ports.persistence.cardcollectioncardsrepositoryservices.CardCollectionCardsRepositoryService;
+import com.cleancode.domain.ports.application.UserCardCollectionOperationBusinessService;
+import com.cleancode.domain.utils.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
+import com.cleancode.domain.utils.formatutils.uuidformatterutils.UUIDFormatter;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;

@@ -1,9 +1,9 @@
 package cleancodetests.ut.user.cardcollection.repository;
 
 // Packages
-import com.cleancode.cleancodedbimpl.configurations.BeanConfiguration;
-import com.cleancode.cleancodedbimpl.entities.cardcollections.CardCollectionsEntity;
-import com.cleancode.cleancodedbimpl.repositories.cardcollection.CardCollectionRepository;
+import com.cleancode.cleancodepersistence.configurations.BeanConfiguration;
+import com.cleancode.cleancodepersistence.entities.cardcollections.CardCollectionsEntity;
+import com.cleancode.cleancodepersistence.repositories.cardcollection.CardCollectionRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

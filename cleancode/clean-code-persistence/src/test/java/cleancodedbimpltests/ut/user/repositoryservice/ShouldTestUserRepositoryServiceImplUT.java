@@ -3,15 +3,15 @@ package cleancodedbimpltests.ut.user.repositoryservice;
 // Packages
 
 import cleancodedbimpltests.ut.user.repository.UserRepositoryUT;
-import com.cleancode.bsimpl.dto.cardcollection.CardCollection;
-import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
-import com.cleancode.bsimpl.repositories.services.interfaces.userservices.UserAccountRepositoryService;
-import com.cleancode.bsimpl.utils.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.cleancodedbimpl.configurations.BeanConfiguration;
-import com.cleancode.cleancodedbimpl.entities.cardcollections.CardCollectionsEntity;
-import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
-import com.cleancode.cleancodedbimpl.repositories.cardcollection.CardCollectionRepository;
-import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
+import com.cleancode.domain.dto.cardcollection.CardCollection;
+import com.cleancode.domain.dto.user.BusinessUserClientInfo;
+import com.cleancode.domain.repositories.services.interfaces.userservices.UserAccountRepositoryService;
+import com.cleancode.domain.utils.exceptionsmanagementutils.exceptions.CleanCodeException;
+import com.cleancode.cleancodepersistence.configurations.BeanConfiguration;
+import com.cleancode.cleancodepersistence.entities.cardcollections.CardCollectionsEntity;
+import com.cleancode.cleancodepersistence.entities.users.UsersEntity;
+import com.cleancode.cleancodepersistence.repositories.cardcollection.CardCollectionRepository;
+import com.cleancode.cleancodepersistence.repositories.user.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;

@@ -1,7 +1,7 @@
 package com.cleancode.cleancodespringrest.entrypoints.restservice.restcontrollers.useroperationscontrollers;
 
-import com.cleancode.bsimpl.dto.user.BusinessUserClientInfo;
-import com.cleancode.bsimpl.ports.application.UserAccountOperationBusinessService;
+import com.cleancode.domain.dto.user.BusinessUserClientInfo;
+import com.cleancode.domain.ports.application.UserAccountOperationBusinessService;
 import com.cleancode.cleancodeapi.apibsmappers.cardcollections.CardCollectionMapper;
 import com.cleancode.cleancodeapi.apibsmappers.users.UserClientInfoMapper;
 import com.cleancode.cleancodeapi.dto.cardcollection.CardCollection;

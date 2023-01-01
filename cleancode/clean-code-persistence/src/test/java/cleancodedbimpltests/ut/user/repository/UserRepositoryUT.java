@@ -2,17 +2,16 @@ package cleancodedbimpltests.ut.user.repository;
 
 // Packages
 
-import com.cleancode.bsimpl.utils.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
-import com.cleancode.bsimpl.utils.exceptionsmanagementutils.enums.ComponentsEnum;
-import com.cleancode.cleancodedbimpl.configurations.BeanConfiguration;
-import com.cleancode.cleancodedbimpl.entities.users.UsersEntity;
-import com.cleancode.cleancodedbimpl.repositories.user.UserRepository;
+import com.cleancode.cleancodepersistence.configurations.BeanConfiguration;
+import com.cleancode.cleancodepersistence.entities.users.UsersEntity;
+import com.cleancode.cleancodepersistence.repositories.user.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.test.context.ContextConfiguration;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -50,8 +49,6 @@ public class UserRepositoryUT {
         assertEquals(usersEntityArgumentCaptor.getValue().getUserReference(), toSave.getUserReference());
         assertEquals(usersEntityToReturn.getId(), returned.getId());
         LOGGER.log(Level.INFO,"Correctly ended UT shouldSearchForOneUser");
-
-        LOGGER.log(Level.INFO, CleanCodeExceptionsEnum.byComponent(ComponentsEnum.Clean_Code_DB.toString()).toString());
 
     }
 }

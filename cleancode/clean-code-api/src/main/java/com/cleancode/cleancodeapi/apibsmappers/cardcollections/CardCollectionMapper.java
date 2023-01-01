@@ -8,5 +8,5 @@ import org.mapstruct.factory.Mappers;
 public interface CardCollectionMapper {
     CardCollectionMapper INSTANCE = Mappers.getMapper(CardCollectionMapper.class);
 
-    CardCollection fromBSCardCollectionToAPICardCollection(com.cleancode.bsimpl.dto.cardcollection.CardCollection cardCollection);
+    CardCollection fromBSCardCollectionToAPICardCollection(com.cleancode.domain.dto.cardcollection.CardCollection cardCollection);
 }
