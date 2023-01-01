@@ -1,7 +1,7 @@
 package cleancodetests.ut.user.cardcollection.repository;
 
 // Packages
-import com.cleancode.cleancodepersistence.configurations.BeanConfiguration;
+import com.cleancode.cleancodepersistence.configurations.PersistenceConfiguration;
 import com.cleancode.cleancodepersistence.entities.cardcollections.CardCollectionsEntity;
 import com.cleancode.cleancodepersistence.repositories.cardcollection.CardCollectionRepository;
 import org.junit.Assert;
@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {BeanConfiguration.class})
+@ContextConfiguration(classes = {PersistenceConfiguration.class})
 public class CardCollectionRepositoryUT {
 
     private static final Logger LOGGER = Logger.getLogger(CardCollectionRepositoryUT.class.getName());

@@ -7,7 +7,7 @@ import com.cleancode.domain.dto.cardcollection.CardCollection;
 import com.cleancode.domain.dto.user.BusinessUserClientInfo;
 import com.cleancode.domain.repositories.services.interfaces.userservices.UserAccountRepositoryService;
 import com.cleancode.domain.utils.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.cleancodepersistence.configurations.BeanConfiguration;
+import com.cleancode.cleancodepersistence.configurations.PersistenceConfiguration;
 import com.cleancode.cleancodepersistence.entities.cardcollections.CardCollectionsEntity;
 import com.cleancode.cleancodepersistence.entities.users.UsersEntity;
 import com.cleancode.cleancodepersistence.repositories.cardcollection.CardCollectionRepository;
@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 
 import static org.mockito.Mockito.*;
 
-@ContextConfiguration(classes = BeanConfiguration.class)
+@ContextConfiguration(classes = PersistenceConfiguration.class)
 public class ShouldTestUserRepositoryServiceImplUT {
     private static final Logger LOGGER = Logger.getLogger(UserRepositoryUT.class.getName());
     @Mock

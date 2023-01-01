@@ -2,7 +2,7 @@ package cleancodedbimpltests.ut.user.repository;
 
 // Packages
 
-import com.cleancode.cleancodepersistence.configurations.BeanConfiguration;
+import com.cleancode.cleancodepersistence.configurations.PersistenceConfiguration;
 import com.cleancode.cleancodepersistence.entities.users.UsersEntity;
 import com.cleancode.cleancodepersistence.repositories.user.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-@ContextConfiguration(classes = BeanConfiguration.class)
+@ContextConfiguration(classes = PersistenceConfiguration.class)
 public class UserRepositoryUT {
     private static final Logger LOGGER = Logger.getLogger(UserRepositoryUT.class.getName());
     @Mock
