@@ -9,6 +9,7 @@ import com.cleancode.domain.ports.in.card.CardOperation;
 import com.cleancode.domain.ports.out.card.CardRepositoryService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +23,7 @@ public class CardOperationUserCase implements CardOperation {
     public CardOperationUserCase(CardRepositoryService cardRepositoryService) {
         this.cardRepositoryService = cardRepositoryService;
     }
-    
+
     @Override
     public BusinessCardCreateInfo saveCard(BusinessCardCreateInfo businessCardCreateInfo) throws CleanCodeException {
 
@@ -46,6 +47,33 @@ public class CardOperationUserCase implements CardOperation {
         }
 
         return businessCardCreateInfo;
+    }
+
+    @Override
+    public List<BusinessCardCreateInfo> findAllCards() throws CleanCodeException {
+
+        try {
+            Optional<List<BusinessCardCreateInfo>> businessCardCreateInfos = cardRepositoryService.findAllCards();
+            LOGGER.log(Level.INFO, " Returned List businessCardCreateInfos : " + businessCardCreateInfos);
+            return businessCardCreateInfos.orElse(null);
+        } catch (Exception e){
+            handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
+        }
+
+        return null;
+    }
+
+    @Override
+    public BusinessCardCreateInfo findOneCardByReference(String cardReference) throws CleanCodeException {
+        try {
+            Optional<BusinessCardCreateInfo> businessCardCreateInfo = cardRepositoryService.findOneCardByCardFunctionalId(cardReference);
+            LOGGER.log(Level.INFO, "String cardReference : " + cardReference + " Returned businessCardCreateInfo : " + businessCardCreateInfo);
+            return businessCardCreateInfo.orElse(null);
+        } catch (Exception e){
+            handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
+        }
+
+        return null;
     }
 
     private void handleDBImplQueryExceptions(CleanCodeException dbImplCommunicationException) throws CleanCodeException {

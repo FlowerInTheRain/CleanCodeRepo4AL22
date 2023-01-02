@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @RestController("CardOperationRestController")
@@ -34,5 +35,21 @@ public class CardOperationRestController {
     @PutMapping(value = "/saveCard", produces = MediaType.APPLICATION_JSON_VALUE)
     public Card saveCard(@RequestBody Card card) throws CleanCodeException {
         return CardMapper.INSTANCE.fromBsToApi(cardOperation.saveCard(CardMapper.INSTANCE.fromApiToBs(card)));
+    }
+
+    @ApiOperation(value = "Find all cards",
+            response = Card.class)
+    @ApiResponse(code=200, message="Card found")
+    @GetMapping(value = "/findAllCards", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Card> findAllCards() throws CleanCodeException {
+        return CardMapper.INSTANCE.fromListBsToListApi(cardOperation.findAllCards());
+    }
+
+    @ApiOperation(value = "Find one card by reference",
+            response = Card.class)
+    @ApiResponse(code=200, message="Card found")
+    @GetMapping(value = "/findOneCardByReference", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Card findOneCardByReference(String cardReference) throws CleanCodeException {
+        return CardMapper.INSTANCE.fromBsToApi(cardOperation.findOneCardByReference(cardReference));
     }
 }
