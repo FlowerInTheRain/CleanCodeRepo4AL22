@@ -8,17 +8,15 @@ public class BusinessCardCreateInfo {
 
     protected final Long technicalId;
     private String businessReference;
-    private String cardCollectionReference;
     private CardSpecialtyEnum cardSpecialty;
     private CardRarityEnum cardRarity;
     private CardNameEnum cardName;
     private int xp;
     private int level;
 
-    public BusinessCardCreateInfo(Long technicalId, String businessReference, String cardCollectionReference, CardSpecialtyEnum cardSpecialty, CardRarityEnum cardRarity, CardNameEnum cardName, int xp, int level) {
+    public BusinessCardCreateInfo(Long technicalId, String businessReference, CardSpecialtyEnum cardSpecialty, CardRarityEnum cardRarity, CardNameEnum cardName, int xp, int level) {
         this.technicalId = technicalId;
         this.businessReference = businessReference;
-        this.cardCollectionReference = cardCollectionReference;
         this.cardSpecialty = cardSpecialty;
         this.cardRarity = cardRarity;
         this.cardName = cardName;
@@ -44,14 +42,6 @@ public class BusinessCardCreateInfo {
 
     public void setBusinessReference(String businessReference) {
         this.businessReference = businessReference;
-    }
-
-    public String getCardCollectionReference() {
-        return cardCollectionReference;
-    }
-
-    public void setCardCollectionReference(String cardCollectionReference) {
-        this.cardCollectionReference = cardCollectionReference;
     }
 
     public CardSpecialtyEnum getCardSpecialty() {

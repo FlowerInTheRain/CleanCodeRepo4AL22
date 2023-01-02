@@ -31,7 +31,6 @@ public class CardOperationUseCaseUnitTest {
         BusinessCardCreateInfo businessCardCreateInfo = new BusinessCardCreateInfo(
                 1L,
                 "12345",
-                "54321",
                 CardSpecialtyEnum.MAGE,
                 CardRarityEnum.COMMON,
                 CardNameEnum.JONATHAN,
