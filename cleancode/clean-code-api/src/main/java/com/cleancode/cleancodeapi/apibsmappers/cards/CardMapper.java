@@ -9,6 +9,6 @@ import org.mapstruct.factory.Mappers;
 public interface CardMapper {
     CardMapper INSTANCE = Mappers.getMapper(CardMapper.class);
 
-    BusinessCardCreateInfo fromApiToBs(com.cleancode.cleancodeapi.dto.card.Card card);
+    BusinessCardCreateInfo fromApiToBs(Card card);
     Card fromBsToApi(BusinessCardCreateInfo card);
 }
