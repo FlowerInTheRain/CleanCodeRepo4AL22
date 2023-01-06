@@ -1,21 +1,22 @@
-package com.cleancode.cleancodeapi.dto.card;
-
+package com.cleancode.domain.dto.card;
 
 import com.cleancode.domain.enums.cards.CardNameEnum;
-import com.cleancode.cleancodeapi.enums.card.CardRarityEnum;
+import com.cleancode.domain.enums.cards.CardRarityEnum;
 import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
 
-public class Card {
+public class BusinessCardCreateInfo {
 
-    private String cardReference;
+    protected final Long technicalId;
+    private String businessReference;
     private CardSpecialtyEnum cardSpecialty;
     private CardRarityEnum cardRarity;
     private CardNameEnum cardName;
     private int xp;
     private int level;
 
-    public Card(String cardReference, CardSpecialtyEnum cardSpecialty, CardRarityEnum cardRarity, CardNameEnum cardName, int xp, int level) {
-        this.cardReference = cardReference;
+    public BusinessCardCreateInfo(Long technicalId, String businessReference, CardSpecialtyEnum cardSpecialty, CardRarityEnum cardRarity, CardNameEnum cardName, int xp, int level) {
+        this.technicalId = technicalId;
+        this.businessReference = businessReference;
         this.cardSpecialty = cardSpecialty;
         this.cardRarity = cardRarity;
         this.cardName = cardName;
@@ -31,20 +32,16 @@ public class Card {
         this.cardName = cardName;
     }
 
-    public CardRarityEnum getCardRarity() {
-        return cardRarity;
+    public Long getTechnicalId() {
+        return technicalId;
     }
 
-    public void setCardRarity(CardRarityEnum cardRarity) {
-        this.cardRarity = cardRarity;
+    public String getBusinessReference() {
+        return businessReference;
     }
 
-    public String getCardReference() {
-        return cardReference;
-    }
-
-    public void setCardReference(String cardReference) {
-        this.cardReference = cardReference;
+    public void setBusinessReference(String businessReference) {
+        this.businessReference = businessReference;
     }
 
     public CardSpecialtyEnum getCardSpecialty() {
@@ -53,6 +50,14 @@ public class Card {
 
     public void setCardSpecialty(CardSpecialtyEnum cardSpecialty) {
         this.cardSpecialty = cardSpecialty;
+    }
+
+    public CardRarityEnum getCardRarity() {
+        return cardRarity;
+    }
+
+    public void setCardRarity(CardRarityEnum cardRarity) {
+        this.cardRarity = cardRarity;
     }
 
     public int getXp() {

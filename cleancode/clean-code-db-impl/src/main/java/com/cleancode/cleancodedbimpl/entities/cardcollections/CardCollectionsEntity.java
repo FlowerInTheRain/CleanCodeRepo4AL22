@@ -1,6 +1,6 @@
 package com.cleancode.cleancodedbimpl.entities.cardcollections;
 
-import com.cleancode.cleancodedbimpl.entities.cards.CardsEntity;
+import com.cleancode.cleancodedbimpl.entities.cards.CardEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,7 +20,7 @@ public class CardCollectionsEntity {
     @JoinTable(name = "CARD_COLLECTION_CARDS",
             joinColumns = @JoinColumn(name = "CARD_COLLECTION_ID"),
             inverseJoinColumns = @JoinColumn(name = "CARD_ID"))
-    private List<CardsEntity> cardCollectionCards;
+    private List<CardEntity> cardCollectionCards;
 
 
     public Long getId() {
@@ -47,11 +47,11 @@ public class CardCollectionsEntity {
         this.cardCollectionName = cardCollectionName;
     }
 
-    public List<CardsEntity> getCardCollectionCards() {
+    public List<CardEntity> getCardCollectionCards() {
         return cardCollectionCards;
     }
 
-    public void setCardCollectionCards(List<CardsEntity> cardCollectionCards) {
+    public void setCardCollectionCards(List<CardEntity> cardCollectionCards) {
         this.cardCollectionCards = cardCollectionCards;
     }
 

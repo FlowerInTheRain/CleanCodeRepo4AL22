@@ -6,7 +6,7 @@
     <artifactId>clean-code</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>clean-code</name>
-    <description>ESGI 4A AL 22/23 Clean Code project. Authors : Sid Bennaceur, Arnaud Kelinis</description>
+    <description>ESGI 4A AL 22/23 Clean Code project. Authors : Sid Bennaceur, Arnaud Jourdain</description>
     <packaging>pom</packaging>
     <parent>
         <groupId>org.springframework.boot</groupId>
