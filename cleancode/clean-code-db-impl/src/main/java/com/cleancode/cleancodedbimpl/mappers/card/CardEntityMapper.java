@@ -7,6 +7,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface CardEntityMapper {
 
@@ -23,4 +25,9 @@ public interface CardEntityMapper {
 
     })
     BusinessCardCreateInfo fromDbToBs(CardEntity card);
+
+    @Mappings({
+            @Mapping(source = "cardReference", target = "cardReference")
+    })
+    List<BusinessCardCreateInfo> fromListDbToListBs(List<CardEntity> cards);
 }

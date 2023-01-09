@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,4 +53,13 @@ public class CardRepositoryServiceImpl implements CardRepositoryService {
         BusinessCardCreateInfo mappedCardToBsCard = CardEntityMapper.INSTANCE.fromDbToBs(savedCard);
         return Optional.ofNullable(mappedCardToBsCard);
     }
+
+    @Override
+    public List<BusinessCardCreateInfo> findAllCards() {
+        LOGGER.log(Level.INFO, "Calling DB service findAllCards");
+        List<BusinessCardCreateInfo> foundCards = CardEntityMapper.INSTANCE.fromListDbToListBs(cardRepository.findAll());
+        LOGGER.log(Level.INFO, "Found Cards : " + foundCards);
+        return foundCards;
+    }
+
 }

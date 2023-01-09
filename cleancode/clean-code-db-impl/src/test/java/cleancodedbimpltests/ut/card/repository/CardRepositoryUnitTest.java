@@ -6,6 +6,9 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -34,5 +37,17 @@ public class CardRepositoryUnitTest {
         CardEntity actualCardEntity = cardRepository.save(cardEntity);
 
         assertEquals(actualCardEntity, cardEntity);
+    }
+
+    @Test
+    public void findAll_shouldReturnListOfCards() {
+        CardEntity card1 = new CardEntity();
+        CardEntity card2 = new CardEntity();
+        List<CardEntity> cards = Arrays.asList(card1, card2);
+        when(cardRepository.findAll()).thenReturn(cards);
+
+        List<CardEntity> returnedCards = cardRepository.findAll();
+
+        assertEquals(returnedCards, cards);
     }
 }
