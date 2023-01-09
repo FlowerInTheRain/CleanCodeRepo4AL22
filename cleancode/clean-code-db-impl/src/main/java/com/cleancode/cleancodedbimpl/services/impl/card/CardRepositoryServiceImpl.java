@@ -61,4 +61,5 @@ public class CardRepositoryServiceImpl implements CardRepositoryService {
         LOGGER.log(Level.INFO, "Found Cards : " + foundCards);
         return Optional.ofNullable(foundCards);
     }
+
 }

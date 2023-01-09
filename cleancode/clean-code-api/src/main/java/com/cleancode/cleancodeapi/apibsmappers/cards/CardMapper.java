@@ -13,6 +13,5 @@ public interface CardMapper {
 
     BusinessCardCreateInfo fromApiToBs(Card card);
     Card fromBsToApi(BusinessCardCreateInfo card);
-
     List<Card> fromListBsToListApi(List<BusinessCardCreateInfo> cards);
 }

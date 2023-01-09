@@ -23,7 +23,6 @@ public class CardOperationUserCase implements CardOperation {
     public CardOperationUserCase(CardRepositoryService cardRepositoryService) {
         this.cardRepositoryService = cardRepositoryService;
     }
-
     @Override
     public BusinessCardCreateInfo saveCard(BusinessCardCreateInfo businessCardCreateInfo) throws CleanCodeException {
 
