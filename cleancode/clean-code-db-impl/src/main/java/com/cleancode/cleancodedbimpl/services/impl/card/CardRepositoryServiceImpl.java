@@ -55,11 +55,11 @@ public class CardRepositoryServiceImpl implements CardRepositoryService {
     }
 
     @Override
-    public Optional<List<BusinessCardCreateInfo>> findAllCards() {
+    public List<BusinessCardCreateInfo> findAllCards() {
         LOGGER.log(Level.INFO, "Calling DB service findAllCards");
         List<BusinessCardCreateInfo> foundCards = CardEntityMapper.INSTANCE.fromListDbToListBs(cardRepository.findAll());
         LOGGER.log(Level.INFO, "Found Cards : " + foundCards);
-        return Optional.ofNullable(foundCards);
+        return foundCards;
     }
 
 }

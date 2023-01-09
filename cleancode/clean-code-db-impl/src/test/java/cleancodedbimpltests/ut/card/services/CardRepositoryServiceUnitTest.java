@@ -36,15 +36,15 @@ public class CardRepositoryServiceUnitTest {
         List<CardEntity> cards = Arrays.asList(card1, card2);
         when(cardRepository.findAll()).thenReturn(cards);
 
-        Optional<List<BusinessCardCreateInfo>> returnedCards = cardRepositoryService.findAllCards();
+        List<BusinessCardCreateInfo> returnedCards = cardRepositoryService.findAllCards();
 
         if (returnedCards.isEmpty()) {
             fail();
         }
 
-        assertEquals(returnedCards.get().size(), cards.size());
-        assertEquals(returnedCards.get().get(0).getTechnicalId(), CardEntityMapper.INSTANCE.fromDbToBs(card1).getTechnicalId());
-        assertEquals(returnedCards.get().get(1).getTechnicalId(), CardEntityMapper.INSTANCE.fromDbToBs(card2).getTechnicalId());
+        assertEquals(returnedCards.size(), cards.size());
+        assertEquals(returnedCards.get(0).getTechnicalId(), CardEntityMapper.INSTANCE.fromDbToBs(card1).getTechnicalId());
+        assertEquals(returnedCards.get(1).getTechnicalId(), CardEntityMapper.INSTANCE.fromDbToBs(card2).getTechnicalId());
     }
 
     @Test

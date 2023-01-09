@@ -66,7 +66,7 @@ public class CardOperationUseCaseUnitTest {
                 100,
                 10);
         List<BusinessCardCreateInfo> cards = Arrays.asList(card1, card2);
-        when(cardRepositoryService.findAllCards()).thenReturn(Optional.of(cards));
+        when(cardRepositoryService.findAllCards()).thenReturn(cards);
 
         List<BusinessCardCreateInfo> returnedCards = cardOperationUserCase.findAllCards();
 

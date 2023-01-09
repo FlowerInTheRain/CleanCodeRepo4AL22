@@ -11,6 +11,6 @@ public interface CardRepositoryService {
 
     Optional<BusinessCardCreateInfo> saveCardInDb(BusinessCardCreateInfo cardToSave);
 
-    Optional<List<BusinessCardCreateInfo>> findAllCards();
+    List<BusinessCardCreateInfo> findAllCards();
 }
 

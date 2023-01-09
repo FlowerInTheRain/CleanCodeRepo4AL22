@@ -52,9 +52,9 @@ public class CardOperationUserCase implements CardOperation {
     public List<BusinessCardCreateInfo> findAllCards() throws CleanCodeException {
 
         try {
-            Optional<List<BusinessCardCreateInfo>> businessCardCreateInfos = cardRepositoryService.findAllCards();
+            List<BusinessCardCreateInfo> businessCardCreateInfos = cardRepositoryService.findAllCards();
             LOGGER.log(Level.INFO, " Returned List businessCardCreateInfos : " + businessCardCreateInfos);
-            return businessCardCreateInfos.orElse(null);
+            return businessCardCreateInfos;
         } catch (Exception e){
             handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
         }
