@@ -20,9 +20,6 @@ public class CardEntity {
     private String cardReference;
 
     @Column(nullable = false, length=32)
-    private String cardCollectionReference;
-
-    @Column(nullable = false, length=32)
     private String cardRarity;
 
     @Column(nullable = false, length=32)
