@@ -60,7 +60,7 @@ public class CardCreatorUseCaseUnitTest {
         BusinessCardCreateInfo card2 = new BusinessCardCreateInfo(
                 2L,
                 "67890",
-                CardSpecialtyEnum.ASSASIN,
+                CardSpecialtyEnum.ASSASSIN,
                 CardRarityEnum.RARE,
                 CardNameEnum.ARMAND,
                 100,
