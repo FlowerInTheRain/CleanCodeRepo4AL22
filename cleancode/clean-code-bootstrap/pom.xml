@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cleancode-bootstrap</artifactId>
-    <name>com-clean-code-bootstrap</name>
+    <artifactId>clean-code-bootstrap</artifactId>
+    <name>clean-code-bootstrap</name>
 
     <properties>
         <maven.compiler.source>19</maven.compiler.source>
@@ -20,32 +20,19 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.7.7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>2.7.7</version>
+            <version>3.0.1</version>
         </dependency>
-
         <dependency>
             <groupId>com.esgi.cleancode</groupId>
             <artifactId>clean-code-domain</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-
-
         <dependency>
             <groupId>com.esgi.cleancode</groupId>
             <artifactId>clean-code-persistence</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
             <scope>compile</scope>
         </dependency>
         <dependency>
