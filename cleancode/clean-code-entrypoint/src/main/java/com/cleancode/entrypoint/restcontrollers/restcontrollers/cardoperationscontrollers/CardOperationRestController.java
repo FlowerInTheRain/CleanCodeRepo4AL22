@@ -1,4 +1,4 @@
-package com.cleancode.cleancodeentrypoint.restcontrollers.restcontrollers.cardoperationscontrollers;
+package com.cleancode.entrypoint.restcontrollers.restcontrollers.cardoperationscontrollers;
 
 import com.cleancode.cleancodeapi.apibsmappers.cards.CardMapper;
 import com.cleancode.cleancodeapi.dto.card.Card;

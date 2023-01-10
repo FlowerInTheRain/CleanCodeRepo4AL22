@@ -1,7 +1,7 @@
 package com.esgi.cleancode;
 
 
-import com.cleancode.cleancodeentrypoint.restcontrollers.restcontrollers.SwaggerConf;
+import com.cleancode.entrypoint.restcontrollers.restcontrollers.SwaggerConf;
 import com.cleancode.persistence.configurations.JpaConfiguration;
 import com.esgi.cleancode.beanconfiguration.BeanConfiguration;
 import org.springframework.boot.SpringApplication;

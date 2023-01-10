@@ -1,4 +1,4 @@
-package com.cleancode.cleancodeentrypoint.restcontrollers.restcontrollers.useroperationscontrollers;
+package com.cleancode.entrypoint.restcontrollers.restcontrollers.useroperationscontrollers;
 
 import com.cleancode.domain.dto.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.in.user.AccountCreator;
