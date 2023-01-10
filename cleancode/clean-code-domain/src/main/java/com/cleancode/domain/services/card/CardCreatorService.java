@@ -6,8 +6,7 @@ import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanC
 import com.cleancode.domain.core.lib.formatutils.uuidformatterutils.UUIDFormatter;
 import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
 import com.cleancode.domain.ports.in.card.CardCreator;
-import com.cleancode.domain.ports.out.card.CardRepositoryService;
-import org.springframework.stereotype.Service;
+import com.cleancode.domain.ports.out.card.CardPersistencePort;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,10 +16,10 @@ import java.util.logging.Logger;
 public class CardCreatorService implements CardCreator {
 
     private static final Logger LOGGER = Logger.getLogger(CardCreatorService.class.getName());
-    private final CardRepositoryService cardRepositoryService;
+    private final CardPersistencePort cardPersistencePort;
 
-    public CardCreatorService(CardRepositoryService cardRepositoryService) {
-        this.cardRepositoryService = cardRepositoryService;
+    public CardCreatorService(CardPersistencePort cardPersistencePort) {
+        this.cardPersistencePort = cardPersistencePort;
     }
     @Override
     public BusinessCardCreateInfo saveCard(BusinessCardCreateInfo businessCardCreateInfo) throws CleanCodeException {
@@ -34,7 +33,7 @@ public class CardCreatorService implements CardCreator {
         }
 
         try {
-            Optional<BusinessCardCreateInfo> cardEntity = cardRepositoryService.saveCardInDb(businessCardCreateInfo);
+            Optional<BusinessCardCreateInfo> cardEntity = cardPersistencePort.saveCardInDb(businessCardCreateInfo);
             LOGGER.log(Level.INFO, "BusinessCardCreateInfo businessCardCreateInfo : " + businessCardCreateInfo + " Returned cardEntity : " + cardEntity);
             if(cardEntity.isPresent()){
                 return cardEntity.get();
@@ -51,7 +50,7 @@ public class CardCreatorService implements CardCreator {
     public List<BusinessCardCreateInfo> findAllCards() throws CleanCodeException {
 
         try {
-            List<BusinessCardCreateInfo> businessCardCreateInfos = cardRepositoryService.findAllCards();
+            List<BusinessCardCreateInfo> businessCardCreateInfos = cardPersistencePort.findAllCards();
             LOGGER.log(Level.INFO, " Returned List businessCardCreateInfos : " + businessCardCreateInfos);
             return businessCardCreateInfos;
         } catch (Exception e){
@@ -64,7 +63,7 @@ public class CardCreatorService implements CardCreator {
     @Override
     public BusinessCardCreateInfo findOneCardByReference(String cardReference) throws CleanCodeException {
         try {
-            Optional<BusinessCardCreateInfo> businessCardCreateInfo = cardRepositoryService.findOneCardByCardFunctionalId(cardReference);
+            Optional<BusinessCardCreateInfo> businessCardCreateInfo = cardPersistencePort.findOneCardByCardFunctionalId(cardReference);
             LOGGER.log(Level.INFO, "String cardReference : " + cardReference + " Returned businessCardCreateInfo : " + businessCardCreateInfo);
             return businessCardCreateInfo.orElse(null);
         } catch (Exception e){

@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>com-cleancode-bootstrap</artifactId>
-    <name>com-cleancode-bootstrap</name>
+    <name>com-clean-code-bootstrap</name>
 
     <properties>
         <maven.compiler.source>19</maven.compiler.source>

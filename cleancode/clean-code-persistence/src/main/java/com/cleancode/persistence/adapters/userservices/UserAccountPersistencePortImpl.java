@@ -1,11 +1,10 @@
 package com.cleancode.persistence.adapters.userservices;
 
 import com.cleancode.domain.dto.user.BusinessUserClientInfo;
-import com.cleancode.domain.ports.out.useraccount.UserAccountRepositoryService;
+import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.cleancode.persistence.entities.users.UsersEntity;
 import com.cleancode.persistence.mappers.users.UserEntityMapper;
 import com.cleancode.persistence.repositories.user.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,12 +14,11 @@ import java.util.logging.Logger;
 
 @Service
 @Transactional
-public class UserAccountRepositoryServiceImpl implements UserAccountRepositoryService {
-    private static final Logger LOGGER = Logger.getLogger(UserAccountRepositoryServiceImpl.class.getName());
+public class UserAccountPersistencePortImpl implements UserAccountPersistencePort {
+    private static final Logger LOGGER = Logger.getLogger(UserAccountPersistencePortImpl.class.getName());
     private final UserRepository userRepository;
 
-    @Autowired
-    public UserAccountRepositoryServiceImpl(UserRepository userRepository){
+    public UserAccountPersistencePortImpl(UserRepository userRepository){
         this.userRepository = userRepository;
     }
 

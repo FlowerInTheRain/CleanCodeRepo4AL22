@@ -3,12 +3,12 @@ package cleancodedbimpltests.ut.card.services;
 import com.cleancode.persistence.entities.cards.CardEntity;
 import com.cleancode.persistence.mappers.card.CardEntityMapper;
 import com.cleancode.persistence.repositories.card.CardRepository;
-import com.cleancode.persistence.adapters.card.CardRepositoryServiceImpl;
+import com.cleancode.persistence.adapters.card.CardPersistencePortImpl;
 import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
 import com.cleancode.domain.enums.cards.CardNameEnum;
 import com.cleancode.domain.enums.cards.CardRarityEnum;
 import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
-import com.cleancode.domain.ports.out.card.CardRepositoryService;
+import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -21,13 +21,13 @@ import java.util.Optional;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
-public class CardRepositoryServiceUnitTest {
+public class CardPersistencePortUnitTest {
 
     @Mock
     private CardRepository cardRepository = Mockito.mock(CardRepository.class);
 
     @InjectMocks
-    private CardRepositoryService cardRepositoryService = new CardRepositoryServiceImpl(this.cardRepository);
+    private CardPersistencePort cardPersistencePort = new CardPersistencePortImpl(this.cardRepository);
 
     @Test
     public void findAllCardsShouldReturnListOfCards() {
@@ -36,7 +36,7 @@ public class CardRepositoryServiceUnitTest {
         List<CardEntity> cards = Arrays.asList(card1, card2);
         when(cardRepository.findAll()).thenReturn(cards);
 
-        List<BusinessCardCreateInfo> returnedCards = cardRepositoryService.findAllCards();
+        List<BusinessCardCreateInfo> returnedCards = cardPersistencePort.findAllCards();
 
         if (returnedCards.isEmpty()) {
             fail();
@@ -53,7 +53,7 @@ public class CardRepositoryServiceUnitTest {
         CardEntity card = new CardEntity();
         when(cardRepository.findByCardReference(cardBusinessReference)).thenReturn(card);
 
-        Optional<BusinessCardCreateInfo> returnedCard = cardRepositoryService.findOneCardByCardFunctionalId(cardBusinessReference);
+        Optional<BusinessCardCreateInfo> returnedCard = cardPersistencePort.findOneCardByCardFunctionalId(cardBusinessReference);
 
         if (returnedCard.isEmpty()) {
             fail();
@@ -76,7 +76,7 @@ public class CardRepositoryServiceUnitTest {
         CardEntity savedCard = CardEntityMapper.INSTANCE.fromBsToDb(cardToSave);
         when(cardRepository.save(CardEntityMapper.INSTANCE.fromBsToDb(cardToSave))).thenReturn(savedCard);
 
-        Optional<BusinessCardCreateInfo> returnedCard = cardRepositoryService.saveCardInDb(cardToSave);
+        Optional<BusinessCardCreateInfo> returnedCard = cardPersistencePort.saveCardInDb(cardToSave);
 
         if (returnedCard.isEmpty()) {
             fail();

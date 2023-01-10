@@ -5,7 +5,7 @@ import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
 import java.util.List;
 import java.util.Optional;
 
-public interface CardRepositoryService {
+public interface CardPersistencePort {
 
     Optional<BusinessCardCreateInfo> findOneCardByCardFunctionalId(String functionalId);
 

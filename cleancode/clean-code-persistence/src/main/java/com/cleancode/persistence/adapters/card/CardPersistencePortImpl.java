@@ -4,26 +4,22 @@ import com.cleancode.persistence.entities.cards.CardEntity;
 import com.cleancode.persistence.mappers.card.CardEntityMapper;
 import com.cleancode.persistence.repositories.card.CardRepository;
 import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
-import com.cleancode.domain.ports.out.card.CardRepositoryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
-@Transactional
-public class CardRepositoryServiceImpl implements CardRepositoryService {
+public class CardPersistencePortImpl implements CardPersistencePort {
 
-    private static final Logger LOGGER = Logger.getLogger(CardRepositoryServiceImpl.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CardPersistencePortImpl.class.getName());
 
     private final CardRepository cardRepository;
 
-    @Autowired
-    public CardRepositoryServiceImpl(CardRepository cardRepository) {
+    public CardPersistencePortImpl(CardRepository cardRepository) {
         this.cardRepository = cardRepository;
     }
 

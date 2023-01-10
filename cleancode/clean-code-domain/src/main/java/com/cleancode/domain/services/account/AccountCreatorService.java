@@ -2,15 +2,14 @@ package com.cleancode.domain.services.account;
 
 import com.cleancode.domain.dto.cardcollection.CardCollection;
 import com.cleancode.domain.dto.user.BusinessUserClientInfo;
-import com.cleancode.domain.ports.out.useraccount.UserAccountRepositoryService;
-import com.cleancode.domain.ports.out.usercardcollection.UserCardCollectionRepositoryPort;
+import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
+import com.cleancode.domain.ports.out.usercardcollection.CardCollectionPersistencePort;
 import com.cleancode.domain.ports.in.user.AccountCreator;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.core.lib.userserviceutils.UserAccountOperationUtils;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -19,17 +18,17 @@ import java.util.logging.Logger;
 
 public class AccountCreatorService implements AccountCreator {
     private static final Logger LOGGER = Logger.getLogger(AccountCreatorService.class.getName());
-    private final UserAccountRepositoryService userRepositoryService;
+    private final UserAccountPersistencePort userRepositoryService;
 
     private final CacheManager cacheManager;
 
-    private final UserCardCollectionRepositoryPort userCardCollectionRepositoryPort;
+    private final CardCollectionPersistencePort cardCollectionPersistencePort;
 
-    public AccountCreatorService(UserAccountRepositoryService userAccountRepositoryService, CacheManager cacheManager,
-                                 UserCardCollectionRepositoryPort userCardCollectionRepositoryPort){
-        this.userRepositoryService = userAccountRepositoryService;
+    public AccountCreatorService(UserAccountPersistencePort userAccountPersistencePort, CacheManager cacheManager,
+                                 CardCollectionPersistencePort cardCollectionPersistencePort){
+        this.userRepositoryService = userAccountPersistencePort;
         this.cacheManager = cacheManager;
-        this.userCardCollectionRepositoryPort = userCardCollectionRepositoryPort;
+        this.cardCollectionPersistencePort = cardCollectionPersistencePort;
     }
 
     /**
@@ -47,7 +46,7 @@ public class AccountCreatorService implements AccountCreator {
         UserAccountOperationUtils.handleInitBusinessUserCardCollection(userFromApi.getUserCardCollection().getCollectionName(), userFromApi);
         CardCollection cardCollectionToSave = userFromApi.getUserCardCollection();
         try {
-            CardCollection savedCardCollection = userCardCollectionRepositoryPort.saveUserCardCollection(cardCollectionToSave);
+            CardCollection savedCardCollection = cardCollectionPersistencePort.saveUserCardCollection(cardCollectionToSave);
             /**
              *    Custom exception management with specific status code, check it out
              *    throw new DBIMPLCommunicationException(DBIMPLExceptionEnum.DB_TIMEOUT_EXCEPTION);

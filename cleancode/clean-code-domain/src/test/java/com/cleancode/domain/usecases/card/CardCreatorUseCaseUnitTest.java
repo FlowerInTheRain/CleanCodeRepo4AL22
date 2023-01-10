@@ -4,7 +4,7 @@ import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
 import com.cleancode.domain.enums.cards.CardNameEnum;
 import com.cleancode.domain.enums.cards.CardRarityEnum;
 import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
-import com.cleancode.domain.ports.out.card.CardRepositoryService;
+import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.services.card.CardCreatorService;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -23,10 +23,10 @@ import static org.mockito.Mockito.when;
 public class CardCreatorUseCaseUnitTest {
 
     @Mock
-    private CardRepositoryService cardRepositoryService = Mockito.mock(CardRepositoryService.class);
+    private CardPersistencePort cardPersistencePort = Mockito.mock(CardPersistencePort.class);
 
     @InjectMocks
-    private CardCreatorService cardCreatorService = new CardCreatorService(this.cardRepositoryService);
+    private CardCreatorService cardCreatorService = new CardCreatorService(this.cardPersistencePort);
 
     @Test
     public void saveCardShouldSaveCard() throws Exception {
@@ -39,12 +39,12 @@ public class CardCreatorUseCaseUnitTest {
                 100,
                 10
         );
-        when(cardRepositoryService.saveCardInDb(businessCardCreateInfo)).thenReturn(Optional.of(businessCardCreateInfo));
+        when(cardPersistencePort.saveCardInDb(businessCardCreateInfo)).thenReturn(Optional.of(businessCardCreateInfo));
 
         BusinessCardCreateInfo savedBusinessCardCreateInfo = cardCreatorService.saveCard(businessCardCreateInfo);
 
         assertEquals(savedBusinessCardCreateInfo, businessCardCreateInfo);
-        verify(cardRepositoryService).saveCardInDb(businessCardCreateInfo);
+        verify(cardPersistencePort).saveCardInDb(businessCardCreateInfo);
     }
 
     @Test
@@ -66,12 +66,12 @@ public class CardCreatorUseCaseUnitTest {
                 100,
                 10);
         List<BusinessCardCreateInfo> cards = Arrays.asList(card1, card2);
-        when(cardRepositoryService.findAllCards()).thenReturn(cards);
+        when(cardPersistencePort.findAllCards()).thenReturn(cards);
 
         List<BusinessCardCreateInfo> returnedCards = cardCreatorService.findAllCards();
 
         assertEquals(returnedCards, cards);
-        verify(cardRepositoryService).findAllCards();
+        verify(cardPersistencePort).findAllCards();
     }
 
     @Test
@@ -84,11 +84,11 @@ public class CardCreatorUseCaseUnitTest {
                 CardNameEnum.JONATHAN,
                 100,
                 10);
-        when(cardRepositoryService.findOneCardByCardFunctionalId("12345")).thenReturn(Optional.of(card));
+        when(cardPersistencePort.findOneCardByCardFunctionalId("12345")).thenReturn(Optional.of(card));
 
         BusinessCardCreateInfo returnedCard = cardCreatorService.findOneCardByReference("12345");
 
         assertEquals(returnedCard, card);
-        verify(cardRepositoryService).findOneCardByCardFunctionalId("12345");
+        verify(cardPersistencePort).findOneCardByCardFunctionalId("12345");
     }
 }
