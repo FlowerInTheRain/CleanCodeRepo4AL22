@@ -1,4 +1,4 @@
-package com.cleancode.cleancodespringrest.entrypoints.restservice;
+package com.cleancode.cleancodespringrest.adapters;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

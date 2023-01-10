@@ -1,4 +1,4 @@
-package com.cleancode.cleancodepersistence.repositories;
+package com.cleancode.cleancodepersistence.repositories.card;
 
 import com.cleancode.cleancodepersistence.entities.cards.CardsEntity;
 import org.springframework.data.repository.CrudRepository;

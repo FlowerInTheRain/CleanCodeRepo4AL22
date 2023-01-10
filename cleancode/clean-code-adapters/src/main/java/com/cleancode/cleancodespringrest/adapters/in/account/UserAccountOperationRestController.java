@@ -1,4 +1,4 @@
-package com.cleancode.cleancodespringrest.entrypoints.restservice.restcontrollers.useroperationscontrollers;
+package com.cleancode.cleancodespringrest.adapters.in.account;
 
 import com.cleancode.domain.dto.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.application.UserAccountOperationBusinessService;
@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 public class UserAccountOperationRestController {
     private static final Logger LOGGER = Logger.getLogger(UserAccountOperationRestController.class.getName());
     private final UserAccountOperationBusinessService userAccountOperationBusinessService;
+
     public UserAccountOperationRestController(UserAccountOperationBusinessService userAccountOperationBusinessService){
         this.userAccountOperationBusinessService = userAccountOperationBusinessService;
     }
