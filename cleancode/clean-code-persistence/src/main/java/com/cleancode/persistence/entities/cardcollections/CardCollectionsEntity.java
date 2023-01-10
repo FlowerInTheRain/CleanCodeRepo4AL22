@@ -1,21 +1,18 @@
 package com.cleancode.persistence.entities.cardcollections;
 
-import com.cleancode.persistence.entities.cards.CardEntity;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 
-@Entity(name="CARD_COLLECTIONS")
+@Entity(name = "CARD_COLLECTIONS")
 public class CardCollectionsEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="CARD_COLLECTION_ID")
+    @Column(name = "CARD_COLLECTION_ID")
     private long id;
-    @Column(name="CARD_COLLECTION_REFERENCE", unique = true, nullable = false, length=32)
+    @Column(name = "CARD_COLLECTION_REFERENCE", unique = true, nullable = false, length = 32)
     private String cardCollectionReference;
-    @Column(name= "CARD_COLLECTION_NAME", nullable = false, length=250)
+    @Column(name = "CARD_COLLECTION_NAME", nullable = false, length = 250)
     private String cardCollectionName;
 
     public CardCollectionsEntity() {
@@ -44,7 +41,6 @@ public class CardCollectionsEntity implements Serializable {
     public void setCardCollectionName(String cardCollectionName) {
         this.cardCollectionName = cardCollectionName;
     }
-
 
 
     @Override

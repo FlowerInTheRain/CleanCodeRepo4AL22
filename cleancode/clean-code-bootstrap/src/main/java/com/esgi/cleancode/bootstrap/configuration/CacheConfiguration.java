@@ -9,9 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableCaching
 public class CacheConfiguration {
-    /**
-     *  TODO Move to a config package
-     */
     @Bean
     public CacheManager cacheManager() {
         return new ConcurrentMapCacheManager("Users");

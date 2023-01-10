@@ -2,7 +2,6 @@ package com.cleancode.persistence.entities.cards;
 
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
