@@ -20,14 +20,11 @@ public class AccountCreatorService implements AccountCreator {
     private static final Logger LOGGER = Logger.getLogger(AccountCreatorService.class.getName());
     private final UserAccountPersistencePort userRepositoryService;
 
-    private final CacheManager cacheManager;
-
     private final CardCollectionPersistencePort cardCollectionPersistencePort;
 
-    public AccountCreatorService(UserAccountPersistencePort userAccountPersistencePort, CacheManager cacheManager,
+    public AccountCreatorService(UserAccountPersistencePort userAccountPersistencePort,
                                  CardCollectionPersistencePort cardCollectionPersistencePort){
         this.userRepositoryService = userAccountPersistencePort;
-        this.cacheManager = cacheManager;
         this.cardCollectionPersistencePort = cardCollectionPersistencePort;
     }
 
@@ -36,9 +33,7 @@ public class AccountCreatorService implements AccountCreator {
      * @return something
      */
     @Override
-    @Cacheable(value = "Users", unless = "#userFromApi.clientReference == null")
     public BusinessUserClientInfo saveUserAccount(BusinessUserClientInfo userFromApi) throws CleanCodeException {
-        LOGGER.log(Level.INFO,"oui" + Objects.requireNonNull(cacheManager.getCache("Users")));
         if(userRepositoryService.findUserByUserName(userFromApi.getUserName()).isPresent()){
             throw new CleanCodeException(CleanCodeExceptionsEnum.BS_COMPONENT_USERNAME_ALREADY_TAKEN);
         }

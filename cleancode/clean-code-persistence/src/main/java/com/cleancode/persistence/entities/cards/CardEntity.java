@@ -1,16 +1,19 @@
 package com.cleancode.persistence.entities.cards;
 
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
 @Entity
-public class CardEntity {
+public class CardEntity implements Serializable {
+    public CardEntity() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

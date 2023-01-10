@@ -5,9 +5,11 @@ import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.cleancode.persistence.entities.users.UsersEntity;
 import com.cleancode.persistence.mappers.users.UserEntityMapper;
 import com.cleancode.persistence.repositories.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +19,7 @@ import java.util.logging.Logger;
 public class UserAccountPersistencePortImpl implements UserAccountPersistencePort {
     private static final Logger LOGGER = Logger.getLogger(UserAccountPersistencePortImpl.class.getName());
     private final UserRepository userRepository;
-
+    @Autowired
     public UserAccountPersistencePortImpl(UserRepository userRepository){
         this.userRepository = userRepository;
     }

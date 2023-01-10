@@ -13,6 +13,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
 
 @Configuration
 @EnableJpaRepositories("com.cleancode.persistence.repositories")
@@ -20,10 +25,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan(basePackages = {"com.cleancode.persistence.adapters"})
 public class BeanConfiguration {
 
+
     @Bean
-    AccountCreator accountCreator(UserAccountPersistencePort userAccountPersistencePort, CacheManager cacheManager,
+    AccountCreator accountCreator(UserAccountPersistencePort userAccountPersistencePort,
                                   CardCollectionPersistencePort cardCollectionPersistencePort) {
-        return new AccountCreatorService(userAccountPersistencePort, cacheManager, cardCollectionPersistencePort);
+        return new AccountCreatorService(userAccountPersistencePort, cardCollectionPersistencePort);
     }
 
     @Bean

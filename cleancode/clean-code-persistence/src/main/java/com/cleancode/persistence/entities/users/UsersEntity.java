@@ -4,11 +4,15 @@ import com.cleancode.persistence.entities.cardcollections.CardCollectionsEntity;
 import com.cleancode.persistence.entities.interfaces.Agents;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.Instant;
 
 @Entity(name="USERS")
-public class UsersEntity implements Agents {
+public class UsersEntity implements Serializable {
+    public UsersEntity() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID", nullable = false)
