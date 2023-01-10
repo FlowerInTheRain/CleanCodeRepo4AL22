@@ -5,9 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>clean-code-api</artifactId>
+    <name>clean-code-api</name>
     <version>0.0.1-SNAPSHOT</version>
     <parent>
-        <groupId>com.esgi.arlo</groupId>
+        <groupId>com.esgi.cleancode</groupId>
         <artifactId>clean-code</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -38,7 +39,7 @@
             <artifactId>jackson-annotations</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.esgi.arlo</groupId>
+            <groupId>com.esgi.cleancode</groupId>
             <artifactId>clean-code-domain</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>

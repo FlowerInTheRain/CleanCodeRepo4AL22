@@ -9,5 +9,4 @@ public interface CardCollectionMapper {
     CardCollectionMapper INSTANCE = Mappers.getMapper(CardCollectionMapper.class);
 
     CardCollection fromBusinessServiceCardCollectionToApiCardCollection(com.cleancode.domain.dto.cardcollection.CardCollection cardCollection);
-    com.cleancode.domain.dto.cardcollection.CardCollection fromAPICardCollectionToBSCardCollection(CardCollection cardCollection);
 }

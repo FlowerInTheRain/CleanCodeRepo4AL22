@@ -1,7 +1,8 @@
 package com.cleancode.cleancodeapi.apibsmappers.cards;
 
-import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
 import com.cleancode.cleancodeapi.dto.card.Card;
+import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
