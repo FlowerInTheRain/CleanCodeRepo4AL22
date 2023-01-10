@@ -1,4 +1,4 @@
-package com.cleancode.entrypoint.restcontrollers.restcontrollers.useroperationscontrollers;
+package com.cleancode.entrypoint.restcontrollers;
 
 import com.cleancode.domain.dto.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.in.user.AccountCreator;
@@ -21,11 +21,11 @@ import java.util.logging.Logger;
 @RequestMapping("/")
 @CrossOrigin
 @Api
-public class UserAccountOperationRestController {
-    private static final Logger LOGGER = Logger.getLogger(UserAccountOperationRestController.class.getName());
+public class UserAccountCreation {
+    private static final Logger LOGGER = Logger.getLogger(UserAccountCreation.class.getName());
     private final AccountCreator accountCreator;
 
-    public UserAccountOperationRestController(AccountCreator accountCreator){
+    public UserAccountCreation(AccountCreator accountCreator){
         this.accountCreator = accountCreator;
     }
 

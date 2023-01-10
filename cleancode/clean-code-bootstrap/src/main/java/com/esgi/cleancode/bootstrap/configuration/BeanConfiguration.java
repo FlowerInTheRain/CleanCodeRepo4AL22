@@ -1,4 +1,4 @@
-package com.esgi.cleancode.beanconfiguration;
+package com.esgi.cleancode.bootstrap.configuration;
 
 import com.cleancode.domain.ports.in.card.CardCreator;
 import com.cleancode.domain.ports.in.user.AccountCreator;

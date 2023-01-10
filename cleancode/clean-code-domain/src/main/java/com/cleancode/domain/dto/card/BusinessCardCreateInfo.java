@@ -75,4 +75,45 @@ public class BusinessCardCreateInfo {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BusinessCardCreateInfo that = (BusinessCardCreateInfo) o;
+
+        if (xp != that.xp) return false;
+        if (level != that.level) return false;
+        if (!technicalId.equals(that.technicalId)) return false;
+        if (!businessReference.equals(that.businessReference)) return false;
+        if (cardSpecialty != that.cardSpecialty) return false;
+        if (cardRarity != that.cardRarity) return false;
+        return cardName == that.cardName;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = technicalId.hashCode();
+        result = 31 * result + businessReference.hashCode();
+        result = 31 * result + cardSpecialty.hashCode();
+        result = 31 * result + cardRarity.hashCode();
+        result = 31 * result + cardName.hashCode();
+        result = 31 * result + xp;
+        result = 31 * result + level;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "BusinessCardCreateInfo{" +
+                "technicalId=" + technicalId +
+                ", businessReference='" + businessReference + '\'' +
+                ", cardSpecialty=" + cardSpecialty +
+                ", cardRarity=" + cardRarity +
+                ", cardName=" + cardName +
+                ", xp=" + xp +
+                ", level=" + level +
+                '}';
+    }
 }

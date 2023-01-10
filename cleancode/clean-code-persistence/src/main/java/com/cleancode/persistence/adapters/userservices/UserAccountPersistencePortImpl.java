@@ -19,7 +19,6 @@ import java.util.logging.Logger;
 public class UserAccountPersistencePortImpl implements UserAccountPersistencePort {
     private static final Logger LOGGER = Logger.getLogger(UserAccountPersistencePortImpl.class.getName());
     private final UserRepository userRepository;
-    @Autowired
     public UserAccountPersistencePortImpl(UserRepository userRepository){
         this.userRepository = userRepository;
     }

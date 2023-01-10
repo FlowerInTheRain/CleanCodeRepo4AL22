@@ -3,7 +3,7 @@ package cleancodedbimpltests.ut.card.services;
 import com.cleancode.persistence.entities.cards.CardEntity;
 import com.cleancode.persistence.mappers.card.CardEntityMapper;
 import com.cleancode.persistence.repositories.card.CardRepository;
-import com.cleancode.persistence.adapters.card.CardPersistencePortImpl;
+import com.cleancode.persistence.adapters.card.CardPersistenceSpi;
 import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
 import com.cleancode.domain.enums.cards.CardNameEnum;
 import com.cleancode.domain.enums.cards.CardRarityEnum;
@@ -27,7 +27,7 @@ public class CardPersistencePortUnitTest {
     private CardRepository cardRepository = Mockito.mock(CardRepository.class);
 
     @InjectMocks
-    private CardPersistencePort cardPersistencePort = new CardPersistencePortImpl(this.cardRepository);
+    private CardPersistencePort cardPersistencePort = new CardPersistenceSpi(this.cardRepository);
 
     @Test
     public void findAllCardsShouldReturnListOfCards() {

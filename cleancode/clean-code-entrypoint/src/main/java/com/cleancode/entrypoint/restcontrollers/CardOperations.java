@@ -1,4 +1,4 @@
-package com.cleancode.entrypoint.restcontrollers.restcontrollers.cardoperationscontrollers;
+package com.cleancode.entrypoint.restcontrollers;
 
 import com.cleancode.cleancodeapi.apibsmappers.cards.CardMapper;
 import com.cleancode.cleancodeapi.dto.card.Card;
@@ -7,22 +7,20 @@ import com.cleancode.domain.ports.in.card.CardCreator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController("CardOperationRestController")
 @RequestMapping("/card/")
 @CrossOrigin
 @Api
-public class CardOperationRestController {
+public class CardOperations {
 
     private final CardCreator cardCreator;
 
-    public CardOperationRestController(CardCreator cardCreator){
+    public CardOperations(CardCreator cardCreator){
         this.cardCreator = cardCreator;
     }
 

@@ -1,18 +1,17 @@
 package com.esgi.cleancode;
 
 
-import com.cleancode.entrypoint.restcontrollers.restcontrollers.SwaggerConf;
+import com.cleancode.entrypoint.kernel.RestConfiguration;
 import com.cleancode.persistence.configurations.JpaConfiguration;
-import com.esgi.cleancode.beanconfiguration.BeanConfiguration;
+import com.esgi.cleancode.bootstrap.configuration.BeanConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
-@Import({BeanConfiguration.class, JpaConfiguration.class, SwaggerConf.class})
+@Import({BeanConfiguration.class, JpaConfiguration.class, RestConfiguration.class})
 @SpringBootApplication
-
 @EnableSwagger2
 public class Application {
     public static void main(String[] args) {

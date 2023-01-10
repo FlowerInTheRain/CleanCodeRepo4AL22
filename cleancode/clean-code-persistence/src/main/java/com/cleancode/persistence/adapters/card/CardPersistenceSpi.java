@@ -15,15 +15,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
-@Transactional
-public class CardPersistencePortImpl implements CardPersistencePort {
+public class CardPersistenceSpi implements CardPersistencePort {
 
-    private static final Logger LOGGER = Logger.getLogger(CardPersistencePortImpl.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CardPersistenceSpi.class.getName());
 
     private final CardRepository cardRepository;
-    @Autowired
 
-    public CardPersistencePortImpl(CardRepository cardRepository) {
+
+    public CardPersistenceSpi(CardRepository cardRepository) {
         this.cardRepository = cardRepository;
     }
 

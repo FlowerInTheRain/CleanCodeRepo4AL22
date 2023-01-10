@@ -11,12 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class CardCollectionPortImpl implements CardCollectionPersistencePort {
+public class CardCollectionPersistenceSpi implements CardCollectionPersistencePort {
 
     private final CardCollectionRepository cardCollectionRepository;
 
-    @Autowired
-    public CardCollectionPortImpl(CardCollectionRepository cardCollectionRepository) {
+    public CardCollectionPersistenceSpi(CardCollectionRepository cardCollectionRepository) {
         this.cardCollectionRepository = cardCollectionRepository;
     }
 

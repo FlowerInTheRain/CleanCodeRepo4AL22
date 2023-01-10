@@ -11,10 +11,6 @@ public class BusinessUserClientInfo extends BusinessUserInfo {
     private Timestamp clientCreationDate;
     private CardCollection userCardCollection;
 
-    /**
-     *  TODO Check Intellij TODO !!
-     *  Don't forget to erase this TODO !
-     */
     public BusinessUserClientInfo(String userName, Long technicalId, String businessReference, Timestamp clientCreationDate, CardCollection userCardCollection,
                                   Long businessUserCCCoinWallet) {
         super(userName);
