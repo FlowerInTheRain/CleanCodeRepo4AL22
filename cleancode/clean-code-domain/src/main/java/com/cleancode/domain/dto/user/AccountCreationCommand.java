@@ -3,7 +3,7 @@ package com.cleancode.domain.dto.user;
 public class AccountCreationCommand extends  BusinessUserInfo{
 
     private final String collectionName;
-    public AccountCreationCommand(String userName, String collectionName) {
+    private AccountCreationCommand(String userName, String collectionName) {
         super(userName);
         this.collectionName = collectionName;
     }
@@ -25,5 +25,9 @@ public class AccountCreationCommand extends  BusinessUserInfo{
     @Override
     public int hashCode() {
         return collectionName.hashCode();
+    }
+
+    public static AccountCreationCommand createOne(String userName, String collectionName){
+        return new AccountCreationCommand(userName, collectionName);
     }
 }

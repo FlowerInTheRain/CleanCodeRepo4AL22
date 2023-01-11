@@ -1,18 +1,13 @@
 package com.cleancode.domain.services.account;
 
-import com.cleancode.domain.dto.cardcollection.CardCollection;
-import com.cleancode.domain.dto.user.AccountCreationCommand;
-import com.cleancode.domain.dto.user.BusinessUserClientInfo;
-import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
-import com.cleancode.domain.ports.out.usercardcollection.CardCollectionPersistencePort;
-import com.cleancode.domain.ports.in.user.AccountCreator;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.core.lib.userserviceutils.UserAccountOperationUtils;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.Cacheable;
+import com.cleancode.domain.dto.user.AccountCreationCommand;
+import com.cleancode.domain.dto.user.BusinessUserClientInfo;
+import com.cleancode.domain.ports.in.user.AccountCreator;
+import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 
-import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;

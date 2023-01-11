@@ -41,10 +41,10 @@ public class UserAccountCreation {
     @PutMapping(value = "/addNewUser", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public UserAccountResponse createUserAccount(@RequestBody  UserAccountCreationRequest userCompleteInfoRequest) throws CleanCodeException {
         LOGGER.log(Level.INFO, "Calling createUserAccount");
-        AccountCreationCommand accountCreationCommand = new AccountCreationCommand(userCompleteInfoRequest.userName, userCompleteInfoRequest.userCardCollectionName);
-        final var businessUserClientInfo = accountCreator.saveUserAccount(accountCreationCommand);
+        AccountCreationCommand accountCreationCommand = AccountCreationCommand.createOne(userCompleteInfoRequest.userName, userCompleteInfoRequest.userCardCollectionName);
+        final var createdAccount = accountCreator.saveUserAccount(accountCreationCommand);
         LOGGER.log(Level.INFO, "Executed createUserAccount");
-        final CardCollection apiUserCardCollection = CardCollectionMapper.INSTANCE.fromBusinessServiceCardCollectionToApiCardCollection(businessUserClientInfo.getUserCardCollection());
-        return UserAccountResponse.createOneFromBusinessUserAccount(businessUserClientInfo.getUserName(), businessUserClientInfo.getBusinessReference(), apiUserCardCollection);
+        final CardCollection apiUserCardCollection = CardCollectionMapper.INSTANCE.fromBusinessServiceCardCollectionToApiCardCollection(createdAccount.getUserCardCollection());
+        return UserAccountResponse.createOneFromBusinessUserAccount(createdAccount.getUserName(), createdAccount.getBusinessReference(), apiUserCardCollection);
     }
 }
