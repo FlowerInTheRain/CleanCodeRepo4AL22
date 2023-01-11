@@ -3,7 +3,7 @@ package com.cleancode.domain.enums.enums.rarities;
 public enum RaritiesEnum {
     COMMON("COMMON"),
     RARE("RARE"),
-    UNIQUE("LEGENDARY");
+    LEGENDARY("LEGENDARY");
 
     private final String rarityValue;
     RaritiesEnum(String rarity) {

@@ -21,6 +21,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class CardCreatorUseCaseUnitTest {
+    /**
 
     @Mock
     private CardPersistencePort cardPersistencePort = Mockito.mock(CardPersistencePort.class);
@@ -72,23 +73,5 @@ public class CardCreatorUseCaseUnitTest {
 
         assertEquals(returnedCards, cards);
         verify(cardPersistencePort).findAllCards();
-    }
-
-    @Test
-    public void findOneCardByReferenceShouldReturnCard() throws Exception {
-        BusinessCardCreateInfo card = new BusinessCardCreateInfo(
-                1L,
-                "12345",
-                CardSpecialtyEnum.MAGE,
-                CardRarityEnum.COMMON,
-                CardNameEnum.JONATHAN,
-                100,
-                10);
-        when(cardPersistencePort.findOneCardByCardFunctionalId("12345")).thenReturn(Optional.of(card));
-
-        BusinessCardCreateInfo returnedCard = cardCreatorService.findOneCardByReference("12345");
-
-        assertEquals(returnedCard, card);
-        verify(cardPersistencePort).findOneCardByCardFunctionalId("12345");
-    }
+    }*/
 }

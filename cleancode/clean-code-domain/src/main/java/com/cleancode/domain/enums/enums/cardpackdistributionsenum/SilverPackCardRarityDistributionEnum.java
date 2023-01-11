@@ -6,7 +6,6 @@ import com.cleancode.domain.enums.enums.rarities.RaritiesEnum;
 public enum SilverPackCardRarityDistributionEnum implements CardRarityDistributionEnumInterface {
 
     SILVER_PACK_COMMON_CARD(RaritiesEnum.COMMON,0, 0.75),
-    SILVER_PACK_UNCOMMON_CARD(RaritiesEnum.UNCOMMON,0.75, 0.95),
     SILVER_PACK_RARE_CARD(RaritiesEnum.RARE,0.95, 0.99),
     SILVER_PACK_UNIQUE_CARD(RaritiesEnum.RARE,0.99, 1);
 

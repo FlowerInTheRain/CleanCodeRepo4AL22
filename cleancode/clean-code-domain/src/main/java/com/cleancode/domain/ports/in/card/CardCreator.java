@@ -11,5 +11,4 @@ public interface CardCreator {
 
     List<BusinessCardCreateInfo> findAllCards() throws CleanCodeException;
 
-    BusinessCardCreateInfo findOneCardByReference(String cardReference) throws CleanCodeException;
 }

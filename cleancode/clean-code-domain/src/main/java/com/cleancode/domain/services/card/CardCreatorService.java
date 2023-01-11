@@ -60,19 +60,6 @@ public class CardCreatorService implements CardCreator {
         return null;
     }
 
-    @Override
-    public BusinessCardCreateInfo findOneCardByReference(String cardReference) throws CleanCodeException {
-        try {
-            Optional<BusinessCardCreateInfo> businessCardCreateInfo = cardPersistencePort.findOneCardByCardFunctionalId(cardReference);
-            LOGGER.log(Level.INFO, "String cardReference : " + cardReference + " Returned businessCardCreateInfo : " + businessCardCreateInfo);
-            return businessCardCreateInfo.orElse(null);
-        } catch (Exception e){
-            handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
-        }
-
-        return null;
-    }
-
     private void handleDBImplQueryExceptions(CleanCodeException dbImplCommunicationException) throws CleanCodeException {
         LOGGER.log(Level.WARNING, "Error while connecting to db : " + dbImplCommunicationException);
         throw dbImplCommunicationException;
