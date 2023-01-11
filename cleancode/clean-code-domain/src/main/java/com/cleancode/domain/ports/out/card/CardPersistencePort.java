@@ -12,5 +12,7 @@ public interface CardPersistencePort {
     Optional<BusinessCard> saveCardInDb(BusinessCard cardToSave);
 
     List<BusinessCard> findAllCards();
+
+    Optional<BusinessCard> findOneCardByCardFunctionalId(String cardReference);
 }
 

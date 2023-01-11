@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -22,9 +23,9 @@ public class CardRepositoryUnitTest {
         String cardReference = "12345";
         CardEntity expectedCardEntity = new CardEntity();
         expectedCardEntity.setCardReference(cardReference);
-        when(cardRepository.findByCardReference(cardReference)).thenReturn(expectedCardEntity);
+        when(cardRepository.findByCardReference(cardReference)).thenReturn(Optional.of(expectedCardEntity));
 
-        CardEntity actualCardEntity = cardRepository.findByCardReference(cardReference);
+        Optional<CardEntity> actualCardEntity = cardRepository.findByCardReference(cardReference);
 
         assertEquals(actualCardEntity, expectedCardEntity);
     }

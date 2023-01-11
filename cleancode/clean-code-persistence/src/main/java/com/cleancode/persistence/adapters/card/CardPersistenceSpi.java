@@ -59,4 +59,18 @@ public class CardPersistenceSpi implements CardPersistencePort {
         LOGGER.log(Level.INFO, "Found Cards : " + foundCards);
         return foundCards;
     }
+
+    @Override
+    public Optional<BusinessCard> findOneCardByCardFunctionalId(String cardReference) {
+        LOGGER.log(Level.INFO, "Calling DB service findOneCardByCardFunctionalId");
+        Optional<CardEntity> foundCard = cardRepository.findByCardReference(cardReference);
+        Optional<BusinessCard> foundCardReturned = Optional.empty();
+        if (foundCard.isPresent()) {
+            foundCardReturned = Optional.ofNullable(CardEntityMapper.INSTANCE.fromDbToBs(foundCard.get()));
+        }
+        LOGGER.log(Level.INFO, "Card found : " + foundCardReturned);
+        return foundCardReturned;
+    }
+
+
 }

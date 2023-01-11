@@ -51,7 +51,7 @@ public class CardPersistencePortUnitTest {
     public void findOneCardByCardFunctionalIdShouldReturnCard() {
         String cardBusinessReference = "123456";
         CardEntity card = new CardEntity();
-        when(cardRepository.findByCardReference(cardBusinessReference)).thenReturn(card);
+        when(cardRepository.findByCardReference(cardBusinessReference)).thenReturn(Optional.of(card));
 
         Optional<BusinessCard> returnedCard = cardPersistencePort.findOneCardByCardFunctionalId(cardBusinessReference);
 
