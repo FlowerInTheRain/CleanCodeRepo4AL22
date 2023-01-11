@@ -25,11 +25,9 @@ import springfox.documentation.spring.web.plugins.Docket;
 @ComponentScan(basePackages = {"com.cleancode.persistence.adapters"})
 public class BeanConfiguration {
 
-
     @Bean
-    AccountCreator accountCreator(UserAccountPersistencePort userAccountPersistencePort,
-                                  CardCollectionPersistencePort cardCollectionPersistencePort) {
-        return new AccountCreatorService(userAccountPersistencePort, cardCollectionPersistencePort);
+    AccountCreator accountCreator(UserAccountPersistencePort accountPersistencePort) {
+        return new AccountCreatorService(accountPersistencePort);
     }
 
     @Bean

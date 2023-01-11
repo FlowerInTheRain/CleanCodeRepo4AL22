@@ -1,6 +1,7 @@
 package com.cleancode.domain.services.account;
 
 import com.cleancode.domain.dto.cardcollection.CardCollection;
+import com.cleancode.domain.dto.user.AccountCreationCommand;
 import com.cleancode.domain.dto.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.cleancode.domain.ports.out.usercardcollection.CardCollectionPersistencePort;
@@ -20,12 +21,8 @@ public class AccountCreatorService implements AccountCreator {
     private static final Logger LOGGER = Logger.getLogger(AccountCreatorService.class.getName());
     private final UserAccountPersistencePort userRepositoryService;
 
-    private final CardCollectionPersistencePort cardCollectionPersistencePort;
-
-    public AccountCreatorService(UserAccountPersistencePort userAccountPersistencePort,
-                                 CardCollectionPersistencePort cardCollectionPersistencePort){
+    public AccountCreatorService(UserAccountPersistencePort userAccountPersistencePort){
         this.userRepositoryService = userAccountPersistencePort;
-        this.cardCollectionPersistencePort = cardCollectionPersistencePort;
     }
 
     /**
@@ -33,35 +30,22 @@ public class AccountCreatorService implements AccountCreator {
      * @return something
      */
     @Override
-    public BusinessUserClientInfo saveUserAccount(BusinessUserClientInfo userFromApi) throws CleanCodeException {
+    public BusinessUserClientInfo saveUserAccount(AccountCreationCommand userFromApi) throws CleanCodeException {
         if(userRepositoryService.findUserByUserName(userFromApi.getUserName()).isPresent()){
             throw new CleanCodeException(CleanCodeExceptionsEnum.BS_COMPONENT_USERNAME_ALREADY_TAKEN);
         }
-        UserAccountOperationUtils.handleBusinessUserReferenceCreation(userFromApi);
-        UserAccountOperationUtils.handleInitBusinessUserCardCollection(userFromApi.getUserCardCollection().getCollectionName(), userFromApi);
-        CardCollection cardCollectionToSave = userFromApi.getUserCardCollection();
-        try {
-            CardCollection savedCardCollection = cardCollectionPersistencePort.saveUserCardCollection(cardCollectionToSave);
-            /**
-             *    Custom exception management with specific status code, check it out
-             *    throw new DBIMPLCommunicationException(DBIMPLExceptionEnum.DB_TIMEOUT_EXCEPTION);
-             */
+        BusinessUserClientInfo newAccount= new BusinessUserClientInfo(userFromApi.getUserName(),  null, null, null, null, null);
+        UserAccountOperationUtils.handleBusinessUserReferenceCreation(newAccount);
+        UserAccountOperationUtils.handleInitBusinessUserCardCollection(userFromApi.getCollectionName(), newAccount);
             try {
-                Optional<BusinessUserClientInfo> returnedBusinessUserClientInfo = userRepositoryService.saveUserInDb(userFromApi);
-                userFromApi.setUserCardCollection(savedCardCollection);
+                Optional<BusinessUserClientInfo> returnedBusinessUserClientInfo = userRepositoryService.saveUserInDb(newAccount);
                 LOGGER.log(Level.INFO, "UserFromApi User : " + userFromApi + " Returned user : " + returnedBusinessUserClientInfo);
-                if(returnedBusinessUserClientInfo.isPresent()){
-                    return returnedBusinessUserClientInfo.get();
-                }
+                return  returnedBusinessUserClientInfo.orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_EMPTY_ACCOUNT_OPTIONAL));
             } catch (Exception cardCollectionCreationException){
-                UserAccountOperationUtils.revertReferenceAndCreationDateAttributionOnDbErrorForNonExistingUsers(userFromApi);
+                UserAccountOperationUtils.revertReferenceAndCreationDateAttributionOnDbErrorForNonExistingUsers(newAccount);
                 handleDBImplQueryExceptions(cardCollectionCreationException);
             }
-        } catch (Exception userAccountCreationException){
-            UserAccountOperationUtils.revertReferenceAndCreationDateAttributionOnDbErrorForNonExistingUsers(userFromApi);
-            handleDBImplQueryExceptions(userAccountCreationException);
-        }
-        return userFromApi;
+        return newAccount;
     }
 
     private void handleDBImplQueryExceptions(Exception initialException) throws CleanCodeException {

@@ -56,5 +56,4 @@ public class CardPersistenceSpi implements CardPersistencePort {
         LOGGER.log(Level.INFO, "Found Cards : " + foundCards);
         return foundCards;
     }
-
 }

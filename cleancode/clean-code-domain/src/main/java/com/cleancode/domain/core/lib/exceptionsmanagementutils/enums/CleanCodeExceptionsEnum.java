@@ -14,7 +14,11 @@ public enum CleanCodeExceptionsEnum {
     BS_COMPONENT_INVALID_CARD_VALUE(
             ComponentsEnum.Clean_Code_BS,
             "An error occurred while performing the action",
-            HttpStatus.BAD_REQUEST);
+            HttpStatus.BAD_REQUEST),
+
+    DOMAIN_EMPTY_ACCOUNT_OPTIONAL(ComponentsEnum.Clean_Code_BS,
+            "An error occurred while creating domain account",
+                                  HttpStatus.BAD_REQUEST);
 
     private final ComponentsEnum component;
     private final String userMessageToDisplay;
