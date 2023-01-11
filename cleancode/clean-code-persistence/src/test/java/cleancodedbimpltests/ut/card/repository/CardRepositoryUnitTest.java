@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.when;
 
 public class CardRepositoryUnitTest {
@@ -27,7 +28,8 @@ public class CardRepositoryUnitTest {
 
         Optional<CardEntity> actualCardEntity = cardRepository.findByCardReference(cardReference);
 
-        assertEquals(actualCardEntity, expectedCardEntity);
+        assertFalse(actualCardEntity.isEmpty());
+        assertEquals(actualCardEntity.get(), expectedCardEntity);
     }
 
     @Test
