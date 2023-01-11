@@ -49,7 +49,7 @@ public class CardPackOpenerService implements CardPackOpener {
     private List<Card> enrichUserCardCollection(BusinessUserClientInfo userAccount, List<Card> cardPack) {
             if(isUserAbleToBuyPack(userAccount.getBusinessUserCCCoinWallet())){
                 var userCardCollection = userAccount.getUserCardCollection().getCollectionCardList();
-                userCardCollection.addAll(userCardCollection.size() - 1, cardPack);
+                userCardCollection.addAll( 0, cardPack);
                 userAccount.getUserCardCollection().setCollectionCardList(userCardCollection);
             }
         return cardPack;

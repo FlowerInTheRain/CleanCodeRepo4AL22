@@ -59,7 +59,7 @@ public class CardPersistencePortUnitTest {
         card.setLevel(1);
         card.setCardSpecialty("ASSASSIN");
         card.setCardName(CardNameEnum.ARMAND.name());
-        when(cardRepository.findRandomByCardRarity(cardBusinessReference)).thenReturn(card);
+        when(cardRepository.findFirstByCardRarity(cardBusinessReference)).thenReturn(card);
 
         Card returnedCard = cardPersistencePort.findOneCardByRarity(cardBusinessReference);
 

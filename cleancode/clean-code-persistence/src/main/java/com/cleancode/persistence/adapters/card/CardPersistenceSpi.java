@@ -35,7 +35,7 @@ public class CardPersistenceSpi implements CardPersistencePort {
     @Override
     public Card findOneCardByRarity(String rarity) {
         LOGGER.log(Level.INFO, "Calling DB service findOneCardByCardFunctionalId");
-        CardEntity foundCard = cardRepository.findRandomByCardRarity(rarity);
+        CardEntity foundCard = cardRepository.findFirstByCardRarity(rarity);
         LOGGER.log(Level.INFO, "Found Card : " + foundCard);
         return Card.createOne(foundCard.getId(), foundCard.getCardReference(), CardRarityEnum.valueOf(foundCard.getCardRarity()), CardSpecialtyEnum.valueOf(foundCard.getCardSpecialty()), CardNameEnum.valueOf(foundCard.getCardName()), foundCard.getXp(), foundCard.getLevel());
     }
