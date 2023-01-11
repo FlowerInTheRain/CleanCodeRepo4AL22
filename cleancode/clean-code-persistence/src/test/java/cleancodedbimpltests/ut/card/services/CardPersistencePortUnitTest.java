@@ -4,7 +4,7 @@ import com.cleancode.persistence.entities.cards.CardEntity;
 import com.cleancode.persistence.mappers.card.CardEntityMapper;
 import com.cleancode.persistence.repositories.card.CardRepository;
 import com.cleancode.persistence.adapters.card.CardPersistenceSpi;
-import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
+import com.cleancode.domain.dto.card.BusinessCard;
 import com.cleancode.domain.enums.cards.CardNameEnum;
 import com.cleancode.domain.enums.cards.CardRarityEnum;
 import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
@@ -36,7 +36,7 @@ public class CardPersistencePortUnitTest {
         List<CardEntity> cards = Arrays.asList(card1, card2);
         when(cardRepository.findAll()).thenReturn(cards);
 
-        List<BusinessCardCreateInfo> returnedCards = cardPersistencePort.findAllCards();
+        List<BusinessCard> returnedCards = cardPersistencePort.findAllCards();
 
         if (returnedCards.isEmpty()) {
             fail();
@@ -53,7 +53,7 @@ public class CardPersistencePortUnitTest {
         CardEntity card = new CardEntity();
         when(cardRepository.findByCardReference(cardBusinessReference)).thenReturn(card);
 
-        Optional<BusinessCardCreateInfo> returnedCard = cardPersistencePort.findOneCardByCardFunctionalId(cardBusinessReference);
+        Optional<BusinessCard> returnedCard = cardPersistencePort.findOneCardByCardFunctionalId(cardBusinessReference);
 
         if (returnedCard.isEmpty()) {
             fail();
@@ -64,7 +64,7 @@ public class CardPersistencePortUnitTest {
 
     @Test
     public void saveCardInDbShouldSaveCard() {
-        BusinessCardCreateInfo cardToSave = new BusinessCardCreateInfo(
+        BusinessCard cardToSave = new BusinessCard(
                 1L,
                 "12345",
                 CardSpecialtyEnum.MAGE,
@@ -76,7 +76,7 @@ public class CardPersistencePortUnitTest {
         CardEntity savedCard = CardEntityMapper.INSTANCE.fromBsToDb(cardToSave);
         when(cardRepository.save(CardEntityMapper.INSTANCE.fromBsToDb(cardToSave))).thenReturn(savedCard);
 
-        Optional<BusinessCardCreateInfo> returnedCard = cardPersistencePort.saveCardInDb(cardToSave);
+        Optional<BusinessCard> returnedCard = cardPersistencePort.saveCardInDb(cardToSave);
 
         if (returnedCard.isEmpty()) {
             fail();

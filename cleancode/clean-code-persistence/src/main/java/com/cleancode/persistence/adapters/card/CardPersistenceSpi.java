@@ -1,7 +1,6 @@
 package com.cleancode.persistence.adapters.card;
 
-import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
-import com.cleancode.domain.dto.card.Card;
+import com.cleancode.domain.dto.card.BusinessCard;
 import com.cleancode.domain.enums.cards.CardNameEnum;
 import com.cleancode.domain.enums.cards.CardRarityEnum;
 import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
@@ -33,11 +32,11 @@ public class CardPersistenceSpi implements CardPersistencePort {
      * @return an optional of a card
      */
     @Override
-    public Card findOneCardByRarity(String rarity) {
+    public BusinessCard findOneCardByRarity(String rarity) {
         LOGGER.log(Level.INFO, "Calling DB service findOneCardByCardFunctionalId");
         CardEntity foundCard = cardRepository.findRandomByCardRarity(rarity);
         LOGGER.log(Level.INFO, "Found Card : " + foundCard);
-        return Card.createOne(foundCard.getId(), foundCard.getCardReference(), CardRarityEnum.valueOf(foundCard.getCardRarity()), CardSpecialtyEnum.valueOf(foundCard.getCardSpecialty()), CardNameEnum.valueOf(foundCard.getCardName()), foundCard.getXp(), foundCard.getLevel());
+        return BusinessCard.createOne(foundCard.getId(), foundCard.getCardReference(), CardRarityEnum.valueOf(foundCard.getCardRarity()), CardSpecialtyEnum.valueOf(foundCard.getCardSpecialty()), CardNameEnum.valueOf(foundCard.getCardName()), foundCard.getXp(), foundCard.getLevel());
     }
 
     /**
@@ -45,18 +44,18 @@ public class CardPersistenceSpi implements CardPersistencePort {
      * @return a card
      */
     @Override
-    public Optional<BusinessCardCreateInfo> saveCardInDb(BusinessCardCreateInfo cardToSave) {
+    public Optional<BusinessCard> saveCardInDb(BusinessCard cardToSave) {
         LOGGER.log(Level.INFO, "Calling DB service saveCard");
         CardEntity savedCard = cardRepository.save(CardEntityMapper.INSTANCE.fromBsToDb(cardToSave));
         LOGGER.log(Level.INFO, "Saved Card : " + cardToSave + " Returned card : " + savedCard);
-        BusinessCardCreateInfo mappedCardToBsCard = CardEntityMapper.INSTANCE.fromDbToBs(savedCard);
+        BusinessCard mappedCardToBsCard = CardEntityMapper.INSTANCE.fromDbToBs(savedCard);
         return Optional.ofNullable(mappedCardToBsCard);
     }
 
     @Override
-    public List<BusinessCardCreateInfo> findAllCards() {
+    public List<BusinessCard> findAllCards() {
         LOGGER.log(Level.INFO, "Calling DB service findAllCards");
-        List<BusinessCardCreateInfo> foundCards = CardEntityMapper.INSTANCE.fromListDbToListBs(cardRepository.findAll());
+        List<BusinessCard> foundCards = CardEntityMapper.INSTANCE.fromListDbToListBs(cardRepository.findAll());
         LOGGER.log(Level.INFO, "Found Cards : " + foundCards);
         return foundCards;
     }

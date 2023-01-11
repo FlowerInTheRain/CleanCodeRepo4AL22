@@ -2,8 +2,7 @@ package com.cleancode.domain.services.cardpack;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
-import com.cleancode.domain.dto.card.Card;
+import com.cleancode.domain.dto.card.BusinessCard;
 import com.cleancode.domain.dto.user.BusinessUserClientInfo;
 import com.cleancode.domain.enums.enums.cardpackdistributionsenum.DiamondPackCardRarityDistributionEnum;
 import com.cleancode.domain.enums.enums.cardpackdistributionsenum.SilverPackCardRarityDistributionEnum;
@@ -25,7 +24,7 @@ public class CardPackOpenerService implements CardOpener {
     }
 
     @Override
-    public List<Card> openSilverCardPack(String userName) throws CleanCodeException {
+    public List<BusinessCard> openSilverCardPack(String userName) throws CleanCodeException {
         var userAccount = userAccountPersistencePort.findUserByUserName(userName);
         userAccount
                 .ifPresent(account -> {
@@ -40,7 +39,7 @@ public class CardPackOpenerService implements CardOpener {
     }
 
     @Override
-    public List<Card> openDiamondCardPack(String userReference) {
+    public List<BusinessCard> openDiamondCardPack(String userReference) {
         return null;
     }
 
@@ -52,36 +51,36 @@ public class CardPackOpenerService implements CardOpener {
         return userAccount.getBusinessUserCCCoinWallet() - cardPackPrice;
     }
 
-    private List<Card> generateSilverCardPack(){
+    private List<BusinessCard> generateSilverCardPack(){
         CardPacksEnum silverPackDetails = CardPacksEnum.SILVER_PACK;
         SilverPackCardRarityDistributionEnum[] silverCardPackDistribution = SilverPackCardRarityDistributionEnum.values();
         long numberOfCardsToCreate = silverPackDetails.getCardsAmount();
-        List<Card> packContent = new ArrayList<>();
+        List<BusinessCard> packContent = new ArrayList<>();
         for(long i = 0; i < numberOfCardsToCreate; i++){
             double randomNumber = Math.random();
             Arrays.stream(silverCardPackDistribution).filter(distribution -> distribution.getMinProbability() >= randomNumber && distribution.getMaxProbability() >= randomNumber)
                     .findFirst()
                     .ifPresent(foundDistribution -> {
                         String rarity = foundDistribution.getCardRarityEnum().getRarityValue();
-                        Card card = cardPersistencePort.findOneCardByRarity(rarity);
+                        BusinessCard card = cardPersistencePort.findOneCardByRarity(rarity);
                         packContent.add(card);
                     });
         }
         return packContent;
     }
 
-    private List<Card> generateDiamondCardPack(){
+    private List<BusinessCard> generateDiamondCardPack(){
         CardPacksEnum diamondPackDetails = CardPacksEnum.DIAMOND_PACK;
         DiamondPackCardRarityDistributionEnum[] silverCardPackDistribution = DiamondPackCardRarityDistributionEnum.values();
         long numberOfCardsToCreate = diamondPackDetails.getCardsAmount();
-        List<Card> packContent = new ArrayList<>();
+        List<BusinessCard> packContent = new ArrayList<>();
         for(long i = 0; i < numberOfCardsToCreate; i++){
             double randomNumber = Math.random();
             Arrays.stream(silverCardPackDistribution).filter(distribution -> distribution.getMinProbability() >= randomNumber && distribution.getMaxProbability() >= randomNumber)
                     .findFirst()
                     .ifPresent(foundDistribution -> {
                         String rarity = foundDistribution.getCardRarityEnum().getRarityValue();
-                        Card card = cardPersistencePort.findOneCardByRarity(rarity);
+                        BusinessCard card = cardPersistencePort.findOneCardByRarity(rarity);
                         packContent.add(card);
                     });
         }

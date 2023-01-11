@@ -1,6 +1,6 @@
 package com.cleancode.domain.dto.cardcollection;
 
-import com.cleancode.domain.dto.card.Card;
+import com.cleancode.domain.dto.card.BusinessCard;
 
 import java.util.List;
 import java.util.Objects;
@@ -8,15 +8,15 @@ import java.util.Objects;
 public final class CardCollection {
     private String collectionName;
     private String collectionReference;
-    private List<Card> collectionCardList;
+    private List<BusinessCard> collectionCardList;
 
-    public CardCollection(String collectionName, String collectionReference, List<Card> collectionCardList) {
+    public CardCollection(String collectionName, String collectionReference, List<BusinessCard> collectionCardList) {
         this.collectionName = collectionName;
         this.collectionReference = collectionReference;
         this.collectionCardList = collectionCardList;
     }
 
-    public static CardCollection createOne(String collectionName, String collectionReference, List<Card> collectionCardListFromService) {
+    public static CardCollection createOne(String collectionName, String collectionReference, List<BusinessCard> collectionCardListFromService) {
         return new CardCollection(collectionName, collectionReference, collectionCardListFromService);
     }
 
@@ -28,7 +28,7 @@ public final class CardCollection {
         return collectionReference;
     }
 
-    public List<Card> getCollectionCardList() {
+    public List<BusinessCard> getCollectionCardList() {
         return collectionCardList;
     }
 
@@ -40,7 +40,7 @@ public final class CardCollection {
         this.collectionReference = collectionReference;
     }
 
-    public void setCollectionCardList(List<Card> collectionCardList) {
+    public void setCollectionCardList(List<BusinessCard> collectionCardList) {
         this.collectionCardList = collectionCardList;
     }
 

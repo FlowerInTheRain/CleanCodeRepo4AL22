@@ -1,6 +1,6 @@
 package com.cleancode.domain.usecases.card;
 
-import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
+import com.cleancode.domain.dto.card.BusinessCard;
 import com.cleancode.domain.enums.cards.CardNameEnum;
 import com.cleancode.domain.enums.cards.CardRarityEnum;
 import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
@@ -30,7 +30,7 @@ public class CardCreatorUseCaseUnitTest {
 
     @Test
     public void saveCardShouldSaveCard() throws Exception {
-        BusinessCardCreateInfo businessCardCreateInfo = new BusinessCardCreateInfo(
+        BusinessCard businessCard = new BusinessCard(
                 1L,
                 "12345",
                 CardSpecialtyEnum.MAGE,
@@ -39,17 +39,17 @@ public class CardCreatorUseCaseUnitTest {
                 100,
                 10
         );
-        when(cardPersistencePort.saveCardInDb(businessCardCreateInfo)).thenReturn(Optional.of(businessCardCreateInfo));
+        when(cardPersistencePort.saveCardInDb(businessCard)).thenReturn(Optional.of(businessCard));
 
-        BusinessCardCreateInfo savedBusinessCardCreateInfo = cardCreatorService.saveCard(businessCardCreateInfo);
+        BusinessCard savedBusinessCard = cardCreatorService.saveCard(businessCard);
 
-        assertEquals(savedBusinessCardCreateInfo, businessCardCreateInfo);
-        verify(cardPersistencePort).saveCardInDb(businessCardCreateInfo);
+        assertEquals(savedBusinessCard, businessCard);
+        verify(cardPersistencePort).saveCardInDb(businessCard);
     }
 
     @Test
     public void findAllCardsShouldReturnListOfCards() throws Exception {
-        BusinessCardCreateInfo card1 = new BusinessCardCreateInfo(
+        BusinessCard card1 = new BusinessCard(
                 1L,
                 "12345",
                 CardSpecialtyEnum.MAGE,
@@ -57,7 +57,7 @@ public class CardCreatorUseCaseUnitTest {
                 CardNameEnum.JONATHAN,
                 100,
                 10);
-        BusinessCardCreateInfo card2 = new BusinessCardCreateInfo(
+        BusinessCard card2 = new BusinessCard(
                 2L,
                 "67890",
                 CardSpecialtyEnum.ASSASSIN,
@@ -65,10 +65,10 @@ public class CardCreatorUseCaseUnitTest {
                 CardNameEnum.ARMAND,
                 100,
                 10);
-        List<BusinessCardCreateInfo> cards = Arrays.asList(card1, card2);
+        List<BusinessCard> cards = Arrays.asList(card1, card2);
         when(cardPersistencePort.findAllCards()).thenReturn(cards);
 
-        List<BusinessCardCreateInfo> returnedCards = cardCreatorService.findAllCards();
+        List<BusinessCard> returnedCards = cardCreatorService.findAllCards();
 
         assertEquals(returnedCards, cards);
         verify(cardPersistencePort).findAllCards();
@@ -76,7 +76,7 @@ public class CardCreatorUseCaseUnitTest {
 
     @Test
     public void findOneCardByReferenceShouldReturnCard() throws Exception {
-        BusinessCardCreateInfo card = new BusinessCardCreateInfo(
+        BusinessCard card = new BusinessCard(
                 1L,
                 "12345",
                 CardSpecialtyEnum.MAGE,
@@ -86,7 +86,7 @@ public class CardCreatorUseCaseUnitTest {
                 10);
         when(cardPersistencePort.findOneCardByCardFunctionalId("12345")).thenReturn(Optional.of(card));
 
-        BusinessCardCreateInfo returnedCard = cardCreatorService.findOneCardByReference("12345");
+        BusinessCard returnedCard = cardCreatorService.findOneCardByReference("12345");
 
         assertEquals(returnedCard, card);
         verify(cardPersistencePort).findOneCardByCardFunctionalId("12345");

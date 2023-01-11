@@ -1,7 +1,7 @@
 package com.cleancode.persistence.mappers.card;
 
 import com.cleancode.persistence.entities.cards.CardEntity;
-import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
+import com.cleancode.domain.dto.card.BusinessCard;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -17,17 +17,17 @@ public interface CardEntityMapper {
             @Mapping(source = "businessReference", target = "cardReference"),
             @Mapping(source = "technicalId", target = "id"),
     })
-    CardEntity fromBsToDb(BusinessCardCreateInfo card);
+    CardEntity fromBsToDb(BusinessCard card);
 
     @Mappings({
             @Mapping(source = "id", target = "technicalId"),
             @Mapping(source = "cardReference", target = "businessReference")
 
     })
-    BusinessCardCreateInfo fromDbToBs(CardEntity card);
+    BusinessCard fromDbToBs(CardEntity card);
 
     @Mappings({
             @Mapping(source = "cardReference", target = "cardReference")
     })
-    List<BusinessCardCreateInfo> fromListDbToListBs(List<CardEntity> cards);
+    List<BusinessCard> fromListDbToListBs(List<CardEntity> cards);
 }

@@ -4,7 +4,7 @@ import com.cleancode.domain.enums.cards.CardNameEnum;
 import com.cleancode.domain.enums.cards.CardRarityEnum;
 import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
 
-public class BusinessCardCreateInfo {
+public class BusinessCard {
 
     protected final Long technicalId;
     private String businessReference;
@@ -14,7 +14,7 @@ public class BusinessCardCreateInfo {
     private int xp;
     private int level;
 
-    public BusinessCardCreateInfo(Long technicalId, String businessReference, CardSpecialtyEnum cardSpecialty, CardRarityEnum cardRarity, CardNameEnum cardName, int xp, int level) {
+    public BusinessCard(Long technicalId, String businessReference, CardSpecialtyEnum cardSpecialty, CardRarityEnum cardRarity, CardNameEnum cardName, int xp, int level) {
         this.technicalId = technicalId;
         this.businessReference = businessReference;
         this.cardSpecialty = cardSpecialty;
@@ -81,7 +81,7 @@ public class BusinessCardCreateInfo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BusinessCardCreateInfo that = (BusinessCardCreateInfo) o;
+        BusinessCard that = (BusinessCard) o;
 
         if (xp != that.xp) return false;
         if (level != that.level) return false;
@@ -115,5 +115,9 @@ public class BusinessCardCreateInfo {
                 ", xp=" + xp +
                 ", level=" + level +
                 '}';
+    }
+
+    public static BusinessCard createOne(long technicalId, String cardReference, CardRarityEnum cardRarity, CardSpecialtyEnum cardSpecialty, CardNameEnum cardName, int xp, int level){
+        return new BusinessCard( technicalId,  cardReference,  cardSpecialty,  cardRarity,  cardName,  xp,  level);
     }
 }

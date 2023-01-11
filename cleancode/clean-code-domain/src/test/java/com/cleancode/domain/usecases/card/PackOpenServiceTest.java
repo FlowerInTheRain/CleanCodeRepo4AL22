@@ -1,6 +1,5 @@
 package com.cleancode.domain.usecases.card;
 
-import com.cleancode.domain.dto.card.Card;
 import com.cleancode.domain.dto.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.services.cardpack.CardPackOpenerService;
