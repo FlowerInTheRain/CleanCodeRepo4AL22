@@ -1,6 +1,7 @@
 package com.cleancode.domain.enums.enums.rarities;
 
 public enum RaritiesEnum {
+    UNCOMMON("UNCOMMON"),
     COMMON("COMMON"),
     RARE("RARE"),
     UNIQUE("LEGENDARY");
