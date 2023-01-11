@@ -1,6 +1,10 @@
 package com.cleancode.persistence.adapters.card;
 
 import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
+import com.cleancode.domain.dto.card.Card;
+import com.cleancode.domain.enums.cards.CardNameEnum;
+import com.cleancode.domain.enums.cards.CardRarityEnum;
+import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.persistence.entities.cards.CardEntity;
 import com.cleancode.persistence.mappers.card.CardEntityMapper;
@@ -25,15 +29,15 @@ public class CardPersistenceSpi implements CardPersistencePort {
     }
 
     /**
-     * @param cardBusinessReference a card unique function identifier
+     * @param rarity a card unique function identifier
      * @return an optional of a card
      */
     @Override
-    public Optional<BusinessCardCreateInfo> findOneCardByCardFunctionalId(String cardBusinessReference) {
+    public Card findOneCardByRarity(String rarity) {
         LOGGER.log(Level.INFO, "Calling DB service findOneCardByCardFunctionalId");
-        CardEntity foundCard = cardRepository.findByCardReference(cardBusinessReference);
+        CardEntity foundCard = cardRepository.findRandomByCardRarity(rarity);
         LOGGER.log(Level.INFO, "Found Card : " + foundCard);
-        return Optional.ofNullable(CardEntityMapper.INSTANCE.fromDbToBs(foundCard));
+        return Card.createOne(foundCard.getId(), foundCard.getCardReference(), CardRarityEnum.valueOf(foundCard.getCardRarity()), CardSpecialtyEnum.valueOf(foundCard.getCardSpecialty()), CardNameEnum.valueOf(foundCard.getCardName()), foundCard.getXp(), foundCard.getLevel());
     }
 
     /**
