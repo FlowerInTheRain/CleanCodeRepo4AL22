@@ -41,12 +41,4 @@ public class CardOperations {
     public List<Card> findAllCards() throws CleanCodeException {
         return CardMapper.INSTANCE.fromListBsToListApi(cardCreator.findAllCards());
     }
-
-    @ApiOperation(value = "Find one card by reference",
-            response = Card.class)
-    @ApiResponse(code=200, message="Card found")
-    @GetMapping(value = "/findOneCardByReference", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Card findOneCardByReference(String cardReference) throws CleanCodeException {
-        return CardMapper.INSTANCE.fromBsToApi(cardCreator.findOneCardByReference(cardReference));
-    }
 }

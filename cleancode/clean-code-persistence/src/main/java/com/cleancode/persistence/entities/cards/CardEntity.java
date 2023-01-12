@@ -35,4 +35,45 @@ public class CardEntity implements Serializable {
 
     @Column(nullable = false)
     private Integer level;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CardEntity that = (CardEntity) o;
+
+        if (!id.equals(that.id)) return false;
+        if (!cardReference.equals(that.cardReference)) return false;
+        if (!cardRarity.equals(that.cardRarity)) return false;
+        if (!cardSpecialty.equals(that.cardSpecialty)) return false;
+        if (!cardName.equals(that.cardName)) return false;
+        if (!xp.equals(that.xp)) return false;
+        return level.equals(that.level);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + cardReference.hashCode();
+        result = 31 * result + cardRarity.hashCode();
+        result = 31 * result + cardSpecialty.hashCode();
+        result = 31 * result + cardName.hashCode();
+        result = 31 * result + xp.hashCode();
+        result = 31 * result + level.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "CardEntity{" +
+                "id=" + id +
+                ", cardReference='" + cardReference + '\'' +
+                ", cardRarity='" + cardRarity + '\'' +
+                ", cardSpecialty='" + cardSpecialty + '\'' +
+                ", cardName='" + cardName + '\'' +
+                ", xp=" + xp +
+                ", level=" + level +
+                '}';
+    }
 }

@@ -4,7 +4,7 @@ public enum RaritiesEnum {
     UNCOMMON("UNCOMMON"),
     COMMON("COMMON"),
     RARE("RARE"),
-    UNIQUE("LEGENDARY");
+    LEGENDARY("LEGENDARY");
 
     private final String rarityValue;
     RaritiesEnum(String rarity) {

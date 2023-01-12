@@ -1,5 +1,6 @@
 package cleancodedbimpltests.ut.card.services;
 
+import com.cleancode.domain.dto.card.Card;
 import com.cleancode.persistence.entities.cards.CardEntity;
 import com.cleancode.persistence.mappers.card.CardEntityMapper;
 import com.cleancode.persistence.repositories.card.CardRepository;
@@ -55,11 +56,7 @@ public class CardPersistencePortUnitTest {
 
         Optional<BusinessCard> returnedCard = cardPersistencePort.findOneCardByCardFunctionalId(cardBusinessReference);
 
-        if (returnedCard.isEmpty()) {
-            fail();
-        }
-
-        assertEquals(returnedCard.get().getTechnicalId(), CardEntityMapper.INSTANCE.fromDbToBs(card).getTechnicalId());
+        assertEquals(returnedCard.cardReference(), card.getCardReference());
     }
 
     @Test
