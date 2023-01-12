@@ -1,5 +1,6 @@
 package com.cleancode.entrypoint.restcontrollers;
 
+import com.cleancode.domain.dto.user.AccountCreationCommand;
 import com.cleancode.domain.dto.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.in.user.AccountCreator;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
@@ -40,10 +41,10 @@ public class UserAccountCreation {
     @PutMapping(value = "/addNewUser", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public UserAccountResponse createUserAccount(@RequestBody  UserAccountCreationRequest userCompleteInfoRequest) throws CleanCodeException {
         LOGGER.log(Level.INFO, "Calling createUserAccount");
-        BusinessUserClientInfo businessUserClientInfo = UserClientInfoMapper.INSTANCE.fromAPIUserAccountCreationRequestToBSUserAccountCreation(userCompleteInfoRequest);
-        businessUserClientInfo = accountCreator.saveUserAccount(businessUserClientInfo);
+        AccountCreationCommand accountCreationCommand = AccountCreationCommand.createOne(userCompleteInfoRequest.userName, userCompleteInfoRequest.userCardCollectionName);
+        final var createdAccount = accountCreator.saveUserAccount(accountCreationCommand);
         LOGGER.log(Level.INFO, "Executed createUserAccount");
-        final CardCollection apiUserCardCollection = CardCollectionMapper.INSTANCE.fromBusinessServiceCardCollectionToApiCardCollection(businessUserClientInfo.getUserCardCollection());
-        return UserAccountResponse.createOneFromBusinessUserAccount(businessUserClientInfo.getUserName(), businessUserClientInfo.getBusinessReference(), apiUserCardCollection);
+        final CardCollection apiUserCardCollection = CardCollectionMapper.INSTANCE.fromBusinessServiceCardCollectionToApiCardCollection(createdAccount.getUserCardCollection());
+        return UserAccountResponse.createOneFromBusinessUserAccount(createdAccount.getUserName(), createdAccount.getBusinessReference(), apiUserCardCollection);
     }
 }

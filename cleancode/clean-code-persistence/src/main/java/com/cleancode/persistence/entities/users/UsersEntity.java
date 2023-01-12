@@ -25,7 +25,7 @@ public class UsersEntity implements Serializable {
     private Long userCCCoinWallet = 4L;
     @Column(name="CREATION_DATE", nullable = false)
     private Timestamp creationDate = Timestamp.from(Instant.now());
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "CARD_COLLECTION_ID")
     private CardCollectionsEntity userCardCollection;
 

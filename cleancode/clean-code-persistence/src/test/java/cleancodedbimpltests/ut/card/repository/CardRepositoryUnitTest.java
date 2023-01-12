@@ -22,9 +22,9 @@ public class CardRepositoryUnitTest {
         String cardReference = "12345";
         CardEntity expectedCardEntity = new CardEntity();
         expectedCardEntity.setCardReference(cardReference);
-        when(cardRepository.findByCardReference(cardReference)).thenReturn(expectedCardEntity);
+        when(cardRepository.findFirstByCardRarity(cardReference)).thenReturn(expectedCardEntity);
 
-        CardEntity actualCardEntity = cardRepository.findByCardReference(cardReference);
+        CardEntity actualCardEntity = cardRepository.findFirstByCardRarity(cardReference);
 
         assertEquals(actualCardEntity, expectedCardEntity);
     }

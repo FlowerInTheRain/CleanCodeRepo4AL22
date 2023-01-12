@@ -1,13 +1,15 @@
 package com.cleancode.persistence.adapters.card;
 
 import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
+import com.cleancode.domain.dto.card.Card;
+import com.cleancode.domain.enums.cards.CardNameEnum;
+import com.cleancode.domain.enums.cards.CardRarityEnum;
+import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.persistence.entities.cards.CardEntity;
 import com.cleancode.persistence.mappers.card.CardEntityMapper;
 import com.cleancode.persistence.repositories.card.CardRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,15 +29,15 @@ public class CardPersistenceSpi implements CardPersistencePort {
     }
 
     /**
-     * @param cardBusinessReference a card unique function identifier
+     * @param rarity a card unique function identifier
      * @return an optional of a card
      */
     @Override
-    public Optional<BusinessCardCreateInfo> findOneCardByCardFunctionalId(String cardBusinessReference) {
+    public Card findOneCardByRarity(String rarity) {
         LOGGER.log(Level.INFO, "Calling DB service findOneCardByCardFunctionalId");
-        CardEntity foundCard = cardRepository.findByCardReference(cardBusinessReference);
+        CardEntity foundCard = cardRepository.findFirstByCardRarity(rarity);
         LOGGER.log(Level.INFO, "Found Card : " + foundCard);
-        return Optional.ofNullable(CardEntityMapper.INSTANCE.fromDbToBs(foundCard));
+        return Card.createOne(foundCard.getId(), foundCard.getCardReference(), CardRarityEnum.valueOf(foundCard.getCardRarity()), CardSpecialtyEnum.valueOf(foundCard.getCardSpecialty()), CardNameEnum.valueOf(foundCard.getCardName()), foundCard.getXp(), foundCard.getLevel());
     }
 
     /**
@@ -58,5 +60,4 @@ public class CardPersistenceSpi implements CardPersistencePort {
         LOGGER.log(Level.INFO, "Found Cards : " + foundCards);
         return foundCards;
     }
-
 }

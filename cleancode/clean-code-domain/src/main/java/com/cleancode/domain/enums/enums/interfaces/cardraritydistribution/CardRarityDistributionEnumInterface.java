@@ -5,11 +5,13 @@ import com.cleancode.domain.enums.enums.rarities.RaritiesEnum;
 
 public interface CardRarityDistributionEnumInterface {
     RaritiesEnum cardRarityEnum = null;
-    float probability = 0;
+    double minProbability = 0;
+    double maxProbability = 0;
 
     RaritiesEnum getCardRarityEnum();
 
-    void setProbability(float probability);
+    double getMinProbability();
 
-    float getProbability();
+    double getMaxProbability();
+
 }

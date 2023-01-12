@@ -1,12 +1,14 @@
 package com.esgi.cleancode.bootstrap.configuration;
 
 import com.cleancode.domain.ports.in.card.CardCreator;
+import com.cleancode.domain.ports.in.cardpack.CardPackOpener;
 import com.cleancode.domain.ports.in.user.AccountCreator;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.cleancode.domain.ports.out.usercardcollection.CardCollectionPersistencePort;
 import com.cleancode.domain.services.account.AccountCreatorService;
 import com.cleancode.domain.services.card.CardCreatorService;
+import com.cleancode.domain.services.cardpack.CardPackOpenerService;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
@@ -25,11 +27,14 @@ import springfox.documentation.spring.web.plugins.Docket;
 @ComponentScan(basePackages = {"com.cleancode.persistence.adapters"})
 public class BeanConfiguration {
 
+    @Bean
+    AccountCreator accountCreator(UserAccountPersistencePort accountPersistencePort) {
+        return new AccountCreatorService(accountPersistencePort);
+    }
 
     @Bean
-    AccountCreator accountCreator(UserAccountPersistencePort userAccountPersistencePort,
-                                  CardCollectionPersistencePort cardCollectionPersistencePort) {
-        return new AccountCreatorService(userAccountPersistencePort, cardCollectionPersistencePort);
+    CardPackOpener cardPackOpener(UserAccountPersistencePort accountPersistencePort, CardPersistencePort cardPersistencePort) {
+        return new CardPackOpenerService(accountPersistencePort, cardPersistencePort);
     }
 
     @Bean
