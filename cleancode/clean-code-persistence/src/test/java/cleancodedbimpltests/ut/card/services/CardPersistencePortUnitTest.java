@@ -1,16 +1,15 @@
 package cleancodedbimpltests.ut.card.services;
 
 import com.cleancode.domain.pojo.card.Card;
-import com.cleancode.domain.pojo.card.InitialCard;
-import com.cleancode.persistence.entities.cards.CardEntity;
-import com.cleancode.persistence.mappers.card.CardEntityMapper;
-import com.cleancode.persistence.repositories.card.CardRepository;
-import com.cleancode.persistence.adapters.card.CardPersistenceSpi;
 import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
 import com.cleancode.domain.pojo.enums.cards.CardRarityEnum;
 import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
-import org.junit.Test;
+import com.cleancode.persistence.adapters.card.CardPersistenceSpi;
+import com.cleancode.persistence.entities.cards.CardEntity;
+import com.cleancode.persistence.mappers.card.CardEntityMapper;
+import com.cleancode.persistence.repositories.card.CardRepository;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -19,7 +18,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.when;
 
 public class CardPersistencePortUnitTest {
@@ -86,6 +86,6 @@ public class CardPersistencePortUnitTest {
             fail();
         }
 
-        assertEquals(returnedCard.get().getTechnicalId(), CardEntityMapper.INSTANCE.fromDbToBs(savedCard).getTechnicalId());
+        assertEquals(returnedCard.get().getTechnicalId(), savedCard.getId());
     }
 }

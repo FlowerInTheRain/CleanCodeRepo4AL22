@@ -70,6 +70,7 @@ public class CardPackOpenerService implements CardPackOpener {
                 userCardCollection.addAll( 0, cardPack);
                 userAccount.getUserCardCollection().setCollectionCardList(userCardCollection);
             }
+
     }
 
     public static boolean isUserAbleToBuyPack(long ccCoin){
@@ -89,6 +90,7 @@ public class CardPackOpenerService implements CardPackOpener {
             RaritiesEnum foundDistribution = probabilities.getSilverProbabilitiesMap().higherEntry(randomNumber).getValue();
             CardCollectionCard cardToAddToCollection = createCardForCollection(foundDistribution, userAccount);
             packContent.add(cardToAddToCollection);
+
         }
         return packContent;
     }

@@ -13,12 +13,11 @@ import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.cleancode.domain.services.Probabilities;
 import com.cleancode.domain.services.cardpack.CardPackOpenerService;
+
 import org.junit.jupiter.api.Assertions;
 import org.mockito.*;
 import org.junit.jupiter.api.Test;
-
 import java.util.*;
-
 import static org.mockito.Mockito.*;
 
 
@@ -35,6 +34,7 @@ public class PackOpenServiceTest {
 
     @InjectMocks
     private CardPackOpenerService cardPackOpenerService = new CardPackOpenerService(this.userAccountPersistencePort, this.cardPersistencePort, this.probabilities);
+
 
     @Captor
     private ArgumentCaptor<BusinessUserClientInfo> userClientInfoArgumentCaptor;

@@ -9,5 +9,4 @@ public interface CardPackOpener {
     List<CardCollectionCard> openSilverCardPack(String userName) throws CleanCodeException;
 
     List<CardCollectionCard> openDiamondCardPack(String userName);
-
 }
