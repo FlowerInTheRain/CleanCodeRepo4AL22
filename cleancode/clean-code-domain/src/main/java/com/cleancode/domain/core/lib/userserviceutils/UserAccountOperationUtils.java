@@ -1,12 +1,11 @@
 package com.cleancode.domain.core.lib.userserviceutils;
 
-import com.cleancode.domain.dto.cardcollection.CardCollection;
-import com.cleancode.domain.dto.user.BusinessUserClientInfo;
+import com.cleancode.domain.pojo.enums.cardcollection.CardCollection;
+import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 import com.cleancode.domain.core.lib.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
 import com.cleancode.domain.core.lib.formatutils.uuidformatterutils.UUIDFormatter;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class UserAccountOperationUtils {
     public static void handleInitBusinessUserCardCollection(String cardCollectionName, BusinessUserClientInfo businessUserClientInfo) {

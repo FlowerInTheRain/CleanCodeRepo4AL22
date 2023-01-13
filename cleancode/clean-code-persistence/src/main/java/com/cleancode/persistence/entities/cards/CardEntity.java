@@ -37,12 +37,8 @@ public class CardEntity implements Serializable {
     @Column(nullable = false)
     private Integer level;
 
-    @ManyToMany
-    @JoinTable(
-            name = "CARD_COLLECTION_CARDS",
-            joinColumns = @JoinColumn(name = "CARD_ID"),
-            inverseJoinColumns = @JoinColumn(name = "COLLECTION_ID"))
-    private List<CardEntity> cardCollectionCardList;
+    @OneToMany(mappedBy = "id")
+    private List<CardEntity> collectionCardList;
 
     @Override
     public boolean equals(Object o) {

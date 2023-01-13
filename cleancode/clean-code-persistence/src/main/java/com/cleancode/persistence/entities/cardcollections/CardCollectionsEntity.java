@@ -17,22 +17,18 @@ public class CardCollectionsEntity implements Serializable {
     private String cardCollectionReference;
     @Column(name = "CARD_COLLECTION_NAME", nullable = false, length = 250)
     private String cardCollectionName;
-    @ManyToMany
-    @JoinTable(
-            name = "CARD_COLLECTION_CARDS",
-            joinColumns = @JoinColumn(name = "COLLECTION_ID"),
-            inverseJoinColumns = @JoinColumn(name = "CARD_ID"))
-    private List<CardEntity> cardCollectionCardList;
+    @OneToMany(mappedBy = "id")
+    private List<CardEntity> cardsInCollection;
 
     public CardCollectionsEntity() {
     }
 
     public List<CardEntity> getCardCollectionCardList() {
-        return cardCollectionCardList;
+        return cardsInCollection;
     }
 
     public void setCardCollectionCardList(List<CardEntity> cardCollectionCardList) {
-        this.cardCollectionCardList = cardCollectionCardList;
+        this.cardsInCollection = cardCollectionCardList;
     }
 
     public long getId() {

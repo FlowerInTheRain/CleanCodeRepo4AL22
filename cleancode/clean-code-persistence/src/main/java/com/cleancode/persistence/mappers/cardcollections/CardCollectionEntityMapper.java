@@ -1,6 +1,6 @@
 package com.cleancode.persistence.mappers.cardcollections;
 
-import com.cleancode.domain.dto.cardcollection.CardCollection;
+import com.cleancode.domain.pojo.enums.cardcollection.CardCollection;
 import com.cleancode.persistence.entities.cardcollections.CardCollectionsEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

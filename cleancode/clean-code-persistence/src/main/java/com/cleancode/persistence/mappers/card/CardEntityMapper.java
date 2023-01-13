@@ -1,7 +1,8 @@
 package com.cleancode.persistence.mappers.card;
 
+import com.cleancode.domain.pojo.card.Card;
 import com.cleancode.persistence.entities.cards.CardEntity;
-import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
+import com.cleancode.domain.pojo.card.InitialCard;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -13,21 +14,10 @@ import java.util.List;
 public interface CardEntityMapper {
 
     CardEntityMapper INSTANCE = Mappers.getMapper(CardEntityMapper.class);
-    @Mappings({
-            @Mapping(source = "businessReference", target = "cardReference"),
-            @Mapping(source = "technicalId", target = "id"),
-    })
-    CardEntity fromBsToDb(BusinessCardCreateInfo card);
 
-    @Mappings({
-            @Mapping(source = "id", target = "technicalId"),
-            @Mapping(source = "cardReference", target = "businessReference")
+    CardEntity fromBsToDb(Card card);
 
-    })
-    BusinessCardCreateInfo fromDbToBs(CardEntity card);
+    Card fromDbToBs(CardEntity card);
 
-    @Mappings({
-            @Mapping(source = "cardReference", target = "cardReference")
-    })
-    List<BusinessCardCreateInfo> fromListDbToListBs(List<CardEntity> cards);
+    List<Card> fromListDbToListBs(List<CardEntity> cards);
 }

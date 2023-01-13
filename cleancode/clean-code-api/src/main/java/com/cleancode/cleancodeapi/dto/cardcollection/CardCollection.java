@@ -1,7 +1,6 @@
 package com.cleancode.cleancodeapi.dto.cardcollection;
 
-import com.cleancode.cleancodeapi.dto.card.Card;
-import com.cleancode.domain.dto.card.CardCollectionCard;
+import com.cleancode.domain.pojo.card.CardCollectionCard;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;

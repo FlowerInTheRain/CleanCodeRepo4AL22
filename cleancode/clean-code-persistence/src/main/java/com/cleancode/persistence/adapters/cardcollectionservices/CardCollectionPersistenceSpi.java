@@ -1,10 +1,9 @@
 package com.cleancode.persistence.adapters.cardcollectionservices;
 
-import com.cleancode.domain.dto.cardcollection.CardCollection;
+import com.cleancode.domain.pojo.enums.cardcollection.CardCollection;
 import com.cleancode.domain.ports.out.usercardcollection.CardCollectionPersistencePort;
 import com.cleancode.persistence.mappers.cardcollections.CardCollectionEntityMapper;
 import com.cleancode.persistence.repositories.cardcollection.CardCollectionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

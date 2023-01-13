@@ -1,9 +1,9 @@
 package com.cleancode.domain.usecases.card;
 
-import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
-import com.cleancode.domain.enums.cards.CardNameEnum;
-import com.cleancode.domain.enums.cards.CardRarityEnum;
-import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
+import com.cleancode.domain.pojo.card.Card;
+import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
+import com.cleancode.domain.pojo.enums.cards.CardRarityEnum;
+import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.services.card.CardCreatorService;
 import org.junit.Test;
@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -31,45 +30,45 @@ public class CardCreatorUseCaseUnitTest {
 
     @Test
     public void saveCardShouldSaveCard() throws Exception {
-        BusinessCardCreateInfo businessCardCreateInfo = new BusinessCardCreateInfo(
+        Card initialCard = new Card(
                 1L,
                 "12345",
-                CardSpecialtyEnum.MAGE,
                 CardRarityEnum.COMMON,
+                CardSpecialtyEnum.MAGE,
                 CardNameEnum.JONATHAN,
                 100,
                 10
         );
-        when(cardPersistencePort.saveCardInDb(businessCardCreateInfo)).thenReturn(Optional.of(businessCardCreateInfo));
+        when(cardPersistencePort.saveCardInDb(initialCard)).thenReturn(Optional.of(initialCard));
 
-        BusinessCardCreateInfo savedBusinessCardCreateInfo = cardCreatorService.saveCard(businessCardCreateInfo);
+        Card savedInitialCard = cardCreatorService.saveCard(initialCard);
 
-        assertEquals(savedBusinessCardCreateInfo, businessCardCreateInfo);
-        verify(cardPersistencePort).saveCardInDb(businessCardCreateInfo);
+        assertEquals(savedInitialCard, initialCard);
+        verify(cardPersistencePort).saveCardInDb(initialCard);
     }
 
     @Test
     public void findAllCardsShouldReturnListOfCards() throws Exception {
-        BusinessCardCreateInfo card1 = new BusinessCardCreateInfo(
+        Card card1 = new Card(
                 1L,
                 "12345",
-                CardSpecialtyEnum.MAGE,
                 CardRarityEnum.COMMON,
+                CardSpecialtyEnum.MAGE,
                 CardNameEnum.JONATHAN,
                 100,
                 10);
-        BusinessCardCreateInfo card2 = new BusinessCardCreateInfo(
+        Card card2 = new Card(
                 2L,
                 "67890",
-                CardSpecialtyEnum.ASSASSIN,
                 CardRarityEnum.RARE,
+                CardSpecialtyEnum.ASSASSIN,
                 CardNameEnum.ARMAND,
                 100,
                 10);
-        List<BusinessCardCreateInfo> cards = Arrays.asList(card1, card2);
+        List<Card> cards = Arrays.asList(card1, card2);
         when(cardPersistencePort.findAllCards()).thenReturn(cards);
 
-        List<BusinessCardCreateInfo> returnedCards = cardCreatorService.findAllCards();
+        List<Card> returnedCards = cardCreatorService.findAllCards();
 
         assertEquals(returnedCards, cards);
         verify(cardPersistencePort).findAllCards();

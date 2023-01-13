@@ -4,7 +4,7 @@ import com.cleancode.domain.core.lib.businessreferenceutils.businessidgeneratoru
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.core.lib.formatutils.uuidformatterutils.UUIDFormatter;
-import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
+import com.cleancode.domain.pojo.card.Card;
 import com.cleancode.domain.ports.in.card.CardCreator;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 
@@ -22,34 +22,34 @@ public class CardCreatorService implements CardCreator {
         this.cardPersistencePort = cardPersistencePort;
     }
     @Override
-    public BusinessCardCreateInfo saveCard(BusinessCardCreateInfo businessCardCreateInfo) throws CleanCodeException {
+    public Card saveCard(Card initialCard) throws CleanCodeException {
 
-        if(businessCardCreateInfo.getBusinessReference() == null) {
+        if(initialCard.cardReference() == null) {
             String formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
-            businessCardCreateInfo.setBusinessReference(formattedUUIDToBind);
+            initialCard.setCardReference(formattedUUIDToBind);
         }
 
         try {
-            Optional<BusinessCardCreateInfo> cardEntity = cardPersistencePort.saveCardInDb(businessCardCreateInfo);
-            LOGGER.log(Level.INFO, "BusinessCardCreateInfo businessCardCreateInfo : " + businessCardCreateInfo + " Returned cardEntity : " + cardEntity);
+            Optional<Card> cardEntity = cardPersistencePort.saveCardInDb(initialCard);
+            LOGGER.log(Level.INFO, "BusinessCardCreateInfo businessCardCreateInfo : " + initialCard + " Returned cardEntity : " + cardEntity);
             if(cardEntity.isPresent()){
                 return cardEntity.get();
             }
         } catch (Exception e){
             handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
-            businessCardCreateInfo.setBusinessReference(null);
+            initialCard.setCardReference(null);
         }
 
-        return businessCardCreateInfo;
+        return initialCard;
     }
 
     @Override
-    public List<BusinessCardCreateInfo> findAllCards() throws CleanCodeException {
+    public List<Card> findAllCards() throws CleanCodeException {
 
         try {
-            List<BusinessCardCreateInfo> businessCardCreateInfos = cardPersistencePort.findAllCards();
-            LOGGER.log(Level.INFO, " Returned List businessCardCreateInfos : " + businessCardCreateInfos);
-            return businessCardCreateInfos;
+            List<Card> initialCards = cardPersistencePort.findAllCards();
+            LOGGER.log(Level.INFO, " Returned List businessCardCreateInfos : " + initialCards);
+            return initialCards;
         } catch (Exception e){
             handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
         }

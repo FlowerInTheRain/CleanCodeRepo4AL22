@@ -1,6 +1,6 @@
 package com.cleancode.entrypoint.restcontrollers;
 
-import com.cleancode.cleancodeapi.apibsmappers.cards.CardMapper;
+import com.cleancode.cleancodeapi.mappers.withdomain.cards.CardMapper;
 import com.cleancode.cleancodeapi.dto.card.Card;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.ports.in.card.CardCreator;

@@ -1,14 +1,14 @@
 package com.cleancode.domain.ports.in.card;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
+import com.cleancode.domain.pojo.card.Card;
 
 import java.util.List;
 
 public interface CardCreator {
 
-    BusinessCardCreateInfo saveCard(BusinessCardCreateInfo businessCardCreateInfo) throws CleanCodeException;
+    Card saveCard(Card initialCard) throws CleanCodeException;
 
-    List<BusinessCardCreateInfo> findAllCards() throws CleanCodeException;
+    List<Card> findAllCards() throws CleanCodeException;
 
 }

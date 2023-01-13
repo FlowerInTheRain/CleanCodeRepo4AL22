@@ -1,10 +1,10 @@
 package com.cleancode.persistence.adapters.card;
 
-import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
-import com.cleancode.domain.dto.card.Card;
-import com.cleancode.domain.enums.cards.CardNameEnum;
-import com.cleancode.domain.enums.cards.CardRarityEnum;
-import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
+import com.cleancode.domain.pojo.card.InitialCard;
+import com.cleancode.domain.pojo.card.Card;
+import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
+import com.cleancode.domain.pojo.enums.cards.CardRarityEnum;
+import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.persistence.entities.cards.CardEntity;
 import com.cleancode.persistence.mappers.card.CardEntityMapper;
@@ -45,18 +45,18 @@ public class CardPersistenceSpi implements CardPersistencePort {
      * @return a card
      */
     @Override
-    public Optional<BusinessCardCreateInfo> saveCardInDb(BusinessCardCreateInfo cardToSave) {
+    public Optional<Card> saveCardInDb(Card cardToSave) {
         LOGGER.log(Level.INFO, "Calling DB service saveCard");
         CardEntity savedCard = cardRepository.save(CardEntityMapper.INSTANCE.fromBsToDb(cardToSave));
         LOGGER.log(Level.INFO, "Saved Card : " + cardToSave + " Returned card : " + savedCard);
-        BusinessCardCreateInfo mappedCardToBsCard = CardEntityMapper.INSTANCE.fromDbToBs(savedCard);
+        Card mappedCardToBsCard = CardEntityMapper.INSTANCE.fromDbToBs(savedCard);
         return Optional.ofNullable(mappedCardToBsCard);
     }
 
     @Override
-    public List<BusinessCardCreateInfo> findAllCards() {
+    public List<Card> findAllCards() {
         LOGGER.log(Level.INFO, "Calling DB service findAllCards");
-        List<BusinessCardCreateInfo> foundCards = CardEntityMapper.INSTANCE.fromListDbToListBs(cardRepository.findAll());
+        List<Card> foundCards = CardEntityMapper.INSTANCE.fromListDbToListBs(cardRepository.findAll());
         LOGGER.log(Level.INFO, "Found Cards : " + foundCards);
         return foundCards;
     }
