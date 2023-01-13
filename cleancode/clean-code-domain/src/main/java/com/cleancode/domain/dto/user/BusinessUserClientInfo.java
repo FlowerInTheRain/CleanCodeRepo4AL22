@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 public class BusinessUserClientInfo extends BusinessUserInfo {
     protected final Long technicalId;
-    private Long businessUserCCCoinWallet;
+    private long businessUserCCCoinWallet;
     private String businessReference;
     private Timestamp clientCreationDate;
     private CardCollection userCardCollection;

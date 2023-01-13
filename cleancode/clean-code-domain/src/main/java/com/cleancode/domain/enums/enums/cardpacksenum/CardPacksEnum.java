@@ -1,21 +1,26 @@
 package com.cleancode.domain.enums.enums.cardpacksenum;
 
 
+import com.cleancode.domain.enums.enums.cardpackrarities.CardPackPriceEnum;
 import com.cleancode.domain.enums.enums.cardpackrarities.CardPackRaritiesEnum;
 
-import java.util.Arrays;
+import java.util.function.IntUnaryOperator;
+import java.util.function.LongUnaryOperator;
 
 public enum CardPacksEnum {
-    SILVER_PACK(CardPackRaritiesEnum.SILVER, 1L, 3L),
-    DIAMOND_PACK(CardPackRaritiesEnum.DIAMOND, 2L, 5L);
+    SILVER_PACK(CardPackRaritiesEnum.SILVER, 1L, 3L, (ccCoins -> ccCoins - CardPackPriceEnum.SILVER.getCardPrice())),
+    DIAMOND_PACK(CardPackRaritiesEnum.DIAMOND, 2L, 5L, (ccCoins -> ccCoins - CardPackPriceEnum.DIAMOND.getCardPrice()));
 
     private final CardPackRaritiesEnum cardPackRarity;
     private final Long cardPackPrice;
     private final Long cardsAmount;
-    CardPacksEnum(CardPackRaritiesEnum cardPackRarity, Long cardPackPrice, Long cardsAmount) {
+
+    private final LongUnaryOperator doubleUnaryOperator;
+    CardPacksEnum(CardPackRaritiesEnum cardPackRarity, Long cardPackPrice, Long cardsAmount, LongUnaryOperator doubleUnaryOperator) {
         this.cardPackRarity = cardPackRarity;
         this.cardPackPrice = cardPackPrice;
         this.cardsAmount = cardsAmount;
+        this.doubleUnaryOperator = doubleUnaryOperator;
     }
 
     public CardPackRaritiesEnum getPackRarity() {
@@ -27,6 +32,10 @@ public enum CardPacksEnum {
     }
 
     public Long getCardsAmount(){return cardsAmount;}
+
+    public long processPayment(long  value){
+        return this.doubleUnaryOperator.applyAsLong(value);
+    }
 
     @Override
     public String toString() {

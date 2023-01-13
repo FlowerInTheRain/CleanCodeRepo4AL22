@@ -1,7 +1,10 @@
 package com.cleancode.persistence.entities.cardcollections;
 
+import com.cleancode.persistence.entities.cards.CardEntity;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "CARD_COLLECTIONS")
@@ -14,8 +17,22 @@ public class CardCollectionsEntity implements Serializable {
     private String cardCollectionReference;
     @Column(name = "CARD_COLLECTION_NAME", nullable = false, length = 250)
     private String cardCollectionName;
+    @ManyToMany
+    @JoinTable(
+            name = "CARD_COLLECTION_CARDS",
+            joinColumns = @JoinColumn(name = "COLLECTION_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CARD_ID"))
+    private List<CardEntity> cardCollectionCardList;
 
     public CardCollectionsEntity() {
+    }
+
+    public List<CardEntity> getCardCollectionCardList() {
+        return cardCollectionCardList;
+    }
+
+    public void setCardCollectionCardList(List<CardEntity> cardCollectionCardList) {
+        this.cardCollectionCardList = cardCollectionCardList;
     }
 
     public long getId() {

@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -35,6 +36,13 @@ public class CardEntity implements Serializable {
 
     @Column(nullable = false)
     private Integer level;
+
+    @ManyToMany
+    @JoinTable(
+            name = "CARD_COLLECTION_CARDS",
+            joinColumns = @JoinColumn(name = "CARD_ID"),
+            inverseJoinColumns = @JoinColumn(name = "COLLECTION_ID"))
+    private List<CardEntity> cardCollectionCardList;
 
     @Override
     public boolean equals(Object o) {

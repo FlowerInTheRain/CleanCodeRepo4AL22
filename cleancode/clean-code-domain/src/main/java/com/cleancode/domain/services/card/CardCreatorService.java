@@ -25,11 +25,8 @@ public class CardCreatorService implements CardCreator {
     public BusinessCardCreateInfo saveCard(BusinessCardCreateInfo businessCardCreateInfo) throws CleanCodeException {
 
         if(businessCardCreateInfo.getBusinessReference() == null) {
-            Optional<String> formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
-            if(formattedUUIDToBind.isEmpty()){
-                throw new RuntimeException();
-            }
-            formattedUUIDToBind.ifPresent(businessCardCreateInfo::setBusinessReference);
+            String formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
+            businessCardCreateInfo.setBusinessReference(formattedUUIDToBind);
         }
 
         try {

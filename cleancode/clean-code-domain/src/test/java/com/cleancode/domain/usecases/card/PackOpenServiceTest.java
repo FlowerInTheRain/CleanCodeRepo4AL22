@@ -17,6 +17,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.DoubleUnaryOperator;
+import java.util.function.IntUnaryOperator;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
@@ -46,7 +48,7 @@ public class PackOpenServiceTest {
 
     @Test
     public void shouldFndSome(){
-        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", null, new CardCollection("test","est", new ArrayList<>()), 3L);
+        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), 3L);
         List<Card> newUserCards = new ArrayList<>();
         String rarity0 = CardRarityEnum.COMMON.name();
         Card cardToReturn0 = Card.createOne(1L,"1231", CardRarityEnum.COMMON, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARMAND,0,1);
@@ -81,5 +83,12 @@ public class PackOpenServiceTest {
         doNothing().when(userAccountPersistencePort.saveUserInDb(testUser));*/
         //var silverPack = cardPackOpenerService.openSilverCardPack("Sid");
         //Assert.assertEquals(silverPack.size(), 3);
+    }
+
+
+    @Test
+    public void someShit(){
+        int result = (int) DoubleUnaryOperator.identity().applyAsDouble(18*1.2);
+        System.out.println(result);
     }
 }

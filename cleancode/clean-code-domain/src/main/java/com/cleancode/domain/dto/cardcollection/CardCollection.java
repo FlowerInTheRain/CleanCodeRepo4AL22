@@ -1,23 +1,25 @@
 package com.cleancode.domain.dto.cardcollection;
 
-import com.cleancode.domain.dto.card.Card;
+import com.cleancode.domain.dto.card.CardCollectionCard;
 
 import java.util.List;
-import java.util.Objects;
 
 public final class CardCollection {
+
+    private Long technicalId;
     private String collectionName;
     private String collectionReference;
-    private List<Card> collectionCardList;
+    private List<CardCollectionCard> collectionCardList;
 
-    public CardCollection(String collectionName, String collectionReference, List<Card> collectionCardList) {
+    public CardCollection(Long technicalId, String collectionName, String collectionReference, List<CardCollectionCard> collectionCardList) {
         this.collectionName = collectionName;
         this.collectionReference = collectionReference;
         this.collectionCardList = collectionCardList;
+        this.technicalId = technicalId;
     }
 
-    public static CardCollection createOne(String collectionName, String collectionReference, List<Card> collectionCardListFromService) {
-        return new CardCollection(collectionName, collectionReference, collectionCardListFromService);
+    public static CardCollection createOne(Long technicalId, String collectionName, String collectionReference, List<CardCollectionCard> collectionCardListFromService) {
+        return new CardCollection(technicalId, collectionName, collectionReference, collectionCardListFromService);
     }
 
     public String getCollectionName() {
@@ -28,7 +30,7 @@ public final class CardCollection {
         return collectionReference;
     }
 
-    public List<Card> getCollectionCardList() {
+    public List<CardCollectionCard> getCollectionCardList() {
         return collectionCardList;
     }
 
@@ -40,23 +42,38 @@ public final class CardCollection {
         this.collectionReference = collectionReference;
     }
 
-    public void setCollectionCardList(List<Card> collectionCardList) {
+    public void setCollectionCardList(List<CardCollectionCard> collectionCardList) {
         this.collectionCardList = collectionCardList;
     }
 
+    public Long getTechnicalId() {
+        return technicalId;
+    }
+
+    public void setTechnicalId(long technicalId) {
+        this.technicalId = technicalId;
+    }
+
     @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (CardCollection) obj;
-        return Objects.equals(this.collectionName, that.collectionName) &&
-                Objects.equals(this.collectionReference, that.collectionReference) &&
-                Objects.equals(this.collectionCardList, that.collectionCardList);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CardCollection that = (CardCollection) o;
+
+        if (technicalId != that.technicalId) return false;
+        if (!collectionName.equals(that.collectionName)) return false;
+        if (!collectionReference.equals(that.collectionReference)) return false;
+        return collectionCardList.equals(that.collectionCardList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(collectionName, collectionReference, collectionCardList);
+        int result = (int) (technicalId ^ (technicalId >>> 32));
+        result = 31 * result + collectionName.hashCode();
+        result = 31 * result + collectionReference.hashCode();
+        result = 31 * result + collectionCardList.hashCode();
+        return result;
     }
 
     @Override
@@ -66,5 +83,4 @@ public final class CardCollection {
                 "collectionReference=" + collectionReference + ", " +
                 "collectionCardList=" + collectionCardList + ']';
     }
-
 }
