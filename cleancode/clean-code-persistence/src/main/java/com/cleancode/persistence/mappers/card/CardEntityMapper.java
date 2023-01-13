@@ -16,7 +16,6 @@ public interface CardEntityMapper {
     CardEntityMapper INSTANCE = Mappers.getMapper(CardEntityMapper.class);
 
     CardEntity fromBsToDb(Card card);
-
     Card fromDbToBs(CardEntity card);
 
     List<Card> fromListDbToListBs(List<CardEntity> cards);

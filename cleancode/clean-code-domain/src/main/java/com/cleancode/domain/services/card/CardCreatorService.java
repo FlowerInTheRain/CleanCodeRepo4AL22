@@ -24,7 +24,7 @@ public class CardCreatorService implements CardCreator {
     @Override
     public Card saveCard(Card initialCard) throws CleanCodeException {
 
-        if(initialCard.cardReference() == null) {
+        if(initialCard.getCardReference() == null) {
             String formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
             initialCard.setCardReference(formattedUUIDToBind);
         }

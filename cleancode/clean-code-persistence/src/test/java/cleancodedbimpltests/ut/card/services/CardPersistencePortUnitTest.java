@@ -44,8 +44,8 @@ public class CardPersistencePortUnitTest {
         }
 
         assertEquals(returnedCards.size(), cards.size());
-        assertEquals(returnedCards.get(0).technicalId(), CardEntityMapper.INSTANCE.fromDbToBs(card1).technicalId());
-        assertEquals(returnedCards.get(1).technicalId(), CardEntityMapper.INSTANCE.fromDbToBs(card2).technicalId());
+        assertEquals(returnedCards.get(0).getTechnicalId(), CardEntityMapper.INSTANCE.fromDbToBs(card1).getTechnicalId());
+        assertEquals(returnedCards.get(1).getTechnicalId(), CardEntityMapper.INSTANCE.fromDbToBs(card2).getTechnicalId());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class CardPersistencePortUnitTest {
 
         Card returnedCard = cardPersistencePort.findOneCardByRarity(cardBusinessReference);
 
-        assertEquals(returnedCard.cardReference(), card.getCardReference());
+        assertEquals(returnedCard.getCardReference(), card.getCardReference());
     }
 
     @Test
@@ -86,6 +86,6 @@ public class CardPersistencePortUnitTest {
             fail();
         }
 
-        assertEquals(returnedCard.get().technicalId(), CardEntityMapper.INSTANCE.fromDbToBs(savedCard).technicalId());
+        assertEquals(returnedCard.get().getTechnicalId(), CardEntityMapper.INSTANCE.fromDbToBs(savedCard).getTechnicalId());
     }
 }

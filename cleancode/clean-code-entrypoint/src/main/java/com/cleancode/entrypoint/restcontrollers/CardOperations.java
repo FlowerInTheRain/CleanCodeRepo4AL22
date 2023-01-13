@@ -38,6 +38,8 @@ public class CardOperations {
     @ApiResponse(code=200, message="Card found")
     @GetMapping(value = "/findAllCards", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Card> findAllCards() throws CleanCodeException {
-        return CardMapper.INSTANCE.fromListBsToListApi(cardCreator.findAllCards());
+        var response = cardCreator.findAllCards();
+        System.out.println(response);
+        return CardMapper.INSTANCE.fromListBsToListApi(response);
     }
 }

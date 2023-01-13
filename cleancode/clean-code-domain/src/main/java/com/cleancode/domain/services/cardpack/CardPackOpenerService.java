@@ -110,17 +110,17 @@ public class CardPackOpenerService implements CardPackOpener {
         String rarity = foundDistribution.getRarityValue();
         CardRarityEnum rarityToUse = CardRarityEnum.valueOf(rarity.toUpperCase());
         Card card = cardPersistencePort.findOneCardByRarity(rarity);
-        CardSpecialty specialtyToUse = card.cardSpecialty().getSpecialtyValue();
+        CardSpecialty specialtyToUse = card.getCardSpecialty().getSpecialtyValue();
         return new CardCollectionCard(
-                card.technicalId(),
+                card.getTechnicalId(),
                 userAccount.getUserCardCollection().getTechnicalId(),
                 UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, ""),
-                card.cardName().name(),
+                card.getCardName().name(),
                 (int) rarityToUse.getStatValue(specialtyToUse.getLifePoint()),
                 (int) rarityToUse.getStatValue(specialtyToUse.getPower()),
                 (int) rarityToUse.getStatValue(specialtyToUse.getArmor()),
                 0,
                 1,
-                card.cardRarity());
+                card.getCardRarity());
     }
 }

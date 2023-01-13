@@ -32,10 +32,10 @@ public class CardEntity implements Serializable {
     private String cardName;
 
     @Column(nullable = false)
-    private Integer xp;
+    private int xp;
 
     @Column(nullable = false)
-    private Integer level;
+    private int level;
 
     @OneToMany(mappedBy = "id")
     private List<CardEntity> collectionCardList;
@@ -47,13 +47,14 @@ public class CardEntity implements Serializable {
 
         CardEntity that = (CardEntity) o;
 
+        if (xp != that.xp) return false;
+        if (level != that.level) return false;
         if (!id.equals(that.id)) return false;
         if (!cardReference.equals(that.cardReference)) return false;
         if (!cardRarity.equals(that.cardRarity)) return false;
         if (!cardSpecialty.equals(that.cardSpecialty)) return false;
         if (!cardName.equals(that.cardName)) return false;
-        if (!xp.equals(that.xp)) return false;
-        return level.equals(that.level);
+        return collectionCardList.equals(that.collectionCardList);
     }
 
     @Override
@@ -63,8 +64,9 @@ public class CardEntity implements Serializable {
         result = 31 * result + cardRarity.hashCode();
         result = 31 * result + cardSpecialty.hashCode();
         result = 31 * result + cardName.hashCode();
-        result = 31 * result + xp.hashCode();
-        result = 31 * result + level.hashCode();
+        result = 31 * result + xp;
+        result = 31 * result + level;
+        result = 31 * result + collectionCardList.hashCode();
         return result;
     }
 
