@@ -17,7 +17,7 @@ public class CardCollectionsEntity implements Serializable {
     private String cardCollectionReference;
     @Column(name = "CARD_COLLECTION_NAME", nullable = false, length = 250)
     private String cardCollectionName;
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "id", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<CardEntity> cardsInCollection;
 
     public CardCollectionsEntity() {

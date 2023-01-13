@@ -10,7 +10,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "CARDS")
 public class CardEntity implements Serializable {
     public CardEntity() {
     }

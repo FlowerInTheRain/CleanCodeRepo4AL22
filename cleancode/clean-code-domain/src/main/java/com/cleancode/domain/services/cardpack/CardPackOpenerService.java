@@ -61,7 +61,12 @@ public class CardPackOpenerService implements CardPackOpener {
 
     private void enrichUserCardCollection(BusinessUserClientInfo userAccount, List<CardCollectionCard> cardPack) {
             if(isUserAbleToBuyPack(userAccount.getBusinessUserCCCoinWallet())){
-                var userCardCollection = userAccount.getUserCardCollection().getCollectionCardList();
+                List<CardCollectionCard> userCardCollection ;
+                if(userAccount.getUserCardCollection().getCollectionCardList() == null){
+                    userCardCollection = new ArrayList<>();
+                } else {
+                    userCardCollection = userAccount.getUserCardCollection().getCollectionCardList();
+                }
                 userCardCollection.addAll( 0, cardPack);
                 userAccount.getUserCardCollection().setCollectionCardList(userCardCollection);
             }

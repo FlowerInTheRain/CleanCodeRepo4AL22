@@ -8,6 +8,9 @@ public class CardPackResponse {
 
         String cardCollectionCardReference;
 
+        String rarity;
+
+
         int lifePoints;
 
         int power;
@@ -18,10 +21,11 @@ public class CardPackResponse {
 
         int level = 1;
 
-        public CardPackResponse(long cardId, long collectionId, String cardCollectionCardReference, int lifePoints, int power, int armor, int xp, int level) {
+        public CardPackResponse(long cardId, long collectionId, String cardCollectionCardReference, String rarity, int lifePoints, int power, int armor, int xp, int level) {
             this.cardId = cardId;
             this.collectionId = collectionId;
             this.cardCollectionCardReference = cardCollectionCardReference;
+            this.rarity = rarity;
             this.lifePoints = lifePoints;
             this.power = power;
             this.armor = armor;
