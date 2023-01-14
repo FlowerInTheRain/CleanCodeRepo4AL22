@@ -3,7 +3,6 @@ package com.cleancode.persistence.mappers.card;
 import com.cleancode.domain.pojo.card.Card;
 import com.cleancode.persistence.adapters.card.Meh;
 import com.cleancode.persistence.entities.cards.CardEntity;
-import com.cleancode.domain.pojo.card.InitialCard;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

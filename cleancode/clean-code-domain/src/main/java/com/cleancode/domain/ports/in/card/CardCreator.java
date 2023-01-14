@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CardCreator {
 
-    Card saveCard(Card initialCard) throws CleanCodeException;
+    Card saveCard(Card card) throws CleanCodeException;
 
     List<Card> findAllCards() throws CleanCodeException;
 
