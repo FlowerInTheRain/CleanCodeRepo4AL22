@@ -1,6 +1,6 @@
 package com.cleancode.persistence.mappers.cardcollections;
 
-import com.cleancode.domain.dto.cardcollection.CardCollection;
+import com.cleancode.domain.pojo.cardcollection.CardCollection;
 import com.cleancode.persistence.entities.cardcollections.CardCollectionsEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,12 +12,15 @@ public interface CardCollectionEntityMapper {
     CardCollectionEntityMapper INSTANCE = Mappers.getMapper(CardCollectionEntityMapper.class);
     @Mappings({
             @Mapping(source="collectionName", target="cardCollectionName"),
+            @Mapping(source="technicalId", target="id"),
+
             @Mapping(source="collectionReference", target="cardCollectionReference")
 
     })
     CardCollectionsEntity fromBSCardCollectionToDBImplCardCollection(CardCollection cardCollection);
     @Mappings({
             @Mapping(source="cardCollectionName", target="collectionName"),
+            @Mapping(source="id", target="technicalId"),
             @Mapping(source="cardCollectionReference", target="collectionReference")
 
     })

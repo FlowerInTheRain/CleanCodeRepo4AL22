@@ -2,14 +2,11 @@ package com.cleancode.cleancodeapi.dto.user;
 
 
 public class UserAccountCreationRequest extends User {
-    private final String userCardCollectionName;
+    public final String userCardCollectionName;
 
     public UserAccountCreationRequest(String userName, String userCardCollectionName) {
         super(userName);
         this.userCardCollectionName = userCardCollectionName;
-    }
-    public String getUserCardCollectionName() {
-        return userCardCollectionName;
     }
 
     @Override

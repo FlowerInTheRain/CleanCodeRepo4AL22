@@ -1,6 +1,6 @@
 package com.cleancode.domain.ports.out.useraccount;
 
-import com.cleancode.domain.dto.user.BusinessUserClientInfo;
+import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 
 import java.util.Optional;
 

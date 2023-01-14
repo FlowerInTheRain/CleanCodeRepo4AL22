@@ -1,42 +1,46 @@
 package cleancodedbimpltests.ut.card.services;
 
+import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
+import com.cleancode.domain.enums.rarities.CardNameEnum;
+import com.cleancode.domain.enums.rarities.CardRarityEnum;
+import com.cleancode.domain.pojo.card.Card;
+import com.cleancode.persistence.adapters.card.CardPersistenceSpi;
 import com.cleancode.persistence.entities.cards.CardEntity;
 import com.cleancode.persistence.mappers.card.CardEntityMapper;
 import com.cleancode.persistence.repositories.card.CardRepository;
-import com.cleancode.persistence.adapters.card.CardPersistenceSpi;
-import com.cleancode.domain.dto.card.BusinessCardCreateInfo;
-import com.cleancode.domain.enums.cards.CardNameEnum;
-import com.cleancode.domain.enums.cards.CardRarityEnum;
-import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
-import com.cleancode.domain.ports.out.card.CardPersistencePort;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 public class CardPersistencePortUnitTest {
 
     @Mock
-    private CardRepository cardRepository = Mockito.mock(CardRepository.class);
+    private CardRepository cardRepository;
 
     @InjectMocks
-    private CardPersistencePort cardPersistencePort = new CardPersistenceSpi(this.cardRepository);
+    private CardPersistenceSpi cardPersistencePort;
 
     @Test
     public void findAllCardsShouldReturnListOfCards() {
         CardEntity card1 = new CardEntity();
+        card1.setId(1L);
         CardEntity card2 = new CardEntity();
+        card2.setId(2L);
         List<CardEntity> cards = Arrays.asList(card1, card2);
         when(cardRepository.findAll()).thenReturn(cards);
 
-        List<BusinessCardCreateInfo> returnedCards = cardPersistencePort.findAllCards();
+        List<Card> returnedCards = cardPersistencePort.findAllCards();
 
         if (returnedCards.isEmpty()) {
             fail();
@@ -51,24 +55,27 @@ public class CardPersistencePortUnitTest {
     public void findOneCardByCardFunctionalIdShouldReturnCard() {
         String cardBusinessReference = "123456";
         CardEntity card = new CardEntity();
-        when(cardRepository.findByCardReference(cardBusinessReference)).thenReturn(card);
+        card.setId(1L);
+        card.setCardReference(cardBusinessReference);
+        card.setCardRarity("COMMON");
+        card.setXp(0);
+        card.setLevel(1);
+        card.setCardSpecialty("ASSASSIN");
+        card.setCardName(CardNameEnum.ARMAND.name());
+        when(cardRepository.findFirstByCardRarity(cardBusinessReference)).thenReturn(card);
 
-        Optional<BusinessCardCreateInfo> returnedCard = cardPersistencePort.findOneCardByCardFunctionalId(cardBusinessReference);
+        Card returnedCard = cardPersistencePort.findOneCardByRarity(cardBusinessReference);
 
-        if (returnedCard.isEmpty()) {
-            fail();
-        }
-
-        assertEquals(returnedCard.get().getTechnicalId(), CardEntityMapper.INSTANCE.fromDbToBs(card).getTechnicalId());
+        assertEquals(returnedCard.getCardReference(), card.getCardReference());
     }
 
     @Test
     public void saveCardInDbShouldSaveCard() {
-        BusinessCardCreateInfo cardToSave = new BusinessCardCreateInfo(
+        Card cardToSave = new Card(
                 1L,
                 "12345",
-                CardSpecialtyEnum.MAGE,
                 CardRarityEnum.COMMON,
+                CardSpecialtyEnum.MAGE,
                 CardNameEnum.JONATHAN,
                 100,
                 10
@@ -76,12 +83,12 @@ public class CardPersistencePortUnitTest {
         CardEntity savedCard = CardEntityMapper.INSTANCE.fromBsToDb(cardToSave);
         when(cardRepository.save(CardEntityMapper.INSTANCE.fromBsToDb(cardToSave))).thenReturn(savedCard);
 
-        Optional<BusinessCardCreateInfo> returnedCard = cardPersistencePort.saveCardInDb(cardToSave);
+        Optional<Card> returnedCard = cardPersistencePort.saveCardInDb(cardToSave);
 
         if (returnedCard.isEmpty()) {
             fail();
         }
 
-        assertEquals(returnedCard.get().getTechnicalId(), CardEntityMapper.INSTANCE.fromDbToBs(savedCard).getTechnicalId());
+        assertEquals(returnedCard.get().getTechnicalId(), savedCard.getId());
     }
 }

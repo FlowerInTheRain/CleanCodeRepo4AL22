@@ -5,18 +5,17 @@ import com.cleancode.cleancodeapi.enums.rarities.RaritiesEnum;
 
 public enum SilverPackCardRarityDistributionEnum implements CardRarityDistributionEnumInterface {
 
-    SILVER_PACK_COMMON_CARD(RaritiesEnum.COMMON,0.75f),
-    SILVER_PACK_UNCOMMON_CARD(RaritiesEnum.UNCOMMON,0.2f),
-    SILVER_PACK_RARE_CARD(RaritiesEnum.RARE,0.04f),
-    SILVER_PACK_UNIQUE_CARD(RaritiesEnum.RARE,0.01f);
+    SILVER_PACK_COMMON_CARD(RaritiesEnum.COMMON,0.75),
+    SILVER_PACK_RARE_CARD(RaritiesEnum.RARE,0.95),
+    SILVER_PACK_LEGENDARY_CARD(RaritiesEnum.LEGENDARY,1.0);
 
 
-    private RaritiesEnum cardRarityEnum;
-    private float probability;
+    private final RaritiesEnum cardRarityEnum;
+    private final double maxProbability;
 
-    SilverPackCardRarityDistributionEnum(RaritiesEnum cardRarityEnum, float probability) {
+    SilverPackCardRarityDistributionEnum(RaritiesEnum cardRarityEnum, double maxProbability) {
         this.cardRarityEnum = cardRarityEnum;
-        this.probability = probability;
+        this.maxProbability = maxProbability;
     }
 
     @Override
@@ -25,19 +24,15 @@ public enum SilverPackCardRarityDistributionEnum implements CardRarityDistributi
     }
 
     @Override
-    public float getProbability() {
-        return probability;
+    public double getMaxProbability() {
+        return maxProbability;
     }
 
-    @Override
-    public void setProbability(float probability) {
-        this.probability = probability;
-    }
 
     public String toString() {
         return "SilverPackCardRarityEnum{" +
                 "cardRarityEnum=" + cardRarityEnum +
-                ", probability=" + probability +
+                ", maxProbability=" + maxProbability +
                 '}';
     }
 }

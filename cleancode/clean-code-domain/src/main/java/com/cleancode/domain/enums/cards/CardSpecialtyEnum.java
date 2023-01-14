@@ -1,7 +1,7 @@
 package com.cleancode.domain.enums.cards;
 
 
-import com.cleancode.domain.dto.card.CardSpecialty;
+import com.cleancode.domain.pojo.card.CardSpecialty;
 
 public enum CardSpecialtyEnum {
 

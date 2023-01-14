@@ -1,6 +1,6 @@
 package com.cleancode.persistence.mappers.users;
 
-import com.cleancode.domain.dto.user.BusinessUserClientInfo;
+import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 import com.cleancode.persistence.entities.users.UsersEntity;
 import com.cleancode.persistence.mappers.cardcollections.CardCollectionEntityMapper;
 import org.mapstruct.Mapper;
@@ -15,14 +15,16 @@ public interface UserEntityMapper {
             @Mapping(source = "businessReference", target = "userReference"),
             @Mapping(source = "technicalId", target = "id"),
             @Mapping(source = "userCardCollection", target = "userCardCollection"),
+            @Mapping(source = "businessUserCCCoinWallet", target = "CCCoinWallet"),
 
     })
     UsersEntity fromBsToDb(BusinessUserClientInfo userClientInfo);
 
     @Mappings({
             @Mapping(source = "id", target = "technicalId"),
-            @Mapping(source = "userReference", target = "businessReference")
-
+            @Mapping(source = "userReference", target = "businessReference"),
+            @Mapping(source = "userCardCollection", target = "userCardCollection"),
+            @Mapping(source = "CCCoinWallet", target = "businessUserCCCoinWallet"),
     })
     BusinessUserClientInfo fromDbToBs(UsersEntity userClientInfo);
 }
