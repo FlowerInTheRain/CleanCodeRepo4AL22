@@ -4,8 +4,11 @@ import com.cleancode.domain.pojo.card.Card;
 import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
 import com.cleancode.domain.pojo.enums.cards.CardRarityEnum;
 import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
+import com.cleancode.domain.ports.in.card.CardCreator;
+import com.cleancode.domain.ports.in.card.CardFinder;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.services.card.CardCreatorService;
+import com.cleancode.domain.services.card.CardFinderService;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -25,7 +28,8 @@ public class CardCreatorUseCaseUnitTest {
     private CardPersistencePort cardPersistencePort = Mockito.mock(CardPersistencePort.class);
 
     @InjectMocks
-    private CardCreatorService cardCreatorService = new CardCreatorService(this.cardPersistencePort);
+    private CardCreator cardCreator = new CardCreatorService(this.cardPersistencePort);
+    private CardFinder cardFinder = new CardFinderService(this.cardPersistencePort);
 
     @Test
     public void saveCardShouldSaveCard() throws Exception {
@@ -40,7 +44,7 @@ public class CardCreatorUseCaseUnitTest {
         );
         when(cardPersistencePort.saveCardInDb(card)).thenReturn(Optional.of(card));
 
-        Card savedCard = cardCreatorService.saveCard(card);
+        Card savedCard = cardCreator.saveCard(card);
 
         assertEquals(savedCard, card);
         verify(cardPersistencePort).saveCardInDb(card);
@@ -67,7 +71,7 @@ public class CardCreatorUseCaseUnitTest {
         List<Card> cards = Arrays.asList(card1, card2);
         when(cardPersistencePort.findAllCards()).thenReturn(cards);
 
-        List<Card> returnedCards = cardCreatorService.findAllCards();
+        List<Card> returnedCards = cardFinder.findAllCards();
 
         assertEquals(returnedCards, cards);
         verify(cardPersistencePort).findAllCards();

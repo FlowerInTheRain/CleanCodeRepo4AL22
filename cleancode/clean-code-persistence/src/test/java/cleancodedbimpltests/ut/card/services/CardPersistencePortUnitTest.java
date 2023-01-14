@@ -1,6 +1,10 @@
 package cleancodedbimpltests.ut.card.services;
 
 import com.cleancode.domain.pojo.card.Card;
+import com.cleancode.persistence.entities.cards.CardEntity;
+import com.cleancode.persistence.mappers.card.CardEntityMapper;
+import com.cleancode.persistence.repositories.card.CardRepository;
+import com.cleancode.persistence.adapters.card.CardPersistenceSpi;
 import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
 import com.cleancode.domain.pojo.enums.cards.CardRarityEnum;
 import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
