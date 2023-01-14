@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@RestController("UserAccountOperationRestController")
+@RestController
 @RequestMapping("/")
 @CrossOrigin
 @Api

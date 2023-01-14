@@ -1,30 +1,25 @@
 package com.cleancode.entrypoint.restcontrollers;
 
-import com.cleancode.cleancodeapi.mappers.withdomain.cards.CardMapper;
 import com.cleancode.cleancodeapi.dto.card.Card;
+import com.cleancode.cleancodeapi.mappers.withdomain.cards.CardMapper;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.ports.in.card.CardCreator;
-import com.cleancode.domain.ports.in.card.CardFinder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@RestController("CardOperationRestController")
-@RequestMapping("/card/")
+@RestController
+@RequestMapping("/card/create")
 @CrossOrigin
 @Api
-public class CardOperations {
+public class CardCreationEntrypoint {
 
     private final CardCreator cardCreator;
-    private final CardFinder cardFinder;
 
-    public CardOperations(CardCreator cardCreator, CardFinder cardFinder){
+    public CardCreationEntrypoint(CardCreator cardCreator){
         this.cardCreator = cardCreator;
-        this.cardFinder = cardFinder;
     }
 
     @ApiOperation(value = "Create a card",
@@ -36,13 +31,5 @@ public class CardOperations {
         return CardMapper.INSTANCE.fromBsToApi(cardCreator.saveCard(CardMapper.INSTANCE.fromApiToBs(card)));
     }
 
-    @ApiOperation(value = "Find all cards",
-            response = Card.class)
-    @ApiResponse(code=200, message="Card found")
-    @GetMapping(value = "/findAllCards", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Card> findAllCards() throws CleanCodeException {
-        var response = cardFinder.findAllCards();
-        System.out.println(response);
-        return CardMapper.INSTANCE.fromListBsToListApi(response);
-    }
+
 }

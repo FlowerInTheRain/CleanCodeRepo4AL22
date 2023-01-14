@@ -2,10 +2,6 @@ package com.cleancode.cleancodeapi.dto.cardpacks;
 
 public class CardPackResponse {
 
-        Long cardId;
-
-        Long collectionId;
-
         String cardCollectionCardReference;
 
         String rarity;
@@ -21,9 +17,7 @@ public class CardPackResponse {
 
         int level = 1;
 
-        public CardPackResponse(long cardId, long collectionId, String cardCollectionCardReference, String rarity, int lifePoints, int power, int armor, int xp, int level) {
-            this.cardId = cardId;
-            this.collectionId = collectionId;
+        public CardPackResponse(String cardCollectionCardReference, String rarity, int lifePoints, int power, int armor, int xp, int level) {
             this.cardCollectionCardReference = cardCollectionCardReference;
             this.rarity = rarity;
             this.lifePoints = lifePoints;
@@ -33,21 +27,6 @@ public class CardPackResponse {
             this.level = level;
         }
 
-        public long getCardId() {
-            return cardId;
-        }
-
-        public void setCardId(long cardId) {
-            this.cardId = cardId;
-        }
-
-        public long getCollectionId() {
-            return collectionId;
-        }
-
-        public void setCollectionId(long collectionId) {
-            this.collectionId = collectionId;
-        }
 
         public String getCardCollectionCardReference() {
             return cardCollectionCardReference;
@@ -104,8 +83,6 @@ public class CardPackResponse {
 
             com.cleancode.domain.pojo.card.CardCollectionCard that = (com.cleancode.domain.pojo.card.CardCollectionCard) o;
 
-            if (cardId != that.getCardId()) return false;
-            if (collectionId != that.getCollectionId()) return false;
             if (lifePoints != that.getLifePoints()) return false;
             if (power != that.getPower()) return false;
             if (armor != that.getArmor()) return false;
@@ -114,24 +91,21 @@ public class CardPackResponse {
             return cardCollectionCardReference.equals(that.getCardCollectionCardReference());
         }
 
-        @Override
-        public int hashCode() {
-            int result = (int) (cardId ^ (cardId >>> 32));
-            result = 31 * result + (int) (collectionId ^ (collectionId >>> 32));
-            result = 31 * result + cardCollectionCardReference.hashCode();
-            result = 31 * result + lifePoints;
-            result = 31 * result + power;
-            result = 31 * result + armor;
-            result = 31 * result + xp;
-            result = 31 * result + level;
-            return result;
-        }
+    @Override
+    public int hashCode() {
+        int result = cardCollectionCardReference != null ? cardCollectionCardReference.hashCode() : 0;
+        result = 31 * result + (rarity != null ? rarity.hashCode() : 0);
+        result = 31 * result + lifePoints;
+        result = 31 * result + power;
+        result = 31 * result + armor;
+        result = 31 * result + xp;
+        result = 31 * result + level;
+        return result;
+    }
 
-        @Override
+    @Override
         public String toString() {
             return "CardCollectionCard{" +
-                    "cardId=" + cardId +
-                    ", collectionId=" + collectionId +
                     ", cardCollectionCardReference='" + cardCollectionCardReference + '\'' +
                     ", lifePoints=" + lifePoints +
                     ", power=" + power +

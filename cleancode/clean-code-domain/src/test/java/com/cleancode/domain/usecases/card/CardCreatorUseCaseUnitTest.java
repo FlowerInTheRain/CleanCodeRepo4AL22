@@ -7,8 +7,6 @@ import com.cleancode.domain.pojo.card.Card;
 import com.cleancode.domain.ports.in.card.CardCreator;
 import com.cleancode.domain.ports.in.card.CardFinder;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
-import com.cleancode.domain.services.card.CardCreatorService;
-import com.cleancode.domain.services.card.CardFinderService;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -48,7 +46,7 @@ public class CardCreatorUseCaseUnitTest {
 
         when(cardPersistencePort.saveCardInDb(card)).thenReturn(Optional.of(card));
 
-        Card savedCard = cardCreator.saveCard(card);
+        final var savedCard = cardCreator.saveCard(card);
 
         assertEquals(savedCard, card);
         verify(cardPersistencePort).saveCardInDb(card);
@@ -72,10 +70,10 @@ public class CardCreatorUseCaseUnitTest {
                 CardNameEnum.ARMAND,
                 100,
                 10);
-        List<Card> cards = Arrays.asList(card1, card2);
+        final List<Card> cards = Arrays.asList(card1, card2);
         when(cardPersistencePort.findAllCards()).thenReturn(cards);
 
-        List<Card> returnedCards = cardFinder.findAllCards();
+        final List<Card> returnedCards = cardFinder.findAllCards();
 
         assertEquals(returnedCards, cards);
         verify(cardPersistencePort).findAllCards();

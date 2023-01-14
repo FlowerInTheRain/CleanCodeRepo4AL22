@@ -10,8 +10,8 @@ public enum SilverPackCardRarityDistributionEnum implements CardRarityDistributi
     SILVER_PACK_LEGENDARY_CARD(RaritiesEnum.LEGENDARY,1.0);
 
 
-    private RaritiesEnum cardRarityEnum;
-    private double maxProbability;
+    private final RaritiesEnum cardRarityEnum;
+    private final double maxProbability;
 
     SilverPackCardRarityDistributionEnum(RaritiesEnum cardRarityEnum, double maxProbability) {
         this.cardRarityEnum = cardRarityEnum;

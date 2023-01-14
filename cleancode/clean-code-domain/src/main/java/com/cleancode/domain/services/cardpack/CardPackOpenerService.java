@@ -106,7 +106,7 @@ public class CardPackOpenerService implements CardPackOpener {
     }
 
     private CardCollectionCard createCardForCollection(RaritiesEnum foundDistribution, BusinessUserClientInfo userAccount) {
-        String rarity = foundDistribution.getRarityValue();
+        String rarity = foundDistribution.name();
         CardRarityEnum rarityToUse = CardRarityEnum.valueOf(rarity.toUpperCase());
         Card card = cardPersistencePort.findOneCardByRarity(rarity);
         CardSpecialty specialtyToUse = card.getCardSpecialty().getSpecialtyValue();
