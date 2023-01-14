@@ -1,6 +1,5 @@
 package com.cleancode.persistence.adapters.card;
 
-import com.cleancode.domain.pojo.card.InitialCard;
 import com.cleancode.domain.pojo.card.Card;
 import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
 import com.cleancode.domain.pojo.enums.cards.CardRarityEnum;

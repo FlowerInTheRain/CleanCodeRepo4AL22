@@ -1,7 +1,6 @@
 package cleancodedbimpltests.ut.card.services;
 
 import com.cleancode.domain.pojo.card.Card;
-import com.cleancode.domain.pojo.card.InitialCard;
 import com.cleancode.persistence.entities.cards.CardEntity;
 import com.cleancode.persistence.mappers.card.CardEntityMapper;
 import com.cleancode.persistence.repositories.card.CardRepository;

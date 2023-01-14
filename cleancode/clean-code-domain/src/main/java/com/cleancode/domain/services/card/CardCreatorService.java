@@ -22,34 +22,34 @@ public class CardCreatorService implements CardCreator {
         this.cardPersistencePort = cardPersistencePort;
     }
     @Override
-    public Card saveCard(Card initialCard) throws CleanCodeException {
+    public Card saveCard(Card card) throws CleanCodeException {
 
-        if(initialCard.cardReference() == null) {
+        if(card.cardReference() == null) {
             String formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
-            initialCard.setCardReference(formattedUUIDToBind);
+            card.setCardReference(formattedUUIDToBind);
         }
 
         try {
-            Optional<Card> cardEntity = cardPersistencePort.saveCardInDb(initialCard);
-            LOGGER.log(Level.INFO, "BusinessCardCreateInfo businessCardCreateInfo : " + initialCard + " Returned cardEntity : " + cardEntity);
+            Optional<Card> cardEntity = cardPersistencePort.saveCardInDb(card);
+            LOGGER.log(Level.INFO, "BusinessCardCreateInfo businessCardCreateInfo : " + card + " Returned cardEntity : " + cardEntity);
             if(cardEntity.isPresent()){
                 return cardEntity.get();
             }
         } catch (Exception e){
             handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
-            initialCard.setCardReference(null);
+            card.setCardReference(null);
         }
 
-        return initialCard;
+        return card;
     }
 
     @Override
     public List<Card> findAllCards() throws CleanCodeException {
 
         try {
-            List<Card> initialCards = cardPersistencePort.findAllCards();
-            LOGGER.log(Level.INFO, " Returned List businessCardCreateInfos : " + initialCards);
-            return initialCards;
+            List<Card> cards = cardPersistencePort.findAllCards();
+            LOGGER.log(Level.INFO, " Returned List businessCardCreateInfos : " + cards);
+            return cards;
         } catch (Exception e){
             handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
         }

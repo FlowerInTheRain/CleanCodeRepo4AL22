@@ -30,7 +30,7 @@ public class CardCreatorUseCaseUnitTest {
 
     @Test
     public void saveCardShouldSaveCard() throws Exception {
-        Card initialCard = new Card(
+        Card card = new Card(
                 1L,
                 "12345",
                 CardRarityEnum.COMMON,
@@ -39,12 +39,12 @@ public class CardCreatorUseCaseUnitTest {
                 100,
                 10
         );
-        when(cardPersistencePort.saveCardInDb(initialCard)).thenReturn(Optional.of(initialCard));
+        when(cardPersistencePort.saveCardInDb(card)).thenReturn(Optional.of(card));
 
-        Card savedInitialCard = cardCreatorService.saveCard(initialCard);
+        Card savedCard = cardCreatorService.saveCard(card);
 
-        assertEquals(savedInitialCard, initialCard);
-        verify(cardPersistencePort).saveCardInDb(initialCard);
+        assertEquals(savedCard, card);
+        verify(cardPersistencePort).saveCardInDb(card);
     }
 
     @Test
