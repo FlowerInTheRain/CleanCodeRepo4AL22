@@ -5,6 +5,7 @@ import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.cleancode.persistence.entities.users.UsersEntity;
 import com.cleancode.persistence.mappers.users.UserEntityMapper;
 import com.cleancode.persistence.repositories.user.UserRepository;
+import com.jnape.palatable.lambda.adt.Maybe;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,12 +28,12 @@ public class AccountPersistence implements UserAccountPersistencePort {
      * @return an optional of a user
      */
     @Override
-    public Optional<BusinessUserClientInfo> findUserByUserName(String userName) {
+    public Maybe<BusinessUserClientInfo> findUserByUserName(String userName) {
         LOGGER.log(Level.INFO, "Calling DB service findOneUserByUserFunctionalId");
         UsersEntity foundUser = userRepository.findByUserName(userName);
         LOGGER.log(Level.INFO, "Found User : " + foundUser);
         BusinessUserClientInfo mappedUserToBsUser = UserEntityMapper.INSTANCE.fromDbToBs(foundUser);
-        return Optional.ofNullable(mappedUserToBsUser);
+        return Maybe.maybe(mappedUserToBsUser);
     }
 
     /**

@@ -17,6 +17,7 @@ import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.cleancode.domain.services.Probabilities;
 import com.cleancode.domain.services.cardpack.CardPackOpenerService;
+import com.jnape.palatable.lambda.adt.Maybe;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -62,7 +63,6 @@ public class PackOpenServiceTest {
         assertTrue(CardPackOpenerService.isUserAbleToBuyPack(CardPackRaritiesEnum.SILVER, testUser.getBusinessUserCCCoinWallet()));
     }
 
-    /**
     @Test
     public void shouldOpenSilverCardPack(){
         NavigableMap<Double, RaritiesEnum> silverMap = new TreeMap<>();
@@ -73,9 +73,9 @@ public class PackOpenServiceTest {
         List<Card> newUserCards = new ArrayList<>();
         String rarity0 = CardRarityEnum.COMMON.name();
         Card cardToReturn0 = Card.createOne(1L,"1231", CardRarityEnum.COMMON, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARMAND,0,1);
-        Optional<BusinessUserClientInfo> toReturn = Optional.of(testUser);
+        Maybe<BusinessUserClientInfo> toReturn = Maybe.maybe(testUser);
         var cardToCreate2 = Card.createOne(3L,"1233", CardRarityEnum.LEGENDARY, CardSpecialtyEnum.ASSASSIN, CardNameEnum.JONATHAN,0,1);
-        when(userAccountPersistencePort.findUserByUserName("Sid")).thenReturn(toReturn);
+        when(userAccountPersistencePort.findUserByUserName("Sid")).thenReturn( toReturn);
         when(probabilities.getSilverProbabilitiesMap()).thenReturn(silverMap);
         when(probabilities.getRandomNumber()).thenReturn(0.49,  0.61,  0.99);
         when(cardPersistencePort.findOneCardByRarity( anyString())).thenReturn(cardToReturn0, cardToReturn0,  cardToCreate2);
@@ -117,7 +117,7 @@ public class PackOpenServiceTest {
         List<Card> newUserCards = new ArrayList<>();
         String rarity0 = CardRarityEnum.COMMON.name();
         Card cardToReturn0 = Card.createOne(1L,"1231", CardRarityEnum.COMMON, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARMAND,0,1);
-        Optional<BusinessUserClientInfo> toReturn = Optional.of(testUser);
+        Maybe<BusinessUserClientInfo> toReturn = Maybe.maybe(testUser);
         var cardToReturn1 = Card.createOne(2L,"1232", CardRarityEnum.RARE, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARNAUD,0,1);
         var cardToCreate2 = Card.createOne(3L,"1233", CardRarityEnum.LEGENDARY, CardSpecialtyEnum.ASSASSIN, CardNameEnum.JONATHAN,0,1);
         when(userAccountPersistencePort.findUserByUserName("Sid")).thenReturn(toReturn);
@@ -156,10 +156,9 @@ public class PackOpenServiceTest {
     @Test
     public void shouldNotBuyCardPackAndThrowExceptionForLackOfMoula(){
         BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), 0L);
-        when(userAccountPersistencePort.findUserByUserName("Sid")).thenReturn(Optional.of(testUser));
+        when(userAccountPersistencePort.findUserByUserName("Sid")).thenReturn(Maybe.maybe(testUser));
         CleanCodeException exception = Assertions.assertThrows(CleanCodeException.class, () -> cardPackOpenerService.openDiamondCardPack(testUser.getUserName()));
         Assertions.assertEquals(exception.getMessage(), CleanCodeExceptionsEnum.DOMAIN_PAS_DE_MOULA.getUserMessageToDisplay());
         verifyNoMoreInteractions(probabilities);
     }
-    */
 }

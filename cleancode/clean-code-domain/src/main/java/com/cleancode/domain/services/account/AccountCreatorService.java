@@ -26,10 +26,17 @@ public class AccountCreatorService implements AccountCreator {
      */
     @Override
     public BusinessUserClientInfo saveUserAccount(AccountCreationCommand userFromApi) throws CleanCodeException {
-        if(userRepositoryService.findUserByUserName(userFromApi.getUserName()).isPresent()){
-            throw new CleanCodeException(CleanCodeExceptionsEnum.BS_COMPONENT_USERNAME_ALREADY_TAKEN);
-        }
-        BusinessUserClientInfo newAccount= new BusinessUserClientInfo(userFromApi.getUserName(),  null, null, null, null, 4L);
+        userRepositoryService.findUserByUserName(userFromApi.getUserName())
+                .flatMap(user -> {
+                    throw new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_EMPTY_ACCOUNT_OPTIONAL);
+                        });
+        BusinessUserClientInfo newAccount= new BusinessUserClientInfo(
+                userFromApi.getUserName(),
+                null,
+                null,
+                null,
+                null,
+                4L);
         UserAccountOperationUtils.handleBusinessUserReferenceCreation(newAccount);
         UserAccountOperationUtils.handleInitBusinessUserCardCollection(userFromApi.getCollectionName(), newAccount);
             try {

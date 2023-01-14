@@ -25,7 +25,7 @@ public enum CardPacksEnum {
 
     public Long getCardsAmount(){return cardsAmount;}
 
-    public long processPayment(long  value){
+    public long computeBill(long  value){
         return this.doubleUnaryOperator.applyAsLong(value);
     }
 
