@@ -1,6 +1,7 @@
 package com.esgi.cleancode.bootstrap;
 
 import com.cleancode.domain.ports.in.card.CardCreator;
+import com.cleancode.domain.ports.in.card.CardFinder;
 import com.cleancode.domain.ports.in.cardpack.CardPackOpener;
 import com.cleancode.domain.ports.in.user.AccountCreator;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
@@ -9,6 +10,7 @@ import com.cleancode.domain.services.Probabilities;
 import com.cleancode.domain.services.ProbabilityRanges;
 import com.cleancode.domain.services.account.AccountCreatorService;
 import com.cleancode.domain.services.card.CardCreatorService;
+import com.cleancode.domain.services.card.CardFinderService;
 import com.cleancode.domain.services.cardpack.CardPackOpenerService;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
@@ -40,5 +42,10 @@ public class BeanConfiguration {
     @Bean
     CardCreator cardCreator(CardPersistencePort cardCollectionRepository){
         return new CardCreatorService(cardCollectionRepository);
+    }
+
+    @Bean
+    CardFinder cardFinder(CardPersistencePort cardCollectionRepository){
+        return new CardFinderService(cardCollectionRepository);
     }
 }

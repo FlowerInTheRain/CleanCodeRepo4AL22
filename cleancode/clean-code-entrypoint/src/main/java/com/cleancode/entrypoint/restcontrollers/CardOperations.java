@@ -4,6 +4,7 @@ import com.cleancode.cleancodeapi.mappers.withdomain.cards.CardMapper;
 import com.cleancode.cleancodeapi.dto.card.Card;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.ports.in.card.CardCreator;
+import com.cleancode.domain.ports.in.card.CardFinder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -19,9 +20,11 @@ import java.util.List;
 public class CardOperations {
 
     private final CardCreator cardCreator;
+    private final CardFinder cardFinder;
 
-    public CardOperations(CardCreator cardCreator){
+    public CardOperations(CardCreator cardCreator, CardFinder cardFinder){
         this.cardCreator = cardCreator;
+        this.cardFinder = cardFinder;
     }
 
     @ApiOperation(value = "Create a card",
@@ -38,7 +41,7 @@ public class CardOperations {
     @ApiResponse(code=200, message="Card found")
     @GetMapping(value = "/findAllCards", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Card> findAllCards() throws CleanCodeException {
-        var response = cardCreator.findAllCards();
+        var response = cardFinder.findAllCards();
         System.out.println(response);
         return CardMapper.INSTANCE.fromListBsToListApi(response);
     }
