@@ -5,8 +5,7 @@ import com.cleancode.domain.pojo.card.Card;
 
 import java.util.List;
 
-public interface CardCreator {
+public interface CardFinder {
 
-    Card saveCard(Card card) throws CleanCodeException;
-
+    List<Card> findAllCards() throws CleanCodeException;
 }
