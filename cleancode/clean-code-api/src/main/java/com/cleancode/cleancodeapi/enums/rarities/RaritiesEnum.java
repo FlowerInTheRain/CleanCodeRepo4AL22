@@ -1,11 +1,9 @@
 package com.cleancode.cleancodeapi.enums.rarities;
 
 public enum RaritiesEnum {
-    COMMON("Commune"),
-    UNCOMMON("Peu commune"),
+    COMMON("Common"),
     RARE("Rare"),
-    LIMITED_EDITION("Edition limitée"),
-    UNIQUE("Unique");
+    LEGENDARY("Legendary");
 
     private final String rarityValue;
     RaritiesEnum(String rarity) {

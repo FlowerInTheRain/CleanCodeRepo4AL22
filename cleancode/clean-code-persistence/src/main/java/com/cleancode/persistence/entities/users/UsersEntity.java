@@ -22,10 +22,10 @@ public class UsersEntity implements Serializable {
     @Column(name = "USERNAME", unique = true, nullable = false, length=32)
     private String userName;
     @Column(name="CCCOIN_WALLET", nullable = false)
-    private Long userCCCoinWallet = 4L;
+    private Long ccCoinWallet = 4L;
     @Column(name="CREATION_DATE", nullable = false)
     private Timestamp creationDate = Timestamp.from(Instant.now());
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "CARD_COLLECTION_ID")
     private CardCollectionsEntity userCardCollection;
 
@@ -53,12 +53,12 @@ public class UsersEntity implements Serializable {
         this.userName = userName;
     }
 
-    public Long getUserCCCoinWallet() {
-        return userCCCoinWallet;
+    public Long getCCCoinWallet() {
+        return ccCoinWallet;
     }
 
-    public void setUserCCCoinWallet(Long userCCCoinWallet) {
-        this.userCCCoinWallet = userCCCoinWallet;
+    public void setCCCoinWallet(Long userCCCoinWallet) {
+        this.ccCoinWallet = userCCCoinWallet;
     }
 
     public Timestamp getCreationDate() {
@@ -87,7 +87,7 @@ public class UsersEntity implements Serializable {
         if (!id.equals(that.id)) return false;
         if (!userReference.equals(that.userReference)) return false;
         if (!userName.equals(that.userName)) return false;
-        if (!userCCCoinWallet.equals(that.userCCCoinWallet)) return false;
+        if (!ccCoinWallet.equals(that.ccCoinWallet)) return false;
         if (!creationDate.equals(that.creationDate)) return false;
         return userCardCollection.equals(that.userCardCollection);
     }
@@ -97,7 +97,7 @@ public class UsersEntity implements Serializable {
         int result = id.hashCode();
         result = 31 * result + userReference.hashCode();
         result = 31 * result + userName.hashCode();
-        result = 31 * result + userCCCoinWallet.hashCode();
+        result = 31 * result + ccCoinWallet.hashCode();
         result = 31 * result + creationDate.hashCode();
         result = 31 * result + userCardCollection.hashCode();
         return result;
@@ -109,7 +109,7 @@ public class UsersEntity implements Serializable {
                 "id=" + id +
                 ", userReference='" + userReference + '\'' +
                 ", userName='" + userName + '\'' +
-                ", userCCCoinWallet=" + userCCCoinWallet +
+                ", userCCCoinWallet=" + ccCoinWallet +
                 ", creationDate=" + creationDate +
                 ", userCardCollection=" + userCardCollection +
                 '}';

@@ -2,7 +2,7 @@ package com.cleancode.cleancodeapi.enums.card;
 
 public enum CardRarityEnum {
 
-    COMMON("Commune"),
+    COMMON("COMMON"),
     RARE("Rare"),
     LEGENDARY("Legendary");
 

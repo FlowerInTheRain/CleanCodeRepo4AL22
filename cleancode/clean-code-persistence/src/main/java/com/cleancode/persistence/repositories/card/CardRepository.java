@@ -11,12 +11,9 @@ import java.util.List;
 @Repository
 public interface CardRepository extends JpaRepository<CardEntity, Long> {
 
-    @Query("SELECT card  FROM CardEntity  card WHERE card.cardRarity = :cardReference ORDER BY RAND()")
+    @Query(value = "SELECT * FROM CARDS  WHERE card_rarity = :cardReference ORDER BY RAND() LIMIT 1", nativeQuery = true)
     CardEntity findFirstByCardRarity(@Param("cardReference") String cardReference);
 
 
     List<CardEntity> findAll();
-
-    @Override
-    <S extends CardEntity> S save(S entity);
 }

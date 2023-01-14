@@ -1,19 +1,25 @@
 package com.cleancode.domain.services.cardpack;
 
+import com.cleancode.domain.core.lib.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.domain.dto.card.Card;
-import com.cleancode.domain.dto.user.BusinessUserClientInfo;
-import com.cleancode.domain.enums.enums.cardpackdistributionsenum.DiamondPackCardRarityDistributionEnum;
-import com.cleancode.domain.enums.enums.cardpackdistributionsenum.SilverPackCardRarityDistributionEnum;
-import com.cleancode.domain.enums.enums.cardpacksenum.CardPacksEnum;
+import com.cleancode.domain.core.lib.formatutils.uuidformatterutils.UUIDFormatter;
+import com.cleancode.domain.enums.rarities.CardRarityEnum;
+import com.cleancode.domain.enums.rarities.RaritiesEnum;
+import com.cleancode.domain.pojo.card.Card;
+import com.cleancode.domain.pojo.card.CardCollectionCard;
+import com.cleancode.domain.pojo.card.CardSpecialty;
+import com.cleancode.domain.enums.rarities.CardPackRaritiesEnum;
+import com.cleancode.domain.enums.rarities.CardPacksEnum;
+import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.in.cardpack.CardPackOpener;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
+import com.cleancode.domain.services.Probabilities;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.NavigableMap;
 
 public class CardPackOpenerService implements CardPackOpener {
 
@@ -21,81 +27,100 @@ public class CardPackOpenerService implements CardPackOpener {
 
     private final CardPersistencePort cardPersistencePort;
 
-    public CardPackOpenerService(UserAccountPersistencePort userAccountPersistencePort, CardPersistencePort cardPersistencePort) {
+    private final Probabilities probabilities;
+
+    public CardPackOpenerService(UserAccountPersistencePort userAccountPersistencePort, CardPersistencePort cardPersistencePort, Probabilities probabilities) {
         this.userAccountPersistencePort = userAccountPersistencePort;
         this.cardPersistencePort = cardPersistencePort;
+        this.probabilities = probabilities;
     }
 
     @Override
-    public List<Card> openSilverCardPack(String userName) throws CleanCodeException {
-        var userAccount = userAccountPersistencePort.findUserByUserName(userName)
-                .orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_EMPTY_ACCOUNT_OPTIONAL));
-        var cardPack = generateSilverCardPack();
-        var packToReturn =  enrichUserCardCollection(userAccount, cardPack);
-        userAccountPersistencePort.saveUserInDb(userAccount);
-        return packToReturn;
-    }
-
-    @Override
-    public List<Card> openDiamondCardPack(String userName) {
-        var userAccount = userAccountPersistencePort.findUserByUserName(userName)
-                .orElseThrow(() ->  new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_EMPTY_ACCOUNT_OPTIONAL));
-        var cardPack = generateDiamondCardPack();
-        var packToReturn =  enrichUserCardCollection(userAccount, cardPack);
-        userAccountPersistencePort.saveUserInDb(userAccount);
-        return packToReturn;
-    }
-
-    private List<Card> enrichUserCardCollection(BusinessUserClientInfo userAccount, List<Card> cardPack) {
-            if(isUserAbleToBuyPack(userAccount.getBusinessUserCCCoinWallet())){
-                var userCardCollection = userAccount.getUserCardCollection().getCollectionCardList();
-                userCardCollection.addAll( 0, cardPack);
-                userAccount.getUserCardCollection().setCollectionCardList(userCardCollection);
-            }
+    public List<CardCollectionCard> openSilverCardPack(String userName) throws CleanCodeException {
+        List<CardCollectionCard> cardPack = new ArrayList<>();
+        userAccountPersistencePort.findUserByUserName(userName)
+                .map(account -> {
+                    if(isUserAbleToBuyPack(CardPackRaritiesEnum.SILVER, account.getBusinessUserCCCoinWallet())){
+                        cardPack.addAll(0,generateCardPack(CardPacksEnum.SILVER, account, probabilities.getSilverProbabilitiesMap()));
+                        enrichUserCardCollection(account, cardPack);
+                        var newWallet = processPayment(CardPackRaritiesEnum.SILVER,  account);
+                        account.setBusinessUserCCCoinWallet(newWallet);
+                        userAccountPersistencePort.saveUserInDb(account);
+                        return account;
+                    }
+                    return null;
+                }
+        ).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_PAS_DE_MOULA));
         return cardPack;
     }
 
-    public static boolean isUserAbleToBuyPack(long ccCoin){
-        return CardPacksEnum.DIAMOND_PACK.getCardPackPrice() <= ccCoin;
+    @Override
+    public List<CardCollectionCard> openDiamondCardPack(String userName) {
+        List<CardCollectionCard> cardPack = new ArrayList<>();
+        userAccountPersistencePort.findUserByUserName(userName).map(account -> {
+                if(isUserAbleToBuyPack(CardPackRaritiesEnum.DIAMOND, account.getBusinessUserCCCoinWallet())){
+                    cardPack.addAll(0,generateCardPack(CardPacksEnum.DIAMOND, account, probabilities.getDiamondProbabilitiesMap()));
+                    enrichUserCardCollection(account, cardPack);
+                    var newWallet = processPayment(CardPackRaritiesEnum.DIAMOND,  account);
+                    account.setBusinessUserCCCoinWallet(newWallet);
+                    userAccountPersistencePort.saveUserInDb(account);
+                    return account;
+            }
+                return null;
+        }
+        ).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_PAS_DE_MOULA));
+        return cardPack;
     }
 
-    public long computeCardPackBill(long cardPackPrice, BusinessUserClientInfo userAccount){
-        return userAccount.getBusinessUserCCCoinWallet() - cardPackPrice;
+    private void enrichUserCardCollection(BusinessUserClientInfo userAccount, List<CardCollectionCard> cardPack) {
+                List<CardCollectionCard> userCardCollection ;
+                if(userAccount.getUserCardCollection().getCollectionCardList() == null){
+                    userCardCollection = new ArrayList<>();
+                } else {
+                    userCardCollection = userAccount.getUserCardCollection().getCollectionCardList();
+                }
+                userCardCollection.addAll( 0, cardPack);
+                userAccount.getUserCardCollection().setCollectionCardList(userCardCollection);
     }
 
-    private List<Card> generateSilverCardPack(){
-        CardPacksEnum silverPackDetails = CardPacksEnum.SILVER_PACK;
-        SilverPackCardRarityDistributionEnum[] silverCardPackDistribution = SilverPackCardRarityDistributionEnum.values();
-        long numberOfCardsToCreate = silverPackDetails.getCardsAmount();
-        List<Card> packContent = new ArrayList<>();
+    public static boolean isUserAbleToBuyPack(CardPackRaritiesEnum ccCoin, Long ccCoinWallet){
+        return ccCoin.getCardPackPrice() <= ccCoinWallet;
+    }
+
+    public long processPayment(CardPackRaritiesEnum cardPackType, BusinessUserClientInfo userAccount){
+        long userWallet = userAccount.getBusinessUserCCCoinWallet();
+        return CardPacksEnum.valueOf(cardPackType.name())
+                .processPayment( userWallet );
+    }
+
+    private List<CardCollectionCard> generateCardPack(CardPacksEnum cardPack, BusinessUserClientInfo userAccount, NavigableMap<Double, RaritiesEnum> probabilitiesDistribution){
+        long numberOfCardsToCreate = cardPack.getCardsAmount();
+        List<CardCollectionCard> packContent = new ArrayList<>();
         for(long i = 0; i < numberOfCardsToCreate; i++){
-            double randomNumber = Math.random();
-            Arrays.stream(silverCardPackDistribution).filter(distribution -> distribution.getMinProbability() >= randomNumber && distribution.getMaxProbability() >= randomNumber)
-                    .findFirst()
-                    .ifPresent(foundDistribution -> {
-                        String rarity = foundDistribution.getCardRarityEnum().getRarityValue();
-                        Card card = cardPersistencePort.findOneCardByRarity(rarity);
-                        packContent.add(card);
-                    });
+            double randomNumber = probabilities.getRandomNumber();
+            RaritiesEnum foundDistribution = probabilitiesDistribution.higherEntry(randomNumber).getValue();
+            CardCollectionCard cardToAddToCollection = createCardForCollection(foundDistribution, userAccount);
+            packContent.add(cardToAddToCollection);
         }
         return packContent;
     }
 
-    private List<Card> generateDiamondCardPack(){
-        CardPacksEnum diamondPackDetails = CardPacksEnum.DIAMOND_PACK;
-        DiamondPackCardRarityDistributionEnum[] diamondPackCardRarityDistribution = DiamondPackCardRarityDistributionEnum.values();
-        long numberOfCardsToCreate = diamondPackDetails.getCardsAmount();
-        List<Card> packContent = new ArrayList<>();
-        for(long i = 0; i < numberOfCardsToCreate; i++){
-            double randomNumber = Math.random();
-            Arrays.stream(diamondPackCardRarityDistribution).filter(distribution -> distribution.getMinProbability() >= randomNumber && distribution.getMaxProbability() >= randomNumber)
-                    .findFirst()
-                    .ifPresent(foundDistribution -> {
-                        String rarity = foundDistribution.getCardRarityEnum().getRarityValue();
-                        Card card = cardPersistencePort.findOneCardByRarity(rarity);
-                        packContent.add(card);
-                    });
-        }
-        return packContent;
+    private CardCollectionCard createCardForCollection(RaritiesEnum foundDistribution, BusinessUserClientInfo userAccount) {
+        String rarity = foundDistribution.name();
+        CardRarityEnum rarityToUse = CardRarityEnum.valueOf(rarity.toUpperCase());
+        Card card = cardPersistencePort.findOneCardByRarity(rarity);
+        CardSpecialty specialtyToUse = card.getCardSpecialty().getSpecialtyValue();
+        return new CardCollectionCard(
+                card.getTechnicalId(),
+                userAccount.getUserCardCollection().getTechnicalId(),
+                UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, ""),
+                card.getCardName().name(),
+                card.getCardSpecialty().getSpecialtyValue().getSpecialty(),
+                rarityToUse.getStatValue(specialtyToUse.getLifePoint()),
+                rarityToUse.getStatValue(specialtyToUse.getPower()),
+                rarityToUse.getStatValue(specialtyToUse.getArmor()),
+                0,
+                1,
+                card.getCardRarity());
     }
 }

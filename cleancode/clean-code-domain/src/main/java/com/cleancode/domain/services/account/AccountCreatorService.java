@@ -3,8 +3,8 @@ package com.cleancode.domain.services.account;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.core.lib.userserviceutils.UserAccountOperationUtils;
-import com.cleancode.domain.dto.user.AccountCreationCommand;
-import com.cleancode.domain.dto.user.BusinessUserClientInfo;
+import com.cleancode.domain.pojo.user.AccountCreationCommand;
+import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.in.user.AccountCreator;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 
@@ -29,7 +29,7 @@ public class AccountCreatorService implements AccountCreator {
         if(userRepositoryService.findUserByUserName(userFromApi.getUserName()).isPresent()){
             throw new CleanCodeException(CleanCodeExceptionsEnum.BS_COMPONENT_USERNAME_ALREADY_TAKEN);
         }
-        BusinessUserClientInfo newAccount= new BusinessUserClientInfo(userFromApi.getUserName(),  null, null, null, null, null);
+        BusinessUserClientInfo newAccount= new BusinessUserClientInfo(userFromApi.getUserName(),  null, null, null, null, 4L);
         UserAccountOperationUtils.handleBusinessUserReferenceCreation(newAccount);
         UserAccountOperationUtils.handleInitBusinessUserCardCollection(userFromApi.getCollectionName(), newAccount);
             try {

@@ -1,85 +1,159 @@
 package com.cleancode.domain.usecases.card;
 
-import com.cleancode.domain.dto.card.Card;
-import com.cleancode.domain.dto.cardcollection.CardCollection;
-import com.cleancode.domain.dto.user.BusinessUserClientInfo;
-import com.cleancode.domain.enums.cards.CardNameEnum;
-import com.cleancode.domain.enums.cards.CardRarityEnum;
+import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
+import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
+import com.cleancode.domain.enums.cardpackdistributionsenum.DiamondPackCardRarityDistributionEnum;
+import com.cleancode.domain.enums.cardpackdistributionsenum.SilverPackCardRarityDistributionEnum;
 import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
+import com.cleancode.domain.enums.rarities.CardNameEnum;
+import com.cleancode.domain.enums.rarities.CardPackRaritiesEnum;
+import com.cleancode.domain.enums.rarities.CardRarityEnum;
+import com.cleancode.domain.enums.rarities.RaritiesEnum;
+import com.cleancode.domain.pojo.card.Card;
+import com.cleancode.domain.pojo.cardcollection.CardCollection;
+import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
+import com.cleancode.domain.services.Probabilities;
 import com.cleancode.domain.services.cardpack.CardPackOpenerService;
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
-import org.mockito.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
-
+@ExtendWith(MockitoExtension.class)
 public class PackOpenServiceTest {
 
-    @Mock
-    private CardPersistencePort cardPersistencePort = Mockito.mock(CardPersistencePort.class);
 
     @Mock
-    private UserAccountPersistencePort userAccountPersistencePort = mock(UserAccountPersistencePort.class);
+    private CardPersistencePort cardPersistencePort;
+
+    @Mock
+    private UserAccountPersistencePort userAccountPersistencePort;
+
+    @Mock
+    private Probabilities probabilities;
 
     @InjectMocks
-    private CardPackOpenerService cardPackOpenerService = new CardPackOpenerService(this.userAccountPersistencePort, this.cardPersistencePort);
+    private CardPackOpenerService cardPackOpenerService;
+
 
     @Captor
     private ArgumentCaptor<BusinessUserClientInfo> userClientInfoArgumentCaptor;
 
-    private BusinessUserClientInfo testUser= new BusinessUserClientInfo("Sid", 1L, "1", null, null, 3L);;
+    private final BusinessUserClientInfo testUser= new BusinessUserClientInfo("Sid", 1L, "1", null, null, 3L);;
 
 
     @Test
     public void shouldCheckIfUserCanBuyASilverCardPack(){
-        Assertions.assertTrue(CardPackOpenerService.isUserAbleToBuyPack(testUser.getBusinessUserCCCoinWallet()));
-    }
-
-    @Test
-    public void shouldFndSome(){
-        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", null, new CardCollection("test","est", new ArrayList<>()), 3L);
-        List<Card> newUserCards = new ArrayList<>();
-        String rarity0 = CardRarityEnum.COMMON.name();
-        Card cardToReturn0 = Card.createOne(1L,"1231", CardRarityEnum.COMMON, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARMAND,0,1);
-        Optional<BusinessUserClientInfo> toReturn = Optional.of(testUser);
-        when(userAccountPersistencePort.findUserByUserName("Sid")).thenReturn(toReturn);
-        when(cardPersistencePort.findOneCardByRarity(rarity0)).thenReturn(cardToReturn0);
-        newUserCards.add(cardToReturn0);
-        rarity0 = CardRarityEnum.RARE.name();
-        cardToReturn0 = Card.createOne(1L,"1232", CardRarityEnum.RARE, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARNAUD,0,1);
-        when(cardPersistencePort.findOneCardByRarity(rarity0)).thenReturn(cardToReturn0);
-        newUserCards.add(cardToReturn0);
-        rarity0 = CardRarityEnum.LEGENDARY.name();
-        cardToReturn0 = Card.createOne(1L,"1233", CardRarityEnum.LEGENDARY, CardSpecialtyEnum.ASSASSIN, CardNameEnum.JONATHAN,0,1);
-        when(cardPersistencePort.findOneCardByRarity(rarity0)).thenReturn(cardToReturn0);
-        newUserCards.add(cardToReturn0);
-        when(userAccountPersistencePort.saveUserInDb(testUser)).thenReturn(null);
-        var card = cardPackOpenerService.openSilverCardPack("Sid");
-        System.out.println(card);
+        assertTrue(CardPackOpenerService.isUserAbleToBuyPack(CardPackRaritiesEnum.SILVER, testUser.getBusinessUserCCCoinWallet()));
     }
 
     @Test
     public void shouldOpenSilverCardPack(){
-        String rarity0 = CardRarityEnum.COMMON.getRarityValue();
-        String rarity1 = CardRarityEnum.RARE.getRarityValue();
+        NavigableMap<Double, RaritiesEnum> silverMap = new TreeMap<>();
+        silverMap.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_COMMON_CARD.getMaxProbability(), RaritiesEnum.COMMON);
+        silverMap.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_RARE_CARD.getMaxProbability(), RaritiesEnum.RARE);
+        silverMap.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_LEGENDARY_CARD.getMaxProbability(), RaritiesEnum.LEGENDARY);
+        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), 3L);
+        List<Card> newUserCards = new ArrayList<>();
+        String rarity0 = CardRarityEnum.COMMON.name();
         Card cardToReturn0 = Card.createOne(1L,"1231", CardRarityEnum.COMMON, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARMAND,0,1);
-        Card cardToReturn1 = Card.createOne(1L,"1232", CardRarityEnum.COMMON, CardSpecialtyEnum.MAGE, CardNameEnum.ENZO,0,1);
-        Card cardToReturn2 = Card.createOne(1L,"1233", CardRarityEnum.RARE, CardSpecialtyEnum.TANK, CardNameEnum.JONATHAN,0,1);
-        /**when(userAccountPersistencePort.findUserByUserName("Sid")).thenReturn(Optional.ofNullable(testUser));
-        when(cardPersistencePort.findOneCardByRarity(rarity0)).thenReturn(cardToReturn0);
-        when(cardPersistencePort.findOneCardByRarity(rarity0)).thenReturn(cardToReturn1);
-        when(cardPersistencePort.findOneCardByRarity(rarity1)).thenReturn(cardToReturn2);
-        doNothing().when(userAccountPersistencePort.saveUserInDb(testUser));*/
-        //var silverPack = cardPackOpenerService.openSilverCardPack("Sid");
-        //Assert.assertEquals(silverPack.size(), 3);
+        Optional<BusinessUserClientInfo> toReturn = Optional.of(testUser);
+        var cardToCreate2 = Card.createOne(3L,"1233", CardRarityEnum.LEGENDARY, CardSpecialtyEnum.ASSASSIN, CardNameEnum.JONATHAN,0,1);
+        when(userAccountPersistencePort.findUserByUserName("Sid")).thenReturn(toReturn);
+        when(probabilities.getSilverProbabilitiesMap()).thenReturn(silverMap);
+        when(probabilities.getRandomNumber()).thenReturn(0.49,  0.61,  0.99);
+        when(cardPersistencePort.findOneCardByRarity( anyString())).thenReturn(cardToReturn0, cardToReturn0,  cardToCreate2);
+        when(userAccountPersistencePort.saveUserInDb(testUser)).thenReturn(Optional.of(testUser));
+        newUserCards.add(cardToReturn0);
+        newUserCards.add(cardToReturn0);
+        newUserCards.add(cardToCreate2);
+
+        var card = cardPackOpenerService.openSilverCardPack("Sid");
+        verify(userAccountPersistencePort).saveUserInDb(userClientInfoArgumentCaptor.capture());
+
+        Assertions.assertEquals(2L, userClientInfoArgumentCaptor.getValue().getBusinessUserCCCoinWallet().longValue());
+        Assertions.assertEquals(newUserCards.size(), userClientInfoArgumentCaptor.getValue().getUserCardCollection().getCollectionCardList().size());
+
+        Assertions.assertEquals(newUserCards.size(), card.size());
+        var savedUserCards = userClientInfoArgumentCaptor.getValue().getUserCardCollection().getCollectionCardList();
+        for(int i = 0; i < card.size(); i ++){
+            Assertions.assertEquals(card.get(i).getHeroName(), savedUserCards.get(i).getHeroName());
+            Assertions.assertEquals(card.get(i).getSpecialty(), savedUserCards.get(i).getSpecialty());
+            Assertions.assertEquals(card.get(i).getArmor(), savedUserCards.get(i).getArmor());
+            Assertions.assertEquals(card.get(i).getRarity(), savedUserCards.get(i).getRarity());
+            Assertions.assertEquals(card.get(i).getPower(), savedUserCards.get(i).getPower());
+            Assertions.assertEquals(card.get(i).getLifePoints(), savedUserCards.get(i).getLifePoints());
+            Assertions.assertEquals(savedUserCards.get(i).getXp(), 0);
+            Assertions.assertEquals(savedUserCards.get(i).getLevel(), 1);
+        }
+        verify(cardPersistencePort, times(3)).findOneCardByRarity(anyString());
+        verifyNoMoreInteractions(probabilities);
+        verifyNoMoreInteractions(userAccountPersistencePort);
+    }
+
+    @Test
+    public void shouldOpenDiamondCardPack(){
+        NavigableMap<Double, RaritiesEnum> diamond = new TreeMap<>();
+        diamond.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_COMMON_CARD.getMaxProbability(), RaritiesEnum.COMMON);
+        diamond.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_RARE_CARD.getMaxProbability(), RaritiesEnum.RARE);
+        diamond.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_LEGENDARY_CARD.getMaxProbability(), RaritiesEnum.LEGENDARY);
+        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), 3L);
+        List<Card> newUserCards = new ArrayList<>();
+        String rarity0 = CardRarityEnum.COMMON.name();
+        Card cardToReturn0 = Card.createOne(1L,"1231", CardRarityEnum.COMMON, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARMAND,0,1);
+        Optional<BusinessUserClientInfo> toReturn = Optional.of(testUser);
+        var cardToReturn1 = Card.createOne(2L,"1232", CardRarityEnum.RARE, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARNAUD,0,1);
+        var cardToCreate2 = Card.createOne(3L,"1233", CardRarityEnum.LEGENDARY, CardSpecialtyEnum.ASSASSIN, CardNameEnum.JONATHAN,0,1);
+        when(userAccountPersistencePort.findUserByUserName("Sid")).thenReturn(toReturn);
+        when(probabilities.getDiamondProbabilitiesMap()).thenReturn(diamond);
+        when(probabilities.getRandomNumber()).thenReturn(0.49, 0.2, 0.1, 0.61,  0.99);
+        when(cardPersistencePort.findOneCardByRarity( anyString())).thenReturn(cardToReturn0, cardToReturn0, cardToReturn0, cardToReturn1, cardToCreate2);
+        when(userAccountPersistencePort.saveUserInDb(testUser)).thenReturn(Optional.of(testUser));
+        newUserCards.add(cardToReturn0);
+        newUserCards.add(cardToReturn0);
+        newUserCards.add(cardToReturn0);
+        newUserCards.add(cardToReturn1);
+        newUserCards.add(cardToCreate2);
+
+        var card = cardPackOpenerService.openDiamondCardPack("Sid");
+        verify(userAccountPersistencePort).saveUserInDb(userClientInfoArgumentCaptor.capture());
+        Assertions.assertEquals(newUserCards.size(), userClientInfoArgumentCaptor.getValue().getUserCardCollection().getCollectionCardList().size());
+
+        Assertions.assertEquals(1L, userClientInfoArgumentCaptor.getValue().getBusinessUserCCCoinWallet().longValue());
+        Assertions.assertEquals(newUserCards.size(), card.size());
+        var savedUserCards = userClientInfoArgumentCaptor.getValue().getUserCardCollection().getCollectionCardList();
+        for(int i = 0; i < card.size(); i ++){
+            Assertions.assertEquals(card.get(i).getHeroName(), savedUserCards.get(i).getHeroName());
+            Assertions.assertEquals(card.get(i).getSpecialty(), savedUserCards.get(i).getSpecialty());
+            Assertions.assertEquals(card.get(i).getArmor(), savedUserCards.get(i).getArmor());
+            Assertions.assertEquals(card.get(i).getRarity(), savedUserCards.get(i).getRarity());
+            Assertions.assertEquals(card.get(i).getPower(), savedUserCards.get(i).getPower());
+            Assertions.assertEquals(card.get(i).getLifePoints(), savedUserCards.get(i).getLifePoints());
+            Assertions.assertEquals(savedUserCards.get(i).getXp(), 0);
+            Assertions.assertEquals(savedUserCards.get(i).getLevel(), 1);
+        }
+        verify(cardPersistencePort, times(5)).findOneCardByRarity(anyString());
+        verifyNoMoreInteractions(probabilities);
+        verifyNoMoreInteractions(userAccountPersistencePort);
+    }
+
+    @Test
+    public void shouldNotBuyCardPackAndThrowExceptionForLackOfMoula(){
+        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), 0L);
+        when(userAccountPersistencePort.findUserByUserName("Sid")).thenReturn(Optional.of(testUser));
+        CleanCodeException exception = Assertions.assertThrows(CleanCodeException.class, () -> cardPackOpenerService.openDiamondCardPack(testUser.getUserName()));
+        Assertions.assertEquals(exception.getMessage(), CleanCodeExceptionsEnum.DOMAIN_PAS_DE_MOULA.getUserMessageToDisplay());
+        verifyNoMoreInteractions(probabilities);
     }
 }

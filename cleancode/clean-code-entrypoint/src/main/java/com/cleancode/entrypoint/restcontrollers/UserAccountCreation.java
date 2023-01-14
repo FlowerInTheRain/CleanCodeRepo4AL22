@@ -1,11 +1,9 @@
 package com.cleancode.entrypoint.restcontrollers;
 
-import com.cleancode.domain.dto.user.AccountCreationCommand;
-import com.cleancode.domain.dto.user.BusinessUserClientInfo;
+import com.cleancode.domain.pojo.user.AccountCreationCommand;
 import com.cleancode.domain.ports.in.user.AccountCreator;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.cleancodeapi.apibsmappers.cardcollections.CardCollectionMapper;
-import com.cleancode.cleancodeapi.apibsmappers.users.UserClientInfoMapper;
+import com.cleancode.cleancodeapi.mappers.withdomain.cardcollections.CardCollectionMapper;
 import com.cleancode.cleancodeapi.dto.cardcollection.CardCollection;
 import com.cleancode.cleancodeapi.dto.user.UserAccountCreationRequest;
 import com.cleancode.cleancodeapi.dto.user.UserAccountResponse;
@@ -18,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@RestController("UserAccountOperationRestController")
+@RestController
 @RequestMapping("/")
 @CrossOrigin
 @Api

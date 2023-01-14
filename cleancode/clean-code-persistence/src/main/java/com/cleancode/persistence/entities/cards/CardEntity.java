@@ -1,15 +1,20 @@
 package com.cleancode.persistence.entities.cards;
 
 
+import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
+import com.cleancode.domain.enums.rarities.CardNameEnum;
+import com.cleancode.domain.enums.rarities.CardRarityEnum;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "CARDS")
 public class CardEntity implements Serializable {
     public CardEntity() {
     }
@@ -31,10 +36,23 @@ public class CardEntity implements Serializable {
     private String cardName;
 
     @Column(nullable = false)
-    private Integer xp;
+    private int xp;
 
     @Column(nullable = false)
-    private Integer level;
+    private int level;
+
+    @OneToMany(mappedBy = "id")
+    private List<CardEntity> collectionCardList;
+
+    public CardEntity(Long id, String cardReference, String rarity, String specialty, String name, int xp, int level) {
+        this.id = id;
+        this.cardReference = cardReference;
+        this.cardRarity = rarity;
+        this.cardSpecialty = specialty;
+        this.cardName = name;
+        this.xp = xp;
+        this.level = level;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -43,24 +61,28 @@ public class CardEntity implements Serializable {
 
         CardEntity that = (CardEntity) o;
 
-        if (!id.equals(that.id)) return false;
-        if (!cardReference.equals(that.cardReference)) return false;
-        if (!cardRarity.equals(that.cardRarity)) return false;
-        if (!cardSpecialty.equals(that.cardSpecialty)) return false;
-        if (!cardName.equals(that.cardName)) return false;
-        if (!xp.equals(that.xp)) return false;
-        return level.equals(that.level);
+        if (xp != that.xp) return false;
+        if (level != that.level) return false;
+        if (!Objects.equals(id, that.id)) return false;
+        if (!Objects.equals(cardReference, that.cardReference))
+            return false;
+        if (!Objects.equals(cardRarity, that.cardRarity)) return false;
+        if (!Objects.equals(cardSpecialty, that.cardSpecialty))
+            return false;
+        if (!Objects.equals(cardName, that.cardName)) return false;
+        return Objects.equals(collectionCardList, that.collectionCardList);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + cardReference.hashCode();
-        result = 31 * result + cardRarity.hashCode();
-        result = 31 * result + cardSpecialty.hashCode();
-        result = 31 * result + cardName.hashCode();
-        result = 31 * result + xp.hashCode();
-        result = 31 * result + level.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (cardReference != null ? cardReference.hashCode() : 0);
+        result = 31 * result + (cardRarity != null ? cardRarity.hashCode() : 0);
+        result = 31 * result + (cardSpecialty != null ? cardSpecialty.hashCode() : 0);
+        result = 31 * result + (cardName != null ? cardName.hashCode() : 0);
+        result = 31 * result + xp;
+        result = 31 * result + level;
+        result = 31 * result + (collectionCardList != null ? collectionCardList.hashCode() : 0);
         return result;
     }
 
