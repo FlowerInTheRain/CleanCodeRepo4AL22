@@ -1,10 +1,9 @@
 package cleancodedbimpltests.ut.card.services;
 
-import com.cleancode.domain.pojo.card.Card;
+import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
 import com.cleancode.domain.enums.rarities.CardNameEnum;
 import com.cleancode.domain.enums.rarities.CardRarityEnum;
-import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
-import com.cleancode.domain.ports.out.card.CardPersistencePort;
+import com.cleancode.domain.pojo.card.Card;
 import com.cleancode.persistence.adapters.card.CardPersistenceSpi;
 import com.cleancode.persistence.entities.cards.CardEntity;
 import com.cleancode.persistence.mappers.card.CardEntityMapper;
@@ -13,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;

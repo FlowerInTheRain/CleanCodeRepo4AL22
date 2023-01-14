@@ -1,11 +1,20 @@
 package com.cleancode.domain.usecases.card;
 
 import com.cleancode.domain.pojo.card.Card;
+<<<<<<< HEAD
 import com.cleancode.domain.enums.rarities.CardNameEnum;
 import com.cleancode.domain.enums.rarities.CardRarityEnum;
 import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
+=======
+import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
+import com.cleancode.domain.pojo.enums.cards.CardRarityEnum;
+import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
+import com.cleancode.domain.ports.in.card.CardCreator;
+import com.cleancode.domain.ports.in.card.CardFinder;
+>>>>>>> ad00a4c73f02bc7a527b12a0eb346c94af8f619c
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.services.card.CardCreatorService;
+import com.cleancode.domain.services.card.CardFinderService;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -24,11 +33,20 @@ public class CardCreatorUseCaseUnitTest {
     private CardPersistencePort cardPersistencePort;
 
     @InjectMocks
+<<<<<<< HEAD
     private CardCreatorService cardCreatorService;
 
     @Test
     public void saveCardShouldSaveCard() throws Exception {
         Card cardToSave = new Card(
+=======
+    private CardCreator cardCreator = new CardCreatorService(this.cardPersistencePort);
+    private CardFinder cardFinder = new CardFinderService(this.cardPersistencePort);
+
+    @Test
+    public void saveCardShouldSaveCard() throws Exception {
+        Card card = new Card(
+>>>>>>> ad00a4c73f02bc7a527b12a0eb346c94af8f619c
                 1L,
                 "12345",
                 CardRarityEnum.COMMON,
@@ -37,12 +55,21 @@ public class CardCreatorUseCaseUnitTest {
                 100,
                 10
         );
+<<<<<<< HEAD
         when(cardPersistencePort.saveCardInDb(cardToSave)).thenReturn(Optional.of(cardToSave));
 
         Card savedCard = cardCreatorService.saveCard(cardToSave);
 
         assertEquals(savedCard, cardToSave);
         verify(cardPersistencePort,times(1));
+=======
+        when(cardPersistencePort.saveCardInDb(card)).thenReturn(Optional.of(card));
+
+        Card savedCard = cardCreator.saveCard(card);
+
+        assertEquals(savedCard, card);
+        verify(cardPersistencePort).saveCardInDb(card);
+>>>>>>> ad00a4c73f02bc7a527b12a0eb346c94af8f619c
     }
 
     @Test
@@ -66,7 +93,7 @@ public class CardCreatorUseCaseUnitTest {
         List<Card> cards = Arrays.asList(card1, card2);
         when(cardPersistencePort.findAllCards()).thenReturn(cards);
 
-        List<Card> returnedCards = cardCreatorService.findAllCards();
+        List<Card> returnedCards = cardFinder.findAllCards();
 
         assertEquals(returnedCards, cards);
         verify(cardPersistencePort).findAllCards();

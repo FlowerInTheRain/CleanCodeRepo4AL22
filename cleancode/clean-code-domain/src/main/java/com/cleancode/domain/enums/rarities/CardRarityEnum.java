@@ -1,4 +1,4 @@
-package com.cleancode.domain.enums.rarities;git a
+package com.cleancode.domain.enums.rarities;
 
 import java.util.function.DoubleUnaryOperator;
 
