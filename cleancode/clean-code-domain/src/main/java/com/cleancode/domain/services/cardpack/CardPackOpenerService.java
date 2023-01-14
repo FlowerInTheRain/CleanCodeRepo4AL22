@@ -39,28 +39,34 @@ public class CardPackOpenerService implements CardPackOpener {
     public List<CardCollectionCard> openSilverCardPack(String userName) throws CleanCodeException {
         var userAccount = userAccountPersistencePort.findUserByUserName(userName)
                 .orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_EMPTY_ACCOUNT_OPTIONAL));
-        final var cardPack = generateSilverCardPack(userAccount);
-       enrichUserCardCollection(userAccount, cardPack);
-        var newWalletValue = CardPacksEnum.SILVER_PACK.processPayment(userAccount.getBusinessUserCCCoinWallet());
-        userAccount.setBusinessUserCCCoinWallet(newWalletValue);
-        userAccountPersistencePort.saveUserInDb(userAccount);
-        return cardPack;
+        if(isUserAbleToBuyPack(userAccount.getBusinessUserCCCoinWallet())) {
+
+            final var cardPack = generateSilverCardPack(userAccount);
+            enrichUserCardCollection(userAccount, cardPack);
+            var newWalletValue = CardPacksEnum.SILVER_PACK.processPayment(userAccount.getBusinessUserCCCoinWallet());
+            userAccount.setBusinessUserCCCoinWallet(newWalletValue);
+            userAccountPersistencePort.saveUserInDb(userAccount);
+            return cardPack;
+        }
+        throw new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_PAS_DE_MOULA);
     }
 
     @Override
     public List<CardCollectionCard> openDiamondCardPack(String userName) {
         var userAccount = userAccountPersistencePort.findUserByUserName(userName)
                 .orElseThrow(() ->  new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_EMPTY_ACCOUNT_OPTIONAL));
-        var cardPack = generateDiamondCardPack(userAccount);
-        enrichUserCardCollection(userAccount, cardPack);
-        var newWallet = processPayment(CardPackPriceEnum.DIAMOND.getCardPrice(), userAccount);
-        userAccount.setBusinessUserCCCoinWallet(newWallet);
-        userAccountPersistencePort.saveUserInDb(userAccount);
-        return cardPack;
+        if(isUserAbleToBuyPack(userAccount.getBusinessUserCCCoinWallet())) {
+            var cardPack = generateDiamondCardPack(userAccount);
+            enrichUserCardCollection(userAccount, cardPack);
+            var newWallet = processPayment(CardPackPriceEnum.DIAMOND.getCardPrice(), userAccount);
+            userAccount.setBusinessUserCCCoinWallet(newWallet);
+            userAccountPersistencePort.saveUserInDb(userAccount);
+            return cardPack;
+        }
+        throw new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_PAS_DE_MOULA);
     }
 
     private void enrichUserCardCollection(BusinessUserClientInfo userAccount, List<CardCollectionCard> cardPack) {
-            if(isUserAbleToBuyPack(userAccount.getBusinessUserCCCoinWallet())){
                 List<CardCollectionCard> userCardCollection ;
                 if(userAccount.getUserCardCollection().getCollectionCardList() == null){
                     userCardCollection = new ArrayList<>();
@@ -69,7 +75,6 @@ public class CardPackOpenerService implements CardPackOpener {
                 }
                 userCardCollection.addAll( 0, cardPack);
                 userAccount.getUserCardCollection().setCollectionCardList(userCardCollection);
-            }
 
     }
 
@@ -86,7 +91,7 @@ public class CardPackOpenerService implements CardPackOpener {
         long numberOfCardsToCreate = silverPackDetails.getCardsAmount();
         List<CardCollectionCard> packContent = new ArrayList<>();
         for(long i = 0; i < numberOfCardsToCreate; i++){
-            double randomNumber = Math.random();
+            double randomNumber = probabilities.getRandomNumber();
             RaritiesEnum foundDistribution = probabilities.getSilverProbabilitiesMap().higherEntry(randomNumber).getValue();
             CardCollectionCard cardToAddToCollection = createCardForCollection(foundDistribution, userAccount);
             packContent.add(cardToAddToCollection);
@@ -100,7 +105,7 @@ public class CardPackOpenerService implements CardPackOpener {
         long numberOfCardsToCreate = diamondPackDetails.getCardsAmount();
         List<CardCollectionCard> packContent = new ArrayList<>();
         for(long i = 0; i < numberOfCardsToCreate; i++){
-            double randomNumber = Math.random();
+            double randomNumber = probabilities.getRandomNumber();
             RaritiesEnum foundDistribution = probabilities.getDiamondProbabilitiesMap().higherEntry(randomNumber).getValue();
             CardCollectionCard cardToAddToCollection = createCardForCollection(foundDistribution, userAccount);
             packContent.add(cardToAddToCollection);
@@ -118,6 +123,7 @@ public class CardPackOpenerService implements CardPackOpener {
                 userAccount.getUserCardCollection().getTechnicalId(),
                 UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, ""),
                 card.getCardName().name(),
+                card.getCardSpecialty().getSpecialtyValue().getSpecialty(),
                 (int) rarityToUse.getStatValue(specialtyToUse.getLifePoint()),
                 (int) rarityToUse.getStatValue(specialtyToUse.getPower()),
                 (int) rarityToUse.getStatValue(specialtyToUse.getArmor()),

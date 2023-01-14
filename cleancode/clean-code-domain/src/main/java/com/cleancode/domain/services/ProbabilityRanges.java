@@ -39,4 +39,9 @@ public class ProbabilityRanges implements Probabilities{
     public NavigableMap<Double, RaritiesEnum> getDiamondProbabilitiesMap() {
         return diamondMap;
     }
+
+    @Override
+    public double getRandomNumber() {
+        return Math.random();
+    }
 }

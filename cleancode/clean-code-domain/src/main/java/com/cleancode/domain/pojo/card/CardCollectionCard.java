@@ -26,7 +26,9 @@ public class CardCollectionCard {
 
     CardRarityEnum rarity;
 
-    public CardCollectionCard(Long cardId, Long collectionId, String cardCollectionCardReference, String heroName, int lifePoints, int power, int armor, int xp, int level, CardRarityEnum rarity) {
+    String specialty;
+
+    public CardCollectionCard(Long cardId, Long collectionId, String cardCollectionCardReference, String heroName, String specialty, int lifePoints, int power, int armor, int xp, int level, CardRarityEnum rarity) {
         this.cardId = cardId;
         this.collectionId = collectionId;
         this.cardCollectionCardReference = cardCollectionCardReference;
@@ -37,6 +39,15 @@ public class CardCollectionCard {
         this.xp = xp;
         this.level = level;
         this.rarity = rarity;
+        this.specialty = specialty;
+    }
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
     }
 
     public Long getCardId() {
@@ -106,6 +117,14 @@ public class CardCollectionCard {
         return heroName;
     }
 
+    public CardRarityEnum getRarity() {
+        return rarity;
+    }
+
+    public void setRarity(CardRarityEnum rarity) {
+        this.rarity = rarity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -118,23 +137,28 @@ public class CardCollectionCard {
         if (armor != that.armor) return false;
         if (xp != that.xp) return false;
         if (level != that.level) return false;
-        if (!heroName.equals(that.heroName)) return false;
+        if (!Objects.equals(heroName, that.heroName)) return false;
         if (!Objects.equals(cardId, that.cardId)) return false;
-        if (!collectionId.equals(that.collectionId)) return false;
-        return cardCollectionCardReference.equals(that.cardCollectionCardReference);
+        if (!Objects.equals(collectionId, that.collectionId)) return false;
+        if (!Objects.equals(cardCollectionCardReference, that.cardCollectionCardReference))
+            return false;
+        if (rarity != that.rarity) return false;
+        return Objects.equals(specialty, that.specialty);
     }
 
     @Override
     public int hashCode() {
-        int result = heroName.hashCode();
+        int result = heroName != null ? heroName.hashCode() : 0;
         result = 31 * result + (cardId != null ? cardId.hashCode() : 0);
-        result = 31 * result + collectionId.hashCode();
-        result = 31 * result + cardCollectionCardReference.hashCode();
+        result = 31 * result + (collectionId != null ? collectionId.hashCode() : 0);
+        result = 31 * result + (cardCollectionCardReference != null ? cardCollectionCardReference.hashCode() : 0);
         result = 31 * result + lifePoints;
         result = 31 * result + power;
         result = 31 * result + armor;
         result = 31 * result + xp;
         result = 31 * result + level;
+        result = 31 * result + (rarity != null ? rarity.hashCode() : 0);
+        result = 31 * result + (specialty != null ? specialty.hashCode() : 0);
         return result;
     }
 
@@ -150,6 +174,8 @@ public class CardCollectionCard {
                 ", armor=" + armor +
                 ", xp=" + xp +
                 ", level=" + level +
+                ", rarity=" + rarity +
+                ", specialty='" + specialty + '\'' +
                 '}';
     }
 }

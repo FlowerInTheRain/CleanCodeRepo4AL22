@@ -82,38 +82,48 @@ public class Card {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (Card) obj;
-        return this.technicalId == that.technicalId &&
-                Objects.equals(this.cardReference, that.cardReference) &&
-                Objects.equals(this.cardRarity, that.cardRarity) &&
-                Objects.equals(this.cardSpecialty, that.cardSpecialty) &&
-                Objects.equals(this.cardName, that.cardName) &&
-                this.xp == that.xp &&
-                this.level == that.level;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Card card = (Card) o;
+
+        if (technicalId != card.technicalId) return false;
+        if (xp != card.xp) return false;
+        if (level != card.level) return false;
+        if (!Objects.equals(cardReference, card.cardReference))
+            return false;
+        if (cardRarity != card.cardRarity) return false;
+        if (cardSpecialty != card.cardSpecialty) return false;
+        return cardName == card.cardName;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(technicalId, cardReference, cardRarity, cardSpecialty, cardName, xp, level);
-    }
-
-    @Override
-    public String toString() {
-        return "Card[" +
-                "technicalId=" + technicalId + ", " +
-                "cardReference=" + cardReference + ", " +
-                "cardRarity=" + cardRarity + ", " +
-                "cardSpecialty=" + cardSpecialty + ", " +
-                "cardName=" + cardName + ", " +
-                "xp=" + xp + ", " +
-                "level=" + level + ']';
+        int result = (int) (technicalId ^ (technicalId >>> 32));
+        result = 31 * result + (cardReference != null ? cardReference.hashCode() : 0);
+        result = 31 * result + (cardRarity != null ? cardRarity.hashCode() : 0);
+        result = 31 * result + (cardSpecialty != null ? cardSpecialty.hashCode() : 0);
+        result = 31 * result + (cardName != null ? cardName.hashCode() : 0);
+        result = 31 * result + xp;
+        result = 31 * result + level;
+        return result;
     }
 
     public static Card createOne(long technicalId, String cardReference, CardRarityEnum cardRarity, CardSpecialtyEnum cardSpecialty, CardNameEnum cardName, int xp, int level){
         return new Card( technicalId,  cardReference,  cardRarity,  cardSpecialty,  cardName,  xp,  level);
     }
 
+    @Override
+    public String toString() {
+        return "Card{" +
+                "technicalId=" + technicalId +
+                ", cardReference='" + cardReference + '\'' +
+                ", cardRarity=" + cardRarity +
+                ", cardSpecialty=" + cardSpecialty +
+                ", cardName=" + cardName +
+                ", xp=" + xp +
+                ", level=" + level +
+                '}';
+    }
 }

@@ -3,7 +3,7 @@ package com.esgi.cleancode;
 
 import com.cleancode.entrypoint.kernel.RestConfiguration;
 import com.cleancode.persistence.configurations.JpaConfiguration;
-import com.esgi.cleancode.bootstrap.configuration.BeanConfiguration;
+import com.esgi.cleancode.bootstrap.BeanConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;

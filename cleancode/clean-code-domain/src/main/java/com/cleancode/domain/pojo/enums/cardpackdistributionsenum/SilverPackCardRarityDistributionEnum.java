@@ -6,7 +6,7 @@ import com.cleancode.domain.pojo.enums.enums.rarities.RaritiesEnum;
 public enum SilverPackCardRarityDistributionEnum implements CardRarityDistributionEnumInterface {
 
     SILVER_PACK_COMMON_CARD(RaritiesEnum.COMMON,0.75),
-    SILVER_PACK_RARE_CARD(RaritiesEnum.RARE,0.99),
+    SILVER_PACK_RARE_CARD(RaritiesEnum.RARE,0.95),
     SILVER_PACK_LEGENDARY_CARD(RaritiesEnum.LEGENDARY,1.0);
 
 

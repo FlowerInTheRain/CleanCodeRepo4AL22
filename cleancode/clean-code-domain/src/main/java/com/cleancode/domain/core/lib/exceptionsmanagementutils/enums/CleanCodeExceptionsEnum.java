@@ -18,7 +18,11 @@ public enum CleanCodeExceptionsEnum {
 
     DOMAIN_EMPTY_ACCOUNT_OPTIONAL(ComponentsEnum.Clean_Code_BS,
             "An error occurred while creating domain account",
-                                  HttpStatus.BAD_REQUEST);
+                                  HttpStatus.BAD_REQUEST),
+
+    DOMAIN_PAS_DE_MOULA(ComponentsEnum.Clean_Code_BS,
+            "T'es fauché gros",
+                                  HttpStatus.NOT_ACCEPTABLE);
 
     private final ComponentsEnum component;
     private final String userMessageToDisplay;
