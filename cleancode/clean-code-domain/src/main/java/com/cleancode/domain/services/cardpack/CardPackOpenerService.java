@@ -7,7 +7,7 @@ import com.cleancode.domain.core.lib.formatutils.uuidformatterutils.UUIDFormatte
 import com.cleancode.domain.pojo.card.Card;
 import com.cleancode.domain.pojo.card.CardCollectionCard;
 import com.cleancode.domain.pojo.card.CardSpecialty;
-import com.cleancode.domain.pojo.enums.cardpackrarities.CardPackPriceEnum;
+import com.cleancode.domain.pojo.enums.cardpackrarities.CardPackRaritiesEnum;
 import com.cleancode.domain.pojo.enums.cardpacksenum.CardPacksEnum;
 import com.cleancode.domain.pojo.enums.cards.CardRarityEnum;
 import com.cleancode.domain.pojo.enums.enums.rarities.RaritiesEnum;
@@ -40,8 +40,8 @@ public class CardPackOpenerService implements CardPackOpener {
     public List<CardCollectionCard> openSilverCardPack(String userName) throws CleanCodeException {
         var userAccount = userAccountPersistencePort.findUserByUserName(userName)
                 .orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_EMPTY_ACCOUNT_OPTIONAL));
-        if(isUserAbleToBuyPack(CardPackPriceEnum.SILVER, userAccount.getBusinessUserCCCoinWallet())) {
-            var cardPack = generateCardPack(CardPacksEnum.SILVER_PACK, userAccount, probabilities.getDiamondProbabilitiesMap());
+        if(isUserAbleToBuyPack(CardPackRaritiesEnum.SILVER, userAccount.getBusinessUserCCCoinWallet())) {
+            var cardPack = generateCardPack(CardPacksEnum.SILVER_PACK, userAccount, probabilities.getSilverProbabilitiesMap());
             enrichUserCardCollection(userAccount, cardPack);
             var newWalletValue = CardPacksEnum.SILVER_PACK.processPayment(userAccount.getBusinessUserCCCoinWallet());
             userAccount.setBusinessUserCCCoinWallet(newWalletValue);
@@ -55,10 +55,10 @@ public class CardPackOpenerService implements CardPackOpener {
     public List<CardCollectionCard> openDiamondCardPack(String userName) {
         var userAccount = userAccountPersistencePort.findUserByUserName(userName)
                 .orElseThrow(() ->  new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_EMPTY_ACCOUNT_OPTIONAL));
-        if(isUserAbleToBuyPack(CardPackPriceEnum.DIAMOND, userAccount.getBusinessUserCCCoinWallet())) {
+        if(isUserAbleToBuyPack(CardPackRaritiesEnum.DIAMOND, userAccount.getBusinessUserCCCoinWallet())) {
             var cardPack = generateCardPack(CardPacksEnum.DIAMOND_PACK, userAccount, probabilities.getDiamondProbabilitiesMap());
             enrichUserCardCollection(userAccount, cardPack);
-            var newWallet = processPayment(CardPackPriceEnum.DIAMOND.getCardPrice(), userAccount);
+            var newWallet = processPayment(CardPackRaritiesEnum.DIAMOND.getCardPackPrice(),  userAccount);
             userAccount.setBusinessUserCCCoinWallet(newWallet);
             userAccountPersistencePort.saveUserInDb(userAccount);
             return cardPack;
@@ -78,8 +78,8 @@ public class CardPackOpenerService implements CardPackOpener {
 
     }
 
-    public static boolean isUserAbleToBuyPack(CardPackPriceEnum ccCoin, Long userWallet){
-        return ccCoin.getCardPrice() <= userWallet;
+    public static boolean isUserAbleToBuyPack(CardPackRaritiesEnum ccCoin, Long userWallet){
+        return ccCoin.getCardPackPrice() <= userWallet;
     }
 
     public long processPayment(long cardPackPrice, BusinessUserClientInfo userAccount){

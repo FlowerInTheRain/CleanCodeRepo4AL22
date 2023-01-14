@@ -1,16 +1,22 @@
 package com.cleancode.domain.pojo.enums.cardpackrarities;
 
 public enum CardPackRaritiesEnum {
-    SILVER("SILVER"),
-    DIAMOND("DIAMOND");
+    SILVER("SILVER", 1L),
+    DIAMOND("DIAMOND", 2L);
 
     private final String cardPackRarityCode;
+    private final long cardPackPrice;
 
-    CardPackRaritiesEnum(String cardPackRarityCode) {
+    CardPackRaritiesEnum(String cardPackRarityCode, long cardPackPrice) {
         this.cardPackRarityCode = cardPackRarityCode;
+        this.cardPackPrice = cardPackPrice;
     }
     public String getCardPackRarityCode() {
         return cardPackRarityCode;
+    }
+
+    public long getCardPackPrice() {
+        return cardPackPrice;
     }
 
     @Override

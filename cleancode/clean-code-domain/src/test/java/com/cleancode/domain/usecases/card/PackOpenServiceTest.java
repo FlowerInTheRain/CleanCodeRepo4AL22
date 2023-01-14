@@ -6,7 +6,8 @@ import com.cleancode.domain.pojo.card.Card;
 import com.cleancode.domain.pojo.enums.cardcollection.CardCollection;
 import com.cleancode.domain.pojo.enums.cardpackdistributionsenum.DiamondPackCardRarityDistributionEnum;
 import com.cleancode.domain.pojo.enums.cardpackdistributionsenum.SilverPackCardRarityDistributionEnum;
-import com.cleancode.domain.pojo.enums.cardpackrarities.CardPackPriceEnum;
+import com.cleancode.domain.pojo.enums.cardpackrarities.CardPackRaritiesEnum;
+import com.cleancode.domain.pojo.enums.cardpacksenum.CardPacksEnum;
 import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
 import com.cleancode.domain.pojo.enums.cards.CardRarityEnum;
 import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
@@ -56,7 +57,7 @@ public class PackOpenServiceTest {
 
     @Test
     public void shouldCheckIfUserCanBuyASilverCardPack(){
-        assertTrue(CardPackOpenerService.isUserAbleToBuyPack(CardPackPriceEnum.SILVER, testUser.getBusinessUserCCCoinWallet()));
+        assertTrue(CardPackOpenerService.isUserAbleToBuyPack(CardPackRaritiesEnum.SILVER, testUser.getBusinessUserCCCoinWallet()));
     }
 
     @Test
