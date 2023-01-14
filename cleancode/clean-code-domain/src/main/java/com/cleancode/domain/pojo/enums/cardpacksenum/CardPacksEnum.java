@@ -1,23 +1,19 @@
 package com.cleancode.domain.pojo.enums.cardpacksenum;
 
-
-import com.cleancode.domain.pojo.enums.cardpackrarities.CardPackPriceEnum;
 import com.cleancode.domain.pojo.enums.cardpackrarities.CardPackRaritiesEnum;
 
 import java.util.function.LongUnaryOperator;
 
 public enum CardPacksEnum {
-    SILVER_PACK(CardPackRaritiesEnum.SILVER, 1L, 3L, (ccCoins -> ccCoins - CardPackPriceEnum.SILVER.getCardPrice())),
-    DIAMOND_PACK(CardPackRaritiesEnum.DIAMOND, 2L, 5L, (ccCoins -> ccCoins - CardPackPriceEnum.DIAMOND.getCardPrice()));
+    SILVER_PACK(CardPackRaritiesEnum.SILVER,  3L, (ccCoins -> ccCoins - CardPackRaritiesEnum.SILVER.getCardPackPrice())),
+    DIAMOND_PACK(CardPackRaritiesEnum.DIAMOND,  5L, ccCoins -> ccCoins - CardPackRaritiesEnum.DIAMOND.getCardPackPrice());
 
     private final CardPackRaritiesEnum cardPackRarity;
-    private final Long cardPackPrice;
     private final Long cardsAmount;
 
     private final LongUnaryOperator doubleUnaryOperator;
-    CardPacksEnum(CardPackRaritiesEnum cardPackRarity, Long cardPackPrice, Long cardsAmount, LongUnaryOperator doubleUnaryOperator) {
+    CardPacksEnum(CardPackRaritiesEnum cardPackRarity, Long cardsAmount, LongUnaryOperator doubleUnaryOperator) {
         this.cardPackRarity = cardPackRarity;
-        this.cardPackPrice = cardPackPrice;
         this.cardsAmount = cardsAmount;
         this.doubleUnaryOperator = doubleUnaryOperator;
     }
@@ -26,9 +22,6 @@ public enum CardPacksEnum {
         return cardPackRarity;
     }
 
-    public Long getCardPackPrice() {
-        return cardPackPrice;
-    }
 
     public Long getCardsAmount(){return cardsAmount;}
 
@@ -40,7 +33,6 @@ public enum CardPacksEnum {
     public String toString() {
         return "CardPacksEnum{" +
                 "cardPackRarity=" + cardPackRarity +
-                ", cardPackPrice=" + cardPackPrice +
                 ", cardsAmount=" + cardsAmount +
                 '}';
     }

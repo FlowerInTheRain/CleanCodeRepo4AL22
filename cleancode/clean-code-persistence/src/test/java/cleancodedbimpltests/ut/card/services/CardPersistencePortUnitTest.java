@@ -9,7 +9,11 @@ import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
 import com.cleancode.domain.pojo.enums.cards.CardRarityEnum;
 import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
-import org.junit.Test;
+import com.cleancode.persistence.adapters.card.CardPersistenceSpi;
+import com.cleancode.persistence.entities.cards.CardEntity;
+import com.cleancode.persistence.mappers.card.CardEntityMapper;
+import com.cleancode.persistence.repositories.card.CardRepository;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -18,7 +22,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.when;
 
 public class CardPersistencePortUnitTest {
@@ -43,8 +48,8 @@ public class CardPersistencePortUnitTest {
         }
 
         assertEquals(returnedCards.size(), cards.size());
-        assertEquals(returnedCards.get(0).technicalId(), CardEntityMapper.INSTANCE.fromDbToBs(card1).technicalId());
-        assertEquals(returnedCards.get(1).technicalId(), CardEntityMapper.INSTANCE.fromDbToBs(card2).technicalId());
+        assertEquals(returnedCards.get(0).getTechnicalId(), CardEntityMapper.INSTANCE.fromDbToBs(card1).getTechnicalId());
+        assertEquals(returnedCards.get(1).getTechnicalId(), CardEntityMapper.INSTANCE.fromDbToBs(card2).getTechnicalId());
     }
 
     @Test
@@ -62,7 +67,7 @@ public class CardPersistencePortUnitTest {
 
         Card returnedCard = cardPersistencePort.findOneCardByRarity(cardBusinessReference);
 
-        assertEquals(returnedCard.cardReference(), card.getCardReference());
+        assertEquals(returnedCard.getCardReference(), card.getCardReference());
     }
 
     @Test
@@ -85,6 +90,6 @@ public class CardPersistencePortUnitTest {
             fail();
         }
 
-        assertEquals(returnedCard.get().technicalId(), CardEntityMapper.INSTANCE.fromDbToBs(savedCard).technicalId());
+        assertEquals(returnedCard.get().getTechnicalId(), savedCard.getId());
     }
 }

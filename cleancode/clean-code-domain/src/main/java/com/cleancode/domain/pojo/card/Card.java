@@ -7,89 +7,123 @@ import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
 import java.util.Objects;
 
 public class Card {
-    private final long technicalId;
+    private  long technicalId;
     private String cardReference;
-    private final CardRarityEnum cardRarity;
-    private final CardSpecialtyEnum cardSpecialty;
-    private final CardNameEnum cardName;
-    private final int xp;
-    private final int leve;
+    private  CardRarityEnum cardRarity;
+    private  CardSpecialtyEnum cardSpecialty;
+    private  CardNameEnum cardName;
+    private  int xp;
+    private  int level;
 
-    public Card(long technicalId, String cardReference, CardRarityEnum cardRarity, CardSpecialtyEnum cardSpecialty, CardNameEnum cardName, int xp, int leve) {
+    public Card(long technicalId, String cardReference, CardRarityEnum cardRarity, CardSpecialtyEnum cardSpecialty, CardNameEnum cardName, int xp, int level) {
         this.technicalId = technicalId;
         this.cardReference = cardReference;
         this.cardRarity = cardRarity;
         this.cardSpecialty = cardSpecialty;
         this.cardName = cardName;
         this.xp = xp;
-        this.leve = leve;
+        this.level = level;
     }
 
-    public long technicalId() {
+    public long getTechnicalId() {
         return technicalId;
     }
 
-    public String cardReference() {
+    public void setTechnicalId(long technicalId) {
+        this.technicalId = technicalId;
+    }
+
+    public String getCardReference() {
         return cardReference;
-    }
-
-    public CardRarityEnum cardRarity() {
-        return cardRarity;
-    }
-
-    public CardSpecialtyEnum cardSpecialty() {
-        return cardSpecialty;
-    }
-
-    public CardNameEnum cardName() {
-        return cardName;
-    }
-
-    public int xp() {
-        return xp;
-    }
-
-    public int leve() {
-        return leve;
     }
 
     public void setCardReference(String cardReference) {
         this.cardReference = cardReference;
     }
 
+    public CardRarityEnum getCardRarity() {
+        return cardRarity;
+    }
+
+    public void setCardRarity(CardRarityEnum cardRarity) {
+        this.cardRarity = cardRarity;
+    }
+
+    public CardSpecialtyEnum getCardSpecialty() {
+        return cardSpecialty;
+    }
+
+    public void setCardSpecialty(CardSpecialtyEnum cardSpecialty) {
+        this.cardSpecialty = cardSpecialty;
+    }
+
+    public CardNameEnum getCardName() {
+        return cardName;
+    }
+
+    public void setCardName(CardNameEnum cardName) {
+        this.cardName = cardName;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
+    public void setXp(int xp) {
+        this.xp = xp;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (Card) obj;
-        return this.technicalId == that.technicalId &&
-                Objects.equals(this.cardReference, that.cardReference) &&
-                Objects.equals(this.cardRarity, that.cardRarity) &&
-                Objects.equals(this.cardSpecialty, that.cardSpecialty) &&
-                Objects.equals(this.cardName, that.cardName) &&
-                this.xp == that.xp &&
-                this.leve == that.leve;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Card card = (Card) o;
+
+        if (technicalId != card.technicalId) return false;
+        if (xp != card.xp) return false;
+        if (level != card.level) return false;
+        if (!Objects.equals(cardReference, card.cardReference))
+            return false;
+        if (cardRarity != card.cardRarity) return false;
+        if (cardSpecialty != card.cardSpecialty) return false;
+        return cardName == card.cardName;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(technicalId, cardReference, cardRarity, cardSpecialty, cardName, xp, leve);
-    }
-
-    @Override
-    public String toString() {
-        return "Card[" +
-                "technicalId=" + technicalId + ", " +
-                "cardReference=" + cardReference + ", " +
-                "cardRarity=" + cardRarity + ", " +
-                "cardSpecialty=" + cardSpecialty + ", " +
-                "cardName=" + cardName + ", " +
-                "xp=" + xp + ", " +
-                "leve=" + leve + ']';
+        int result = (int) (technicalId ^ (technicalId >>> 32));
+        result = 31 * result + (cardReference != null ? cardReference.hashCode() : 0);
+        result = 31 * result + (cardRarity != null ? cardRarity.hashCode() : 0);
+        result = 31 * result + (cardSpecialty != null ? cardSpecialty.hashCode() : 0);
+        result = 31 * result + (cardName != null ? cardName.hashCode() : 0);
+        result = 31 * result + xp;
+        result = 31 * result + level;
+        return result;
     }
 
     public static Card createOne(long technicalId, String cardReference, CardRarityEnum cardRarity, CardSpecialtyEnum cardSpecialty, CardNameEnum cardName, int xp, int level){
         return new Card( technicalId,  cardReference,  cardRarity,  cardSpecialty,  cardName,  xp,  level);
     }
 
+    @Override
+    public String toString() {
+        return "Card{" +
+                "technicalId=" + technicalId +
+                ", cardReference='" + cardReference + '\'' +
+                ", cardRarity=" + cardRarity +
+                ", cardSpecialty=" + cardSpecialty +
+                ", cardName=" + cardName +
+                ", xp=" + xp +
+                ", level=" + level +
+                '}';
+    }
 }

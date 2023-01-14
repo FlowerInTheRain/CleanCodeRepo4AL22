@@ -16,7 +16,4 @@ public interface CardRepository extends JpaRepository<CardEntity, Long> {
 
 
     List<CardEntity> findAll();
-
-    @Override
-    <S extends CardEntity> S save(S entity);
 }

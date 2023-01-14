@@ -20,8 +20,8 @@ public enum CardRarityEnum {
         return rarity;
     }
 
-    public double getStatValue(int statToMultiply){
-        return this.statsMultiplicative.applyAsDouble(statToMultiply);
+    public long getStatValue(double statToMultiply){
+        return (long) this.statsMultiplicative.applyAsDouble(statToMultiply);
     }
 }
 

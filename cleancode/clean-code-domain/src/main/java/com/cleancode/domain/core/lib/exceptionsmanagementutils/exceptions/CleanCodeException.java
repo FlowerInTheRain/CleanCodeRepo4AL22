@@ -11,6 +11,7 @@ public class CleanCodeException extends RuntimeException {
     }
 
     public CleanCodeException(CleanCodeExceptionsEnum exception) {
+        super(exception.getUserMessageToDisplay());
         exceptionEnum = new CleanCodeErrorBodyResponse(exception.getHttpResponseStatus(), exception.getUserMessageToDisplay(), exception.getComponent().getComponentDisplayableName());
     }
 }
