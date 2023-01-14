@@ -84,16 +84,15 @@ public class PackOpenServiceTest {
         newUserCards.add(cardToReturn0);
         when(userAccountPersistencePort.saveUserInDb(testUser)).thenReturn(Optional.of(testUser));
 
-        var card = cardPackOpenerService.openSilverCardPack("Sid");
 
+        var card = cardPackOpenerService.openSilverCardPack("Sid");
         verify(userAccountPersistencePort).saveUserInDb(userClientInfoArgumentCaptor.capture());
 
-        var newWallet = userClientInfoArgumentCaptor.getValue().getBusinessUserCCCoinWallet().longValue();
 
+        var newWallet = userClientInfoArgumentCaptor.getValue().getBusinessUserCCCoinWallet().longValue();
         assertEquals(2L,newWallet);
         assertEquals(newUserCards.size(), card.size());
         var savedUserCards = userClientInfoArgumentCaptor.getValue().getUserCardCollection().getCollectionCardList();
-
         for(int i = 0; i < card.size(); i ++){
             assertEquals(card.get(i).getHeroName(), savedUserCards.get(i).getHeroName());
             assertEquals(card.get(i).getSpecialty(), savedUserCards.get(i).getSpecialty());
@@ -135,14 +134,14 @@ public class PackOpenServiceTest {
         newUserCards.add(cardToReturn0);
         when(userAccountPersistencePort.saveUserInDb(testUser)).thenReturn(Optional.of(testUser));
 
-        var card = cardPackOpenerService.openDiamondCardPack("Sid");
 
+        var card = cardPackOpenerService.openDiamondCardPack("Sid");
         verify(userAccountPersistencePort).saveUserInDb(userClientInfoArgumentCaptor.capture());
+
 
         assertEquals(1L, userClientInfoArgumentCaptor.getValue().getBusinessUserCCCoinWallet().longValue());
         assertEquals(5, card.size());
         var savedUserCards = userClientInfoArgumentCaptor.getValue().getUserCardCollection().getCollectionCardList();
-
         for(int i = 0; i < card.size(); i ++){
             assertEquals(card.get(i).getHeroName(), savedUserCards.get(i).getHeroName());
             assertEquals(card.get(i).getSpecialty(), savedUserCards.get(i).getSpecialty());

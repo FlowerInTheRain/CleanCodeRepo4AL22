@@ -1,6 +1,6 @@
 package com.cleancode.domain.enums.cardpackdistributionsenum;
 
-import com.cleancode.domain.enums.interfaces.cardraritydistribution.CardRarityDistributionEnumInterface;
+import com.cleancode.domain.enums.cardpackdistributionsenum.interfaces.CardRarityDistributionEnumInterface;
 import com.cleancode.domain.enums.rarities.RaritiesEnum;
 import org.springframework.stereotype.Component;
 

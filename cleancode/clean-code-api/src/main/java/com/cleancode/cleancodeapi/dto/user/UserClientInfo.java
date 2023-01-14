@@ -10,9 +10,9 @@ import java.sql.Timestamp;
 public class UserClientInfo extends User {
     private String clientReference;
     @JsonIgnore
-    private Timestamp clientCreationDate;
+    private final Timestamp clientCreationDate;
 
-    private CardCollection userCardCollection;
+    private final CardCollection userCardCollection;
 
     public UserClientInfo(String userName, String clientReference, Timestamp clientCreationDate, CardCollection userCardCollection) {
         super(userName);
@@ -35,12 +35,7 @@ public class UserClientInfo extends User {
     public void setClientReference(String clientReference) {
         this.clientReference = clientReference;
     }
-    public void setClientCreationDate(Timestamp clientCreationDate) {
-        this.clientCreationDate = clientCreationDate;
-    }
-    public void setUserCardCollection(CardCollection userCardCollection) {
-        this.userCardCollection = userCardCollection;
-    }
+
 
     public static UserClientInfo createOneUserClientInfo(
              String userName, String clientReference, Timestamp clientCreationDate, CardCollection userCardCollectionsList

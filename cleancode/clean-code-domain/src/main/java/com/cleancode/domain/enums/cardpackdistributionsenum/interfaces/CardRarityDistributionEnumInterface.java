@@ -1,4 +1,4 @@
-package com.cleancode.domain.enums.interfaces.cardraritydistribution;
+package com.cleancode.domain.enums.cardpackdistributionsenum.interfaces;
 
 
 import com.cleancode.domain.enums.rarities.RaritiesEnum;

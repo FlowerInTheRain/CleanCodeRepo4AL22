@@ -30,6 +30,4 @@ public record CardCollection(String collectionName, String collectionReference, 
                 "collectionReference=" + collectionReference + ", " +
                 "collectionCardList=" + collectionCardList + ']';
     }
-
-
 }
