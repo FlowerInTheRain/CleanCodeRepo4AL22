@@ -1,13 +1,13 @@
 package com.cleancode.domain.pojo.card;
 
-import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
-import com.cleancode.domain.pojo.enums.cards.CardRarityEnum;
-import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
+import com.cleancode.domain.enums.rarities.CardNameEnum;
+import com.cleancode.domain.enums.rarities.CardRarityEnum;
+import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
 
 import java.util.Objects;
 
 public class Card {
-    private  long technicalId;
+    private  Long technicalId;
     private String cardReference;
     private  CardRarityEnum cardRarity;
     private  CardSpecialtyEnum cardSpecialty;
@@ -15,7 +15,7 @@ public class Card {
     private  int xp;
     private  int level;
 
-    public Card(long technicalId, String cardReference, CardRarityEnum cardRarity, CardSpecialtyEnum cardSpecialty, CardNameEnum cardName, int xp, int level) {
+    public Card(Long technicalId, String cardReference, CardRarityEnum cardRarity, CardSpecialtyEnum cardSpecialty, CardNameEnum cardName, int xp, int level) {
         this.technicalId = technicalId;
         this.cardReference = cardReference;
         this.cardRarity = cardRarity;
@@ -25,11 +25,11 @@ public class Card {
         this.level = level;
     }
 
-    public long getTechnicalId() {
+    public Long getTechnicalId() {
         return technicalId;
     }
 
-    public void setTechnicalId(long technicalId) {
+    public void setTechnicalId(Long technicalId) {
         this.technicalId = technicalId;
     }
 
@@ -110,7 +110,7 @@ public class Card {
         return result;
     }
 
-    public static Card createOne(long technicalId, String cardReference, CardRarityEnum cardRarity, CardSpecialtyEnum cardSpecialty, CardNameEnum cardName, int xp, int level){
+    public static Card createOne(Long technicalId, String cardReference, CardRarityEnum cardRarity, CardSpecialtyEnum cardSpecialty, CardNameEnum cardName, int xp, int level){
         return new Card( technicalId,  cardReference,  cardRarity,  cardSpecialty,  cardName,  xp,  level);
     }
 

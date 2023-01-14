@@ -1,4 +1,4 @@
-package com.cleancode.domain.pojo.enums.cardpackrarities;
+package com.cleancode.domain.enums.rarities;
 
 public enum CardPackRaritiesEnum {
     SILVER("SILVER", 1L),

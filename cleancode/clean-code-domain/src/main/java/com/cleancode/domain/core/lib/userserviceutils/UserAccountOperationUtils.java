@@ -1,6 +1,6 @@
 package com.cleancode.domain.core.lib.userserviceutils;
 
-import com.cleancode.domain.pojo.enums.cardcollection.CardCollection;
+import com.cleancode.domain.pojo.cardcollection.CardCollection;
 import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 import com.cleancode.domain.core.lib.businessreferenceutils.businessidgeneratorutils.uuid.UUIDGenerator;
 import com.cleancode.domain.core.lib.formatutils.uuidformatterutils.UUIDFormatter;

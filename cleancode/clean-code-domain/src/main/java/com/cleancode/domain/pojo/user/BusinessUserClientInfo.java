@@ -1,6 +1,6 @@
 package com.cleancode.domain.pojo.user;
 
-import com.cleancode.domain.pojo.enums.cardcollection.CardCollection;
+import com.cleancode.domain.pojo.cardcollection.CardCollection;
 
 import java.sql.Timestamp;
 

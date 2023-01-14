@@ -1,18 +1,20 @@
 package cleancodedbimpltests.ut.card.services;
 
 import com.cleancode.domain.pojo.card.Card;
-import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
-import com.cleancode.domain.pojo.enums.cards.CardRarityEnum;
-import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
+import com.cleancode.domain.enums.rarities.CardNameEnum;
+import com.cleancode.domain.enums.rarities.CardRarityEnum;
+import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.persistence.adapters.card.CardPersistenceSpi;
 import com.cleancode.persistence.entities.cards.CardEntity;
 import com.cleancode.persistence.mappers.card.CardEntityMapper;
 import com.cleancode.persistence.repositories.card.CardRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,18 +24,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 public class CardPersistencePortUnitTest {
 
     @Mock
-    private CardRepository cardRepository = Mockito.mock(CardRepository.class);
+    private CardRepository cardRepository;
 
     @InjectMocks
-    private CardPersistencePort cardPersistencePort = new CardPersistenceSpi(this.cardRepository);
+    private CardPersistenceSpi cardPersistencePort;
 
     @Test
     public void findAllCardsShouldReturnListOfCards() {
         CardEntity card1 = new CardEntity();
+        card1.setId(1L);
         CardEntity card2 = new CardEntity();
+        card2.setId(2L);
         List<CardEntity> cards = Arrays.asList(card1, card2);
         when(cardRepository.findAll()).thenReturn(cards);
 

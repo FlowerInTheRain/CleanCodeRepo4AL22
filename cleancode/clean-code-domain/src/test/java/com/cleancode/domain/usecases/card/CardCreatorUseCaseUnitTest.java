@@ -1,9 +1,9 @@
 package com.cleancode.domain.usecases.card;
 
 import com.cleancode.domain.pojo.card.Card;
-import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
-import com.cleancode.domain.pojo.enums.cards.CardRarityEnum;
-import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
+import com.cleancode.domain.enums.rarities.CardNameEnum;
+import com.cleancode.domain.enums.rarities.CardRarityEnum;
+import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.services.card.CardCreatorService;
 import org.junit.Test;
@@ -16,20 +16,19 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class CardCreatorUseCaseUnitTest {
 
     @Mock
-    private CardPersistencePort cardPersistencePort = Mockito.mock(CardPersistencePort.class);
+    private CardPersistencePort cardPersistencePort;
 
     @InjectMocks
-    private CardCreatorService cardCreatorService = new CardCreatorService(this.cardPersistencePort);
+    private CardCreatorService cardCreatorService;
 
     @Test
     public void saveCardShouldSaveCard() throws Exception {
-        Card initialCard = new Card(
+        Card cardToSave = new Card(
                 1L,
                 "12345",
                 CardRarityEnum.COMMON,
@@ -38,12 +37,12 @@ public class CardCreatorUseCaseUnitTest {
                 100,
                 10
         );
-        when(cardPersistencePort.saveCardInDb(initialCard)).thenReturn(Optional.of(initialCard));
+        when(cardPersistencePort.saveCardInDb(cardToSave)).thenReturn(Optional.of(cardToSave));
 
-        Card savedInitialCard = cardCreatorService.saveCard(initialCard);
+        Card savedCard = cardCreatorService.saveCard(cardToSave);
 
-        assertEquals(savedInitialCard, initialCard);
-        verify(cardPersistencePort).saveCardInDb(initialCard);
+        assertEquals(savedCard, cardToSave);
+        verify(cardPersistencePort,times(1));
     }
 
     @Test

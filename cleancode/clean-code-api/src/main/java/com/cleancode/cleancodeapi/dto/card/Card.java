@@ -1,9 +1,9 @@
 package com.cleancode.cleancodeapi.dto.card;
 
 
-import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
+import com.cleancode.domain.enums.rarities.CardNameEnum;
 import com.cleancode.cleancodeapi.enums.card.CardRarityEnum;
-import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
+import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
 
 import java.util.Objects;
 

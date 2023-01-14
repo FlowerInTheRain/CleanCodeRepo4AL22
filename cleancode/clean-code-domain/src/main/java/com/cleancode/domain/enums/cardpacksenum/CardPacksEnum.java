@@ -1,9 +1,8 @@
 package com.cleancode.domain.enums.cardpacksenum;
 
 
-import com.cleancode.domain.pojo.enums.cardpackrarities.CardPackRaritiesEnum;
 
-import java.util.Arrays;
+import com.cleancode.domain.enums.rarities.CardPackRaritiesEnum;
 
 public enum CardPacksEnum {
     SILVER_PACK(CardPackRaritiesEnum.SILVER, 1L, 3L),

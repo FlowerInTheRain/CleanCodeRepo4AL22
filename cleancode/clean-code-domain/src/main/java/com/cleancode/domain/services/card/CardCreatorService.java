@@ -28,7 +28,6 @@ public class CardCreatorService implements CardCreator {
             String formattedUUIDToBind = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
             initialCard.setCardReference(formattedUUIDToBind);
         }
-
         try {
             Optional<Card> cardEntity = cardPersistencePort.saveCardInDb(initialCard);
             LOGGER.log(Level.INFO, "BusinessCardCreateInfo businessCardCreateInfo : " + initialCard + " Returned cardEntity : " + cardEntity);

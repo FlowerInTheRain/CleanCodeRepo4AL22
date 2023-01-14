@@ -1,6 +1,9 @@
 package com.cleancode.persistence.entities.cards;
 
 
+import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
+import com.cleancode.domain.enums.rarities.CardNameEnum;
+import com.cleancode.domain.enums.rarities.CardRarityEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,6 +43,16 @@ public class CardEntity implements Serializable {
 
     @OneToMany(mappedBy = "id")
     private List<CardEntity> collectionCardList;
+
+    public CardEntity(Long id, String cardReference, String rarity, String specialty, String name, int xp, int level) {
+        this.id = id;
+        this.cardReference = cardReference;
+        this.cardRarity = rarity;
+        this.cardSpecialty = specialty;
+        this.cardName = name;
+        this.xp = xp;
+        this.level = level;
+    }
 
     @Override
     public boolean equals(Object o) {

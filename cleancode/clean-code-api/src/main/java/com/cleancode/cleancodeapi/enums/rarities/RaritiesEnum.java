@@ -1,7 +1,7 @@
 package com.cleancode.cleancodeapi.enums.rarities;
 
 public enum RaritiesEnum {
-    COMMON("Commune"),
+    COMMON("Common"),
     RARE("Rare"),
     UNIQUE("Unique");
 

@@ -1,6 +1,6 @@
 package com.cleancode.domain.services;
 
-import com.cleancode.domain.pojo.enums.enums.rarities.RaritiesEnum;
+import com.cleancode.domain.enums.rarities.RaritiesEnum;
 
 import java.util.NavigableMap;
 

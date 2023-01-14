@@ -7,7 +7,7 @@ public enum SilverPackCardRarityDistributionEnum implements CardRarityDistributi
 
     SILVER_PACK_COMMON_CARD(RaritiesEnum.COMMON,0.75),
     SILVER_PACK_RARE_CARD(RaritiesEnum.RARE, 0.95),
-    SILVER_PACK_UNIQUE_CARD(RaritiesEnum.RARE, 1.0);
+    SILVER_PACK_LEGENDARY_CARD(RaritiesEnum.RARE, 1.0);
 
 
     private final RaritiesEnum cardRarityEnum;

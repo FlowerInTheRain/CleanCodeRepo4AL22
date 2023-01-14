@@ -8,5 +8,5 @@ import org.mapstruct.factory.Mappers;
 public interface CardCollectionMapper {
     CardCollectionMapper INSTANCE = Mappers.getMapper(CardCollectionMapper.class);
 
-    CardCollection fromBusinessServiceCardCollectionToApiCardCollection(com.cleancode.domain.pojo.enums.cardcollection.CardCollection cardCollection);
+    CardCollection fromBusinessServiceCardCollectionToApiCardCollection(com.cleancode.domain.pojo.cardcollection.CardCollection cardCollection);
 }

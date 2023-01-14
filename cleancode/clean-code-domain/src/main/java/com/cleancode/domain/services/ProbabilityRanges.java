@@ -1,8 +1,8 @@
 package com.cleancode.domain.services;
 
-import com.cleancode.domain.pojo.enums.cardpackdistributionsenum.DiamondPackCardRarityDistributionEnum;
-import com.cleancode.domain.pojo.enums.cardpackdistributionsenum.SilverPackCardRarityDistributionEnum;
-import com.cleancode.domain.pojo.enums.enums.rarities.RaritiesEnum;
+import com.cleancode.domain.enums.cardpackdistributionsenum.DiamondPackCardRarityDistributionEnum;
+import com.cleancode.domain.enums.cardpackdistributionsenum.SilverPackCardRarityDistributionEnum;
+import com.cleancode.domain.enums.rarities.RaritiesEnum;
 
 import javax.annotation.PostConstruct;
 import java.util.NavigableMap;

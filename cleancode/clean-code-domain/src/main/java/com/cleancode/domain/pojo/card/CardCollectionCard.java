@@ -1,6 +1,6 @@
 package com.cleancode.domain.pojo.card;
 
-import com.cleancode.domain.pojo.enums.cards.CardRarityEnum;
+import com.cleancode.domain.enums.rarities.CardRarityEnum;
 
 import java.util.Objects;
 
