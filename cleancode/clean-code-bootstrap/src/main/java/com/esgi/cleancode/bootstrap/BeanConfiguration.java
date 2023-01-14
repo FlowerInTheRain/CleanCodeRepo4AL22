@@ -4,6 +4,7 @@ import com.cleancode.domain.ports.in.card.CardCreator;
 import com.cleancode.domain.ports.in.card.CardFinder;
 import com.cleancode.domain.ports.in.cardpack.CardPackOpener;
 import com.cleancode.domain.ports.in.user.AccountCreator;
+import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.cleancode.domain.services.Probabilities;
@@ -35,8 +36,8 @@ public class BeanConfiguration {
     }
 
     @Bean
-    CardPackOpener cardPackOpener(UserAccountPersistencePort accountPersistencePort, CardPersistencePort cardPersistencePort, Probabilities probabilities) {
-        return new CardPackOpenerService(accountPersistencePort, cardPersistencePort, probabilities);
+    CardPackOpener cardPackOpener(UserAccountPersistencePort accountPersistencePort, CardPersistencePort cardPersistencePort, Probabilities probabilities, CardCollectionCardPort collectionCardsPort) {
+        return new CardPackOpenerService(accountPersistencePort, cardPersistencePort, probabilities, collectionCardsPort);
     }
 
     @Bean

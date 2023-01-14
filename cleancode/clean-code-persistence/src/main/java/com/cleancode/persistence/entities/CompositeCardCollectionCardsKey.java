@@ -1,19 +1,19 @@
 package com.cleancode.persistence.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import com.cleancode.persistence.entities.cardcollections.CardCollectionsEntity;
+import com.cleancode.persistence.entities.cards.CardEntity;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Embeddable
 public class CompositeCardCollectionCardsKey implements Serializable {
+
     @Column(name = "CARD_ID")
     Long cardId;
 
     @Column(name = "COLLECTION_ID")
     Long collectionId;
-
-    public CompositeCardCollectionCardsKey() {
-    }
 
     public Long getCardId() {
         return cardId;

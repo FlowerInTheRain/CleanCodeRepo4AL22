@@ -10,8 +10,6 @@ import java.time.Instant;
 
 @Entity(name="USERS")
 public class UsersEntity implements Serializable {
-    public UsersEntity() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

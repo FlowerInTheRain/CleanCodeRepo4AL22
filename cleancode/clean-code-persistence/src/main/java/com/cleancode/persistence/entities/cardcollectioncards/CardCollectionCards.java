@@ -6,36 +6,37 @@ import com.cleancode.persistence.entities.cards.CardEntity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToMany;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class CardCollectionCards {
-    @Id
+
     @EmbeddedId
     CompositeCardCollectionCardsKey id;
 
     @ManyToOne
     @MapsId("cardId")
     @JoinColumn(name = "CARD_ID")
-    CardEntity card;
+    Long card;
 
     @ManyToOne
     @MapsId("collectionId")
     @JoinColumn(name = "COLLECTION_ID")
-    CardCollectionsEntity collection;
+    Long collection;
 
-    int lifePoints;
+    Long lifePoints;
 
-    int power;
+    Long power;
 
-    int armor;
+    Long armor;
 
-    int xp;
+    Long xp;
 
-    int level;
+    Long level;
+
 
     public CompositeCardCollectionCardsKey getId() {
         return id;
@@ -45,59 +46,59 @@ public class CardCollectionCards {
         this.id = id;
     }
 
-    public CardEntity getCard() {
+    public Long getCard() {
         return card;
     }
 
-    public void setCard(CardEntity card) {
+    public void setCard(Long card) {
         this.card = card;
     }
 
-    public CardCollectionsEntity getCollection() {
+    public Long getCollection() {
         return collection;
     }
 
-    public void setCollection(CardCollectionsEntity collection) {
+    public void setCollection(Long collection) {
         this.collection = collection;
     }
 
-    public int getLifePoints() {
+    public Long getLifePoints() {
         return lifePoints;
     }
 
-    public void setLifePoints(int lifePoints) {
+    public void setLifePoints(Long lifePoints) {
         this.lifePoints = lifePoints;
     }
 
-    public int getPower() {
+    public Long getPower() {
         return power;
     }
 
-    public void setPower(int power) {
+    public void setPower(Long power) {
         this.power = power;
     }
 
-    public int getArmor() {
+    public Long getArmor() {
         return armor;
     }
 
-    public void setArmor(int armor) {
+    public void setArmor(Long armor) {
         this.armor = armor;
     }
 
-    public int getXp() {
+    public Long getXp() {
         return xp;
     }
 
-    public void setXp(int xp) {
+    public void setXp(Long xp) {
         this.xp = xp;
     }
 
-    public int getLevel() {
+    public Long getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(Long level) {
         this.level = level;
     }
 
@@ -115,15 +116,7 @@ public class CardCollectionCards {
         return collection.equals(that.collection);
     }
 
-    @Override
-    public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + card.hashCode();
-        result = 31 * result + collection.hashCode();
-        result = 31 * result + xp;
-        result = 31 * result + level;
-        return result;
-    }
+
 
     @Override
     public String toString() {

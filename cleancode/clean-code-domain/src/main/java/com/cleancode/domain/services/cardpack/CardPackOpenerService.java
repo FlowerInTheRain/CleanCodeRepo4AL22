@@ -13,6 +13,7 @@ import com.cleancode.domain.enums.rarities.CardPackRaritiesEnum;
 import com.cleancode.domain.enums.rarities.CardPacksEnum;
 import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.in.cardpack.CardPackOpener;
+import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.cleancode.domain.services.Probabilities;
@@ -29,10 +30,14 @@ public class CardPackOpenerService implements CardPackOpener {
 
     private final Probabilities probabilities;
 
-    public CardPackOpenerService(UserAccountPersistencePort userAccountPersistencePort, CardPersistencePort cardPersistencePort, Probabilities probabilities) {
+    private final CardCollectionCardPort collectionCardsPort;
+
+
+    public CardPackOpenerService(UserAccountPersistencePort userAccountPersistencePort, CardPersistencePort cardPersistencePort, Probabilities probabilities, CardCollectionCardPort collectionCardsPort) {
         this.userAccountPersistencePort = userAccountPersistencePort;
         this.cardPersistencePort = cardPersistencePort;
         this.probabilities = probabilities;
+        this.collectionCardsPort = collectionCardsPort;
     }
 
     @Override
@@ -110,7 +115,7 @@ public class CardPackOpenerService implements CardPackOpener {
         CardRarityEnum rarityToUse = CardRarityEnum.valueOf(rarity.toUpperCase());
         Card card = cardPersistencePort.findOneCardByRarity(rarity);
         CardSpecialty specialtyToUse = card.getCardSpecialty().getSpecialtyValue();
-        return new CardCollectionCard(
+        var toSave =  new CardCollectionCard(
                 card.getTechnicalId(),
                 userAccount.getUserCardCollection().getTechnicalId(),
                 UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, ""),
@@ -122,5 +127,7 @@ public class CardPackOpenerService implements CardPackOpener {
                 0,
                 1,
                 card.getCardRarity());
+        collectionCardsPort.saveCardInDb(toSave);
+        return toSave;
     }
 }

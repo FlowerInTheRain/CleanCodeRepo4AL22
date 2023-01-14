@@ -1,7 +1,12 @@
 package com.cleancode.persistence.entities.cardcollections;
 
+import com.cleancode.persistence.entities.cardcollectioncards.CardCollectionCards;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "CARD_COLLECTIONS")
@@ -9,30 +14,19 @@ public class CardCollectionsEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CARD_COLLECTION_ID")
-    private long id;
+    private Long id;
     @Column(name = "CARD_COLLECTION_REFERENCE", unique = true, nullable = false, length = 32)
     private String cardCollectionReference;
     @Column(name = "CARD_COLLECTION_NAME", nullable = false, length = 250)
     private String cardCollectionName;
-    @OneToMany(mappedBy = "id", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private List<CardEntity> cardsInCollection;
+    @ManyToMany(mappedBy = "collection")
+    private List<CardCollectionCards> cardsInCollection;
 
-    public CardCollectionsEntity() {
-    }
-
-    public List<CardEntity> getCardCollectionCardList() {
-        return cardsInCollection;
-    }
-
-    public void setCardCollectionCardList(List<CardEntity> cardCollectionCardList) {
-        this.cardsInCollection = cardCollectionCardList;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -52,6 +46,13 @@ public class CardCollectionsEntity implements Serializable {
         this.cardCollectionName = cardCollectionName;
     }
 
+    public List<CardCollectionCards> getCardsInCollection() {
+        return cardsInCollection;
+    }
+
+    public void setCardsInCollection(List<CardCollectionCards> cardsInCollection) {
+        this.cardsInCollection = cardsInCollection;
+    }
 
     @Override
     public boolean equals(Object o) {
