@@ -41,11 +41,11 @@ public class AccountPersistence implements UserAccountPersistencePort {
      * @return a user
      */
     @Override
-    public Optional<BusinessUserClientInfo> saveUserInDb(BusinessUserClientInfo userToSave) {
+    public Maybe<BusinessUserClientInfo> saveUserInDb(BusinessUserClientInfo userToSave) {
         LOGGER.log(Level.INFO, "Calling DB service saveUser");
         UsersEntity savedUser = userRepository.save(UserEntityMapper.INSTANCE.fromBsToDb(userToSave));
         LOGGER.log(Level.INFO, "Saved User : " + userToSave + " Returned user : " + savedUser);
         BusinessUserClientInfo mappedUserToBsUser = UserEntityMapper.INSTANCE.fromDbToBs(savedUser);
-        return Optional.ofNullable(mappedUserToBsUser);
+        return Maybe.maybe(mappedUserToBsUser);
     }
 }

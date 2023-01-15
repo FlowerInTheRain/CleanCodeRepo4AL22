@@ -7,6 +7,7 @@ import com.cleancode.domain.pojo.user.AccountCreationCommand;
 import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.in.user.AccountCreator;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
+import com.jnape.palatable.lambda.adt.Maybe;
 
 import java.util.Optional;
 import java.util.logging.Level;
@@ -40,7 +41,7 @@ public class AccountCreatorService implements AccountCreator {
         UserAccountOperationUtils.handleBusinessUserReferenceCreation(newAccount);
         UserAccountOperationUtils.handleInitBusinessUserCardCollection(userFromApi.getCollectionName(), newAccount);
             try {
-                Optional<BusinessUserClientInfo> returnedBusinessUserClientInfo = userRepositoryService.saveUserInDb(newAccount);
+                Maybe<BusinessUserClientInfo> returnedBusinessUserClientInfo = userRepositoryService.saveUserInDb(newAccount);
                 LOGGER.log(Level.INFO, "UserFromApi User : " + userFromApi + " Returned user : " + returnedBusinessUserClientInfo);
                 return  returnedBusinessUserClientInfo.orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_EMPTY_ACCOUNT_OPTIONAL));
             } catch (Exception cardCollectionCreationException){

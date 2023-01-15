@@ -8,5 +8,5 @@ import java.util.Optional;
 public interface UserAccountPersistencePort {
     Maybe<BusinessUserClientInfo> findUserByUserName(String userName);
 
-    Optional<BusinessUserClientInfo> saveUserInDb(BusinessUserClientInfo userToSave);
+    Maybe<BusinessUserClientInfo> saveUserInDb(BusinessUserClientInfo userToSave);
 }

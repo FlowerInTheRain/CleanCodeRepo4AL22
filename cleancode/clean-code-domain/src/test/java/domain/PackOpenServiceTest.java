@@ -79,7 +79,7 @@ public class PackOpenServiceTest {
         when(probabilities.getSilverProbabilitiesMap()).thenReturn(silverMap);
         when(probabilities.getRandomNumber()).thenReturn(0.49,  0.61,  0.99);
         when(cardPersistencePort.findOneCardByRarity( anyString())).thenReturn(cardToReturn0, cardToReturn0,  cardToCreate2);
-        when(userAccountPersistencePort.saveUserInDb(testUser)).thenReturn(Optional.of(testUser));
+        when(userAccountPersistencePort.saveUserInDb(testUser)).thenReturn(Maybe.maybe(testUser));
         newUserCards.add(cardToReturn0);
         newUserCards.add(cardToReturn0);
         newUserCards.add(cardToCreate2);
@@ -124,7 +124,7 @@ public class PackOpenServiceTest {
         when(probabilities.getDiamondProbabilitiesMap()).thenReturn(diamond);
         when(probabilities.getRandomNumber()).thenReturn(0.49, 0.2, 0.1, 0.61,  0.99);
         when(cardPersistencePort.findOneCardByRarity( anyString())).thenReturn(cardToReturn0, cardToReturn0, cardToReturn0, cardToReturn1, cardToCreate2);
-        when(userAccountPersistencePort.saveUserInDb(testUser)).thenReturn(Optional.of(testUser));
+        when(userAccountPersistencePort.saveUserInDb(testUser)).thenReturn(Maybe.maybe(testUser));
         newUserCards.add(cardToReturn0);
         newUserCards.add(cardToReturn0);
         newUserCards.add(cardToReturn0);
