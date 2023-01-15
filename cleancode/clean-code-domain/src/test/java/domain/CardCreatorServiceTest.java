@@ -9,8 +9,8 @@ import com.cleancode.domain.pojo.card.Card;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.services.card.CardCreatorService;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.MockitoJUnit;
@@ -19,13 +19,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class CardCreatorUseCaseUnitTest {
+public class CardCreatorServiceTest {
 
     @Mock
     private CardPersistencePort cardPersistencePort;
@@ -72,7 +70,7 @@ public class CardCreatorUseCaseUnitTest {
         when(cardPersistencePort.saveCardInDb(any(Card.class))).thenThrow(RuntimeException.class);
         Card toMock = Mockito.mock(Card.class);
         var exception = Assertions.assertThrows(CleanCodeException.class, () -> cardCreator.saveCard(toMock));
-        Assertions.assertEquals(exception.getMessage(), CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT.getUserMessageToDisplay());
+        assertEquals(exception.getMessage(), CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT.getUserMessageToDisplay());
         verify(cardPersistencePort).saveCardInDb(cardCaptorSakura.capture());
         Assertions.assertNull(cardCaptorSakura.getValue().getCardReference());
     }

@@ -121,9 +121,9 @@ public class CardPackOpenerService implements CardPackOpener {
                 UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, ""),
                 card.getCardName().name(),
                 card.getCardSpecialty().getSpecialtyValue().getSpecialty(),
-                rarityToUse.getStatValue(specialtyToUse.getLifePoint()),
-                rarityToUse.getStatValue(specialtyToUse.getPower()),
-                rarityToUse.getStatValue(specialtyToUse.getArmor()),
+                rarityToUse.computeStatByRarity(specialtyToUse.getLifePoint()),
+                rarityToUse.computeStatByRarity(specialtyToUse.getPower()),
+                rarityToUse.computeStatByRarity(specialtyToUse.getArmor()),
                 0,
                 1,
                 card.getCardRarity());
