@@ -33,7 +33,7 @@ public class AccountPersistence implements UserAccountPersistencePort {
         UsersEntity foundUser = userRepository.findByUserName(userName);
         LOGGER.log(Level.INFO, "Found User : " + foundUser);
         BusinessUserClientInfo mappedUserToBsUser = UserEntityMapper.INSTANCE.fromDbToBs(foundUser);
-        return Maybe.maybe(mappedUserToBsUser);
+        return Maybe.just(mappedUserToBsUser);
     }
 
     /**
@@ -46,6 +46,6 @@ public class AccountPersistence implements UserAccountPersistencePort {
         UsersEntity savedUser = userRepository.save(UserEntityMapper.INSTANCE.fromBsToDb(userToSave));
         LOGGER.log(Level.INFO, "Saved User : " + userToSave + " Returned user : " + savedUser);
         BusinessUserClientInfo mappedUserToBsUser = UserEntityMapper.INSTANCE.fromDbToBs(savedUser);
-        return Maybe.maybe(mappedUserToBsUser);
+        return Maybe.just(mappedUserToBsUser);
     }
 }

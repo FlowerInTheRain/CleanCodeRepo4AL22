@@ -17,7 +17,7 @@ public enum CleanCodeExceptionsEnum {
             HttpStatus.BAD_REQUEST),
 
     DOMAIN_EMPTY_ACCOUNT_OPTIONAL(ComponentsEnum.Clean_Code_BS,
-            "An error occurred while creating domain account",
+            "Nickname is already taken",
                                   HttpStatus.BAD_REQUEST),
 
     DOMAIN_PAS_DE_MOULA(ComponentsEnum.Clean_Code_BS,

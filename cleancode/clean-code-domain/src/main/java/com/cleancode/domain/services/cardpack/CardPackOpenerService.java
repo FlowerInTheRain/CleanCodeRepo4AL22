@@ -49,12 +49,10 @@ public class CardPackOpenerService implements CardPackOpener {
                         .flatMap(account -> {
                     var newWallet = processPayment(CardPackRaritiesEnum.SILVER,  account);
                     account.setBusinessUserCCCoinWallet(newWallet);
-                            return Maybe.maybe(account);
-                        }).flatMap(account -> {
                             cardPack.addAll(0,generateCardPack(CardPacksEnum.SILVER, account, probabilities.getSilverProbabilitiesMap()));
                             enrichUserCardCollection(account, cardPack);
                             userAccountPersistencePort.saveUserInDb(account);
-                          return Maybe.maybe(account);
+                          return Maybe.just(account);
                 }).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_PAS_DE_MOULA));
         return cardPack;
     }
@@ -67,12 +65,10 @@ public class CardPackOpenerService implements CardPackOpener {
                 .flatMap(account -> {
                     var newWallet = processPayment(CardPackRaritiesEnum.DIAMOND,  account);
                     account.setBusinessUserCCCoinWallet(newWallet);
-                    return Maybe.maybe(account);
-                }).flatMap(account -> {
                     cardPack.addAll(0,generateCardPack(CardPacksEnum.DIAMOND, account, probabilities.getDiamondProbabilitiesMap()));
                     enrichUserCardCollection(account, cardPack);
                     userAccountPersistencePort.saveUserInDb(account);
-                    return Maybe.maybe(account);
+                    return Maybe.just(account);
                 }).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_PAS_DE_MOULA));
         return cardPack;
     }
@@ -127,7 +123,7 @@ public class CardPackOpenerService implements CardPackOpener {
                 0,
                 1,
                 card.getCardRarity());
-        collectionCardsPort.saveCardInDb(toSave);
+        collectionCardsPort.saveCollectionCard(toSave);
         return toSave;
     }
 }
