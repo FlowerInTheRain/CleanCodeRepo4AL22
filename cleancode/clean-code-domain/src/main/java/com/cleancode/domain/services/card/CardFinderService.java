@@ -27,14 +27,12 @@ public class CardFinderService implements CardFinder {
             LOGGER.log(Level.INFO, " Returned List businessCardCreateInfos : " + cards);
             return cards;
         } catch (Exception e){
-            handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
+            LOGGER.log(Level.WARNING, "Error while connecting to db : " + e.getMessage());
         }
-
-        return null;
+        throw handleDBImplQueryExceptions(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT);
     }
 
-    private void handleDBImplQueryExceptions(CleanCodeException dbImplCommunicationException) throws CleanCodeException {
-        LOGGER.log(Level.WARNING, "Error while connecting to db : " + dbImplCommunicationException);
-        throw dbImplCommunicationException;
+    private CleanCodeException handleDBImplQueryExceptions(CleanCodeExceptionsEnum dbImplCommunicationException) throws CleanCodeException {
+        return new CleanCodeException(dbImplCommunicationException);
     }
 }

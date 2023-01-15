@@ -1,4 +1,4 @@
-package domain;
+package services;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
@@ -21,6 +21,8 @@ import com.jnape.palatable.lambda.adt.Maybe;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
@@ -63,13 +65,14 @@ public class PackOpenServiceTest {
         assertTrue(CardPackOpenerService.isUserAbleToBuyPack(CardPackRaritiesEnum.SILVER, testUser.getBusinessUserCCCoinWallet()));
     }
 
-    @Test
-    public void shouldOpenSilverCardPack(){
+    @ParameterizedTest
+    @ValueSource(longs= {1,2,3,4,5})
+    public void shouldOpenSilverCardPack(Long walletValue ){
         NavigableMap<Double, RaritiesEnum> silverMap = new TreeMap<>();
         silverMap.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_COMMON_CARD.getMaxProbability(), RaritiesEnum.COMMON);
         silverMap.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_RARE_CARD.getMaxProbability(), RaritiesEnum.RARE);
         silverMap.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_LEGENDARY_CARD.getMaxProbability(), RaritiesEnum.LEGENDARY);
-        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), 3L);
+        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), walletValue);
         List<Card> newUserCards = new ArrayList<>();
         String rarity0 = CardRarityEnum.COMMON.name();
         Card cardToReturn0 = Card.createOne(1L,"1231", CardRarityEnum.COMMON, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARMAND,0,1);
@@ -79,7 +82,7 @@ public class PackOpenServiceTest {
         when(probabilities.getSilverProbabilitiesMap()).thenReturn(silverMap);
         when(probabilities.getRandomNumber()).thenReturn(0.49,  0.61,  0.99);
         when(cardPersistencePort.findOneCardByRarity( anyString())).thenReturn(cardToReturn0, cardToReturn0,  cardToCreate2);
-        when(userAccountPersistencePort.saveUserInDb(testUser)).thenReturn(Optional.of(testUser));
+        when(userAccountPersistencePort.saveUserInDb(testUser)).thenReturn(Maybe.maybe(testUser));
         newUserCards.add(cardToReturn0);
         newUserCards.add(cardToReturn0);
         newUserCards.add(cardToCreate2);
@@ -87,7 +90,7 @@ public class PackOpenServiceTest {
         var card = cardPackOpenerService.openSilverCardPack("Sid");
         verify(userAccountPersistencePort).saveUserInDb(userClientInfoArgumentCaptor.capture());
 
-        Assertions.assertEquals(2L, userClientInfoArgumentCaptor.getValue().getBusinessUserCCCoinWallet().longValue());
+        Assertions.assertEquals(walletValue - 1, userClientInfoArgumentCaptor.getValue().getBusinessUserCCCoinWallet().longValue());
         Assertions.assertEquals(newUserCards.size(), userClientInfoArgumentCaptor.getValue().getUserCardCollection().getCollectionCardList().size());
 
         Assertions.assertEquals(newUserCards.size(), card.size());
@@ -107,13 +110,14 @@ public class PackOpenServiceTest {
         verifyNoMoreInteractions(userAccountPersistencePort);
     }
 
-    @Test
-    public void shouldOpenDiamondCardPack(){
+    @ParameterizedTest
+    @ValueSource(longs = {2,3,4,5})
+    public void shouldOpenDiamondCardPack(Long walletValue){
         NavigableMap<Double, RaritiesEnum> diamond = new TreeMap<>();
         diamond.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_COMMON_CARD.getMaxProbability(), RaritiesEnum.COMMON);
         diamond.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_RARE_CARD.getMaxProbability(), RaritiesEnum.RARE);
         diamond.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_LEGENDARY_CARD.getMaxProbability(), RaritiesEnum.LEGENDARY);
-        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), 3L);
+        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), walletValue);
         List<Card> newUserCards = new ArrayList<>();
         String rarity0 = CardRarityEnum.COMMON.name();
         Card cardToReturn0 = Card.createOne(1L,"1231", CardRarityEnum.COMMON, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARMAND,0,1);
@@ -124,7 +128,7 @@ public class PackOpenServiceTest {
         when(probabilities.getDiamondProbabilitiesMap()).thenReturn(diamond);
         when(probabilities.getRandomNumber()).thenReturn(0.49, 0.2, 0.1, 0.61,  0.99);
         when(cardPersistencePort.findOneCardByRarity( anyString())).thenReturn(cardToReturn0, cardToReturn0, cardToReturn0, cardToReturn1, cardToCreate2);
-        when(userAccountPersistencePort.saveUserInDb(testUser)).thenReturn(Optional.of(testUser));
+        when(userAccountPersistencePort.saveUserInDb(testUser)).thenReturn(Maybe.maybe(testUser));
         newUserCards.add(cardToReturn0);
         newUserCards.add(cardToReturn0);
         newUserCards.add(cardToReturn0);
@@ -135,7 +139,7 @@ public class PackOpenServiceTest {
         verify(userAccountPersistencePort).saveUserInDb(userClientInfoArgumentCaptor.capture());
         Assertions.assertEquals(newUserCards.size(), userClientInfoArgumentCaptor.getValue().getUserCardCollection().getCollectionCardList().size());
 
-        Assertions.assertEquals(1L, userClientInfoArgumentCaptor.getValue().getBusinessUserCCCoinWallet().longValue());
+        Assertions.assertEquals(walletValue - 2, userClientInfoArgumentCaptor.getValue().getBusinessUserCCCoinWallet().longValue());
         Assertions.assertEquals(newUserCards.size(), card.size());
         var savedUserCards = userClientInfoArgumentCaptor.getValue().getUserCardCollection().getCollectionCardList();
         for(int i = 0; i < card.size(); i ++){
