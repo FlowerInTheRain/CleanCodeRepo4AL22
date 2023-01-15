@@ -28,7 +28,7 @@ public class AccountCreatorService implements AccountCreator {
     @Override
     public BusinessUserClientInfo saveUserAccount(AccountCreationCommand userFromApi) throws CleanCodeException {
         userRepositoryService.findUserByUserName(userFromApi.getUserName())
-                .flatMap(user -> {
+                .fmap(user -> {
                     throw new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_EMPTY_ACCOUNT_OPTIONAL);
                         });
         BusinessUserClientInfo newAccount= new BusinessUserClientInfo(

@@ -1,4 +1,4 @@
-package domain;
+package services;
 
 import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
 import com.cleancode.domain.enums.rarities.CardNameEnum;

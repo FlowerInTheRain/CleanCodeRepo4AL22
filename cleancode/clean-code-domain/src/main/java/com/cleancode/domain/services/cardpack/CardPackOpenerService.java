@@ -127,7 +127,7 @@ public class CardPackOpenerService implements CardPackOpener {
                 0,
                 1,
                 card.getCardRarity());
-        collectionCardsPort.saveCardInDb(toSave);
+        collectionCardsPort.saveCollectionCard(toSave);
         return toSave;
     }
 }

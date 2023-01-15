@@ -4,5 +4,5 @@ import com.cleancode.domain.pojo.card.Card;
 import com.cleancode.domain.pojo.card.CardCollectionCard;
 
 public interface CardCollectionCardPort {
-    CardCollectionCard saveCardInDb(CardCollectionCard collectionCardToSave);
+    CardCollectionCard saveCollectionCard(CardCollectionCard collectionCardToSave);
 }

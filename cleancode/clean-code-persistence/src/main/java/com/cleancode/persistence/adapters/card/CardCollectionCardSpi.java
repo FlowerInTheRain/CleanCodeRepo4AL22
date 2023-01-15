@@ -20,7 +20,7 @@ public class CardCollectionCardSpi implements CardCollectionCardPort {
 
 
     @Override
-    public com.cleancode.domain.pojo.card.CardCollectionCard saveCardInDb(com.cleancode.domain.pojo.card.CardCollectionCard collectionCardToSave) {
+    public com.cleancode.domain.pojo.card.CardCollectionCard saveCollectionCard(com.cleancode.domain.pojo.card.CardCollectionCard collectionCardToSave) {
         CompositeCardCollectionCardsKey compositeKey = new CompositeCardCollectionCardsKey();
         compositeKey.setCardId(collectionCardToSave.getCardId());
         compositeKey.setCollectionId(collectionCardToSave.getCollectionId());
