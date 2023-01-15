@@ -1,8 +1,4 @@
-<<<<<<< HEAD:cleancode/clean-code-domain/src/test/java/domain/CardFinderServiceTest.java
-package domain;
-=======
 package services;
->>>>>>> 6badbcd5ac88a5da745bfa7137607fad5777e8d1:cleancode/clean-code-domain/src/test/java/services/CardFinderServiceTest.java
 
 import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
 import com.cleancode.domain.enums.rarities.CardNameEnum;
@@ -60,8 +56,4 @@ public class CardFinderServiceTest {
         assertEquals(savedCard.size(), toReturn.size());
         verify(cardPersistencePort, times(1)).findAllCards();
     }
-<<<<<<< HEAD:cleancode/clean-code-domain/src/test/java/domain/CardFinderServiceTest.java
 }
-=======
-}
->>>>>>> 6badbcd5ac88a5da745bfa7137607fad5777e8d1:cleancode/clean-code-domain/src/test/java/services/CardFinderServiceTest.java
