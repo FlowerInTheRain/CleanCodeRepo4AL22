@@ -34,16 +34,14 @@ public class CardCreatorService implements CardCreator {
             if(cardEntity.isPresent()){
                 return cardEntity.get();
             }
-        } catch (Exception e){
-            handleDBImplQueryExceptions(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT));
+        } catch (RuntimeException e){
+            LOGGER.log(Level.WARNING, "Error while connecting to db : " + e.getMessage());
             card.setCardReference(null);
         }
-
-        return card;
+        throw handleDBImplQueryExceptions();
     }
 
-    private void handleDBImplQueryExceptions(CleanCodeException dbImplCommunicationException) throws CleanCodeException {
-        LOGGER.log(Level.WARNING, "Error while connecting to db : " + dbImplCommunicationException);
-        throw dbImplCommunicationException;
+    private CleanCodeException handleDBImplQueryExceptions() throws CleanCodeException {
+        return new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT);
     }
 }

@@ -1,4 +1,4 @@
-package com.cleancode.domain.usecases.card;
+package domain;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;

@@ -4,13 +4,13 @@ import com.cleancode.domain.core.lib.businessreferenceutils.businessidgeneratoru
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.core.lib.formatutils.uuidformatterutils.UUIDFormatter;
+import com.cleancode.domain.enums.rarities.CardPackRaritiesEnum;
+import com.cleancode.domain.enums.rarities.CardPacksEnum;
 import com.cleancode.domain.enums.rarities.CardRarityEnum;
 import com.cleancode.domain.enums.rarities.RaritiesEnum;
 import com.cleancode.domain.pojo.card.Card;
 import com.cleancode.domain.pojo.card.CardCollectionCard;
 import com.cleancode.domain.pojo.card.CardSpecialty;
-import com.cleancode.domain.enums.rarities.CardPackRaritiesEnum;
-import com.cleancode.domain.enums.rarities.CardPacksEnum;
 import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.in.cardpack.CardPackOpener;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
@@ -18,16 +18,10 @@ import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.cleancode.domain.services.Probabilities;
 import com.jnape.palatable.lambda.adt.Maybe;
-import com.jnape.palatable.lambda.monad.Monad;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NavigableMap;
-
-import static com.jnape.palatable.lambda.adt.hlist.HList.tuple;
-import static com.jnape.palatable.lambda.functions.builtin.fn2.InGroupsOf.inGroupsOf;
-import static com.jnape.palatable.lambda.functions.builtin.fn2.Take.take;
-import static com.jnape.palatable.lambda.functions.builtin.fn2.Unfoldr.unfoldr;
 
 public class CardPackOpenerService implements CardPackOpener {
 
@@ -50,8 +44,8 @@ public class CardPackOpenerService implements CardPackOpener {
     @Override
     public List<CardCollectionCard> openSilverCardPack(String userName) throws CleanCodeException {
         List<CardCollectionCard> cardPack = new ArrayList<>();
-        Maybe<BusinessUserClientInfo> sumOfEvenIncrements = userAccountPersistencePort.findUserByUserName(userName);
-        sumOfEvenIncrements.filter(account -> isUserAbleToBuyPack(CardPackRaritiesEnum.SILVER, account.getBusinessUserCCCoinWallet()))
+        Maybe<BusinessUserClientInfo> userAccount = userAccountPersistencePort.findUserByUserName(userName);
+        userAccount.filter(account -> isUserAbleToBuyPack(CardPackRaritiesEnum.SILVER, account.getBusinessUserCCCoinWallet()))
                         .flatMap(account -> {
                     var newWallet = processPayment(CardPackRaritiesEnum.SILVER,  account);
                     account.setBusinessUserCCCoinWallet(newWallet);
@@ -68,8 +62,8 @@ public class CardPackOpenerService implements CardPackOpener {
     @Override
     public List<CardCollectionCard> openDiamondCardPack(String userName) {
         List<CardCollectionCard> cardPack = new ArrayList<>();
-        Maybe<BusinessUserClientInfo> sumOfEvenIncrements = userAccountPersistencePort.findUserByUserName(userName);
-        sumOfEvenIncrements.filter(account -> isUserAbleToBuyPack(CardPackRaritiesEnum.DIAMOND, account.getBusinessUserCCCoinWallet()))
+        Maybe<BusinessUserClientInfo> userAccount = userAccountPersistencePort.findUserByUserName(userName);
+        userAccount.filter(account -> isUserAbleToBuyPack(CardPackRaritiesEnum.DIAMOND, account.getBusinessUserCCCoinWallet()))
                 .flatMap(account -> {
                     var newWallet = processPayment(CardPackRaritiesEnum.DIAMOND,  account);
                     account.setBusinessUserCCCoinWallet(newWallet);
