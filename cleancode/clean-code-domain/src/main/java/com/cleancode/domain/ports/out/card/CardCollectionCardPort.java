@@ -7,6 +7,7 @@ import com.jnape.palatable.lambda.adt.Maybe;
 import java.util.List;
 
 public interface CardCollectionCardPort {
+
     CardCollectionCard saveCollectionCard(CardCollectionCard collectionCardToSave);
 
     List<CardCollectionCard> findAll();

@@ -18,12 +18,21 @@ public interface CardCollectionCardMapper {
     @Mappings({
             @Mapping(source="card", target="cardId"),
             @Mapping(source="collection", target="collectionId"),
+            @Mapping(source="cardCollectionCardReference", target="cardCollectionCardReference")
     })
     List<CardCollectionCard> fromListCardCollectionCardsToListCardCollectionCard(List<CardCollectionCards> collectionCards);
 
     @Mappings({
             @Mapping(source="card", target="cardId"),
             @Mapping(source="collection", target="collectionId"),
+            @Mapping(source="cardCollectionCardReference", target="cardCollectionCardReference")
     })
     CardCollectionCard fromCardCollectionCardsToCardCollectionCard(CardCollectionCards collectionCard);
+
+    @Mappings({
+            @Mapping(source="cardId", target="card"),
+            @Mapping(source="collectionId", target="collection"),
+            @Mapping(source="cardCollectionCardReference", target="cardCollectionCardReference")
+    })
+    CardCollectionCards fromCardCollectionCardToCardCollectionCards(CardCollectionCard collectionCard);
 }

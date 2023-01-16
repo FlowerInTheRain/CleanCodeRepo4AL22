@@ -50,22 +50,14 @@ public class CardCollectionCardSpi implements CardCollectionCardPort {
     }
 
     @Override
-    public com.cleancode.domain.pojo.card.CardCollectionCard saveCollectionCard(com.cleancode.domain.pojo.card.CardCollectionCard collectionCardToSave) {
+    public CardCollectionCard saveCollectionCard(CardCollectionCard collectionCardToSave) {
         LOGGER.log(Level.INFO, "Calling DB service saveCollectionCard, Card : " + collectionCardToSave);
         CompositeCardCollectionCardsKey compositeKey = new CompositeCardCollectionCardsKey();
         compositeKey.setCardId(collectionCardToSave.getCardId());
         compositeKey.setCollectionId(collectionCardToSave.getCollectionId());
-        CardCollectionCards cardToSave = new CardCollectionCards();
+        CardCollectionCards cardToSave = CardCollectionCardMapper.INSTANCE.fromCardCollectionCardToCardCollectionCards(collectionCardToSave);
         cardToSave.setId(compositeKey);
-        cardToSave.setCardCollectionCardReference(collectionCardToSave.getCardCollectionCardReference());
-        cardToSave.setLevel((long) collectionCardToSave.getLevel());
-        cardToSave.setXp((long) collectionCardToSave.getXp());
-        cardToSave.setPower(collectionCardToSave.getPower());
-        cardToSave.setLifePoints(collectionCardToSave.getLifePoints());
-        cardToSave.setArmor(collectionCardToSave.getArmor());
-        LOGGER.log(Level.INFO, "cardToSave : " + cardToSave.getCardCollectionCardReference());
         var savedCard = repository.save(cardToSave);
-        LOGGER.log(Level.INFO, "savedCard : " + savedCard.getCardCollectionCardReference());
         return collectionCardToSave;
     }
 }
