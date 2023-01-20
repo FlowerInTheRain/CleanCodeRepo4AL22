@@ -5,9 +5,9 @@ import com.cleancode.domain.pojo.card.CardSpecialty;
 
 public enum CardSpecialtyEnum {
 
-    TANK(new CardSpecialty("Tank", 1000, 100, 20)),
-    ASSASSIN(new CardSpecialty("ASSASSIN", 800, 200, 5)),
-    MAGE(new CardSpecialty("Mage", 700, 150, 10));
+    TANK(new CardSpecialty("TANK", 1000, 100, 20, "MAGE", 20)),
+    ASSASSIN(new CardSpecialty("ASSASSIN", 800, 200, 5, "TANK", 30)),
+    MAGE(new CardSpecialty("MAGE", 700, 150, 10, "ASSASIN", 25));
 
     private final CardSpecialty specialty;
     CardSpecialtyEnum(CardSpecialty specialty) {

@@ -1,9 +1,8 @@
 package com.cleancode.entrypoint.restcontrollers;
 
 import com.cleancode.cleancodeapi.dto.fight.FightRequest;
-import com.cleancode.cleancodeapi.dto.fight.FightResponse;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.domain.pojo.card.Card;
+import com.cleancode.domain.pojo.card.CardCollectionCard;
 import com.cleancode.domain.ports.in.collectioncard.CollectionCardFighter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,12 +23,11 @@ public class CardFightEntrypoint {
     }
 
     @ApiOperation(value = "Fight between two cards",
-            response = FightResponse.class,
+            response = CardCollectionCard.class,
             notes = "Cards must exists")
     @ApiResponse(code=200, message="Fight Done")
     @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public FightResponse fight(@RequestBody FightRequest fightRequest) throws CleanCodeException {
-        Card winner = collectionCardFighter.fight(fightRequest.userNameAttaker, fightRequest.userNameAttaked, fightRequest.cardAttackerId, fightRequest.cardAttackedId);
-        return new FightResponse();
+    public CardCollectionCard fight(@RequestBody FightRequest fightRequest) throws CleanCodeException {
+        return collectionCardFighter.fight(fightRequest.userNameAttaker, fightRequest.userNameAttaked, fightRequest.cardAttackerReference, fightRequest.cardAttackedReference);
     }
 }

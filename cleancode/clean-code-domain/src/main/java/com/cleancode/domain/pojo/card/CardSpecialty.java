@@ -6,11 +6,17 @@ public class CardSpecialty {
     private Integer power;
     private Integer armor;
 
-    public CardSpecialty(String specialty, Integer lifePoint, Integer power, Integer armor) {
+    private String specialtyAffinity;
+
+    private Integer additionalPower;
+
+    public CardSpecialty(String specialty, Integer lifePoint, Integer power, Integer armor, String specialtyAffinity, Integer additionalPower) {
         this.specialty = specialty;
         this.lifePoint = lifePoint;
         this.power = power;
         this.armor = armor;
+        this.specialtyAffinity = specialtyAffinity;
+        this.additionalPower = additionalPower;
     }
 
     public String getSpecialty() {
@@ -43,6 +49,22 @@ public class CardSpecialty {
 
     public void setArmor(Integer armor) {
         this.armor = armor;
+    }
+
+    public String getSpecialtyAffinity() {
+        return specialtyAffinity;
+    }
+
+    public void setSpecialtyAffinity(String specialtyAffinity) {
+        this.specialtyAffinity = specialtyAffinity;
+    }
+
+    public Integer getAdditionalPower() {
+        return additionalPower;
+    }
+
+    public void setAdditionalPower(Integer additionalPower) {
+        this.additionalPower = additionalPower;
     }
 }
 

@@ -82,6 +82,10 @@ public class CardCollectionCard {
         this.lifePoints = lifePoints;
     }
 
+    public void removeLifePoints(Long damage) {
+        this.lifePoints -= damage;
+    }
+
     public Long getPower() {
         return power;
     }
@@ -104,6 +108,21 @@ public class CardCollectionCard {
 
     public void setXp(int xp) {
         this.xp = xp;
+    }
+
+    public void add_xp(int xp) {
+        this.xp += xp;
+        while (this.xp > 5 && this.level < 100) {
+            this.level_up();
+        }
+    }
+
+    private void level_up() {
+        this.xp -= 5;
+        this.level += 1;
+        this.armor = ((Double) (this.armor * 1.1)).longValue();
+        this.lifePoints = ((Double) (this.lifePoints * 1.1)).longValue();
+        this.power = ((Double) (this.power * 1.1)).longValue();
     }
 
     public int getLevel() {

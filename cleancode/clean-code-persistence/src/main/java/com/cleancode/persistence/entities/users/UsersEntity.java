@@ -21,6 +21,8 @@ public class UsersEntity implements Serializable {
     private String userName;
     @Column(name="CCCOIN_WALLET", nullable = false)
     private Long ccCoinWallet = 4L;
+    @Column(name="WIN_COUNT", nullable = false)
+    private Integer winCount = 0;
     @Column(name="CREATION_DATE", nullable = false)
     private Timestamp creationDate = Timestamp.from(Instant.now());
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
@@ -57,6 +59,14 @@ public class UsersEntity implements Serializable {
 
     public void setCCCoinWallet(Long userCCCoinWallet) {
         this.ccCoinWallet = userCCCoinWallet;
+    }
+
+    public Integer getWinCount() {
+        return winCount;
+    }
+
+    public void setWinCount(Integer winCount) {
+        this.winCount = winCount;
     }
 
     public Timestamp getCreationDate() {
