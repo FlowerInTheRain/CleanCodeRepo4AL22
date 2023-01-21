@@ -41,6 +41,7 @@ public class AccountCreatorServiceTest {
                 "Sid",
                 1L,
                 UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, "").toString(),
+                0,
                 null,
                 new CardCollection(1L, "Sid Deck", "REF", null),
                 4L
@@ -64,6 +65,7 @@ public class AccountCreatorServiceTest {
                 "Sid",
                 1L,
                 UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, "").toString(),
+                0,
                 null,
                 new CardCollection(1L, "Sid Deck", "REF", null),
                 4L
