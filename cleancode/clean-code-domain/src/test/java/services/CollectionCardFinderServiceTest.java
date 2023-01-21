@@ -35,7 +35,7 @@ public class CollectionCardFinderServiceTest {
     }
 
     @Test
-    public void findAllCards_shouldReturnListOfCards() throws CleanCodeException {
+    public void findAllCardsShouldReturnListOfCards() throws CleanCodeException {
         List<CardCollectionCard> expectedCards = Arrays.asList(
                 new CardCollectionCard(
                 1L, 2L, "fake-card-reference", "Fake Hero", "Fake Specialty", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
@@ -52,7 +52,7 @@ public class CollectionCardFinderServiceTest {
     }
 
     @Test
-    public void findByCardCollectionCardReference_shouldReturnMatchingCard() throws CleanCodeException {
+    public void findByCardCollectionCardReferenceShouldReturnMatchingCard() throws CleanCodeException {
         CardCollectionCard expectedCard = new CardCollectionCard(
                 1L, 2L, "fake-card-reference", "Fake Hero", "Fake Specialty", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
         );
@@ -64,7 +64,7 @@ public class CollectionCardFinderServiceTest {
     }
 
     @Test(expected = CleanCodeException.class)
-    public void findByCardCollectionCardReference_shouldThrowException_whenNoMatchingCardFound() throws CleanCodeException {
+    public void findByCardCollectionCardReferenceShouldThrowExceptionWhenNoMatchingCardFound() throws CleanCodeException {
         when(cardCollectionCardPort.findByCardCollectionCardReference("invalid-reference")).thenReturn(Maybe.nothing());
         collectionCardFinderService.findByCardCollectionCardReference("invalid-reference");
     }
