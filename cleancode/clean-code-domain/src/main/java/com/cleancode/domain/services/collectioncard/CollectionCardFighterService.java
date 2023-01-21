@@ -41,11 +41,8 @@ public class CollectionCardFighterService implements CollectionCardFighter {
             cardAttacker.setLifePoints(lifePointAttacker);
             this.add_reward(cardAttacker, userAttacker);
             return cardAttacker;
-        } else {
-            cardAttacked.setLifePoints(lifePointAttacked);
-            this.add_reward(cardAttacked, userAttacked);
-            return cardAttacked;
         }
+        return cardAttacked;
     }
 
     private void add_reward(CardCollectionCard card, BusinessUserClientInfo user) {
@@ -58,21 +55,22 @@ public class CollectionCardFighterService implements CollectionCardFighter {
     private boolean is_win(CardCollectionCard cardAttacker, CardCollectionCard cardAttacked) {
         Long damage_card_attacker = this.get_damage(cardAttacker, cardAttacked);
         Long damage_card_attacked = this.get_damage(cardAttacked, cardAttacker);
-        int i = 0;
-        while (true) {
-            if (i % 2 == 0) {
-                cardAttacker.removeLifePoints(damage_card_attacked);
-                if (cardAttacker.getLifePoints() < 0) {
+        IntStream.iterate(0, i -> (i + 1) % 2).limit(Integer.MAX_VALUE)
+                .anyMatch(i -> {
+                    if (i == 0) {
+                        cardAttacker.removeLifePoints(damage_card_attacked);
+                        if (cardAttacker.getLifePoints() < 0) {
+                            return true;
+                        }
+                    } else {
+                        cardAttacked.removeLifePoints(damage_card_attacker);
+                        if (cardAttacked.getLifePoints() < 0) {
+                            return true;
+                        }
+                    }
                     return false;
-                }
-            } else {
-                cardAttacked.removeLifePoints(damage_card_attacker);
-                if (cardAttacked.getLifePoints() < 0) {
-                    return true;
-                }
-            }
-            i++;
-        }
+                });
+        return cardAttacked.getLifePoints() < 0;
     }
 
     private Long get_damage(CardCollectionCard cardAttacker, CardCollectionCard cardAttacked) {

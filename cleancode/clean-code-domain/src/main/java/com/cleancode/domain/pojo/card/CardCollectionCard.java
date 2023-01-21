@@ -112,7 +112,7 @@ public class CardCollectionCard {
 
     public void add_xp(int xp) {
         this.xp += xp;
-        while (this.xp > 5 && this.level < 100) {
+        while (this.xp >= 5 && this.level < 100) {
             this.level_up();
         }
     }
