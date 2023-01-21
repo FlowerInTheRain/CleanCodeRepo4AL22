@@ -3,7 +3,6 @@ package com.cleancode.domain.services.collectioncard;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
-import com.cleancode.domain.pojo.card.Card;
 import com.cleancode.domain.pojo.card.CardCollectionCard;
 import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.in.collectioncard.CollectionCardFighter;
@@ -37,24 +36,24 @@ public class CollectionCardFighterService implements CollectionCardFighter {
         if (cardAttacked.getLevel() < cardAttacker.getLevel()) {
             throw new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_CANT_ATTACK_LOWER_LVL);
         }
-        if (this.is_win(cardAttacker, cardAttacked)) {
+        if (this.isWin(cardAttacker, cardAttacked)) {
             cardAttacker.setLifePoints(lifePointAttacker);
-            this.add_reward(cardAttacker, userAttacker);
+            this.addReward(cardAttacker, userAttacker);
             return cardAttacker;
         }
         return cardAttacked;
     }
 
-    private void add_reward(CardCollectionCard card, BusinessUserClientInfo user) {
+    private void addReward(CardCollectionCard card, BusinessUserClientInfo user) {
         card.add_xp(1);
         user.addBusinessUserCountWin();
         cardCollectionCardPort.saveCollectionCard(card);
         userAccountPersistencePort.saveUserInDb(user);
     }
 
-    private boolean is_win(CardCollectionCard cardAttacker, CardCollectionCard cardAttacked) {
-        Long damage_card_attacker = this.get_damage(cardAttacker, cardAttacked);
-        Long damage_card_attacked = this.get_damage(cardAttacked, cardAttacker);
+    private boolean isWin(CardCollectionCard cardAttacker, CardCollectionCard cardAttacked) {
+        Long damage_card_attacker = this.getDamage(cardAttacker, cardAttacked);
+        Long damage_card_attacked = this.getDamage(cardAttacked, cardAttacker);
         IntStream.iterate(0, i -> (i + 1) % 2).limit(Integer.MAX_VALUE)
                 .anyMatch(i -> {
                     if (i == 0) {
@@ -73,7 +72,7 @@ public class CollectionCardFighterService implements CollectionCardFighter {
         return cardAttacked.getLifePoints() < 0;
     }
 
-    private Long get_damage(CardCollectionCard cardAttacker, CardCollectionCard cardAttacked) {
+    private Long getDamage(CardCollectionCard cardAttacker, CardCollectionCard cardAttacked) {
         Long damage = cardAttacker.getPower() - cardAttacked.getArmor();
         if (Objects.equals(CardSpecialtyEnum.valueOf(cardAttacker.getSpecialty()).getSpecialtyValue().getSpecialtyAffinity(), cardAttacked.getSpecialty()))
             damage += CardSpecialtyEnum.valueOf(cardAttacker.getSpecialty()).getSpecialtyValue().getAdditionalPower();
