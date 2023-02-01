@@ -1,12 +1,13 @@
 package com.cleancode.domain.services;
 
 import com.cleancode.domain.enums.rarities.RaritiesEnum;
+import com.google.common.collect.ImmutableSortedMap;
 
 import java.util.NavigableMap;
 
 public interface Probabilities {
-    NavigableMap<Double, RaritiesEnum> getSilverProbabilitiesMap();
-    NavigableMap<Double, RaritiesEnum> getDiamondProbabilitiesMap();
+    ImmutableSortedMap<Double, RaritiesEnum> getSilverProbabilitiesMap();
+    ImmutableSortedMap<Double, RaritiesEnum> getDiamondProbabilitiesMap();
 
 
     double getRandomNumber();

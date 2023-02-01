@@ -30,11 +30,11 @@ public class CardPackShopEntrypoint {
             response = CardPackResponse.class,
             notes = "User must have enough moula")
     @ApiResponse(code=200, message="Pack bought")
-    @PutMapping(value = "/buySilverCardPack", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/buySilverCardPack", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CardPackResponse> buySilverCardPack(String userName) {
         LOGGER.log(Level.INFO, "Calling card pack shop");
         final var silverCardPack = cardPackOpener.openSilverCardPack(userName);
-        LOGGER.log(Level.INFO, "User " + userName + " successfully bought a silver pack");
+        LOGGER.log(Level.INFO, "User " + userName + " successfully bought a silver pack" + silverCardPack);
         return CardCollectionCardsMapper.INSTANCE.fromDomain(silverCardPack);
     }
 
@@ -42,11 +42,11 @@ public class CardPackShopEntrypoint {
             response = CardPackResponse.class,
             notes = "User must have enough moula")
     @ApiResponse(code=200, message="Pack bought")
-    @PutMapping(value = "/buyDiamondCardpack", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/buyDiamondCardpack", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CardPackResponse> buyDiamondCardPack(String userName) {
         LOGGER.log(Level.INFO, "Calling card pack shop");
         final var diamondCardPack = cardPackOpener.openDiamondCardPack(userName);
-        LOGGER.log(Level.INFO, "User " + userName + " successfully bought a silver pack");
+        LOGGER.log(Level.INFO, "User " + userName + " successfully bought a silver pack" + diamondCardPack);
         return CardCollectionCardsMapper.INSTANCE.fromDomain(diamondCardPack);
     }
 }

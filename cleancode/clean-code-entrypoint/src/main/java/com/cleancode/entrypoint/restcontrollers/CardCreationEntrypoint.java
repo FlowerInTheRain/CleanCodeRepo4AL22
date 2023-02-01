@@ -26,7 +26,7 @@ public class CardCreationEntrypoint {
             response = Card.class,
             notes = "Customer must not exist")
     @ApiResponse(code=200, message="Card Created")
-    @PutMapping(value = "/saveCard", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/saveCard", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Card saveCard(@RequestBody Card card) throws CleanCodeException {
         return CardMapper.INSTANCE.fromBsToApi(cardCreator.saveCard(CardMapper.INSTANCE.fromApiToBs(card)));
     }

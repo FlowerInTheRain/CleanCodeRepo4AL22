@@ -3,14 +3,14 @@ package com.cleancode.domain.services;
 import com.cleancode.domain.enums.cardpackdistributionsenum.DiamondPackCardRarityDistributionEnum;
 import com.cleancode.domain.enums.cardpackdistributionsenum.SilverPackCardRarityDistributionEnum;
 import com.cleancode.domain.enums.rarities.RaritiesEnum;
+import com.google.common.collect.ImmutableSortedMap;
+import com.google.common.collect.Ordering;
 
 import javax.annotation.PostConstruct;
-import java.util.NavigableMap;
-import java.util.TreeMap;
 
 public class ProbabilityRanges implements Probabilities{
-    NavigableMap<Double, RaritiesEnum> silverMap = new TreeMap<>();
-    NavigableMap<Double, RaritiesEnum> diamondMap = new TreeMap<>();
+    ImmutableSortedMap<Double, RaritiesEnum> silverMap;
+    ImmutableSortedMap<Double, RaritiesEnum> diamondMap;
 
     @PostConstruct
     public void init() {
@@ -19,24 +19,29 @@ public class ProbabilityRanges implements Probabilities{
     }
 
     private void initDiamondMap() {
-        diamondMap.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_COMMON_CARD.getMaxProbability(), RaritiesEnum.COMMON);
-        diamondMap.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_RARE_CARD.getMaxProbability(), RaritiesEnum.RARE);
-        diamondMap.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_LEGENDARY_CARD.getMaxProbability(), RaritiesEnum.LEGENDARY);
+        ImmutableSortedMap.Builder<Double, RaritiesEnum> map = new ImmutableSortedMap.Builder<>(Ordering.natural());
+        map.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_COMMON_CARD.getMaxProbability(), RaritiesEnum.COMMON);
+        map.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_RARE_CARD.getMaxProbability(), RaritiesEnum.RARE);
+        map.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_LEGENDARY_CARD.getMaxProbability(), RaritiesEnum.LEGENDARY);
+        diamondMap = map.build();
     }
 
     private void initSilverMap() {
-        silverMap.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_COMMON_CARD.getMaxProbability(), RaritiesEnum.COMMON);
-        silverMap.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_RARE_CARD.getMaxProbability(), RaritiesEnum.RARE);
-        silverMap.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_LEGENDARY_CARD.getMaxProbability(), RaritiesEnum.LEGENDARY);
+        ImmutableSortedMap.Builder<Double, RaritiesEnum> map = new ImmutableSortedMap.Builder<>(Ordering.natural());
+        map.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_COMMON_CARD.getMaxProbability(), RaritiesEnum.COMMON);
+        map.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_RARE_CARD.getMaxProbability(), RaritiesEnum.RARE);
+        map.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_LEGENDARY_CARD.getMaxProbability(), RaritiesEnum.LEGENDARY);
+        silverMap = map.build();
     }
 
+
     @Override
-    public NavigableMap<Double, RaritiesEnum> getSilverProbabilitiesMap() {
+    public ImmutableSortedMap<Double, RaritiesEnum> getSilverProbabilitiesMap() {
         return silverMap;
     }
 
     @Override
-    public NavigableMap<Double, RaritiesEnum> getDiamondProbabilitiesMap() {
+    public ImmutableSortedMap<Double, RaritiesEnum> getDiamondProbabilitiesMap() {
         return diamondMap;
     }
 
