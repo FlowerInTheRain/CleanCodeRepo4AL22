@@ -52,8 +52,8 @@ public class CollectionCardFighterService implements CollectionCardFighter {
     }
 
     private boolean isWin(CardCollectionCard cardAttacker, CardCollectionCard cardAttacked) {
-        Long damage_card_attacker = this.getDamage(cardAttacker, cardAttacked);
-        Long damage_card_attacked = this.getDamage(cardAttacked, cardAttacker);
+        Long damage_card_attacker = this.computeDamageFromCardAttackerToCardAttaked(cardAttacker, cardAttacked);
+        Long damage_card_attacked = this.computeDamageFromCardAttackerToCardAttaked(cardAttacked, cardAttacker);
         IntStream.iterate(0, i -> (i + 1) % 2).limit(Integer.MAX_VALUE)
                 .anyMatch(i -> {
                     if (i == 0) {
@@ -71,8 +71,8 @@ public class CollectionCardFighterService implements CollectionCardFighter {
                 });
         return cardAttacked.getLifePoints() < 0;
     }
-
-    private Long getDamage(CardCollectionCard cardAttacker, CardCollectionCard cardAttacked) {
+    
+    private Long computeDamageFromCardAttackerToCardAttaked(CardCollectionCard cardAttacker, CardCollectionCard cardAttacked) {
         Long damage = cardAttacker.getPower() - cardAttacked.getArmor();
         if (Objects.equals(CardSpecialtyEnum.valueOf(cardAttacker.getSpecialty()).getSpecialtyValue().getSpecialtyAffinity(), cardAttacked.getSpecialty()))
             damage += CardSpecialtyEnum.valueOf(cardAttacker.getSpecialty()).getSpecialtyValue().getAdditionalPower();
