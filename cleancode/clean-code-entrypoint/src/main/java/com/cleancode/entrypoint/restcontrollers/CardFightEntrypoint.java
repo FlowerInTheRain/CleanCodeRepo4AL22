@@ -28,6 +28,6 @@ public class CardFightEntrypoint {
     @ApiResponse(code=200, message="Fight Done")
     @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public CardCollectionCard fight(@RequestBody FightRequest fightRequest) throws CleanCodeException {
-        return collectionCardFighter.fight(fightRequest.userNameAttaker, fightRequest.userNameAttaked, fightRequest.cardAttackerReference, fightRequest.cardAttackedReference);
+        return collectionCardFighter.launchFightBetweenTwoCards(fightRequest.userNameAttaker, fightRequest.userNameAttaked, fightRequest.cardAttackerReference, fightRequest.cardAttackedReference);
     }
 }

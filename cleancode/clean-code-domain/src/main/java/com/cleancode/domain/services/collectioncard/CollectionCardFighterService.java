@@ -26,7 +26,7 @@ public class CollectionCardFighterService implements CollectionCardFighter {
     }
 
     @Override
-    public CardCollectionCard fight(String userNameAttacker, String userNameAttacked, String cardAttackerReference, String cardAttackedReference) throws CleanCodeException {
+    public CardCollectionCard launchFightBetweenTwoCards(String userNameAttacker, String userNameAttacked, String cardAttackerReference, String cardAttackedReference) throws CleanCodeException {
         BusinessUserClientInfo userAttacker = userAccountPersistencePort.findUserByUserName(userNameAttacker).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
         BusinessUserClientInfo userAttacked = userAccountPersistencePort.findUserByUserName(userNameAttacked).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
         CardCollectionCard cardAttacker = cardCollectionCardPort.findByCardCollectionCardReference(cardAttackerReference).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_CARD_REFERENCE));
@@ -71,7 +71,7 @@ public class CollectionCardFighterService implements CollectionCardFighter {
                 });
         return cardAttacked.getLifePoints() < 0;
     }
-    
+
     private Long computeDamageFromCardAttackerToCardAttaked(CardCollectionCard cardAttacker, CardCollectionCard cardAttacked) {
         Long damage = cardAttacker.getPower() - cardAttacked.getArmor();
         if (Objects.equals(CardSpecialtyEnum.valueOf(cardAttacker.getSpecialty()).getSpecialtyValue().getSpecialtyAffinity(), cardAttacked.getSpecialty()))

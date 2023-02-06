@@ -5,5 +5,5 @@ import com.cleancode.domain.pojo.card.CardCollectionCard;
 
 public interface CollectionCardFighter {
 
-    CardCollectionCard fight(String userNameAttacker, String userNameAttacked, String cardAttackerReference, String cardAttackedReference) throws CleanCodeException;
+    CardCollectionCard launchFightBetweenTwoCards(String userNameAttacker, String userNameAttacked, String cardAttackerReference, String cardAttackedReference) throws CleanCodeException;
 }
