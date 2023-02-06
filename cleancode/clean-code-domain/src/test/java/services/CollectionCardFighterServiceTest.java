@@ -66,7 +66,7 @@ public class CollectionCardFighterServiceTest {
     }
 
     @Test(expected = CleanCodeException.class)
-    public void fight_shouldThrowException_whenInvalidCardReference() throws CleanCodeException {
+    public void fightShouldThrowExceptionWhenInvalidCardReference() throws CleanCodeException {
         when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(new BusinessUserClientInfo(
                 "valid-username",
                 1L,
