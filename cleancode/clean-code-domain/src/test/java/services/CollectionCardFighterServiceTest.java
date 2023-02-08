@@ -229,4 +229,78 @@ public class CollectionCardFighterServiceTest {
         assertEquals(1, attackerCard.getXp());
         assertEquals(1, (int) user.getBusinessUserCountWin());
     }
+
+    @Test
+    public void CardShouldLevelUpWhenAttackerCardWins() throws CleanCodeException {
+        BusinessUserClientInfo user = new BusinessUserClientInfo(
+                "valid-username",
+                1L,
+                "user-reference",
+                0,
+                null,
+                null,
+                1000L
+        );
+        BusinessUserClientInfo user2 = new BusinessUserClientInfo(
+                "valid-username2",
+                2L,
+                "user-reference2",
+                0,
+                null,
+                null,
+                1000L
+        );
+        CardCollectionCard attackerCard = new CardCollectionCard(
+                1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, 4, 1, CardRarityEnum.COMMON
+        );
+        CardCollectionCard attackedCard = new CardCollectionCard(
+                2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
+        );
+        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(user));
+        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(user2));
+        when(cardCollectionCardPort.findByCardCollectionCardReference("attacker-card-reference")).thenReturn(Maybe.maybe(attackerCard));
+        when(cardCollectionCardPort.findByCardCollectionCardReference("attacked-card-reference")).thenReturn(Maybe.maybe(attackedCard));
+        collectionCardFighterService.launchFightBetweenTwoCards("valid-username", "valid-username", "attacker-card-reference", "attacked-card-reference");
+        verify(cardCollectionCardPort).saveCollectionCard(attackerCard);
+        verify(userAccountPersistencePort).saveUserInDb(user);
+        assertEquals(2, attackerCard.getLevel());
+        assertEquals(0, attackerCard.getXp());
+    }
+
+    @Test
+    public void UserShouldWinCoinWhenAttackerCardWins() throws CleanCodeException {
+        BusinessUserClientInfo user = new BusinessUserClientInfo(
+                "valid-username",
+                1L,
+                "user-reference",
+                4,
+                null,
+                null,
+                0L
+        );
+        BusinessUserClientInfo user2 = new BusinessUserClientInfo(
+                "valid-username2",
+                2L,
+                "user-reference2",
+                0,
+                null,
+                null,
+                1000L
+        );
+        CardCollectionCard attackerCard = new CardCollectionCard(
+                1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
+        );
+        CardCollectionCard attackedCard = new CardCollectionCard(
+                2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
+        );
+        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(user));
+        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(user2));
+        when(cardCollectionCardPort.findByCardCollectionCardReference("attacker-card-reference")).thenReturn(Maybe.maybe(attackerCard));
+        when(cardCollectionCardPort.findByCardCollectionCardReference("attacked-card-reference")).thenReturn(Maybe.maybe(attackedCard));
+        collectionCardFighterService.launchFightBetweenTwoCards("valid-username", "valid-username", "attacker-card-reference", "attacked-card-reference");
+        verify(cardCollectionCardPort).saveCollectionCard(attackerCard);
+        verify(userAccountPersistencePort).saveUserInDb(user);
+        assertEquals(1, (long) user.getBusinessUserCCCoinWallet());
+        assertEquals(5, (int) user.getBusinessUserCountWin());
+    }
 }
