@@ -36,7 +36,7 @@ public class UserAccountCreation {
             response = UserAccountResponse.class,
             notes = "Customer must not exist")
     @ApiResponse(code=200, message="User Added")
-    @PutMapping(value = "/addNewUser", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/addNewUser", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public UserAccountResponse createUserAccount(@RequestBody  UserAccountCreationRequest userCompleteInfoRequest) throws CleanCodeException {
         LOGGER.log(Level.INFO, "Calling createUserAccount");
         AccountCreationCommand accountCreationCommand = AccountCreationCommand.createOne(userCompleteInfoRequest.userName, userCompleteInfoRequest.userCardCollectionName);
