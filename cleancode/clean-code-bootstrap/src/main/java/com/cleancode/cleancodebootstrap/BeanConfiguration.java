@@ -1,4 +1,4 @@
-package com.esgi.cleancode.bootstrap;
+package com.cleancode.cleancodebootstrap;
 
 import com.cleancode.domain.ports.in.card.CardCreator;
 import com.cleancode.domain.ports.in.card.CardFinder;

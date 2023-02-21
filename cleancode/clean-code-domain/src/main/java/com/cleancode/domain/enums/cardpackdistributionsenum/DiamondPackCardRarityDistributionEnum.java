@@ -2,9 +2,7 @@ package com.cleancode.domain.enums.cardpackdistributionsenum;
 
 import com.cleancode.domain.enums.cardpackdistributionsenum.interfaces.CardRarityDistributionEnumInterface;
 import com.cleancode.domain.enums.rarities.RaritiesEnum;
-import org.springframework.stereotype.Component;
 
-@Component
 public enum DiamondPackCardRarityDistributionEnum implements CardRarityDistributionEnumInterface {
     DIAMOND_PACK_COMMON_CARD(RaritiesEnum.COMMON,0.5),
     DIAMOND_PACK_RARE_CARD(RaritiesEnum.RARE,0.85),

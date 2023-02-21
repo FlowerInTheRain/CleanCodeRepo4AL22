@@ -70,7 +70,7 @@ public class CardPackOpenerService implements CardPackOpener {
         if(isUserAbleToBuyPack(CardPackRaritiesEnum.DIAMOND, foundUser.getBusinessUserCCCoinWallet())){
             var newWallet = processPayment(CardPackRaritiesEnum.DIAMOND,  foundUser);
             foundUser.setBusinessUserCCCoinWallet(newWallet);
-            cardPack.addAll(0,generateCardPack(CardPacksEnum.DIAMOND, foundUser, probabilities.getSilverProbabilitiesMap()));
+            cardPack.addAll(0,generateCardPack(CardPacksEnum.DIAMOND, foundUser, probabilities.getDiamondProbabilitiesMap()));
             enrichUserCardCollection(foundUser, cardPack);
             userAccountPersistencePort.saveUserInDb(foundUser);
             return cardPack;

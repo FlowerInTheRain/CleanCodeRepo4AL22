@@ -1,9 +1,9 @@
-package com.esgi.cleancode;
+package com.cleancode;
 
 
 import com.cleancode.entrypoint.kernel.RestConfiguration;
 import com.cleancode.persistence.configurations.JpaConfiguration;
-import com.esgi.cleancode.bootstrap.BeanConfiguration;
+import com.cleancode.cleancodebootstrap.BeanConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
