@@ -17,13 +17,11 @@ import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.cleancode.domain.services.Probabilities;
-import com.cleancode.domain.services.card.CardCreatorService;
 import com.google.common.collect.ImmutableSortedMap;
 import com.jnape.palatable.lambda.adt.Maybe;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NavigableMap;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;

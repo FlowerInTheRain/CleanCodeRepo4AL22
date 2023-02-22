@@ -76,7 +76,7 @@ public class PackOpenServiceTest {
         map.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_RARE_CARD.getMaxProbability(), RaritiesEnum.RARE);
         map.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_LEGENDARY_CARD.getMaxProbability(), RaritiesEnum.LEGENDARY);
         silverMap = map.build();
-        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), walletValue);
+        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", 0, null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), walletValue);
         List<Card> newUserCards = new ArrayList<>();
         String rarity0 = CardRarityEnum.COMMON.name();
         Card cardToReturn0 = Card.createOne(1L,"1231", CardRarityEnum.COMMON, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARMAND,0,1);
@@ -125,7 +125,7 @@ public class PackOpenServiceTest {
         map.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_RARE_CARD.getMaxProbability(), RaritiesEnum.RARE);
         map.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_LEGENDARY_CARD.getMaxProbability(), RaritiesEnum.LEGENDARY);
         diamond = map.build();
-        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), walletValue);
+        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", 0, null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), walletValue);
         List<Card> newUserCards = new ArrayList<>();
         String rarity0 = CardRarityEnum.COMMON.name();
         Card cardToReturn0 = Card.createOne(1L,"1231", CardRarityEnum.COMMON, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARMAND,0,1);
