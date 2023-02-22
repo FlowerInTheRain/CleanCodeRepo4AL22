@@ -2,8 +2,9 @@ package com.cleancode.domain.ports.in.collectioncard;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.pojo.card.CardCollectionCard;
+import com.cleancode.domain.pojo.fight.Opponent;
 
 public interface CollectionCardFighter {
 
-    CardCollectionCard launchFightBetweenTwoCards(String userNameAttacker, String userNameAttacked, String cardAttackerReference, String cardAttackedReference) throws CleanCodeException;
+    CardCollectionCard launchFightBetweenTwoCards(Opponent attacker, Opponent attacked) throws CleanCodeException;
 }

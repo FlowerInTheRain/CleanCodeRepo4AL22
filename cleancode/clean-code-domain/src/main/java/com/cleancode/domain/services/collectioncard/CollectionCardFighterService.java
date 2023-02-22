@@ -4,6 +4,7 @@ import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeEx
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
 import com.cleancode.domain.pojo.card.CardCollectionCard;
+import com.cleancode.domain.pojo.fight.Opponent;
 import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.in.collectioncard.CollectionCardFighter;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
@@ -26,11 +27,11 @@ public class CollectionCardFighterService implements CollectionCardFighter {
     }
 
     @Override
-    public CardCollectionCard launchFightBetweenTwoCards(String userNameAttacker, String userNameAttacked, String cardAttackerReference, String cardAttackedReference) throws CleanCodeException {
-        BusinessUserClientInfo userAttacker = userAccountPersistencePort.findUserByUserName(userNameAttacker).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
-        BusinessUserClientInfo userAttacked = userAccountPersistencePort.findUserByUserName(userNameAttacked).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
-        CardCollectionCard cardAttacker = cardCollectionCardPort.findByCardCollectionCardReference(cardAttackerReference).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_CARD_REFERENCE));
-        CardCollectionCard cardAttacked = cardCollectionCardPort.findByCardCollectionCardReference(cardAttackedReference).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_CARD_REFERENCE));
+    public CardCollectionCard launchFightBetweenTwoCards(Opponent attacker, Opponent attacked) throws CleanCodeException {
+        BusinessUserClientInfo userAttacker = userAccountPersistencePort.findUserByUserName(attacker.getUserName()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
+        BusinessUserClientInfo userAttacked = userAccountPersistencePort.findUserByUserName(attacked.getUserName()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
+        CardCollectionCard cardAttacker = cardCollectionCardPort.findByCardCollectionCardReference(attacker.getCardReference()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_CARD_REFERENCE));
+        CardCollectionCard cardAttacked = cardCollectionCardPort.findByCardCollectionCardReference(attacked.getCardReference()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_CARD_REFERENCE));
         Long lifePointAttacker = cardAttacker.getLifePoints();
         Long lifePointAttacked = cardAttacked.getLifePoints();
         if (cardAttacked.getLevel() < cardAttacker.getLevel()) {

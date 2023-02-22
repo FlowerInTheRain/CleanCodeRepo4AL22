@@ -4,6 +4,7 @@ import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeEx
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.enums.rarities.CardRarityEnum;
 import com.cleancode.domain.pojo.card.CardCollectionCard;
+import com.cleancode.domain.pojo.fight.Opponent;
 import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
@@ -56,8 +57,12 @@ public class CollectionCardFighterServiceTest {
         when(cardCollectionCardPort.findByCardCollectionCardReference("valid-card-reference2")).thenReturn(Maybe.maybe(new CardCollectionCard(
                 2L, 2L, "valid-card-reference2", "", "", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
         )));
+
+        Opponent attacker = new Opponent("invalid-username", "valid-card-reference");
+        Opponent attacked = new Opponent("valid-username", "valid-card-reference2");
+
         try {
-            collectionCardFighterService.launchFightBetweenTwoCards("invalid-username", "valid-username", "valid-card-reference", "valid-card-reference2");
+            collectionCardFighterService.launchFightBetweenTwoCards(attacker, attacked);
         } catch (CleanCodeException e) {
             assertEquals(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME).getMessage(), e.getMessage());
             throw e;
@@ -89,8 +94,12 @@ public class CollectionCardFighterServiceTest {
         when(cardCollectionCardPort.findByCardCollectionCardReference("valid-card-reference")).thenReturn(Maybe.maybe(new CardCollectionCard(
                 1L, 1L, "valid-card-reference", "", "", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
         )));
+
+        Opponent attacker = new Opponent("valid-username", "invalid-card-reference");
+        Opponent attacked = new Opponent("valid-username2", "valid-card-reference2");
+
         try {
-            collectionCardFighterService.launchFightBetweenTwoCards("valid-username", "valid-username2", "invalid-card-reference", "valid-card-reference");
+            collectionCardFighterService.launchFightBetweenTwoCards(attacker, attacked);
         } catch (CleanCodeException e) {
             assertEquals(new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_CARD_REFERENCE).getMessage(), e.getMessage());
             throw e;
@@ -124,8 +133,12 @@ public class CollectionCardFighterServiceTest {
         when(cardCollectionCardPort.findByCardCollectionCardReference("attacked-card-reference")).thenReturn(Maybe.maybe(new CardCollectionCard(
                 2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
         )));
+
+        Opponent attacker = new Opponent("valid-username", "attacker-card-reference");
+        Opponent attacked = new Opponent("valid-username2", "attacked-card-reference");
+
         try {
-            collectionCardFighterService.launchFightBetweenTwoCards("valid-username", "valid-username2", "attacker-card-reference", "attacked-card-reference");
+            collectionCardFighterService.launchFightBetweenTwoCards(attacker, attacked);
         } catch (CleanCodeException e) {
             assertEquals(new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_CANT_ATTACK_LOWER_LVL).getMessage(), e.getMessage());
             throw e;
@@ -159,7 +172,11 @@ public class CollectionCardFighterServiceTest {
         when(cardCollectionCardPort.findByCardCollectionCardReference("attacked-card-reference")).thenReturn(Maybe.maybe(new CardCollectionCard(
                 2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
         )));
-        CardCollectionCard result = collectionCardFighterService.launchFightBetweenTwoCards("valid-username", "valid-username2", "attacker-card-reference", "attacked-card-reference");
+
+        Opponent attacker = new Opponent("valid-username", "attacker-card-reference");
+        Opponent attacked = new Opponent("valid-username2", "attacked-card-reference");
+
+        CardCollectionCard result = collectionCardFighterService.launchFightBetweenTwoCards(attacker, attacked);
         assertEquals("attacker-card-reference", result.getCardCollectionCardReference());
     }
 
@@ -189,7 +206,11 @@ public class CollectionCardFighterServiceTest {
         when(cardCollectionCardPort.findByCardCollectionCardReference("attacked-card-reference")).thenReturn(Maybe.maybe(new CardCollectionCard(
                 2L, 2L, "attacked-card-reference", "", "TANK", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
         )));
-        CardCollectionCard result = collectionCardFighterService.launchFightBetweenTwoCards("valid-username", "valid-username2", "attacker-card-reference", "attacked-card-reference");
+
+        Opponent attacker = new Opponent("valid-username", "attacker-card-reference");
+        Opponent attacked = new Opponent("valid-username2", "attacked-card-reference");
+
+        CardCollectionCard result = collectionCardFighterService.launchFightBetweenTwoCards(attacker, attacked);
         assertEquals("attacked-card-reference", result.getCardCollectionCardReference());
     }
 
@@ -223,7 +244,11 @@ public class CollectionCardFighterServiceTest {
         when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(user2));
         when(cardCollectionCardPort.findByCardCollectionCardReference("attacker-card-reference")).thenReturn(Maybe.maybe(attackerCard));
         when(cardCollectionCardPort.findByCardCollectionCardReference("attacked-card-reference")).thenReturn(Maybe.maybe(attackedCard));
-        collectionCardFighterService.launchFightBetweenTwoCards("valid-username", "valid-username", "attacker-card-reference", "attacked-card-reference");
+
+        Opponent attacker = new Opponent("valid-username", "attacker-card-reference");
+        Opponent attacked = new Opponent("valid-username2", "attacked-card-reference");
+
+        collectionCardFighterService.launchFightBetweenTwoCards(attacker, attacked);
         verify(cardCollectionCardPort).saveCollectionCard(attackerCard);
         verify(userAccountPersistencePort).saveUserInDb(user);
         assertEquals((int) CardCollectionCard.XP_GRANTED, attackerCard.getXp());
@@ -260,7 +285,11 @@ public class CollectionCardFighterServiceTest {
         when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(user2));
         when(cardCollectionCardPort.findByCardCollectionCardReference("attacker-card-reference")).thenReturn(Maybe.maybe(attackerCard));
         when(cardCollectionCardPort.findByCardCollectionCardReference("attacked-card-reference")).thenReturn(Maybe.maybe(attackedCard));
-        collectionCardFighterService.launchFightBetweenTwoCards("valid-username", "valid-username", "attacker-card-reference", "attacked-card-reference");
+
+        Opponent attacker = new Opponent("valid-username", "attacker-card-reference");
+        Opponent attacked = new Opponent("valid-username2", "attacked-card-reference");
+
+        collectionCardFighterService.launchFightBetweenTwoCards(attacker, attacked);
         verify(cardCollectionCardPort).saveCollectionCard(attackerCard);
         verify(userAccountPersistencePort).saveUserInDb(user);
         assertEquals(1 + CardCollectionCard.LVL_GRANTED, attackerCard.getLevel());
@@ -297,7 +326,11 @@ public class CollectionCardFighterServiceTest {
         when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(user2));
         when(cardCollectionCardPort.findByCardCollectionCardReference("attacker-card-reference")).thenReturn(Maybe.maybe(attackerCard));
         when(cardCollectionCardPort.findByCardCollectionCardReference("attacked-card-reference")).thenReturn(Maybe.maybe(attackedCard));
-        collectionCardFighterService.launchFightBetweenTwoCards("valid-username", "valid-username", "attacker-card-reference", "attacked-card-reference");
+
+        Opponent attacker = new Opponent("valid-username", "attacker-card-reference");
+        Opponent attacked = new Opponent("valid-username2", "attacked-card-reference");
+
+        collectionCardFighterService.launchFightBetweenTwoCards(attacker, attacked);
         verify(cardCollectionCardPort).saveCollectionCard(attackerCard);
         verify(userAccountPersistencePort).saveUserInDb(user);
         assertEquals((int) BusinessUserClientInfo.COIN_GRANTED, (long) user.getBusinessUserCCCoinWallet());
