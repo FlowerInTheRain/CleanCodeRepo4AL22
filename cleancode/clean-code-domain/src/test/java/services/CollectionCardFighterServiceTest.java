@@ -4,6 +4,7 @@ import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeEx
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.enums.rarities.CardRarityEnum;
 import com.cleancode.domain.pojo.card.CardCollectionCard;
+import com.cleancode.domain.pojo.cardcollection.CardCollection;
 import com.cleancode.domain.pojo.fight.Opponent;
 import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
@@ -16,6 +17,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -32,7 +36,6 @@ public class CollectionCardFighterServiceTest {
 
     @Mock
     private UserAccountPersistencePort userAccountPersistencePort;
-
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -41,22 +44,21 @@ public class CollectionCardFighterServiceTest {
 
     @Test(expected = CleanCodeException.class)
     public void fightShouldThrowExceptionWhenInvalidUserName() throws CleanCodeException {
-        when(userAccountPersistencePort.findUserByUserName("invalid-username")).thenReturn(Maybe.nothing());
-        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(new BusinessUserClientInfo(
+
+        List<CardCollectionCard> collection = new ArrayList<>();
+        collection.add(new CardCollectionCard(1L, 1L, "valid-card-reference", "", "", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
                 "valid-username",
                 1L,
                 "user-reference",
                 0,
                 null,
-                null,
+                new CardCollection(0L, "", "", collection),
                 1000L
-        )));
-        when(cardCollectionCardPort.findByCardCollectionCardReference("valid-card-reference")).thenReturn(Maybe.maybe(new CardCollectionCard(
-                1L, 1L, "valid-card-reference", "", "", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
-        )));
-        when(cardCollectionCardPort.findByCardCollectionCardReference("valid-card-reference2")).thenReturn(Maybe.maybe(new CardCollectionCard(
-                2L, 2L, "valid-card-reference2", "", "", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
-        )));
+        );
+
+        when(userAccountPersistencePort.findUserByUserName("invalid-username")).thenReturn(Maybe.nothing());
+        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(validUser));
 
         Opponent attacker = new Opponent("invalid-username", "valid-card-reference");
         Opponent attacked = new Opponent("valid-username", "valid-card-reference2");
@@ -72,28 +74,32 @@ public class CollectionCardFighterServiceTest {
 
     @Test(expected = CleanCodeException.class)
     public void fightShouldThrowExceptionWhenInvalidCardReference() throws CleanCodeException {
-        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(new BusinessUserClientInfo(
+
+        List<CardCollectionCard> collection = new ArrayList<>();
+        collection.add(new CardCollectionCard(1L, 1L, "valid-card-reference", "", "", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
                 "valid-username",
                 1L,
                 "user-reference",
                 0,
                 null,
-                null,
+                new CardCollection(0L, "", "", collection),
                 1000L
-        )));
-        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(new BusinessUserClientInfo(
+        );
+
+        List<CardCollectionCard> collection2 = new ArrayList<>();
+        BusinessUserClientInfo validUser2 = new BusinessUserClientInfo(
                 "valid-username2",
-                2L,
-                "user-reference2",
+                1L,
+                "user-reference",
                 0,
                 null,
-                null,
+                new CardCollection(0L, "", "", collection2),
                 1000L
-        )));
-        when(cardCollectionCardPort.findByCardCollectionCardReference("invalid-card-reference")).thenReturn(Maybe.nothing());
-        when(cardCollectionCardPort.findByCardCollectionCardReference("valid-card-reference")).thenReturn(Maybe.maybe(new CardCollectionCard(
-                1L, 1L, "valid-card-reference", "", "", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
-        )));
+        );
+
+        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(validUser));
+        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(validUser2));
 
         Opponent attacker = new Opponent("valid-username", "invalid-card-reference");
         Opponent attacked = new Opponent("valid-username2", "valid-card-reference2");
@@ -109,30 +115,33 @@ public class CollectionCardFighterServiceTest {
 
     @Test(expected = CleanCodeException.class)
     public void fightShouldThrowExceptionWhenAttackerCardLevelIsLower() throws CleanCodeException {
-        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(new BusinessUserClientInfo(
+
+        List<CardCollectionCard> collection = new ArrayList<>();
+        collection.add(new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 100L, 50L, 25L, 0, 2, CardRarityEnum.COMMON));
+        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
                 "valid-username",
                 1L,
                 "user-reference",
                 0,
                 null,
-                null,
+                new CardCollection(0L, "", "", collection),
                 1000L
-        )));
-        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(new BusinessUserClientInfo(
+        );
+
+        List<CardCollectionCard> collection2 = new ArrayList<>();
+        collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        BusinessUserClientInfo validUser2 = new BusinessUserClientInfo(
                 "valid-username2",
-                2L,
-                "user-reference2",
+                1L,
+                "user-reference",
                 0,
                 null,
-                null,
+                new CardCollection(0L, "", "", collection2),
                 1000L
-        )));
-        when(cardCollectionCardPort.findByCardCollectionCardReference("attacker-card-reference")).thenReturn(Maybe.maybe(new CardCollectionCard(
-                1L, 1L, "attacker-card-reference", "", "MAGE", 100L, 50L, 25L, 0, 2, CardRarityEnum.COMMON
-        )));
-        when(cardCollectionCardPort.findByCardCollectionCardReference("attacked-card-reference")).thenReturn(Maybe.maybe(new CardCollectionCard(
-                2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
-        )));
+        );
+
+        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(validUser));
+        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(validUser2));
 
         Opponent attacker = new Opponent("valid-username", "attacker-card-reference");
         Opponent attacked = new Opponent("valid-username2", "attacked-card-reference");
@@ -148,30 +157,32 @@ public class CollectionCardFighterServiceTest {
 
     @Test
     public void fightShouldReturnAttackerCardWhenAttackerCardWins() throws CleanCodeException {
-        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(new BusinessUserClientInfo(
+
+        List<CardCollectionCard> collection = new ArrayList<>();
+        collection.add(new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
                 "valid-username",
                 1L,
                 "user-reference",
                 0,
                 null,
-                null,
+                new CardCollection(0L, "", "", collection),
                 1000L
-        )));
-        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(new BusinessUserClientInfo(
+        );
+
+        List<CardCollectionCard> collection2 = new ArrayList<>();
+        collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        BusinessUserClientInfo validUser2 = new BusinessUserClientInfo(
                 "valid-username2",
-                2L,
-                "user-reference2",
+                1L,
+                "user-reference",
                 0,
                 null,
-                null,
+                new CardCollection(0L, "", "", collection2),
                 1000L
-        )));
-        when(cardCollectionCardPort.findByCardCollectionCardReference("attacker-card-reference")).thenReturn(Maybe.maybe(new CardCollectionCard(
-                1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
-        )));
-        when(cardCollectionCardPort.findByCardCollectionCardReference("attacked-card-reference")).thenReturn(Maybe.maybe(new CardCollectionCard(
-                2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
-        )));
+        );
+        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(validUser));
+        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(validUser2));
 
         Opponent attacker = new Opponent("valid-username", "attacker-card-reference");
         Opponent attacked = new Opponent("valid-username2", "attacked-card-reference");
@@ -182,30 +193,32 @@ public class CollectionCardFighterServiceTest {
 
     @Test
     public void fightShouldReturnAttackedCardWhenAttackerCardLoses() throws CleanCodeException {
-        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(new BusinessUserClientInfo(
+
+        List<CardCollectionCard> collection = new ArrayList<>();
+        collection.add(new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
                 "valid-username",
                 1L,
                 "user-reference",
                 0,
                 null,
-                null,
+                new CardCollection(0L, "", "", collection),
                 1000L
-        )));
-        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(new BusinessUserClientInfo(
+        );
+
+        List<CardCollectionCard> collection2 = new ArrayList<>();
+        collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        BusinessUserClientInfo validUser2 = new BusinessUserClientInfo(
                 "valid-username2",
-                2L,
-                "user-reference2",
+                1L,
+                "user-reference",
                 0,
                 null,
-                null,
+                new CardCollection(0L, "", "", collection2),
                 1000L
-        )));
-        when(cardCollectionCardPort.findByCardCollectionCardReference("attacker-card-reference")).thenReturn(Maybe.maybe(new CardCollectionCard(
-                1L, 1L, "attacker-card-reference", "", "MAGE", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
-        )));
-        when(cardCollectionCardPort.findByCardCollectionCardReference("attacked-card-reference")).thenReturn(Maybe.maybe(new CardCollectionCard(
-                2L, 2L, "attacked-card-reference", "", "TANK", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
-        )));
+        );
+        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(validUser));
+        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(validUser2));
 
         Opponent attacker = new Opponent("valid-username", "attacker-card-reference");
         Opponent attacked = new Opponent("valid-username2", "attacked-card-reference");
@@ -216,124 +229,121 @@ public class CollectionCardFighterServiceTest {
 
     @Test
     public void fightShouldAddRewardsWhenAttackerCardWins() throws CleanCodeException {
-        BusinessUserClientInfo user = new BusinessUserClientInfo(
+
+        List<CardCollectionCard> collection = new ArrayList<>();
+        CardCollectionCard attackerCard = new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON);
+        collection.add(attackerCard);
+        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
                 "valid-username",
                 1L,
                 "user-reference",
                 0,
                 null,
-                null,
+                new CardCollection(0L, "", "", collection),
                 1000L
         );
-        BusinessUserClientInfo user2 = new BusinessUserClientInfo(
+
+        List<CardCollectionCard> collection2 = new ArrayList<>();
+        collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        BusinessUserClientInfo validUser2 = new BusinessUserClientInfo(
                 "valid-username2",
-                2L,
-                "user-reference2",
+                1L,
+                "user-reference",
                 0,
                 null,
-                null,
+                new CardCollection(0L, "", "", collection2),
                 1000L
         );
-        CardCollectionCard attackerCard = new CardCollectionCard(
-                1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
-        );
-        CardCollectionCard attackedCard = new CardCollectionCard(
-                2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
-        );
-        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(user));
-        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(user2));
-        when(cardCollectionCardPort.findByCardCollectionCardReference("attacker-card-reference")).thenReturn(Maybe.maybe(attackerCard));
-        when(cardCollectionCardPort.findByCardCollectionCardReference("attacked-card-reference")).thenReturn(Maybe.maybe(attackedCard));
+        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(validUser));
+        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(validUser2));
 
         Opponent attacker = new Opponent("valid-username", "attacker-card-reference");
         Opponent attacked = new Opponent("valid-username2", "attacked-card-reference");
 
         collectionCardFighterService.launchFightBetweenTwoCards(attacker, attacked);
         verify(cardCollectionCardPort).saveCollectionCard(attackerCard);
-        verify(userAccountPersistencePort).saveUserInDb(user);
+        verify(userAccountPersistencePort).saveUserInDb(validUser);
         assertEquals((int) CardCollectionCard.XP_GRANTED, attackerCard.getXp());
-        assertEquals(1, (int) user.getBusinessUserCountWin());
+        assertEquals(1, (int) validUser.getBusinessUserCountWin());
     }
 
     @Test
     public void CardShouldLevelUpWhenAttackerCardWins() throws CleanCodeException {
-        BusinessUserClientInfo user = new BusinessUserClientInfo(
+
+        List<CardCollectionCard> collection = new ArrayList<>();
+        CardCollectionCard attackerCard = new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, CardCollectionCard.XP_FOR_LVL_UP - CardCollectionCard.XP_GRANTED, 1, CardRarityEnum.COMMON);
+        collection.add(attackerCard);
+        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
                 "valid-username",
                 1L,
                 "user-reference",
                 0,
                 null,
-                null,
+                new CardCollection(0L, "", "", collection),
                 1000L
         );
-        BusinessUserClientInfo user2 = new BusinessUserClientInfo(
+
+        List<CardCollectionCard> collection2 = new ArrayList<>();
+        collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        BusinessUserClientInfo validUser2 = new BusinessUserClientInfo(
                 "valid-username2",
-                2L,
-                "user-reference2",
+                1L,
+                "user-reference",
                 0,
                 null,
-                null,
+                new CardCollection(0L, "", "", collection2),
                 1000L
         );
-        CardCollectionCard attackerCard = new CardCollectionCard(
-                1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, CardCollectionCard.XP_FOR_LVL_UP - CardCollectionCard.XP_GRANTED, 1, CardRarityEnum.COMMON
-        );
-        CardCollectionCard attackedCard = new CardCollectionCard(
-                2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
-        );
-        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(user));
-        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(user2));
-        when(cardCollectionCardPort.findByCardCollectionCardReference("attacker-card-reference")).thenReturn(Maybe.maybe(attackerCard));
-        when(cardCollectionCardPort.findByCardCollectionCardReference("attacked-card-reference")).thenReturn(Maybe.maybe(attackedCard));
+        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(validUser));
+        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(validUser2));
 
         Opponent attacker = new Opponent("valid-username", "attacker-card-reference");
         Opponent attacked = new Opponent("valid-username2", "attacked-card-reference");
 
         collectionCardFighterService.launchFightBetweenTwoCards(attacker, attacked);
         verify(cardCollectionCardPort).saveCollectionCard(attackerCard);
-        verify(userAccountPersistencePort).saveUserInDb(user);
+        verify(userAccountPersistencePort).saveUserInDb(validUser);
         assertEquals(1 + CardCollectionCard.LVL_GRANTED, attackerCard.getLevel());
         assertEquals(0, attackerCard.getXp());
     }
 
     @Test
     public void UserShouldWinCoinWhenAttackerCardWins() throws CleanCodeException {
-        BusinessUserClientInfo user = new BusinessUserClientInfo(
+
+        List<CardCollectionCard> collection = new ArrayList<>();
+        CardCollectionCard attackerCard = new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L,  0, 1, CardRarityEnum.COMMON);
+        collection.add(attackerCard);
+        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
                 "valid-username",
                 1L,
                 "user-reference",
                 BusinessUserClientInfo.WIN_NEEDED_TO_WIN_COIN - 1,
                 null,
-                null,
+                new CardCollection(0L, "", "", collection),
                 0L
         );
-        BusinessUserClientInfo user2 = new BusinessUserClientInfo(
+
+        List<CardCollectionCard> collection2 = new ArrayList<>();
+        collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        BusinessUserClientInfo validUser2 = new BusinessUserClientInfo(
                 "valid-username2",
-                2L,
-                "user-reference2",
+                1L,
+                "user-reference",
                 0,
                 null,
-                null,
+                new CardCollection(0L, "", "", collection2),
                 1000L
         );
-        CardCollectionCard attackerCard = new CardCollectionCard(
-                1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
-        );
-        CardCollectionCard attackedCard = new CardCollectionCard(
-                2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
-        );
-        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(user));
-        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(user2));
-        when(cardCollectionCardPort.findByCardCollectionCardReference("attacker-card-reference")).thenReturn(Maybe.maybe(attackerCard));
-        when(cardCollectionCardPort.findByCardCollectionCardReference("attacked-card-reference")).thenReturn(Maybe.maybe(attackedCard));
+        when(userAccountPersistencePort.findUserByUserName("valid-username")).thenReturn(Maybe.maybe(validUser));
+        when(userAccountPersistencePort.findUserByUserName("valid-username2")).thenReturn(Maybe.maybe(validUser2));
 
         Opponent attacker = new Opponent("valid-username", "attacker-card-reference");
         Opponent attacked = new Opponent("valid-username2", "attacked-card-reference");
 
         collectionCardFighterService.launchFightBetweenTwoCards(attacker, attacked);
         verify(cardCollectionCardPort).saveCollectionCard(attackerCard);
-        verify(userAccountPersistencePort).saveUserInDb(user);
-        assertEquals((int) BusinessUserClientInfo.COIN_GRANTED, (long) user.getBusinessUserCCCoinWallet());
-        assertEquals((int) BusinessUserClientInfo.WIN_NEEDED_TO_WIN_COIN, (int) user.getBusinessUserCountWin());
+        verify(userAccountPersistencePort).saveUserInDb(validUser);
+        assertEquals((int) BusinessUserClientInfo.COIN_GRANTED, (long) validUser.getBusinessUserCCCoinWallet());
+        assertEquals((int) BusinessUserClientInfo.WIN_NEEDED_TO_WIN_COIN, (int) validUser.getBusinessUserCountWin());
     }
 }

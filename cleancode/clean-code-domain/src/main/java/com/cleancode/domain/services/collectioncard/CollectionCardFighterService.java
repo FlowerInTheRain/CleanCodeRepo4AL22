@@ -4,6 +4,7 @@ import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeEx
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
 import com.cleancode.domain.pojo.card.CardCollectionCard;
+import com.cleancode.domain.pojo.cardcollection.CardCollection;
 import com.cleancode.domain.pojo.fight.Opponent;
 import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.in.collectioncard.CollectionCardFighter;
@@ -30,8 +31,11 @@ public class CollectionCardFighterService implements CollectionCardFighter {
     public CardCollectionCard launchFightBetweenTwoCards(Opponent attacker, Opponent attacked) throws CleanCodeException {
         BusinessUserClientInfo userAttacker = userAccountPersistencePort.findUserByUserName(attacker.getUserName()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
         BusinessUserClientInfo userAttacked = userAccountPersistencePort.findUserByUserName(attacked.getUserName()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
-        CardCollectionCard cardAttacker = cardCollectionCardPort.findByCardCollectionCardReference(attacker.getCardReference()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_CARD_REFERENCE));
-        CardCollectionCard cardAttacked = cardCollectionCardPort.findByCardCollectionCardReference(attacked.getCardReference()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_CARD_REFERENCE));
+        CardCollectionCard cardAttacker = this.getCardCollectionCard(userAttacker.getUserCardCollection(), attacker.getCardReference());
+        CardCollectionCard cardAttacked = this.getCardCollectionCard(userAttacked.getUserCardCollection(), attacked.getCardReference());
+        if (cardAttacked == null || cardAttacker == null) {
+            throw new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_CARD_REFERENCE);
+        }
         Long lifePointAttacker = cardAttacker.getLifePoints();
         Long lifePointAttacked = cardAttacked.getLifePoints();
         if (cardAttacked.getLevel() < cardAttacker.getLevel()) {
@@ -43,6 +47,15 @@ public class CollectionCardFighterService implements CollectionCardFighter {
             return cardAttacker;
         }
         return cardAttacked;
+    }
+
+    private CardCollectionCard getCardCollectionCard(CardCollection cardCollectionCard, String cardReference) {
+        for (CardCollectionCard card : cardCollectionCard.getCollectionCardList()) {
+            if (Objects.equals(card.getCardCollectionCardReference(), cardReference)) {
+                return card;
+            }
+        }
+        return null;
     }
 
     private void addReward(CardCollectionCard card, BusinessUserClientInfo user) {
