@@ -55,8 +55,7 @@ public class CollectionCardFighterService implements CollectionCardFighter {
     private boolean isWin(CardCollectionCard cardAttacker, CardCollectionCard cardAttacked) {
         Long damage_card_attacker = this.computeDamageFromCardAttackerToCardAttaked(cardAttacker, cardAttacked);
         Long damage_card_attacked = this.computeDamageFromCardAttackerToCardAttaked(cardAttacked, cardAttacker);
-        IntStream.iterate(0, i -> (i + 1) % 2).limit(Integer.MAX_VALUE)
-                .anyMatch(i -> {
+        IntStream.iterate(0, i -> (i + 1) % 2).anyMatch(i -> {
                     if (i == 0) {
                         cardAttacker.removeLifePoints(damage_card_attacked);
                         if (cardAttacker.getLifePoints() < 0) {
