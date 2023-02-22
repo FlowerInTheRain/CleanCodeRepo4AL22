@@ -1,8 +1,6 @@
 package com.cleancode.persistence.entities.cardcollections;
 
 import com.cleancode.persistence.entities.cardcollectioncards.CardCollectionCards;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;

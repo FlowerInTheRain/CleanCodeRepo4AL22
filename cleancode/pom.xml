@@ -5,6 +5,7 @@
     <groupId>com.esgi.cleancode</groupId>
     <artifactId>clean-code</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -18,7 +19,7 @@
     </dependencies>
     <name>clean-code</name>
     <description>ESGI 4A AL 22/23 Clean Code project. Authors : Sid Bennaceur, Arnaud Jourdain</description>
-    <packaging>pom</packaging>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <version>2.7.7</version>
@@ -32,6 +33,7 @@
         <module>clean-code-domain</module>
         <module>clean-code-bootstrap</module>
     </modules>
+
     <properties>
         <!-- Java version property -->
         <java.version>17</java.version>
@@ -139,6 +141,11 @@
         <finalName>CleanCodeApp</finalName>
         <plugins>
             <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.9.1.2184</version>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>3.0.0-M6</version>
@@ -192,6 +199,7 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
 </project>

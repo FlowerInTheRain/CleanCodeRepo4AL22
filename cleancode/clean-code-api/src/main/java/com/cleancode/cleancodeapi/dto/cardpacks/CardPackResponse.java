@@ -4,6 +4,11 @@ public class CardPackResponse {
 
         String cardCollectionCardReference;
 
+
+
+    String heroName;
+
+
         String rarity;
 
 
@@ -17,8 +22,9 @@ public class CardPackResponse {
 
         int level = 1;
 
-        public CardPackResponse(String cardCollectionCardReference, String rarity, int lifePoints, int power, int armor, int xp, int level) {
+        public CardPackResponse(String cardCollectionCardReference, String cardName, String rarity, int lifePoints, int power, int armor, int xp, int level) {
             this.cardCollectionCardReference = cardCollectionCardReference;
+            this.heroName = cardName;
             this.rarity = rarity;
             this.lifePoints = lifePoints;
             this.power = power;
@@ -76,6 +82,21 @@ public class CardPackResponse {
             this.level = level;
         }
 
+    public String getHeroName() {
+        return heroName;
+    }
+
+    public void setHeroName(String heroName) {
+        this.heroName = heroName;
+    }
+
+    public String getRarity() {
+        return rarity;
+    }
+
+    public void setRarity(String rarity) {
+        this.rarity = rarity;
+    }
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;

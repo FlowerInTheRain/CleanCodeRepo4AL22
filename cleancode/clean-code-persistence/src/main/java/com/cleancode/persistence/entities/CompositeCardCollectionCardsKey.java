@@ -1,8 +1,5 @@
 package com.cleancode.persistence.entities;
 
-import com.cleancode.persistence.entities.cardcollections.CardCollectionsEntity;
-import com.cleancode.persistence.entities.cards.CardEntity;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
