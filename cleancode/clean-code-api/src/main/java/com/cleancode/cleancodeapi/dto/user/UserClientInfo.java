@@ -42,4 +42,8 @@ public class UserClientInfo extends User {
             ){
         return new UserClientInfo( userName, clientReference, clientCreationDate,  userCardCollectionsList);
     }
+
+    public static void userClientInfo(){
+
+    }
 }
