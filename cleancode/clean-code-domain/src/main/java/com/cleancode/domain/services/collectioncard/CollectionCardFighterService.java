@@ -53,16 +53,16 @@ public class CollectionCardFighterService implements CollectionCardFighter {
     }
 
     private boolean isWin(CardCollectionCard cardAttacker, CardCollectionCard cardAttacked) {
-        Long damage_card_attacker = this.computeDamageFromCardAttackerToCardAttaked(cardAttacker, cardAttacked);
-        Long damage_card_attacked = this.computeDamageFromCardAttackerToCardAttaked(cardAttacked, cardAttacker);
+        Long damageCardAttacker = this.computeDamageFromCardAttackerToCardAttaked(cardAttacker, cardAttacked);
+        Long damageCardAttacked = this.computeDamageFromCardAttackerToCardAttaked(cardAttacked, cardAttacker);
         IntStream.iterate(0, i -> (i + 1) % 2).anyMatch(i -> {
                     if (i == 0) {
-                        cardAttacker.removeLifePoints(damage_card_attacked);
+                        cardAttacker.removeLifePoints(damageCardAttacked);
                         if (cardAttacker.getLifePoints() < 0) {
                             return true;
                         }
                     } else {
-                        cardAttacked.removeLifePoints(damage_card_attacker);
+                        cardAttacked.removeLifePoints(damageCardAttacker);
                         if (cardAttacked.getLifePoints() < 0) {
                             return true;
                         }
