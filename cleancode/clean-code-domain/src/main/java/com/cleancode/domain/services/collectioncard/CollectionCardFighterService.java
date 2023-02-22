@@ -45,7 +45,7 @@ public class CollectionCardFighterService implements CollectionCardFighter {
     }
 
     private void addReward(CardCollectionCard card, BusinessUserClientInfo user) {
-        card.add_xp(1);
+        card.add_xp();
         user.addBusinessUserCountWin();
         cardCollectionCardPort.saveCollectionCard(card);
         userAccountPersistencePort.saveUserInDb(user);

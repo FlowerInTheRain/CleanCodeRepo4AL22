@@ -12,6 +12,9 @@ public class BusinessUserClientInfo extends BusinessUserInfo {
     private Timestamp clientCreationDate;
     private CardCollection userCardCollection;
 
+    public static final Integer WIN_NEEDED_TO_WIN_COIN = 1;
+    public static final Integer COIN_GRANTED = 1;
+
     public BusinessUserClientInfo(String userName, Long technicalId, String businessReference, Integer businessUserCountWin, Timestamp clientCreationDate, CardCollection userCardCollection,
                                   Long businessUserCCCoinWallet) {
         super(userName);
@@ -33,7 +36,7 @@ public class BusinessUserClientInfo extends BusinessUserInfo {
 
     public void addBusinessUserCountWin() {
         this.businessUserCountWin++;
-        if (this.businessUserCountWin % 5 == 0) addBusinessUserCCCoinWallet();
+        if (this.businessUserCountWin % BusinessUserClientInfo.WIN_NEEDED_TO_WIN_COIN == 0) addBusinessUserCCCoinWallet();
     }
     public Long getTechnicalId() {
         return technicalId;
@@ -63,6 +66,6 @@ public class BusinessUserClientInfo extends BusinessUserInfo {
         this.businessUserCCCoinWallet = cardCollectionWallet;
     }
     public void addBusinessUserCCCoinWallet(){
-        this.businessUserCCCoinWallet++;
+        this.businessUserCCCoinWallet += BusinessUserClientInfo.COIN_GRANTED;
     }
 }

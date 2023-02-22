@@ -226,7 +226,7 @@ public class CollectionCardFighterServiceTest {
         collectionCardFighterService.launchFightBetweenTwoCards("valid-username", "valid-username", "attacker-card-reference", "attacked-card-reference");
         verify(cardCollectionCardPort).saveCollectionCard(attackerCard);
         verify(userAccountPersistencePort).saveUserInDb(user);
-        assertEquals(1, attackerCard.getXp());
+        assertEquals((int) CardCollectionCard.XP_GRANTED, attackerCard.getXp());
         assertEquals(1, (int) user.getBusinessUserCountWin());
     }
 
@@ -251,7 +251,7 @@ public class CollectionCardFighterServiceTest {
                 1000L
         );
         CardCollectionCard attackerCard = new CardCollectionCard(
-                1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, 4, 1, CardRarityEnum.COMMON
+                1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, CardCollectionCard.XP_FOR_LVL_UP - CardCollectionCard.XP_GRANTED, 1, CardRarityEnum.COMMON
         );
         CardCollectionCard attackedCard = new CardCollectionCard(
                 2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
@@ -263,7 +263,7 @@ public class CollectionCardFighterServiceTest {
         collectionCardFighterService.launchFightBetweenTwoCards("valid-username", "valid-username", "attacker-card-reference", "attacked-card-reference");
         verify(cardCollectionCardPort).saveCollectionCard(attackerCard);
         verify(userAccountPersistencePort).saveUserInDb(user);
-        assertEquals(2, attackerCard.getLevel());
+        assertEquals(1 + CardCollectionCard.LVL_GRANTED, attackerCard.getLevel());
         assertEquals(0, attackerCard.getXp());
     }
 
@@ -273,7 +273,7 @@ public class CollectionCardFighterServiceTest {
                 "valid-username",
                 1L,
                 "user-reference",
-                4,
+                BusinessUserClientInfo.WIN_NEEDED_TO_WIN_COIN - 1,
                 null,
                 null,
                 0L
@@ -300,7 +300,7 @@ public class CollectionCardFighterServiceTest {
         collectionCardFighterService.launchFightBetweenTwoCards("valid-username", "valid-username", "attacker-card-reference", "attacked-card-reference");
         verify(cardCollectionCardPort).saveCollectionCard(attackerCard);
         verify(userAccountPersistencePort).saveUserInDb(user);
-        assertEquals(1, (long) user.getBusinessUserCCCoinWallet());
-        assertEquals(5, (int) user.getBusinessUserCountWin());
+        assertEquals((int) BusinessUserClientInfo.COIN_GRANTED, (long) user.getBusinessUserCCCoinWallet());
+        assertEquals((int) BusinessUserClientInfo.WIN_NEEDED_TO_WIN_COIN, (int) user.getBusinessUserCountWin());
     }
 }

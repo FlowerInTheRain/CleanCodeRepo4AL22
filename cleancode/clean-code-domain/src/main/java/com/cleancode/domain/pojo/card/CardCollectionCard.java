@@ -28,6 +28,12 @@ public class CardCollectionCard {
 
     String specialty;
 
+    public static final Integer XP_GRANTED = 1;
+    public static final Integer XP_FOR_LVL_UP = 5;
+    public static final Integer LVL_GRANTED = 1;
+    public static final Integer LVL_MAX = 100;
+    public static final Double RATIO_STAT_UPGRADE = 1.1;
+
     public CardCollectionCard(Long cardId, Long collectionId, String cardCollectionCardReference, String heroName, String specialty, Long lifePoints, Long power, Long armor, int xp, int level, CardRarityEnum rarity) {
         this.cardId = cardId;
         this.collectionId = collectionId;
@@ -110,19 +116,19 @@ public class CardCollectionCard {
         this.xp = xp;
     }
 
-    public void add_xp(int xp) {
-        this.xp += xp;
-        while (this.xp >= 5 && this.level < 100) {
+    public void add_xp() {
+        this.xp += CardCollectionCard.XP_GRANTED;
+        while (this.xp >= CardCollectionCard.XP_FOR_LVL_UP && this.level < CardCollectionCard.LVL_MAX) {
             this.level_up();
         }
     }
 
     private void level_up() {
-        this.xp -= 5;
-        this.level += 1;
-        this.armor = ((Double) (this.armor * 1.1)).longValue();
-        this.lifePoints = ((Double) (this.lifePoints * 1.1)).longValue();
-        this.power = ((Double) (this.power * 1.1)).longValue();
+        this.xp -= CardCollectionCard.XP_FOR_LVL_UP;
+        this.level += CardCollectionCard.LVL_GRANTED;
+        this.armor = ((Double) (this.armor * CardCollectionCard.RATIO_STAT_UPGRADE)).longValue();
+        this.lifePoints = ((Double) (this.lifePoints * CardCollectionCard.RATIO_STAT_UPGRADE)).longValue();
+        this.power = ((Double) (this.power * CardCollectionCard.RATIO_STAT_UPGRADE)).longValue();
     }
 
     public int getLevel() {
