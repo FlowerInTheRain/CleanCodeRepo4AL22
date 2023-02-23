@@ -1,4 +1,4 @@
-package com.esgi.cleancode.bootstrap;
+package com.cleancode.cleancodebootstrap;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;

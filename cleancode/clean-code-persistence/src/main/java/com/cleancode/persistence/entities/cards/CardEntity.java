@@ -1,11 +1,7 @@
 package com.cleancode.persistence.entities.cards;
 
 
-import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
-import com.cleancode.domain.enums.rarities.CardNameEnum;
-import com.cleancode.domain.enums.rarities.CardRarityEnum;
 import com.cleancode.persistence.entities.cardcollectioncards.CardCollectionCards;
-import com.cleancode.persistence.entities.cardcollections.CardCollectionsEntity;
 import lombok.Getter;
 import lombok.Setter;
 

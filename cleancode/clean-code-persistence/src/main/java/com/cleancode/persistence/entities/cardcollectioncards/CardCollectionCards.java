@@ -1,15 +1,11 @@
 package com.cleancode.persistence.entities.cardcollectioncards;
 
 import com.cleancode.persistence.entities.CompositeCardCollectionCardsKey;
-import com.cleancode.persistence.entities.cardcollections.CardCollectionsEntity;
-import com.cleancode.persistence.entities.cards.CardEntity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
-import jakarta.persistence.OneToMany;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class CardCollectionCards {
