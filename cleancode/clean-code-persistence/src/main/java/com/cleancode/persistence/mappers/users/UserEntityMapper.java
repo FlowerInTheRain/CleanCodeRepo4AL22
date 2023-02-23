@@ -16,6 +16,7 @@ public interface UserEntityMapper {
             @Mapping(source = "technicalId", target = "id"),
             @Mapping(source = "userCardCollection", target = "userCardCollection"),
             @Mapping(source = "businessUserCCCoinWallet", target = "CCCoinWallet"),
+            @Mapping(source = "businessUserCountWin", target = "winCount"),
 
     })
     UsersEntity fromBsToDb(BusinessUserClientInfo userClientInfo);
@@ -25,6 +26,7 @@ public interface UserEntityMapper {
             @Mapping(source = "userReference", target = "businessReference"),
             @Mapping(source = "userCardCollection", target = "userCardCollection"),
             @Mapping(source = "CCCoinWallet", target = "businessUserCCCoinWallet"),
+            @Mapping(source = "winCount", target = "businessUserCountWin"),
     })
     BusinessUserClientInfo fromDbToBs(UsersEntity userClientInfo);
 }

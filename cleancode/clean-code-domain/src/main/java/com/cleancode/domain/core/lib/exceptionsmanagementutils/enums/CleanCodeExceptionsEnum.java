@@ -7,6 +7,14 @@ public enum CleanCodeExceptionsEnum {
             ComponentsEnum.Clean_Code_DB,
             "An error occurred while performing the action",
             HttpStatus.REQUEST_TIMEOUT),
+    DB_COMPONENT_INVALID_USERNAME(
+            ComponentsEnum.Clean_Code_BS,
+            "User do not exist",
+            HttpStatus.BAD_REQUEST),
+    DB_COMPONENT_INVALID_CARD_REFERENCE(
+            ComponentsEnum.Clean_Code_BS,
+            "Card do not exist",
+            HttpStatus.BAD_REQUEST),
     BS_COMPONENT_USERNAME_ALREADY_TAKEN(
             ComponentsEnum.Clean_Code_BS,
             "UserName is already taken",
@@ -22,7 +30,12 @@ public enum CleanCodeExceptionsEnum {
 
     DOMAIN_PAS_DE_MOULA(ComponentsEnum.Clean_Code_BS,
             "T'es fauché gros",
-                                  HttpStatus.NOT_ACCEPTABLE);
+                                  HttpStatus.NOT_ACCEPTABLE),
+
+    DOMAIN_CANT_ATTACK_LOWER_LVL(
+            ComponentsEnum.Clean_Code_BS,
+            "Faut pas taper les petit",
+            HttpStatus.NOT_ACCEPTABLE);
 
     private final ComponentsEnum component;
     private final String userMessageToDisplay;

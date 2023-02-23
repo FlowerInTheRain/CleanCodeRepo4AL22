@@ -23,6 +23,8 @@ public class CardCollectionCards {
     @JoinColumn(name = "COLLECTION_ID")
     Long collection;
 
+    String cardCollectionCardReference;
+
     Long lifePoints;
 
     Long power;
@@ -33,6 +35,15 @@ public class CardCollectionCards {
 
     Long level;
 
+    String specialty;
+
+    public String getCardCollectionCardReference() {
+        return cardCollectionCardReference;
+    }
+
+    public void setCardCollectionCardReference(String cardCollectionCardReference) {
+        this.cardCollectionCardReference = cardCollectionCardReference;
+    }
 
     public CompositeCardCollectionCardsKey getId() {
         return id;
@@ -96,6 +107,14 @@ public class CardCollectionCards {
 
     public void setLevel(Long level) {
         this.level = level;
+    }
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
     }
 
     @Override

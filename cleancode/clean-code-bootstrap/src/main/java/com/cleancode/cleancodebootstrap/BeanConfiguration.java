@@ -3,6 +3,8 @@ package com.cleancode.cleancodebootstrap;
 import com.cleancode.domain.ports.in.card.CardCreator;
 import com.cleancode.domain.ports.in.card.CardFinder;
 import com.cleancode.domain.ports.in.cardpack.CardPackOpener;
+import com.cleancode.domain.ports.in.collectioncard.CollectionCardFighter;
+import com.cleancode.domain.ports.in.collectioncard.CollectionCardFinder;
 import com.cleancode.domain.ports.in.user.AccountCreator;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
@@ -13,6 +15,8 @@ import com.cleancode.domain.services.account.AccountCreatorService;
 import com.cleancode.domain.services.card.CardCreatorService;
 import com.cleancode.domain.services.card.CardFinderService;
 import com.cleancode.domain.services.cardpack.CardPackOpenerService;
+import com.cleancode.domain.services.collectioncard.CollectionCardFighterService;
+import com.cleancode.domain.services.collectioncard.CollectionCardFinderService;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -48,5 +52,15 @@ public class BeanConfiguration {
     @Bean
     CardFinder cardFinder(CardPersistencePort cardCollectionRepository){
         return new CardFinderService(cardCollectionRepository);
+    }
+
+    @Bean
+    CollectionCardFinder collectionCardFinder(CardCollectionCardPort cardCollectionCardPort){
+        return new CollectionCardFinderService(cardCollectionCardPort);
+    }
+
+    @Bean
+    CollectionCardFighter collectionCardFighter(CardCollectionCardPort cardCollectionCardPort, UserAccountPersistencePort accountPersistencePort){
+        return new CollectionCardFighterService(cardCollectionCardPort, accountPersistencePort);
     }
 }
