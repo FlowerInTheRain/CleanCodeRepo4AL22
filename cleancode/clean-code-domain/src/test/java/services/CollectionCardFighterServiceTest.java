@@ -2,11 +2,12 @@ package services;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.domain.enums.rarities.CardRarityEnum;
+import com.cleancode.domain.pojo.enums.rarities.CardRarityEnum;
 import com.cleancode.domain.pojo.card.CardCollectionCard;
 import com.cleancode.domain.pojo.cardcollection.CardCollection;
 import com.cleancode.domain.pojo.fight.Opponent;
 import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
+import com.cleancode.domain.ports.in.collectioncard.CollectionCardFighter;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.cleancode.domain.services.collectioncard.CollectionCardFighterService;
@@ -14,6 +15,7 @@ import com.jnape.palatable.lambda.adt.Maybe;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -29,7 +31,8 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class CollectionCardFighterServiceTest {
 
-    private CollectionCardFighterService collectionCardFighterService;
+    @InjectMocks
+    private CollectionCardFighter collectionCardFighterService;
 
     @Mock
     private CardCollectionCardPort cardCollectionCardPort;

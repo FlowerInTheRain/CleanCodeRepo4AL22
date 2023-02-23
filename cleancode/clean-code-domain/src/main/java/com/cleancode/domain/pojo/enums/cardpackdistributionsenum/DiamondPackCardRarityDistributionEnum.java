@@ -1,12 +1,12 @@
-package com.cleancode.cleancodeapi.enums.cardpackdistributionsenum;
+package com.cleancode.domain.pojo.enums.cardpackdistributionsenum;
 
-import com.cleancode.cleancodeapi.enums.interfaces.cardraritydistribution.CardRarityDistributionEnumInterface;
-import com.cleancode.cleancodeapi.enums.rarities.RaritiesEnum;
+import com.cleancode.domain.pojo.enums.cardpackdistributionsenum.interfaces.CardRarityDistributionEnumInterface;
+import com.cleancode.domain.pojo.enums.rarities.RaritiesEnum;
 
 public enum DiamondPackCardRarityDistributionEnum implements CardRarityDistributionEnumInterface {
     DIAMOND_PACK_COMMON_CARD(RaritiesEnum.COMMON,0.5),
     DIAMOND_PACK_RARE_CARD(RaritiesEnum.RARE,0.85),
-    DIAMOND_PACK_UNIQUE_CARD(RaritiesEnum.RARE,0.15);
+    DIAMOND_PACK_LEGENDARY_CARD(RaritiesEnum.LEGENDARY, 1.0);
 
     private final RaritiesEnum cardRarityEnum;
     private final double maxProbability;
@@ -22,10 +22,7 @@ public enum DiamondPackCardRarityDistributionEnum implements CardRarityDistribut
     }
 
     @Override
-    public double getMaxProbability() {
-        return maxProbability;
-    }
-
+    public double getMaxProbability(){return this.maxProbability;}
 
     public String toString() {
         return "SilverPackCardRarityEnum{" +

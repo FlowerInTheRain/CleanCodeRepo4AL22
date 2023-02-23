@@ -2,7 +2,7 @@ package com.cleancode.domain.services.collectioncard;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
+import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
 import com.cleancode.domain.pojo.card.CardCollectionCard;
 import com.cleancode.domain.pojo.cardcollection.CardCollection;
 import com.cleancode.domain.pojo.fight.Opponent;
@@ -59,7 +59,7 @@ public class CollectionCardFighterService implements CollectionCardFighter {
     }
 
     private void addReward(CardCollectionCard card, BusinessUserClientInfo user) {
-        card.add_xp();
+        card.addXp();
         user.addBusinessUserCountWin();
         cardCollectionCardPort.saveCollectionCard(card);
         userAccountPersistencePort.saveUserInDb(user);

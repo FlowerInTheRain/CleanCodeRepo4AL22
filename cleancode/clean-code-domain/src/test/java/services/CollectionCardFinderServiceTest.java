@@ -1,7 +1,7 @@
 package services;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.domain.enums.rarities.CardRarityEnum;
+import com.cleancode.domain.pojo.enums.rarities.CardRarityEnum;
 import com.cleancode.domain.pojo.card.CardCollectionCard;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.services.collectioncard.CollectionCardFinderService;
@@ -15,7 +15,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;

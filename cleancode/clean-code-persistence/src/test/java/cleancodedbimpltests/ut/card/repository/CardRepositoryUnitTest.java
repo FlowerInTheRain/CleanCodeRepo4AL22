@@ -1,10 +1,9 @@
 package cleancodedbimpltests.ut.card.repository;
 
-import com.cleancode.domain.enums.cards.CardSpecialtyEnum;
-import com.cleancode.domain.enums.rarities.CardNameEnum;
-import com.cleancode.domain.enums.rarities.CardRarityEnum;
+import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
+import com.cleancode.domain.pojo.enums.rarities.CardNameEnum;
+import com.cleancode.domain.pojo.enums.rarities.CardRarityEnum;
 import com.cleancode.domain.pojo.card.Card;
-import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.persistence.adapters.card.CardPersistenceSpi;
 import com.cleancode.persistence.entities.cards.CardEntity;
 import com.cleancode.persistence.repositories.card.CardRepository;

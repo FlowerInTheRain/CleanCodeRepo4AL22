@@ -1,4 +1,4 @@
-package com.cleancode.domain.enums.rarities;
+package com.cleancode.domain.pojo.enums.rarities;
 
 import java.util.function.DoubleUnaryOperator;
 

@@ -4,10 +4,10 @@ import com.cleancode.domain.core.lib.businessreferenceutils.businessidgeneratoru
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.core.lib.formatutils.uuidformatterutils.UUIDFormatter;
-import com.cleancode.domain.enums.rarities.CardPackRaritiesEnum;
-import com.cleancode.domain.enums.rarities.CardPacksEnum;
-import com.cleancode.domain.enums.rarities.CardRarityEnum;
-import com.cleancode.domain.enums.rarities.RaritiesEnum;
+import com.cleancode.domain.pojo.enums.rarities.CardPackRaritiesEnum;
+import com.cleancode.domain.pojo.enums.rarities.CardPacksEnum;
+import com.cleancode.domain.pojo.enums.rarities.CardRarityEnum;
+import com.cleancode.domain.pojo.enums.rarities.RaritiesEnum;
 import com.cleancode.domain.pojo.card.Card;
 import com.cleancode.domain.pojo.card.CardCollectionCard;
 import com.cleancode.domain.pojo.card.CardSpecialty;
@@ -68,7 +68,7 @@ public class CardPackOpenerService implements CardPackOpener {
         if(isUserAbleToBuyPack(CardPackRaritiesEnum.DIAMOND, foundUser.getBusinessUserCCCoinWallet())){
             var newWallet = processPayment(CardPackRaritiesEnum.DIAMOND,  foundUser);
             foundUser.setBusinessUserCCCoinWallet(newWallet);
-            cardPack.addAll(0,generateCardPack(CardPacksEnum.DIAMOND, foundUser, probabilities.getSilverProbabilitiesMap()));
+            cardPack.addAll(0,generateCardPack(CardPacksEnum.DIAMOND, foundUser, probabilities.getDiamondProbabilitiesMap()));
             enrichUserCardCollection(foundUser, cardPack);
             userAccountPersistencePort.saveUserInDb(foundUser);
             return cardPack;
