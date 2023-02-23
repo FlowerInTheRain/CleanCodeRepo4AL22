@@ -1,6 +1,6 @@
 package com.cleancode.domain.pojo.card;
 
-import com.cleancode.domain.enums.rarities.CardRarityEnum;
+import com.cleancode.domain.pojo.enums.rarities.CardRarityEnum;
 
 import java.util.Objects;
 
@@ -116,14 +116,14 @@ public class CardCollectionCard {
         this.xp = xp;
     }
 
-    public void add_xp() {
+    public void addXp() {
         this.xp += CardCollectionCard.XP_GRANTED;
         while (this.xp >= CardCollectionCard.XP_FOR_LVL_UP && this.level < CardCollectionCard.LVL_MAX) {
-            this.level_up();
+            this.levelUp();
         }
     }
 
-    private void level_up() {
+    private void levelUp() {
         this.xp -= CardCollectionCard.XP_FOR_LVL_UP;
         this.level += CardCollectionCard.LVL_GRANTED;
         this.armor = ((Double) (this.armor * CardCollectionCard.RATIO_STAT_UPGRADE)).longValue();

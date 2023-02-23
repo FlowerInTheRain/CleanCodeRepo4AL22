@@ -1,4 +1,4 @@
-package com.cleancode.domain.enums.cards;
+package com.cleancode.domain.pojo.enums.cards;
 
 
 import com.cleancode.domain.pojo.card.CardSpecialty;

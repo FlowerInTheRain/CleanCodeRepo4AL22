@@ -1,7 +1,7 @@
-package com.cleancode.domain.enums.cardpackdistributionsenum;
+package com.cleancode.domain.pojo.enums.cardpackdistributionsenum;
 
-import com.cleancode.domain.enums.cardpackdistributionsenum.interfaces.CardRarityDistributionEnumInterface;
-import com.cleancode.domain.enums.rarities.RaritiesEnum;
+import com.cleancode.domain.pojo.enums.cardpackdistributionsenum.interfaces.CardRarityDistributionEnumInterface;
+import com.cleancode.domain.pojo.enums.rarities.RaritiesEnum;
 
 public enum SilverPackCardRarityDistributionEnum implements CardRarityDistributionEnumInterface {
 

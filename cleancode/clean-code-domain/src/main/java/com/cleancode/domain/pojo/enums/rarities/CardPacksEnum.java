@@ -1,6 +1,4 @@
-package com.cleancode.domain.enums.rarities;
-
-import com.cleancode.domain.enums.rarities.CardPackRaritiesEnum;
+package com.cleancode.domain.pojo.enums.rarities;
 
 import java.util.function.LongUnaryOperator;
 
