@@ -31,7 +31,6 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class CollectionCardFighterServiceTest {
 
-    @InjectMocks
     private CollectionCardFighter collectionCardFighterService;
 
     @Mock
