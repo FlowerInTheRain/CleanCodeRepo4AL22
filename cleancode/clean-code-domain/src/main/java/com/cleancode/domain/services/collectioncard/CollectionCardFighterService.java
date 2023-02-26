@@ -2,11 +2,13 @@ package com.cleancode.domain.services.collectioncard;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
+import com.cleancode.domain.pojo.BattleHistory;
 import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
 import com.cleancode.domain.pojo.card.CardCollectionCard;
 import com.cleancode.domain.pojo.cardcollection.CardCollection;
 import com.cleancode.domain.pojo.fight.Opponent;
 import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
+import com.cleancode.domain.ports.in.battlehistory.BattleHistoryOperations;
 import com.cleancode.domain.ports.in.collectioncard.CollectionCardFighter;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
@@ -22,9 +24,12 @@ public class CollectionCardFighterService implements CollectionCardFighter {
     private final CardCollectionCardPort cardCollectionCardPort;
     private final UserAccountPersistencePort userAccountPersistencePort;
 
-    public CollectionCardFighterService(CardCollectionCardPort cardCollectionCardPort, UserAccountPersistencePort userAccountPersistencePort) {
+    private final BattleHistoryOperations battleHistoryOperations;
+
+    public CollectionCardFighterService(CardCollectionCardPort cardCollectionCardPort, UserAccountPersistencePort userAccountPersistencePort, BattleHistoryOperations battleHistoryOperations) {
         this.cardCollectionCardPort = cardCollectionCardPort;
         this.userAccountPersistencePort = userAccountPersistencePort;
+        this.battleHistoryOperations = battleHistoryOperations;
     }
 
     @Override
@@ -37,16 +42,23 @@ public class CollectionCardFighterService implements CollectionCardFighter {
             throw new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_CARD_REFERENCE);
         }
         Long lifePointAttacker = cardAttacker.getLifePoints();
-        Long lifePointAttacked = cardAttacked.getLifePoints();
         if (cardAttacked.getLevel() < cardAttacker.getLevel()) {
             throw new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_CANT_ATTACK_LOWER_LVL);
         }
-        if (this.isWin(cardAttacker, cardAttacked)) {
+        BattleHistory battleHistoryToSave;
+        if (isWin(cardAttacker, cardAttacked)) {
             cardAttacker.setLifePoints(lifePointAttacker);
             this.addReward(cardAttacker, userAttacker);
+            battleHistoryToSave = BattleHistory.createOne(attacker, attacked, attacker);
+            battleHistoryOperations.registerUserBattleHistory(battleHistoryToSave);
             return cardAttacker;
+        } else {
+            cardAttacker.setLifePoints(lifePointAttacker);
+            this.addReward(cardAttacked, userAttacked);
+            battleHistoryToSave = BattleHistory.createOne(attacker, attacked, attacked);
+            battleHistoryOperations.registerUserBattleHistory(battleHistoryToSave);
+            return cardAttacked;
         }
-        return cardAttacked;
     }
 
     private CardCollectionCard getCardCollectionCard(CardCollection cardCollectionCard, String cardReference) {

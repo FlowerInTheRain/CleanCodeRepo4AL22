@@ -7,6 +7,7 @@ import com.cleancode.domain.pojo.card.CardCollectionCard;
 import com.cleancode.domain.pojo.cardcollection.CardCollection;
 import com.cleancode.domain.pojo.fight.Opponent;
 import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
+import com.cleancode.domain.ports.in.battlehistory.BattleHistoryOperations;
 import com.cleancode.domain.ports.in.collectioncard.CollectionCardFighter;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
@@ -40,10 +41,13 @@ public class CollectionCardFighterServiceTest {
 
     @Mock
     private UserAccountPersistencePort userAccountPersistencePort;
+
+    @Mock
+    private BattleHistoryOperations battleHistoryOperations;
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        collectionCardFighterService = new CollectionCardFighterService(cardCollectionCardPort, userAccountPersistencePort);
+        collectionCardFighterService = new CollectionCardFighterService(cardCollectionCardPort, userAccountPersistencePort, battleHistoryOperations);
     }
 
     @Test(expected = CleanCodeException.class)

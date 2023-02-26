@@ -16,7 +16,7 @@ import com.cleancode.domain.ports.in.cardpack.CardPackOpener;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
-import com.cleancode.domain.services.Probabilities;
+import com.cleancode.domain.services.probabilities.Probabilities;
 import com.google.common.collect.ImmutableSortedMap;
 import com.jnape.palatable.lambda.adt.Maybe;
 

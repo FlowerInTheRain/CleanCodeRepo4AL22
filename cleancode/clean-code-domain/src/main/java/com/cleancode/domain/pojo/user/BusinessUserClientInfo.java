@@ -12,7 +12,7 @@ public class BusinessUserClientInfo extends BusinessUserInfo {
     private Timestamp clientCreationDate;
     private CardCollection userCardCollection;
 
-    public static final Integer WIN_NEEDED_TO_WIN_COIN = 1;
+    public static final Integer WIN_NEEDED_TO_WIN_COIN = 5;
     public static final Integer COIN_GRANTED = 1;
 
     public BusinessUserClientInfo(String userName, Long technicalId, String businessReference, Integer businessUserCountWin, Timestamp clientCreationDate, CardCollection userCardCollection,
