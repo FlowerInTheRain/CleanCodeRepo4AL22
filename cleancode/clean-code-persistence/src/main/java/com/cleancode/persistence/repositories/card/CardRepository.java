@@ -16,4 +16,6 @@ public interface CardRepository extends JpaRepository<CardEntity, Long> {
 
 
     List<CardEntity> findAll();
+
+
 }

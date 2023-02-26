@@ -32,7 +32,7 @@ import static org.mockito.Mockito.when;
 public class CollectionCardFighterServiceTest {
 
     @InjectMocks
-    private CollectionCardFighter collectionCardFighterService;
+    private CollectionCardFighterService collectionCardFighterService;
 
     @Mock
     private CardCollectionCardPort cardCollectionCardPort;

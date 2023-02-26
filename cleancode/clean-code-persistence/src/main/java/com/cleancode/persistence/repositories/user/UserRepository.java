@@ -9,6 +9,4 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<UsersEntity, Long> {
     UsersEntity findByUserName(String userName);
 
-    @Override
-    <S extends UsersEntity> S save(S entity);
 }
