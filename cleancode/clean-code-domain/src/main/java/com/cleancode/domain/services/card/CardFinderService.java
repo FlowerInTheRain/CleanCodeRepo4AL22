@@ -24,10 +24,10 @@ public class CardFinderService implements CardFinder {
 
         try {
             List<Card> cards = cardPersistencePort.findAllCards();
-            LOGGER.log(Level.INFO, " Returned List businessCardCreateInfos : " + cards);
+            LOGGER.log(Level.INFO, String.format(" Returned List businessCardCreateInfos : %s", cards));
             return cards;
         } catch (Exception e){
-            LOGGER.log(Level.WARNING, "Error while connecting to db : " + e.getMessage());
+            LOGGER.log(Level.WARNING, String.format("Error while connecting to db : %s", e.getMessage()));
         }
         throw handleDBImplQueryExceptions(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT);
     }

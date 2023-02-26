@@ -42,7 +42,7 @@ public class AccountCreatorService implements AccountCreator {
         UserAccountOperationUtils.handleInitBusinessUserCardCollection(userFromApi.getCollectionName(), newAccount);
             try {
                 Maybe<BusinessUserClientInfo> returnedBusinessUserClientInfo = userAccountPersistencePort.saveUserInDb(newAccount);
-                LOGGER.log(Level.INFO, "UserFromApi User : " + userFromApi + " Returned user : " + returnedBusinessUserClientInfo);
+                LOGGER.log(Level.INFO, String.format("UserFromApi User : %s Returned user : %s", userFromApi, returnedBusinessUserClientInfo));
                 return  returnedBusinessUserClientInfo.orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_EMPTY_ACCOUNT_OPTIONAL));
             } catch (Exception cardCollectionCreationException){
                 UserAccountOperationUtils.revertReferenceAndCreationDateAttributionOnDbErrorForNonExistingUsers(newAccount);
@@ -52,7 +52,7 @@ public class AccountCreatorService implements AccountCreator {
     }
 
     private void handleDBImplQueryExceptions(Exception initialException) throws CleanCodeException {
-        LOGGER.log(Level.SEVERE, "Critical error while saving user" + initialException.toString());
+        LOGGER.log(Level.SEVERE, String.format("Critical error while saving user %s", initialException.toString()));
         throw new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_CONNEXION_TIMEOUT);
     }
 }

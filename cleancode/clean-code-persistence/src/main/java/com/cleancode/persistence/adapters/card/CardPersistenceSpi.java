@@ -35,7 +35,7 @@ public class CardPersistenceSpi implements CardPersistencePort {
     public Card findOneCardByRarity(String rarity) {
         LOGGER.log(Level.INFO, "Calling DB service findOneCardByCardFunctionalId");
         CardEntity foundCard = cardRepository.findFirstByCardRarity(rarity);
-        LOGGER.log(Level.INFO, "Found Card : " + foundCard);
+        LOGGER.log(Level.INFO, String.format("Found Card : %s", foundCard));
         return Card.createOne(foundCard.getId(), foundCard.getCardReference(), CardRarityEnum.valueOf(foundCard.getCardRarity()), CardSpecialtyEnum.valueOf(foundCard.getCardSpecialty()), CardNameEnum.valueOf(foundCard.getCardName()), foundCard.getXp(), foundCard.getLevel());
     }
 
@@ -47,7 +47,7 @@ public class CardPersistenceSpi implements CardPersistencePort {
     public Optional<Card> saveCardInDb(Card cardToSave) {
         LOGGER.log(Level.INFO, "Calling DB service saveCard");
         CardEntity savedCard = cardRepository.save(CardEntityMapper.INSTANCE.fromBsToDb(cardToSave));
-        LOGGER.log(Level.INFO, "Saved Card : " + cardToSave + " Returned card : " + savedCard);
+        LOGGER.log(Level.INFO, String.format("Saved Card : %s Returned card : %s", cardToSave, savedCard));
         Card mappedCardToBsCard = CardEntityMapper.INSTANCE.fromDbToBs(savedCard);
         return Optional.ofNullable(mappedCardToBsCard);
     }
@@ -56,7 +56,7 @@ public class CardPersistenceSpi implements CardPersistencePort {
     public List<Card> findAllCards() {
         LOGGER.log(Level.INFO, "Calling DB service findAllCards");
         List<Card> foundCards = CardEntityMapper.INSTANCE.fromListDbToListBs(cardRepository.findAll());
-        LOGGER.log(Level.INFO, "Found Cards : " + foundCards);
+        LOGGER.log(Level.INFO, String.format("Found Cards : %s", foundCards));
         return foundCards;
     }
 }

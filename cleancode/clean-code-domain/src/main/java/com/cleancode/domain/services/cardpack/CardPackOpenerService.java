@@ -128,7 +128,7 @@ public class CardPackOpenerService implements CardPackOpener {
                 1,
                 card.getCardRarity());
         collectionCardsPort.saveCollectionCard(toSave);
-        LOGGER.log(Level.INFO,  "Added " + toSave + " card to " + userAccount.getUserCardCollection().getCollectionName() + " deck for user " + userAccount.getUserName());
+        LOGGER.log(Level.INFO,  String.format("Added %s card to %s deck for user %s", toSave, userAccount.getUserCardCollection().getCollectionName(), userAccount.getUserName()));
         return toSave;
     }
 }

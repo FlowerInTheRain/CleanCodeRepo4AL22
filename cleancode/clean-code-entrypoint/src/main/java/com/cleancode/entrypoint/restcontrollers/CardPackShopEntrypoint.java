@@ -34,7 +34,7 @@ public class CardPackShopEntrypoint {
     public List<CardPackResponse> buySilverCardPack(String userName) {
         LOGGER.log(Level.INFO, "Calling card pack shop");
         final var silverCardPack = cardPackOpener.openSilverCardPack(userName);
-        LOGGER.log(Level.INFO, "User " + userName + " successfully bought a silver pack" + silverCardPack);
+        LOGGER.log(Level.INFO, String.format("User %s successfully bought a silver pack %s", userName, silverCardPack));
         return CardCollectionCardsMapper.INSTANCE.fromDomain(silverCardPack);
     }
 
@@ -46,7 +46,7 @@ public class CardPackShopEntrypoint {
     public List<CardPackResponse> buyDiamondCardPack(String userName) {
         LOGGER.log(Level.INFO, "Calling card pack shop");
         final var diamondCardPack = cardPackOpener.openDiamondCardPack(userName);
-        LOGGER.log(Level.INFO, "User " + userName + " successfully bought a silver pack" + diamondCardPack);
+        LOGGER.log(Level.INFO, String.format("User %s successfully bought a silver pack %s", userName, diamondCardPack));
         return CardCollectionCardsMapper.INSTANCE.fromDomain(diamondCardPack);
     }
 }
