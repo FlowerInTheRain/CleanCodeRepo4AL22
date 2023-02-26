@@ -31,8 +31,8 @@ public class CollectionCardFighterService implements CollectionCardFighter {
     public CardCollectionCard launchFightBetweenTwoCards(Opponent attacker, Opponent attacked) throws CleanCodeException {
         BusinessUserClientInfo userAttacker = userAccountPersistencePort.findUserByUserName(attacker.getUserName()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
         BusinessUserClientInfo userAttacked = userAccountPersistencePort.findUserByUserName(attacked.getUserName()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
-        CardCollectionCard cardAttacker = this.getCardCollectionCard(userAttacker.getUserCardCollection(), attacker.getCardReference());
-        CardCollectionCard cardAttacked = this.getCardCollectionCard(userAttacked.getUserCardCollection(), attacked.getCardReference());
+        CardCollectionCard cardAttacker = cardCollectionCardPort.findByCardCollectionCardReference(attacker.getCardReference()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_CARD_REFERENCE));
+        CardCollectionCard cardAttacked = cardCollectionCardPort.findByCardCollectionCardReference(attacked.getCardReference()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_CARD_REFERENCE));
         if (cardAttacked == null || cardAttacker == null) {
             throw new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_CARD_REFERENCE);
         }
