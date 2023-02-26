@@ -1,12 +1,9 @@
 package com.cleancode.cleancodeapi.dto.cardcollection;
 
-import com.cleancode.domain.pojo.card.CardCollectionCard;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 import java.util.Objects;
 
-@JsonIgnoreProperties(value = {"collectionReference", "collectionCardList"})
 public record CardCollection(String collectionName, String collectionReference, List<CardCollectionCard> collectionCardList) {
 
     public static CardCollection createOne(String collectionName, String collectionReference, List<CardCollectionCard> collectionCardListFromService) {

@@ -6,22 +6,25 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class CardCollectionCards {
 
-    @EmbeddedId
-    CompositeCardCollectionCardsKey id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "COLLECTION_CARD_ID")
+    Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @MapsId("cardId")
     @JoinColumn(name = "CARD_ID")
-    Long card;
+    Long cardIdentifier;
 
-    @ManyToOne
+    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
     @MapsId("collectionId")
     @JoinColumn(name = "COLLECTION_ID")
-    Long collection;
+    Long collectionIdentifier;
 
     String cardCollectionCardReference;
 
@@ -37,6 +40,12 @@ public class CardCollectionCards {
 
     String specialty;
 
+    String rarity;
+
+    String heroName;
+
+
+
     public String getCardCollectionCardReference() {
         return cardCollectionCardReference;
     }
@@ -45,28 +54,29 @@ public class CardCollectionCards {
         this.cardCollectionCardReference = cardCollectionCardReference;
     }
 
-    public CompositeCardCollectionCardsKey getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(CompositeCardCollectionCardsKey id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Long getCard() {
-        return card;
+    public Long getCardIdentifier() {
+        return cardIdentifier;
     }
 
-    public void setCard(Long card) {
-        this.card = card;
+    public void setCardIdentifier(Long cardIdentifier) {
+        this.cardIdentifier = cardIdentifier;
     }
 
-    public Long getCollection() {
-        return collection;
+    public Long getCollectionIdentifier() {
+        return collectionIdentifier;
     }
 
-    public void setCollection(Long collection) {
-        this.collection = collection;
+    public void setCollectionIdentifier(Long collectionIdentifier) {
+        this.collectionIdentifier = collectionIdentifier;
     }
 
     public Long getLifePoints() {
@@ -117,30 +127,48 @@ public class CardCollectionCards {
         this.specialty = specialty;
     }
 
+    public String getRarity() {
+        return rarity;
+    }
+
+    public void setRarity(String rarity) {
+        this.rarity = rarity;
+    }
+
+    public String getHeroName() {
+        return heroName;
+    }
+
+    public void setHeroName(String heroName) {
+        this.heroName = heroName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         CardCollectionCards that = (CardCollectionCards) o;
-
-        if (xp != that.xp) return false;
-        if (level != that.level) return false;
-        if (!id.equals(that.id)) return false;
-        if (!card.equals(that.card)) return false;
-        return collection.equals(that.collection);
+        return Objects.equals(id, that.id) && Objects.equals(cardIdentifier, that.cardIdentifier) && Objects.equals(collectionIdentifier, that.collectionIdentifier) && Objects.equals(cardCollectionCardReference, that.cardCollectionCardReference) && Objects.equals(lifePoints, that.lifePoints) && Objects.equals(power, that.power) && Objects.equals(armor, that.armor) && Objects.equals(xp, that.xp) && Objects.equals(level, that.level) && Objects.equals(specialty, that.specialty);
     }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cardIdentifier, collectionIdentifier, cardCollectionCardReference, lifePoints, power, armor, xp, level, specialty);
+    }
 
     @Override
     public String toString() {
         return "CardCollectionCards{" +
                 "id=" + id +
-                ", card=" + card +
-                ", collection=" + collection +
+                ", cardIdentifier=" + cardIdentifier +
+                ", collectionIdentifier=" + collectionIdentifier +
+                ", cardCollectionCardReference='" + cardCollectionCardReference + '\'' +
+                ", lifePoints=" + lifePoints +
+                ", power=" + power +
+                ", armor=" + armor +
                 ", xp=" + xp +
                 ", level=" + level +
+                ", specialty='" + specialty + '\'' +
                 '}';
     }
 }

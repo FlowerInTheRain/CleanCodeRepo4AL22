@@ -7,10 +7,12 @@ import com.cleancode.domain.ports.in.cardpack.CardPackOpener;
 import com.cleancode.domain.ports.in.collectioncard.CollectionCardFighter;
 import com.cleancode.domain.ports.in.collectioncard.CollectionCardFinder;
 import com.cleancode.domain.ports.in.user.AccountCreator;
+import com.cleancode.domain.ports.in.user.UserFinder;
 import com.cleancode.domain.ports.out.BattleHistory.BattleHistoryPersistencePort;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
+import com.cleancode.domain.services.account.AccountFinderService;
 import com.cleancode.domain.services.battlehistory.BattleHistoryOperationsService;
 import com.cleancode.domain.services.probabilities.Probabilities;
 import com.cleancode.domain.services.probabilities.ProbabilityRanges;
@@ -70,5 +72,10 @@ public class BeanConfiguration {
     @Bean
     CollectionCardFighter collectionCardFighter(CardCollectionCardPort cardCollectionCardPort, UserAccountPersistencePort accountPersistencePort, BattleHistoryOperations battleHistoryOperations){
         return new CollectionCardFighterService(cardCollectionCardPort, accountPersistencePort, battleHistoryOperations );
+    }
+
+    @Bean
+    UserFinder userFinder( UserAccountPersistencePort accountPersistencePort){
+        return new AccountFinderService(accountPersistencePort );
     }
 }

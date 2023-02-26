@@ -17,7 +17,7 @@ public class CardCollectionsEntity implements Serializable {
     private String cardCollectionReference;
     @Column(name = "CARD_COLLECTION_NAME", nullable = false, length = 250)
     private String cardCollectionName;
-    @ManyToMany(mappedBy = "collection")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "collectionIdentifier")
     private List<CardCollectionCards> cardsInCollection;
 
     public Long getId() {

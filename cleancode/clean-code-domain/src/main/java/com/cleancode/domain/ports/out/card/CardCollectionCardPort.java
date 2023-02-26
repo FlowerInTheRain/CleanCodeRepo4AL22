@@ -12,7 +12,5 @@ public interface CardCollectionCardPort {
 
     List<CardCollectionCard> findAll();
 
-    Maybe<CardCollectionCard> findByCardIdAndCollectionId(Long card, Long collection);
-
     Maybe<CardCollectionCard> findByCardCollectionCardReference(String reference);
 }
