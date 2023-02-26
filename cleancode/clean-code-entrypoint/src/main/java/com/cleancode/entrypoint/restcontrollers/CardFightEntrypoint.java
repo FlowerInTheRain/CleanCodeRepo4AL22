@@ -27,7 +27,7 @@ public class CardFightEntrypoint {
             response = CardCollectionCard.class,
             notes = "Cards must exists")
     @ApiResponse(code=200, message="Fight Done")
-    @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public CardCollectionCard fight(@RequestBody FightRequest fightRequest) throws CleanCodeException {
 
         Opponent attacker = new Opponent(fightRequest.userNameAttaker, fightRequest.cardAttackerReference);

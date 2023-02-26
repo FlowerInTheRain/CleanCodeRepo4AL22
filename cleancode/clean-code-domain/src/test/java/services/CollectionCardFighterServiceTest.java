@@ -34,6 +34,7 @@ public class CollectionCardFighterServiceTest {
     @InjectMocks
     private CollectionCardFighterService collectionCardFighterService;
 
+
     @Mock
     private CardCollectionCardPort cardCollectionCardPort;
 
