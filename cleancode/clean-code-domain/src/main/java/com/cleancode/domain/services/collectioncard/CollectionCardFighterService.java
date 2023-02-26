@@ -41,7 +41,7 @@ public class CollectionCardFighterService implements CollectionCardFighter {
         if (cardAttacked.getLevel() < cardAttacker.getLevel()) {
             throw new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_CANT_ATTACK_LOWER_LVL);
         }
-        if (isWin(cardAttacker, cardAttacked)) {
+        if (this.isWin(cardAttacker, cardAttacked)) {
             cardAttacker.setLifePoints(lifePointAttacker);
             this.addReward(cardAttacker, userAttacker);
             return cardAttacker;

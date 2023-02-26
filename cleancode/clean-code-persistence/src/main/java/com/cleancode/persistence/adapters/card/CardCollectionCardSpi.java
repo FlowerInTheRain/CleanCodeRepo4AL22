@@ -35,7 +35,7 @@ public class CardCollectionCardSpi implements CardCollectionCardPort {
     public Maybe<CardCollectionCard> findByCardIdAndCollectionId(Long card, Long collection) {
         LOGGER.log(Level.INFO, "Calling DB service findByCardIdAndCollectionId");
         CardCollectionCards foundCollectionCard = repository.findByCardAndCollection(card, collection);
-        LOGGER.log(Level.INFO, "Found CollectionCard : " + foundCollectionCard);
+        LOGGER.log(Level.INFO, String.format("Found CollectionCard : %s", foundCollectionCard));
         CardCollectionCard mappedUserToBsUser = CardCollectionCardMapper.INSTANCE.fromCardCollectionCardsToCardCollectionCard(foundCollectionCard);
         return Maybe.maybe(mappedUserToBsUser);
     }
@@ -44,14 +44,14 @@ public class CardCollectionCardSpi implements CardCollectionCardPort {
     public Maybe<CardCollectionCard> findByCardCollectionCardReference(String reference) {
         LOGGER.log(Level.INFO, "Calling DB service findByCardCollectionCardReference");
         CardCollectionCards foundCollectionCard = repository.findByCardCollectionCardReference(reference);
-        LOGGER.log(Level.INFO, "Found CollectionCard : " + foundCollectionCard);
+        LOGGER.log(Level.INFO, String.format("Found CollectionCard : %s", foundCollectionCard));
         CardCollectionCard mappedUserToBsUser = CardCollectionCardMapper.INSTANCE.fromCardCollectionCardsToCardCollectionCard(foundCollectionCard);
         return Maybe.maybe(mappedUserToBsUser);
     }
 
     @Override
     public CardCollectionCard saveCollectionCard(CardCollectionCard collectionCardToSave) {
-        LOGGER.log(Level.INFO, "Calling DB service saveCollectionCard, Card : " + collectionCardToSave);
+        LOGGER.log(Level.INFO, String.format("Calling DB service saveCollectionCard, Card : %s", collectionCardToSave));
         CompositeCardCollectionCardsKey compositeKey = new CompositeCardCollectionCardsKey();
         compositeKey.setCardId(collectionCardToSave.getCardId());
         compositeKey.setCollectionId(collectionCardToSave.getCollectionId());

@@ -30,12 +30,12 @@ public class CardCreatorService implements CardCreator {
         }
         try {
             Optional<Card> cardEntity = cardPersistencePort.saveCardInDb(card);
-            LOGGER.log(Level.INFO, "BusinessCardCreateInfo businessCardCreateInfo : " + card + " Returned cardEntity : " + cardEntity);
+            LOGGER.log(Level.INFO, String.format("BusinessCardCreateInfo businessCardCreateInfo : %s Returned cardEntity : %s", card, cardEntity));
             if(cardEntity.isPresent()){
                 return cardEntity.get();
             }
         } catch (RuntimeException e){
-            LOGGER.log(Level.WARNING, "Error while connecting to db : " + e.getMessage());
+            LOGGER.log(Level.WARNING, String.format("Error while connecting to db : %s", e.getMessage()));
             card.setCardReference(null);
         }
         throw handleDBImplQueryExceptions();

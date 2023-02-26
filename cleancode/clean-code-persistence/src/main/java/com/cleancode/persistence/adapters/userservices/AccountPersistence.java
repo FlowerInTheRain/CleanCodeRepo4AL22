@@ -30,7 +30,7 @@ public class AccountPersistence implements UserAccountPersistencePort {
     public Maybe<BusinessUserClientInfo> findUserByUserName(String userName) {
         LOGGER.log(Level.INFO, "Calling DB service findOneUserByUserFunctionalId");
         UsersEntity foundUser = userRepository.findByUserName(userName);
-        LOGGER.log(Level.INFO, "Found User : " + foundUser);
+        LOGGER.log(Level.INFO, String.format("Found User : %s", foundUser));
         BusinessUserClientInfo mappedUserToBsUser = UserEntityMapper.INSTANCE.fromDbToBs(foundUser);
         return Maybe.maybe(mappedUserToBsUser);
     }
@@ -43,7 +43,7 @@ public class AccountPersistence implements UserAccountPersistencePort {
     public Maybe<BusinessUserClientInfo> saveUserInDb(BusinessUserClientInfo userToSave) {
         LOGGER.log(Level.INFO, "Calling DB service saveUser");
         UsersEntity savedUser = userRepository.save(UserEntityMapper.INSTANCE.fromBsToDb(userToSave));
-        LOGGER.log(Level.INFO, "Saved User : " + userToSave + " Returned user : " + savedUser);
+        LOGGER.log(Level.INFO, String.format("Saved User : %s Returned user : %s", userToSave, savedUser));
         BusinessUserClientInfo mappedUserToBsUser = UserEntityMapper.INSTANCE.fromDbToBs(savedUser);
         return Maybe.maybe(mappedUserToBsUser);
     }
