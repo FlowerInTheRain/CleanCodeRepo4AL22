@@ -16,7 +16,7 @@ public class CardCollectionsEntity implements Serializable {
     @Column(name = "CARD_COLLECTION_NAME", nullable = false, length = 250)
     private String cardCollectionName;
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "collectionId")
-    private List<CardCollectionCards> cardsInCollection;
+    private List<CardCollectionCardsEntity> cardsInCollection;
 
     public Long getId() {
         return id;
@@ -42,11 +42,11 @@ public class CardCollectionsEntity implements Serializable {
         this.cardCollectionName = cardCollectionName;
     }
 
-    public List<CardCollectionCards> getCardsInCollection() {
+    public List<CardCollectionCardsEntity> getCardsInCollection() {
         return cardsInCollection;
     }
 
-    public void setCardsInCollection(List<CardCollectionCards> cardsInCollection) {
+    public void setCardsInCollection(List<CardCollectionCardsEntity> cardsInCollection) {
         this.cardsInCollection = cardsInCollection;
     }
 

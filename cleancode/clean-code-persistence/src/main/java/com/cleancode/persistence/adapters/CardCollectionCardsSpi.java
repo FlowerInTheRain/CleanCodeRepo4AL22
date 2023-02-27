@@ -2,7 +2,7 @@ package com.cleancode.persistence.adapters;
 
 import com.cleancode.domain.pojo.CardCollectionCard;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
-import com.cleancode.persistence.entities.CardCollectionCards;
+import com.cleancode.persistence.entities.CardCollectionCardsEntity;
 import com.cleancode.persistence.mappers.CardCollectionCardMapper;
 import com.cleancode.persistence.repositories.CollectionCardsRepository;
 import com.jnape.palatable.lambda.adt.Maybe;
@@ -35,7 +35,7 @@ public class CardCollectionCardsSpi implements CardCollectionCardPort {
     @Override
     public Maybe<CardCollectionCard> findByCardCollectionCardReference(String reference) {
         LOGGER.log(Level.INFO, "Calling DB service findByCardCollectionCardReference");
-        CardCollectionCards foundCollectionCard = repository.findByCardCollectionCardReference(reference);
+        CardCollectionCardsEntity foundCollectionCard = repository.findByCardCollectionCardReference(reference);
         LOGGER.log(Level.INFO, String.format("Found CollectionCard : %s", foundCollectionCard));
         CardCollectionCard mappedUserToBsUser = CardCollectionCardMapper.INSTANCE.fromCardCollectionCardsToCardCollectionCard(foundCollectionCard);
         return Maybe.maybe(mappedUserToBsUser);
@@ -44,7 +44,7 @@ public class CardCollectionCardsSpi implements CardCollectionCardPort {
     @Override
     public CardCollectionCard saveCollectionCard(CardCollectionCard collectionCardToSave) {
         LOGGER.log(Level.INFO, String.format("Calling DB service saveCollectionCard, Card : %s", collectionCardToSave));
-        CardCollectionCards cardToSave = CardCollectionCardMapper.INSTANCE.fromCardCollectionCardToCardCollectionCards(collectionCardToSave);
+        CardCollectionCardsEntity cardToSave = CardCollectionCardMapper.INSTANCE.fromCardCollectionCardToCardCollectionCards(collectionCardToSave);
         cardToSave.setCardId(collectionCardToSave.getCardId());
         cardToSave.setCollectionId(collectionCardToSave.getCollectionId());
         repository.save(cardToSave);

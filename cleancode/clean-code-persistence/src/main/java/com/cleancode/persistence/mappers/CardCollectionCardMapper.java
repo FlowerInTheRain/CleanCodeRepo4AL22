@@ -1,7 +1,7 @@
 package com.cleancode.persistence.mappers;
 
 import com.cleancode.domain.pojo.CardCollectionCard;
-import com.cleancode.persistence.entities.CardCollectionCards;
+import com.cleancode.persistence.entities.CardCollectionCardsEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -12,9 +12,9 @@ public interface CardCollectionCardMapper {
 
     CardCollectionCardMapper INSTANCE = Mappers.getMapper(CardCollectionCardMapper.class);
 
-    List<CardCollectionCard> fromListCardCollectionCardsToListCardCollectionCard(List<CardCollectionCards> collectionCards);
+    List<CardCollectionCard> fromListCardCollectionCardsToListCardCollectionCard(List<CardCollectionCardsEntity> collectionCards);
 
-    CardCollectionCard fromCardCollectionCardsToCardCollectionCard(CardCollectionCards collectionCard);
+    CardCollectionCard fromCardCollectionCardsToCardCollectionCard(CardCollectionCardsEntity collectionCard);
 
-    CardCollectionCards fromCardCollectionCardToCardCollectionCards(CardCollectionCard collectionCard);
+    CardCollectionCardsEntity fromCardCollectionCardToCardCollectionCards(CardCollectionCard collectionCard);
 }

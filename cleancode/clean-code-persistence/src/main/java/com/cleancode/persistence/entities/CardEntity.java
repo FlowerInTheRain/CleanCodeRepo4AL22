@@ -39,7 +39,7 @@ public class CardEntity implements Serializable {
     private int level;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "cardId", cascade = CascadeType.ALL)
-    private List<CardCollectionCards> collectionCardList;
+    private List<CardCollectionCardsEntity> collectionCardList;
 
     public CardEntity(Long id, String cardReference, String rarity, String specialty, String name, int xp, int level) {
         this.id = id;

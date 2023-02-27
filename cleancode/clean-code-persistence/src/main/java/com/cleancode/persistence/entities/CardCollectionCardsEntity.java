@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class CardCollectionCards {
+public class CardCollectionCardsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -145,7 +145,7 @@ public class CardCollectionCards {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CardCollectionCards that = (CardCollectionCards) o;
+        CardCollectionCardsEntity that = (CardCollectionCardsEntity) o;
         return Objects.equals(id, that.id) && Objects.equals(cardId, that.cardId) && Objects.equals(collectionId, that.collectionId) && Objects.equals(cardCollectionCardReference, that.cardCollectionCardReference) && Objects.equals(lifePoints, that.lifePoints) && Objects.equals(power, that.power) && Objects.equals(armor, that.armor) && Objects.equals(xp, that.xp) && Objects.equals(level, that.level) && Objects.equals(specialty, that.specialty);
     }
 
