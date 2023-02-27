@@ -1,4 +1,4 @@
-package com.cleancode.domain.services;
+package com.cleancode.domain.services.probabilities;
 
 import com.cleancode.domain.pojo.enums.cardpackdistributionsenum.DiamondPackCardRarityDistributionEnum;
 import com.cleancode.domain.pojo.enums.cardpackdistributionsenum.SilverPackCardRarityDistributionEnum;

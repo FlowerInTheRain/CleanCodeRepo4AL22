@@ -15,21 +15,9 @@ public interface CardCollectionCardMapper {
 
     CardCollectionCardMapper INSTANCE = Mappers.getMapper(CardCollectionCardMapper.class);
 
-    @Mappings({
-            @Mapping(source="card", target="cardId"),
-            @Mapping(source="collection", target="collectionId"),
-    })
     List<CardCollectionCard> fromListCardCollectionCardsToListCardCollectionCard(List<CardCollectionCards> collectionCards);
 
-    @Mappings({
-            @Mapping(source="card", target="cardId"),
-            @Mapping(source="collection", target="collectionId"),
-    })
     CardCollectionCard fromCardCollectionCardsToCardCollectionCard(CardCollectionCards collectionCard);
 
-    @Mappings({
-            @Mapping(source="cardId", target="card"),
-            @Mapping(source="collectionId", target="collection"),
-    })
     CardCollectionCards fromCardCollectionCardToCardCollectionCards(CardCollectionCard collectionCard);
 }

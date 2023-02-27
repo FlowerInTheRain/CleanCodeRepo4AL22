@@ -9,9 +9,13 @@ INSERT INTO cards (card_reference, card_rarity, card_specialty, card_name, xp, l
 INSERT INTO card_collections (card_collection_id, card_collection_reference, card_collection_name) VALUES (1, '223e4567-e89b-42d3-a456-55664244', 'user1');
 INSERT INTO card_collections (card_collection_id, card_collection_reference, card_collection_name) VALUES (2, '223e4567-e89b-42d3-a456-55664245', 'user2');
 
-INSERT INTO users (user_reference, username, cccoin_wallet, win_count, creation_date, card_collection_id) VALUES ('323e4567-e89b-42d3-a456-55664241', 'user1', 4, 0, '2020-01-01', 1);
-INSERT INTO users (user_reference, username, cccoin_wallet, win_count, creation_date, card_collection_id) VALUES ('323e4567-e89b-42d3-a456-55664242', 'user2', 4, 0, '2020-01-01', 2);
+INSERT INTO users (user_reference, username, cccoin_wallet, win_count, creation_date, card_collection_id) VALUES ('323e4567-e89b-42d3-a456-55664241', 'user1', 4, 1, '2020-01-01', 1);
+INSERT INTO users (user_reference, username, cccoin_wallet, win_count, creation_date, card_collection_id) VALUES ('323e4567-e89b-42d3-a456-55664242', 'user2', 4, 2, '2020-01-01', 2);
 
-INSERT INTO CARD_COLLECTION_CARDS (CARD_ID, COLLECTION_ID, CARD_COLLECTION_CARD_REFERENCE, LIFE_POINTS, POWER, ARMOR, XP, LEVEL, SPECIALTY) VALUES (1, 1, '423e4567-e89b-42d3-a456-55664241', 1000, 100, 20, 0, 1, 'TANK');
-INSERT INTO CARD_COLLECTION_CARDS (CARD_ID, COLLECTION_ID, CARD_COLLECTION_CARD_REFERENCE, LIFE_POINTS, POWER, ARMOR, XP, LEVEL, SPECIALTY) VALUES (2, 1, '423e4567-e89b-42d3-a456-55664242', 700, 150, 10, 0, 1, 'MAGE');
-INSERT INTO CARD_COLLECTION_CARDS (CARD_ID, COLLECTION_ID, CARD_COLLECTION_CARD_REFERENCE, LIFE_POINTS, POWER, ARMOR, XP, LEVEL, SPECIALTY) VALUES (3, 2, '423e4567-e89b-42d3-a456-55664243', 800, 200, 5, 0, 1, 'ASSASSIN');
+
+INSERT INTO BATTLE_HISTORY (BATTLE_HISTORY_ID, ATTACKER_USERNAME, ATTACKER_CARD_REFERENCE, ATTACKED_USERNAME, ATTACKED_CARD_REFERENCE, WINNER) VALUES (1, 'user1', '423e4567-e89b-42d3-a456-55664241', 'user2', '423e4567-e89b-42d3-a456-55664243','user1');
+
+INSERT INTO BATTLE_HISTORY (BATTLE_HISTORY_ID, ATTACKER_USERNAME, ATTACKER_CARD_REFERENCE, ATTACKED_USERNAME, ATTACKED_CARD_REFERENCE, WINNER) VALUES (2, 'user1', '423e4567-e89b-42d3-a456-55664241', 'user2', '423e4567-e89b-42d3-a456-55664243','user2');
+
+INSERT INTO BATTLE_HISTORY (BATTLE_HISTORY_ID, ATTACKER_USERNAME, ATTACKER_CARD_REFERENCE, ATTACKED_USERNAME, ATTACKED_CARD_REFERENCE, WINNER) VALUES (3, 'user2', '423e4567-e89b-42d3-a456-55664243', 'user1', '423e4567-e89b-42d3-a456-55664241', 'user2');
+

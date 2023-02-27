@@ -3,7 +3,10 @@ package com.cleancode.persistence.adapters.userservices;
 import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.cleancode.persistence.entities.users.UsersEntity;
+import com.cleancode.persistence.mappers.cardcollections.CardCollectionEntityMapper;
+import com.cleancode.persistence.mappers.collectincard.CardCollectionCardMapper;
 import com.cleancode.persistence.mappers.users.UserEntityMapper;
+import com.cleancode.persistence.repositories.collectioncard.CollectionCardsRepository;
 import com.cleancode.persistence.repositories.user.UserRepository;
 import com.jnape.palatable.lambda.adt.Maybe;
 import org.springframework.stereotype.Service;
@@ -18,8 +21,11 @@ import java.util.logging.Logger;
 public class AccountPersistence implements UserAccountPersistencePort {
     private static final Logger LOGGER = Logger.getLogger(AccountPersistence.class.getName());
     private final UserRepository userRepository;
-    public AccountPersistence(UserRepository userRepository){
+
+    private final CollectionCardsRepository collectionCardsRepository;
+    public AccountPersistence(UserRepository userRepository, CollectionCardsRepository collectionCardsRepository){
         this.userRepository = userRepository;
+        this.collectionCardsRepository = collectionCardsRepository;
     }
 
     /**
@@ -30,6 +36,7 @@ public class AccountPersistence implements UserAccountPersistencePort {
     public Maybe<BusinessUserClientInfo> findUserByUserName(String userName) {
         LOGGER.log(Level.INFO, "Calling DB service findOneUserByUserFunctionalId");
         UsersEntity foundUser = userRepository.findByUserName(userName);
+
         LOGGER.log(Level.INFO, String.format("Found User : %s", foundUser));
         BusinessUserClientInfo mappedUserToBsUser = UserEntityMapper.INSTANCE.fromDbToBs(foundUser);
         return Maybe.maybe(mappedUserToBsUser);

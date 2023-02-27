@@ -31,14 +31,7 @@ public class CardCollectionCardSpi implements CardCollectionCardPort {
         return CardCollectionCardMapper.INSTANCE.fromListCardCollectionCardsToListCardCollectionCard(repository.findAll());
     }
 
-    @Override
-    public Maybe<CardCollectionCard> findByCardIdAndCollectionId(Long card, Long collection) {
-        LOGGER.log(Level.INFO, "Calling DB service findByCardIdAndCollectionId");
-        CardCollectionCards foundCollectionCard = repository.findByCardAndCollection(card, collection);
-        LOGGER.log(Level.INFO, String.format("Found CollectionCard : %s", foundCollectionCard));
-        CardCollectionCard mappedUserToBsUser = CardCollectionCardMapper.INSTANCE.fromCardCollectionCardsToCardCollectionCard(foundCollectionCard);
-        return Maybe.maybe(mappedUserToBsUser);
-    }
+
 
     @Override
     public Maybe<CardCollectionCard> findByCardCollectionCardReference(String reference) {
@@ -52,12 +45,10 @@ public class CardCollectionCardSpi implements CardCollectionCardPort {
     @Override
     public CardCollectionCard saveCollectionCard(CardCollectionCard collectionCardToSave) {
         LOGGER.log(Level.INFO, String.format("Calling DB service saveCollectionCard, Card : %s", collectionCardToSave));
-        CompositeCardCollectionCardsKey compositeKey = new CompositeCardCollectionCardsKey();
-        compositeKey.setCardId(collectionCardToSave.getCardId());
-        compositeKey.setCollectionId(collectionCardToSave.getCollectionId());
         CardCollectionCards cardToSave = CardCollectionCardMapper.INSTANCE.fromCardCollectionCardToCardCollectionCards(collectionCardToSave);
-        cardToSave.setId(compositeKey);
-        var savedCard = repository.save(cardToSave);
+        cardToSave.setCardIdentifier(collectionCardToSave.getCardId());
+        cardToSave.setCollectionIdentifier(collectionCardToSave.getCollectionId());
+        repository.save(cardToSave);
         return collectionCardToSave;
     }
 }
