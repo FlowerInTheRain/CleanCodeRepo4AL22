@@ -12,16 +12,22 @@ public class UsersEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID", nullable = false)
     private Long id;
+
     @Column(name="USER_REFERENCE", unique = true, nullable = false, length=32)
     private String userReference;
+
     @Column(name = "USERNAME", unique = true, nullable = false, length=32)
     private String userName;
+
     @Column(name="CCCOIN_WALLET", nullable = false)
     private Long ccCoinWallet = 4L;
+
     @Column(name="WIN_COUNT", nullable = false)
     private Integer winCount = 0;
+
     @Column(name="CREATION_DATE", nullable = false)
     private Timestamp creationDate = Timestamp.from(Instant.now());
+
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "CARD_COLLECTION_ID")
     private CardCollectionsEntity userCardCollection;

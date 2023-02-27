@@ -24,22 +24,31 @@ public class CardCollectionCardsEntity {
     @JoinColumn(name = "COLLECTION_ID")
     Long collectionId;
 
+    @Column(nullable = false)
     String cardCollectionCardReference;
 
+    @Column(nullable = false)
     Long lifePoints;
 
+    @Column(nullable = false)
     Long power;
 
+    @Column(nullable = false)
     Long armor;
 
+    @Column(nullable = false)
     Long xp;
 
+    @Column(nullable = false)
     Long level;
 
+    @Column(nullable = false)
     String specialty;
 
+    @Column(nullable = false)
     String rarity;
 
+    @Column(nullable = false)
     String heroName;
 
 
