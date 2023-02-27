@@ -1,7 +1,5 @@
 package com.cleancode.domain.pojo;
 
-import com.cleancode.domain.pojo.fight.Opponent;
-
 import java.util.Objects;
 
 public class BattleHistory {

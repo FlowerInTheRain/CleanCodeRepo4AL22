@@ -1,6 +1,6 @@
 package com.cleancode.domain.ports.out.card;
 
-import com.cleancode.domain.pojo.card.Card;
+import com.cleancode.domain.pojo.Card;
 
 import java.util.List;
 import java.util.Optional;

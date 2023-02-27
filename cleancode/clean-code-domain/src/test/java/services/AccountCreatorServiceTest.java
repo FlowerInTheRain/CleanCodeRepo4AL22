@@ -4,9 +4,9 @@ import com.cleancode.domain.core.lib.businessreferenceutils.businessidgeneratoru
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.core.lib.formatutils.uuidformatterutils.UUIDFormatter;
-import com.cleancode.domain.pojo.cardcollection.CardCollection;
-import com.cleancode.domain.pojo.user.AccountCreationCommand;
-import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
+import com.cleancode.domain.pojo.CardCollection;
+import com.cleancode.domain.pojo.AccountCreationCommand;
+import com.cleancode.domain.pojo.UserAccount;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.cleancode.domain.services.account.AccountCreatorService;
 import com.jnape.palatable.lambda.adt.Maybe;
@@ -33,11 +33,11 @@ public class AccountCreatorServiceTest {
     AccountCreatorService accountCreatorService;
 
     @Captor
-    ArgumentCaptor<BusinessUserClientInfo> accountCaptor;
+    ArgumentCaptor<UserAccount> accountCaptor;
 
     @Test
     public void shouldCreateAccountWithWalletAndInitCollection(){
-        BusinessUserClientInfo toSaveAndReturn = new BusinessUserClientInfo(
+        UserAccount toSaveAndReturn = new UserAccount(
                 "Sid",
                 1L,
                 UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, "").toString(),
@@ -48,7 +48,7 @@ public class AccountCreatorServiceTest {
         );
         AccountCreationCommand creationCommand = AccountCreationCommand.createOne("Sid","Sid Deck");
         when(userAccountPersistencePort.findUserByUserName(anyString())).thenReturn(Maybe.nothing());
-        when(userAccountPersistencePort.saveUserInDb(any(BusinessUserClientInfo.class))).thenReturn(Maybe.maybe(toSaveAndReturn));
+        when(userAccountPersistencePort.saveUserInDb(any(UserAccount.class))).thenReturn(Maybe.maybe(toSaveAndReturn));
 
         var createdAccount = accountCreatorService.saveUserAccount(creationCommand);
         verify(userAccountPersistencePort).saveUserInDb(accountCaptor.capture());
@@ -61,7 +61,7 @@ public class AccountCreatorServiceTest {
 
     @Test
     public void shouldThrowExceptionForExistingUserName(){
-        BusinessUserClientInfo toFindInDB = new BusinessUserClientInfo(
+        UserAccount toFindInDB = new UserAccount(
                 "Sid",
                 1L,
                 UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, "").toString(),

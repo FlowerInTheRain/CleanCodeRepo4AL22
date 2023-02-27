@@ -1,9 +1,9 @@
 package services;
 
 import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
-import com.cleancode.domain.pojo.enums.rarities.CardNameEnum;
+import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
 import com.cleancode.domain.pojo.enums.rarities.CardRarityEnum;
-import com.cleancode.domain.pojo.card.Card;
+import com.cleancode.domain.pojo.Card;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.services.card.CardFinderService;
 import org.junit.Rule;

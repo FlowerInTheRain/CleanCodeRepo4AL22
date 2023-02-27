@@ -1,7 +1,6 @@
 package com.cleancode.domain.ports.out.BattleHistory;
 
 import com.cleancode.domain.pojo.BattleHistory;
-import com.cleancode.domain.pojo.fight.Opponent;
 
 import java.util.List;
 

@@ -3,9 +3,9 @@ package com.cleancode.domain.services.account;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.core.lib.userserviceutils.UserAccountOperationUtils;
-import com.cleancode.domain.pojo.user.AccountCreationCommand;
-import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
-import com.cleancode.domain.ports.in.user.AccountCreator;
+import com.cleancode.domain.pojo.AccountCreationCommand;
+import com.cleancode.domain.pojo.UserAccount;
+import com.cleancode.domain.ports.in.account.AccountCreator;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.jnape.palatable.lambda.adt.Maybe;
 
@@ -25,12 +25,12 @@ public class AccountCreatorService implements AccountCreator {
      * @return something
      */
     @Override
-    public BusinessUserClientInfo saveUserAccount(AccountCreationCommand userFromApi) throws CleanCodeException {
+    public UserAccount saveUserAccount(AccountCreationCommand userFromApi) throws CleanCodeException {
         userAccountPersistencePort.findUserByUserName(userFromApi.getUserName())
                 .fmap(user -> {
                     throw new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_EMPTY_ACCOUNT_OPTIONAL);
                         });
-        BusinessUserClientInfo newAccount= new BusinessUserClientInfo(
+        UserAccount newAccount= new UserAccount(
                 userFromApi.getUserName(),
                 null,
                 null,
@@ -41,7 +41,7 @@ public class AccountCreatorService implements AccountCreator {
         UserAccountOperationUtils.handleBusinessUserReferenceCreation(newAccount);
         UserAccountOperationUtils.handleInitBusinessUserCardCollection(userFromApi.getCollectionName(), newAccount);
             try {
-                Maybe<BusinessUserClientInfo> returnedBusinessUserClientInfo = userAccountPersistencePort.saveUserInDb(newAccount);
+                Maybe<UserAccount> returnedBusinessUserClientInfo = userAccountPersistencePort.saveUserInDb(newAccount);
                 LOGGER.log(Level.INFO, String.format("UserFromApi User : %s Returned user : %s", userFromApi, returnedBusinessUserClientInfo));
                 return  returnedBusinessUserClientInfo.orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_EMPTY_ACCOUNT_OPTIONAL));
             } catch (Exception cardCollectionCreationException){

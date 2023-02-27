@@ -2,7 +2,7 @@ package com.cleancode.domain.services.collectioncard;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.domain.pojo.card.CardCollectionCard;
+import com.cleancode.domain.pojo.CardCollectionCard;
 import com.cleancode.domain.ports.in.collectioncard.CollectionCardFinder;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 

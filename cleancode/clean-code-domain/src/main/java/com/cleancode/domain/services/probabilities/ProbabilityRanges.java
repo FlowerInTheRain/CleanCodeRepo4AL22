@@ -1,7 +1,7 @@
 package com.cleancode.domain.services.probabilities;
 
-import com.cleancode.domain.pojo.enums.cardpackdistributionsenum.DiamondPackCardRarityDistributionEnum;
-import com.cleancode.domain.pojo.enums.cardpackdistributionsenum.SilverPackCardRarityDistributionEnum;
+import com.cleancode.domain.pojo.enums.cardpackdistributions.DiamondPackCardRarityDistributionEnum;
+import com.cleancode.domain.pojo.enums.cardpackdistributions.SilverPackCardRarityDistributionEnum;
 import com.cleancode.domain.pojo.enums.rarities.RaritiesEnum;
 import com.google.common.collect.ImmutableSortedMap;
 import com.google.common.collect.Ordering;

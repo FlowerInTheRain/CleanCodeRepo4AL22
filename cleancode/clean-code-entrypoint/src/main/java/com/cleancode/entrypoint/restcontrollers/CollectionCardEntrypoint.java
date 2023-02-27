@@ -1,10 +1,9 @@
 package com.cleancode.entrypoint.restcontrollers;
 
-import com.cleancode.cleancodeapi.dto.card.Card;
+import com.cleancode.cleancodeapi.dto.card.CardRequest;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.domain.pojo.card.CardCollectionCard;
+import com.cleancode.domain.pojo.CardCollectionCard;
 import com.cleancode.domain.ports.in.collectioncard.CollectionCardFinder;
-import com.jnape.palatable.lambda.adt.Maybe;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -27,7 +26,7 @@ public class CollectionCardEntrypoint {
     }
 
     @ApiOperation(value = "Find all cards",
-            response = Card.class)
+            response = CardRequest.class)
     @ApiResponse(code=200, message="Card found")
     @GetMapping(value = "/findAllCards", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CardCollectionCard> findAllCards() throws CleanCodeException {
@@ -35,7 +34,7 @@ public class CollectionCardEntrypoint {
     }
 
     @ApiOperation(value = "Find one card by reference",
-            response = Card.class)
+            response = CardRequest.class)
     @ApiResponse(code=200, message="Card found")
     @GetMapping(value = "/findByCardCollectionCardReference", produces = MediaType.APPLICATION_JSON_VALUE)
     public CardCollectionCard findByCardCollectionCardReference(@Parameter String reference) throws CleanCodeException {

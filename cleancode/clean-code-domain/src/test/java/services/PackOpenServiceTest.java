@@ -2,16 +2,16 @@ package services;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.domain.pojo.enums.cardpackdistributionsenum.DiamondPackCardRarityDistributionEnum;
-import com.cleancode.domain.pojo.enums.cardpackdistributionsenum.SilverPackCardRarityDistributionEnum;
+import com.cleancode.domain.pojo.UserAccount;
+import com.cleancode.domain.pojo.enums.cardpackdistributions.DiamondPackCardRarityDistributionEnum;
+import com.cleancode.domain.pojo.enums.cardpackdistributions.SilverPackCardRarityDistributionEnum;
 import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
-import com.cleancode.domain.pojo.enums.rarities.CardNameEnum;
-import com.cleancode.domain.pojo.enums.rarities.CardPackRaritiesEnum;
+import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
+import com.cleancode.domain.pojo.enums.rarities.CardPackRaritiesPricesEnum;
 import com.cleancode.domain.pojo.enums.rarities.CardRarityEnum;
 import com.cleancode.domain.pojo.enums.rarities.RaritiesEnum;
-import com.cleancode.domain.pojo.card.Card;
-import com.cleancode.domain.pojo.cardcollection.CardCollection;
-import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
+import com.cleancode.domain.pojo.Card;
+import com.cleancode.domain.pojo.CardCollection;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
@@ -57,14 +57,14 @@ public class PackOpenServiceTest {
 
 
     @Captor
-    private ArgumentCaptor<BusinessUserClientInfo> userClientInfoArgumentCaptor;
+    private ArgumentCaptor<UserAccount> userClientInfoArgumentCaptor;
 
-    private final BusinessUserClientInfo testUser= new BusinessUserClientInfo("Sid", 1L, "1", 0, null, null, 3L);;
+    private final UserAccount testUser= new UserAccount("Sid", 1L, "1", 0, null, null, 3L);;
 
 
     @Test
     public void shouldCheckIfUserCanBuyASilverCardPack(){
-        assertTrue(CardPackOpenerService.isUserAbleToBuyPack(CardPackRaritiesEnum.SILVER, testUser.getBusinessUserCCCoinWallet()));
+        assertTrue(CardPackOpenerService.isUserAbleToBuyPack(CardPackRaritiesPricesEnum.SILVER, testUser.getBusinessUserCCCoinWallet()));
     }
 
     @ParameterizedTest
@@ -76,11 +76,11 @@ public class PackOpenServiceTest {
         map.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_RARE_CARD.getMaxProbability(), RaritiesEnum.RARE);
         map.put(SilverPackCardRarityDistributionEnum.SILVER_PACK_LEGENDARY_CARD.getMaxProbability(), RaritiesEnum.LEGENDARY);
         silverMap = map.build();
-        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", 0, null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), walletValue);
+        UserAccount testUser = new UserAccount("Sid", 1L, "1", 0, null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), walletValue);
         List<Card> newUserCards = new ArrayList<>();
         String rarity0 = CardRarityEnum.COMMON.name();
         Card cardToReturn0 = Card.createOne(1L,"1231", CardRarityEnum.COMMON, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARMAND,0,1);
-        Maybe<BusinessUserClientInfo> toReturn = Maybe.maybe(testUser);
+        Maybe<UserAccount> toReturn = Maybe.maybe(testUser);
         var cardToCreate2 = Card.createOne(3L,"1233", CardRarityEnum.LEGENDARY, CardSpecialtyEnum.ASSASSIN, CardNameEnum.JONATHAN,0,1);
         when(userAccountPersistencePort.findUserByUserName("Sid")).thenReturn( toReturn);
         when(probabilities.getSilverProbabilitiesMap()).thenReturn(silverMap);
@@ -125,11 +125,11 @@ public class PackOpenServiceTest {
         map.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_RARE_CARD.getMaxProbability(), RaritiesEnum.RARE);
         map.put(DiamondPackCardRarityDistributionEnum.DIAMOND_PACK_LEGENDARY_CARD.getMaxProbability(), RaritiesEnum.LEGENDARY);
         diamond = map.build();
-        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", 0, null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), walletValue);
+        UserAccount testUser = new UserAccount("Sid", 1L, "1", 0, null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), walletValue);
         List<Card> newUserCards = new ArrayList<>();
         String rarity0 = CardRarityEnum.COMMON.name();
         Card cardToReturn0 = Card.createOne(1L,"1231", CardRarityEnum.COMMON, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARMAND,0,1);
-        Maybe<BusinessUserClientInfo> toReturn = Maybe.just(testUser);
+        Maybe<UserAccount> toReturn = Maybe.just(testUser);
         var cardToReturn1 = Card.createOne(2L,"1232", CardRarityEnum.RARE, CardSpecialtyEnum.ASSASSIN, CardNameEnum.ARNAUD,0,1);
         var cardToCreate2 = Card.createOne(3L,"1233", CardRarityEnum.LEGENDARY, CardSpecialtyEnum.ASSASSIN, CardNameEnum.JONATHAN,0,1);
         when(userAccountPersistencePort.findUserByUserName("Sid")).thenReturn(toReturn);
@@ -169,7 +169,7 @@ public class PackOpenServiceTest {
 
     @Test
     public void shouldNotBuyCardPackAndThrowExceptionForLackOfMoula(){
-        BusinessUserClientInfo testUser = new BusinessUserClientInfo("Sid", 1L, "1", 0, null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), 0L);
+        UserAccount testUser = new UserAccount("Sid", 1L, "1", 0, null, new CardCollection(1L,"est", "Oui", new ArrayList<>()), 0L);
         when(userAccountPersistencePort.findUserByUserName("Sid")).thenReturn(Maybe.maybe(testUser));
         CleanCodeException exception = Assertions.assertThrows(CleanCodeException.class, () -> cardPackOpenerService.openDiamondCardPack(testUser.getUserName()));
         Assertions.assertEquals(exception.getMessage(), CleanCodeExceptionsEnum.DOMAIN_PAS_DE_MOULA.getUserMessageToDisplay());

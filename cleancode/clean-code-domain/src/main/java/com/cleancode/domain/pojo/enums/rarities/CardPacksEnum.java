@@ -3,20 +3,20 @@ package com.cleancode.domain.pojo.enums.rarities;
 import java.util.function.LongUnaryOperator;
 
 public enum CardPacksEnum {
-    SILVER(CardPackRaritiesEnum.SILVER,  3L, (ccCoins -> ccCoins - CardPackRaritiesEnum.SILVER.getCardPackPrice())),
-    DIAMOND(CardPackRaritiesEnum.DIAMOND,  5L, ccCoins -> ccCoins - CardPackRaritiesEnum.DIAMOND.getCardPackPrice());
+    SILVER(CardPackRaritiesPricesEnum.SILVER,  3L, (ccCoins -> ccCoins - CardPackRaritiesPricesEnum.SILVER.getCardPackPrice())),
+    DIAMOND(CardPackRaritiesPricesEnum.DIAMOND,  5L, ccCoins -> ccCoins - CardPackRaritiesPricesEnum.DIAMOND.getCardPackPrice());
 
-    private final CardPackRaritiesEnum cardPackRarity;
+    private final CardPackRaritiesPricesEnum cardPackRarity;
     private final Long cardsAmount;
 
     private final LongUnaryOperator doubleUnaryOperator;
-    CardPacksEnum(CardPackRaritiesEnum cardPackRarity, Long cardsAmount, LongUnaryOperator doubleUnaryOperator) {
+    CardPacksEnum(CardPackRaritiesPricesEnum cardPackRarity, Long cardsAmount, LongUnaryOperator doubleUnaryOperator) {
         this.cardPackRarity = cardPackRarity;
         this.cardsAmount = cardsAmount;
         this.doubleUnaryOperator = doubleUnaryOperator;
     }
 
-    public CardPackRaritiesEnum getPackRarity() {
+    public CardPackRaritiesPricesEnum getPackRarity() {
         return cardPackRarity;
     }
 

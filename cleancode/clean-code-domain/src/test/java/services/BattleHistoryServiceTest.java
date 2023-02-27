@@ -1,10 +1,9 @@
 package services;
 
 import com.cleancode.domain.pojo.BattleHistory;
-import com.cleancode.domain.pojo.fight.Opponent;
+import com.cleancode.domain.pojo.Opponent;
 import com.cleancode.domain.ports.out.BattleHistory.BattleHistoryPersistencePort;
 import com.cleancode.domain.services.battlehistory.BattleHistoryOperationsService;
-import com.cleancode.domain.services.collectioncard.CollectionCardFighterService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;

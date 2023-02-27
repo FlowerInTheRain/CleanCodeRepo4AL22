@@ -1,7 +1,7 @@
 package com.cleancode.domain.ports.in.cardpack;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.domain.pojo.card.CardCollectionCard;
+import com.cleancode.domain.pojo.CardCollectionCard;
 
 import java.util.List;
 

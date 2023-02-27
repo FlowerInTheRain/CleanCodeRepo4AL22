@@ -1,7 +1,6 @@
 package com.cleancode.domain.ports.out.card;
 
-import com.cleancode.domain.pojo.card.Card;
-import com.cleancode.domain.pojo.card.CardCollectionCard;
+import com.cleancode.domain.pojo.CardCollectionCard;
 import com.jnape.palatable.lambda.adt.Maybe;
 
 import java.util.List;

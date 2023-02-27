@@ -1,7 +1,7 @@
 package com.cleancode.entrypoint.restcontrollers;
 
-import com.cleancode.cleancodeapi.dto.card.Card;
-import com.cleancode.cleancodeapi.mappers.withdomain.cards.CardMapper;
+import com.cleancode.cleancodeapi.dto.card.CardRequest;
+import com.cleancode.cleancodeapi.mappers.CardMapper;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.ports.in.card.CardFinder;
 import io.swagger.annotations.Api;
@@ -27,11 +27,11 @@ public class CardFinderEntrypoint {
     }
 
     @ApiOperation(value = "Find all cards",
-            response = Card.class)
+            response = CardRequest.class)
     @ApiResponse(code=200, message="Card found")
     @GetMapping(value = "/findAllCards", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Card> findAllCards() throws CleanCodeException {
+    public List<CardRequest> findAllCards() throws CleanCodeException {
         var response = cardFinder.findAllCards();
-        return CardMapper.INSTANCE.fromListBsToListApi(response);
+        return CardMapper.INSTANCE.fromDomain(response);
     }
 }

@@ -2,13 +2,12 @@ package services;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
+import com.cleancode.domain.pojo.UserAccount;
 import com.cleancode.domain.pojo.enums.rarities.CardRarityEnum;
-import com.cleancode.domain.pojo.card.CardCollectionCard;
-import com.cleancode.domain.pojo.cardcollection.CardCollection;
-import com.cleancode.domain.pojo.fight.Opponent;
-import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
+import com.cleancode.domain.pojo.CardCollectionCard;
+import com.cleancode.domain.pojo.CardCollection;
+import com.cleancode.domain.pojo.Opponent;
 import com.cleancode.domain.ports.in.battlehistory.BattleHistoryOperations;
-import com.cleancode.domain.ports.in.collectioncard.CollectionCardFighter;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 import com.cleancode.domain.services.collectioncard.CollectionCardFighterService;
@@ -55,7 +54,7 @@ public class CollectionCardFighterServiceTest {
 
         List<CardCollectionCard> collection = new ArrayList<>();
         collection.add(new CardCollectionCard(1L, 1L, "valid-card-reference", "", "", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
-        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
+        UserAccount validUser = new UserAccount(
                 "valid-username",
                 1L,
                 "user-reference",
@@ -85,7 +84,7 @@ public class CollectionCardFighterServiceTest {
 
         List<CardCollectionCard> collection = new ArrayList<>();
         collection.add(new CardCollectionCard(1L, 1L, "valid-card-reference", "", "", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
-        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
+        UserAccount validUser = new UserAccount(
                 "valid-username",
                 1L,
                 "user-reference",
@@ -96,7 +95,7 @@ public class CollectionCardFighterServiceTest {
         );
 
         List<CardCollectionCard> collection2 = new ArrayList<>();
-        BusinessUserClientInfo validUser2 = new BusinessUserClientInfo(
+        UserAccount validUser2 = new UserAccount(
                 "valid-username2",
                 1L,
                 "user-reference",
@@ -126,7 +125,7 @@ public class CollectionCardFighterServiceTest {
 
         List<CardCollectionCard> collection = new ArrayList<>();
         collection.add(new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 100L, 50L, 25L, 0, 2, CardRarityEnum.COMMON));
-        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
+        UserAccount validUser = new UserAccount(
                 "valid-username",
                 1L,
                 "user-reference",
@@ -138,7 +137,7 @@ public class CollectionCardFighterServiceTest {
 
         List<CardCollectionCard> collection2 = new ArrayList<>();
         collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
-        BusinessUserClientInfo validUser2 = new BusinessUserClientInfo(
+        UserAccount validUser2 = new UserAccount(
                 "valid-username2",
                 1L,
                 "user-reference",
@@ -168,7 +167,7 @@ public class CollectionCardFighterServiceTest {
 
         List<CardCollectionCard> collection = new ArrayList<>();
         collection.add(new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
-        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
+        UserAccount validUser = new UserAccount(
                 "valid-username",
                 1L,
                 "user-reference",
@@ -180,7 +179,7 @@ public class CollectionCardFighterServiceTest {
 
         List<CardCollectionCard> collection2 = new ArrayList<>();
         collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
-        BusinessUserClientInfo validUser2 = new BusinessUserClientInfo(
+        UserAccount validUser2 = new UserAccount(
                 "valid-username2",
                 1L,
                 "user-reference",
@@ -204,7 +203,7 @@ public class CollectionCardFighterServiceTest {
 
         List<CardCollectionCard> collection = new ArrayList<>();
         collection.add(new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
-        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
+        UserAccount validUser = new UserAccount(
                 "valid-username",
                 1L,
                 "user-reference",
@@ -216,7 +215,7 @@ public class CollectionCardFighterServiceTest {
 
         List<CardCollectionCard> collection2 = new ArrayList<>();
         collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
-        BusinessUserClientInfo validUser2 = new BusinessUserClientInfo(
+        UserAccount validUser2 = new UserAccount(
                 "valid-username2",
                 1L,
                 "user-reference",
@@ -241,7 +240,7 @@ public class CollectionCardFighterServiceTest {
         List<CardCollectionCard> collection = new ArrayList<>();
         CardCollectionCard attackerCard = new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON);
         collection.add(attackerCard);
-        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
+        UserAccount validUser = new UserAccount(
                 "valid-username",
                 1L,
                 "user-reference",
@@ -253,7 +252,7 @@ public class CollectionCardFighterServiceTest {
 
         List<CardCollectionCard> collection2 = new ArrayList<>();
         collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
-        BusinessUserClientInfo validUser2 = new BusinessUserClientInfo(
+        UserAccount validUser2 = new UserAccount(
                 "valid-username2",
                 1L,
                 "user-reference",
@@ -281,7 +280,7 @@ public class CollectionCardFighterServiceTest {
         List<CardCollectionCard> collection = new ArrayList<>();
         CardCollectionCard attackerCard = new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, CardCollectionCard.XP_FOR_LVL_UP - CardCollectionCard.XP_GRANTED, 1, CardRarityEnum.COMMON);
         collection.add(attackerCard);
-        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
+        UserAccount validUser = new UserAccount(
                 "valid-username",
                 1L,
                 "user-reference",
@@ -293,7 +292,7 @@ public class CollectionCardFighterServiceTest {
 
         List<CardCollectionCard> collection2 = new ArrayList<>();
         collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
-        BusinessUserClientInfo validUser2 = new BusinessUserClientInfo(
+        UserAccount validUser2 = new UserAccount(
                 "valid-username2",
                 1L,
                 "user-reference",
@@ -321,11 +320,11 @@ public class CollectionCardFighterServiceTest {
         List<CardCollectionCard> collection = new ArrayList<>();
         CardCollectionCard attackerCard = new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L,  0, 1, CardRarityEnum.COMMON);
         collection.add(attackerCard);
-        BusinessUserClientInfo validUser = new BusinessUserClientInfo(
+        UserAccount validUser = new UserAccount(
                 "valid-username",
                 1L,
                 "user-reference",
-                BusinessUserClientInfo.WIN_NEEDED_TO_WIN_COIN - 1,
+                UserAccount.WIN_NEEDED_TO_WIN_COIN - 1,
                 null,
                 new CardCollection(0L, "", "", collection),
                 0L
@@ -333,7 +332,7 @@ public class CollectionCardFighterServiceTest {
 
         List<CardCollectionCard> collection2 = new ArrayList<>();
         collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
-        BusinessUserClientInfo validUser2 = new BusinessUserClientInfo(
+        UserAccount validUser2 = new UserAccount(
                 "valid-username2",
                 1L,
                 "user-reference",
@@ -351,7 +350,7 @@ public class CollectionCardFighterServiceTest {
         collectionCardFighterService.launchFightBetweenTwoCards(attacker, attacked);
         verify(cardCollectionCardPort).saveCollectionCard(attackerCard);
         verify(userAccountPersistencePort).saveUserInDb(validUser);
-        assertEquals((int) BusinessUserClientInfo.COIN_GRANTED, (long) validUser.getBusinessUserCCCoinWallet());
-        assertEquals((int) BusinessUserClientInfo.WIN_NEEDED_TO_WIN_COIN, (int) validUser.getBusinessUserCountWin());
+        assertEquals((int) UserAccount.COIN_GRANTED, (long) validUser.getBusinessUserCCCoinWallet());
+        assertEquals((int) UserAccount.WIN_NEEDED_TO_WIN_COIN, (int) validUser.getBusinessUserCountWin());
     }
 }

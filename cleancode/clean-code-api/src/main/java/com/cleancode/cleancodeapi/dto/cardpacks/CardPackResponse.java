@@ -1,5 +1,7 @@
 package com.cleancode.cleancodeapi.dto.cardpacks;
 
+import com.cleancode.domain.pojo.CardCollectionCard;
+
 public class CardPackResponse {
 
         String cardCollectionCardReference;
@@ -102,7 +104,7 @@ public class CardPackResponse {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
 
-            com.cleancode.domain.pojo.card.CardCollectionCard that = (com.cleancode.domain.pojo.card.CardCollectionCard) o;
+            CardCollectionCard that = (CardCollectionCard) o;
 
             if (lifePoints != that.getLifePoints()) return false;
             if (power != that.getPower()) return false;

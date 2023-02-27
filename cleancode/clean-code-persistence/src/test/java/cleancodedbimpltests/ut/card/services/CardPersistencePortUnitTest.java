@@ -1,13 +1,13 @@
 package cleancodedbimpltests.ut.card.services;
 
 import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
-import com.cleancode.domain.pojo.enums.rarities.CardNameEnum;
+import com.cleancode.domain.pojo.enums.cards.CardNameEnum;
 import com.cleancode.domain.pojo.enums.rarities.CardRarityEnum;
-import com.cleancode.domain.pojo.card.Card;
-import com.cleancode.persistence.adapters.card.CardPersistenceSpi;
-import com.cleancode.persistence.entities.cards.CardEntity;
-import com.cleancode.persistence.mappers.card.CardEntityMapper;
-import com.cleancode.persistence.repositories.card.CardRepository;
+import com.cleancode.domain.pojo.Card;
+import com.cleancode.persistence.adapters.CardsSpi;
+import com.cleancode.persistence.entities.CardEntity;
+import com.cleancode.persistence.mappers.CardEntityMapper;
+import com.cleancode.persistence.repositories.CardRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,7 +29,7 @@ public class CardPersistencePortUnitTest {
     private CardRepository cardRepository;
 
     @InjectMocks
-    private CardPersistenceSpi cardPersistencePort;
+    private CardsSpi cardPersistencePort;
 
     @Test
     public void findAllCardsShouldReturnListOfCards() {

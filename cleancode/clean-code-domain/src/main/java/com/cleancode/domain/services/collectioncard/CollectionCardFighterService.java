@@ -2,12 +2,9 @@ package com.cleancode.domain.services.collectioncard;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.enums.CleanCodeExceptionsEnum;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.domain.pojo.BattleHistory;
+import com.cleancode.domain.pojo.*;
 import com.cleancode.domain.pojo.enums.cards.CardSpecialtyEnum;
-import com.cleancode.domain.pojo.card.CardCollectionCard;
-import com.cleancode.domain.pojo.cardcollection.CardCollection;
-import com.cleancode.domain.pojo.fight.Opponent;
-import com.cleancode.domain.pojo.user.BusinessUserClientInfo;
+import com.cleancode.domain.pojo.UserAccount;
 import com.cleancode.domain.ports.in.battlehistory.BattleHistoryOperations;
 import com.cleancode.domain.ports.in.collectioncard.CollectionCardFighter;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
@@ -36,8 +33,8 @@ public class CollectionCardFighterService implements CollectionCardFighter {
     @Override
     public CardCollectionCard launchFightBetweenTwoCards(Opponent attacker, Opponent attacked) throws CleanCodeException {
         LOGGER.log(Level.INFO, String.format("Launching battle between %s and %s", attacker, attacked));
-        BusinessUserClientInfo userAttacker = userAccountPersistencePort.findUserByUserName(attacker.getUserName()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
-        BusinessUserClientInfo userAttacked = userAccountPersistencePort.findUserByUserName(attacked.getUserName()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
+        UserAccount userAttacker = userAccountPersistencePort.findUserByUserName(attacker.getUserName()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
+        UserAccount userAttacked = userAccountPersistencePort.findUserByUserName(attacked.getUserName()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
         CardCollectionCard cardAttacker = this.getCardCollectionCard(userAttacker.getUserCardCollection(), attacker.getCardReference());
         CardCollectionCard cardAttacked = this.getCardCollectionCard(userAttacked.getUserCardCollection(), attacked.getCardReference());
         if (cardAttacked == null || cardAttacker == null) {
@@ -71,7 +68,7 @@ public class CollectionCardFighterService implements CollectionCardFighter {
         return null;
     }
 
-    private void addReward(CardCollectionCard card, BusinessUserClientInfo user) {
+    private void addReward(CardCollectionCard card, UserAccount user) {
         card.addXp();
         user.addBusinessUserCountWin();
         cardCollectionCardPort.saveCollectionCard(card);

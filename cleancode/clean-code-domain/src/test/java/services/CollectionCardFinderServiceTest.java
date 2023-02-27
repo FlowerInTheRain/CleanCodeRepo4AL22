@@ -2,7 +2,7 @@ package services;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
 import com.cleancode.domain.pojo.enums.rarities.CardRarityEnum;
-import com.cleancode.domain.pojo.card.CardCollectionCard;
+import com.cleancode.domain.pojo.CardCollectionCard;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.services.collectioncard.CollectionCardFinderService;
 import com.jnape.palatable.lambda.adt.Maybe;

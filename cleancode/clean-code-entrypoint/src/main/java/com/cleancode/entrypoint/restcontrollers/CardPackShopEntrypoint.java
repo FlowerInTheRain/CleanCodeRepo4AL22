@@ -1,6 +1,6 @@
 package com.cleancode.entrypoint.restcontrollers;
 
-import com.cleancode.cleancodeapi.mappers.withdomain.cardcollectioncards.CardCollectionCardsMapper;
+import com.cleancode.cleancodeapi.mappers.CardCollectionCardsMapper;
 import com.cleancode.cleancodeapi.dto.cardpacks.CardPackResponse;
 import com.cleancode.domain.ports.in.cardpack.CardPackOpener;
 import io.swagger.annotations.Api;

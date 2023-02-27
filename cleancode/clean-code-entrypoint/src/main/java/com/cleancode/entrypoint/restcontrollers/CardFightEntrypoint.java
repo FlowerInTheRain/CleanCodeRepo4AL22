@@ -2,8 +2,8 @@ package com.cleancode.entrypoint.restcontrollers;
 
 import com.cleancode.cleancodeapi.dto.fight.FightRequest;
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.domain.pojo.card.CardCollectionCard;
-import com.cleancode.domain.pojo.fight.Opponent;
+import com.cleancode.domain.pojo.CardCollectionCard;
+import com.cleancode.domain.pojo.Opponent;
 import com.cleancode.domain.ports.in.collectioncard.CollectionCardFighter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -6,8 +6,8 @@ import com.cleancode.domain.ports.in.card.CardFinder;
 import com.cleancode.domain.ports.in.cardpack.CardPackOpener;
 import com.cleancode.domain.ports.in.collectioncard.CollectionCardFighter;
 import com.cleancode.domain.ports.in.collectioncard.CollectionCardFinder;
-import com.cleancode.domain.ports.in.user.AccountCreator;
-import com.cleancode.domain.ports.in.user.UserFinder;
+import com.cleancode.domain.ports.in.account.AccountCreator;
+import com.cleancode.domain.ports.in.account.AccountFinder;
 import com.cleancode.domain.ports.out.BattleHistory.BattleHistoryPersistencePort;
 import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
@@ -29,9 +29,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@EnableJpaRepositories("com.cleancode.persistence.repositories")
-@EntityScan(basePackages = {"com.cleancode.persistence.entities"})
-@ComponentScan(basePackages = {"com.cleancode.persistence.adapters"})
 public class BeanConfiguration {
 
     @Bean
@@ -75,7 +72,7 @@ public class BeanConfiguration {
     }
 
     @Bean
-    UserFinder userFinder( UserAccountPersistencePort accountPersistencePort){
+    AccountFinder userFinder(UserAccountPersistencePort accountPersistencePort){
         return new AccountFinderService(accountPersistencePort );
     }
 }

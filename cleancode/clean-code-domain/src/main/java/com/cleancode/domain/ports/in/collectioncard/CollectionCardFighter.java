@@ -1,8 +1,8 @@
 package com.cleancode.domain.ports.in.collectioncard;
 
 import com.cleancode.domain.core.lib.exceptionsmanagementutils.exceptions.CleanCodeException;
-import com.cleancode.domain.pojo.card.CardCollectionCard;
-import com.cleancode.domain.pojo.fight.Opponent;
+import com.cleancode.domain.pojo.CardCollectionCard;
+import com.cleancode.domain.pojo.Opponent;
 
 public interface CollectionCardFighter {
 
