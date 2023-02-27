@@ -14,6 +14,7 @@ import com.cleancode.domain.ports.out.card.CardCollectionCardPort;
 import com.cleancode.domain.ports.out.useraccount.UserAccountPersistencePort;
 
 import java.util.Objects;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
 
@@ -34,6 +35,7 @@ public class CollectionCardFighterService implements CollectionCardFighter {
 
     @Override
     public CardCollectionCard launchFightBetweenTwoCards(Opponent attacker, Opponent attacked) throws CleanCodeException {
+        LOGGER.log(Level.INFO, String.format("Launching battle between %s and %s", attacker, attacked));
         BusinessUserClientInfo userAttacker = userAccountPersistencePort.findUserByUserName(attacker.getUserName()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
         BusinessUserClientInfo userAttacked = userAccountPersistencePort.findUserByUserName(attacked.getUserName()).orElseThrow(() -> new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_USERNAME));
         CardCollectionCard cardAttacker = this.getCardCollectionCard(userAttacker.getUserCardCollection(), attacker.getCardReference());
@@ -41,22 +43,21 @@ public class CollectionCardFighterService implements CollectionCardFighter {
         if (cardAttacked == null || cardAttacker == null) {
             throw new CleanCodeException(CleanCodeExceptionsEnum.DB_COMPONENT_INVALID_CARD_REFERENCE);
         }
-        Long lifePointAttacker = cardAttacker.getLifePoints();
         if (cardAttacked.getLevel() < cardAttacker.getLevel()) {
             throw new CleanCodeException(CleanCodeExceptionsEnum.DOMAIN_CANT_ATTACK_LOWER_LVL);
         }
         BattleHistory battleHistoryToSave;
         if (isWin(cardAttacker, cardAttacked)) {
-            cardAttacker.setLifePoints(lifePointAttacker);
             this.addReward(cardAttacker, userAttacker);
             battleHistoryToSave = BattleHistory.createOne(attacker, attacked, attacker);
             battleHistoryOperations.registerUserBattleHistory(battleHistoryToSave);
+            LOGGER.log(Level.INFO, String.format("Ending battle between %s and %s, winner is %s", attacker, attacked, attacker));
             return cardAttacker;
         } else {
-            cardAttacker.setLifePoints(lifePointAttacker);
             this.addReward(cardAttacked, userAttacked);
             battleHistoryToSave = BattleHistory.createOne(attacker, attacked, attacked);
             battleHistoryOperations.registerUserBattleHistory(battleHistoryToSave);
+            LOGGER.log(Level.INFO, String.format("Ending battle between %s and %s, winner is %s", attacker, attacked, attacked));
             return cardAttacked;
         }
     }
@@ -83,17 +84,12 @@ public class CollectionCardFighterService implements CollectionCardFighter {
         IntStream.iterate(0, i -> (i + 1) % 2).anyMatch(i -> {
                     if (i == 0) {
                         cardAttacker.removeLifePoints(damageCardAttacked);
-                        if (cardAttacker.getLifePoints() < 0) {
-                            return true;
-                        }
+                        return cardAttacker.getLifePoints() < 0;
                     } else {
                         cardAttacked.removeLifePoints(damageCardAttacker);
-                        if (cardAttacked.getLifePoints() < 0) {
-                            return true;
-                        }
+                        return cardAttacked.getLifePoints() < 0;
                     }
-                    return false;
-                });
+        });
         return cardAttacked.getLifePoints() < 0;
     }
 

@@ -8,7 +8,6 @@ import com.cleancode.domain.pojo.card.Card;
 import com.cleancode.domain.ports.in.card.CardCreator;
 import com.cleancode.domain.ports.out.card.CardPersistencePort;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
