@@ -37,7 +37,7 @@ public class CardCreatorServiceTest {
     ArgumentCaptor<Card> cardCaptorSakura;
 
     @Test
-    public void saveCardShouldSaveCard() throws Exception {
+    public void saveCardShouldSaveCard() {
         Card card = new Card(
                 1L,
                 null,

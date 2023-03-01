@@ -28,7 +28,7 @@ public class UsersEntity implements Serializable {
     @Column(name="CREATION_DATE", nullable = false)
     private Timestamp creationDate = Timestamp.from(Instant.now());
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "CARD_COLLECTION_ID")
     private CardCollectionsEntity userCardCollection;
 

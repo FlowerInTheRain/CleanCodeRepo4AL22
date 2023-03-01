@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class CardCollectionCard {
 
+    private Long technicalId;
 
     private final String heroName;
     Long cardId;
@@ -34,7 +35,8 @@ public class CardCollectionCard {
     public static final Integer LVL_MAX = 100;
     public static final Double RATIO_STAT_UPGRADE = 1.1;
 
-    public CardCollectionCard(Long cardId, Long collectionId, String cardCollectionCardReference, String heroName, String specialty, Long lifePoints, Long power, Long armor, int xp, int level, CardRarityEnum rarity) {
+    public CardCollectionCard(Long technicalId, Long cardId, Long collectionId, String cardCollectionCardReference, String heroName, String specialty, Long lifePoints, Long power, Long armor, int xp, int level, CardRarityEnum rarity) {
+        this.technicalId = technicalId;
         this.cardId = cardId;
         this.collectionId = collectionId;
         this.cardCollectionCardReference = cardCollectionCardReference;
@@ -88,9 +90,7 @@ public class CardCollectionCard {
         this.lifePoints = lifePoints;
     }
 
-    public void removeLifePoints(Long damage) {
-        this.lifePoints -= damage;
-    }
+
 
     public Long getPower() {
         return power;
@@ -202,5 +202,13 @@ public class CardCollectionCard {
                 ", rarity=" + rarity +
                 ", specialty='" + specialty + '\'' +
                 '}';
+    }
+
+    public Long getTechnicalId() {
+        return technicalId;
+    }
+
+    public void setTechnicalId(Long technicalId) {
+        this.technicalId = technicalId;
     }
 }

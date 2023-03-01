@@ -37,10 +37,10 @@ public class CollectionCardFinderServiceTest {
     public void findAllCardsShouldReturnListOfCards() throws CleanCodeException {
         List<CardCollectionCard> expectedCards = Arrays.asList(
                 new CardCollectionCard(
-                1L, 2L, "fake-card-reference", "Fake Hero", "Fake Specialty", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
+                        1L, 1L, 2L, "fake-card-reference", "Fake Hero", "Fake Specialty", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
         ),
                 new CardCollectionCard(
-                        1L, 2L, "fake-card-reference", "Fake Hero", "Fake Specialty", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
+                        2L, 1L, 2L, "fake-card-reference", "Fake Hero", "Fake Specialty", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
                 )
         );
         when(cardCollectionCardPort.findAll()).thenReturn(expectedCards);
@@ -53,7 +53,7 @@ public class CollectionCardFinderServiceTest {
     @Test
     public void findByCardCollectionCardReferenceShouldReturnMatchingCard() throws CleanCodeException {
         CardCollectionCard expectedCard = new CardCollectionCard(
-                1L, 2L, "fake-card-reference", "Fake Hero", "Fake Specialty", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
+                1L, 1L, 2L, "fake-card-reference", "Fake Hero", "Fake Specialty", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON
         );
         when(cardCollectionCardPort.findByCardCollectionCardReference("1")).thenReturn(Maybe.maybe(expectedCard));
 

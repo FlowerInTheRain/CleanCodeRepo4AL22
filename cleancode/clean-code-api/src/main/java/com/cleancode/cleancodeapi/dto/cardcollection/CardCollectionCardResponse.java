@@ -1,6 +1,5 @@
 package com.cleancode.cleancodeapi.dto.cardcollection;
 
-import com.cleancode.domain.pojo.enums.rarities.CardRarityEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Objects;
@@ -27,7 +26,7 @@ public class CardCollectionCardResponse {
 
     int level = 1;
 
-    CardRarityEnum rarity;
+    String rarity;
 
     String specialty;
 
@@ -37,7 +36,7 @@ public class CardCollectionCardResponse {
     public static final Integer LVL_MAX = 100;
     public static final Double RATIO_STAT_UPGRADE = 1.1;
 
-    public CardCollectionCardResponse(Long cardId, Long collectionId, String cardCollectionCardReference, String heroName, String specialty, Long lifePoints, Long power, Long armor, int xp, int level, CardRarityEnum rarity) {
+    public CardCollectionCardResponse(Long cardId, Long collectionId, String cardCollectionCardReference, String heroName, String specialty, Long lifePoints, Long power, Long armor, int xp, int level, String rarity) {
         this.cardId = cardId;
         this.collectionId = collectionId;
         this.cardCollectionCardReference = cardCollectionCardReference;
@@ -91,9 +90,7 @@ public class CardCollectionCardResponse {
         this.lifePoints = lifePoints;
     }
 
-    public void removeLifePoints(Long damage) {
-        this.lifePoints -= damage;
-    }
+
 
     public Long getPower() {
         return power;
@@ -145,11 +142,11 @@ public class CardCollectionCardResponse {
         return heroName;
     }
 
-    public CardRarityEnum getRarity() {
+    public String getRarity() {
         return rarity;
     }
 
-    public void setRarity(CardRarityEnum rarity) {
+    public void setRarity(String rarity) {
         this.rarity = rarity;
     }
 

@@ -53,7 +53,7 @@ public class CollectionCardFighterServiceTest {
     public void fightShouldThrowExceptionWhenInvalidUserName() throws CleanCodeException {
 
         List<CardCollectionCard> collection = new ArrayList<>();
-        collection.add(new CardCollectionCard(1L, 1L, "valid-card-reference", "", "", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        collection.add(new CardCollectionCard(1L, 1L, 1L, "valid-card-reference", "", "", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
         UserAccount validUser = new UserAccount(
                 "valid-username",
                 1L,
@@ -83,7 +83,7 @@ public class CollectionCardFighterServiceTest {
     public void fightShouldThrowExceptionWhenInvalidCardReference() throws CleanCodeException {
 
         List<CardCollectionCard> collection = new ArrayList<>();
-        collection.add(new CardCollectionCard(1L, 1L, "valid-card-reference", "", "", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        collection.add(new CardCollectionCard(1L, 1L, 1L, "valid-card-reference", "", "", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
         UserAccount validUser = new UserAccount(
                 "valid-username",
                 1L,
@@ -124,7 +124,7 @@ public class CollectionCardFighterServiceTest {
     public void fightShouldThrowExceptionWhenAttackerCardLevelIsLower() throws CleanCodeException {
 
         List<CardCollectionCard> collection = new ArrayList<>();
-        collection.add(new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 100L, 50L, 25L, 0, 2, CardRarityEnum.COMMON));
+        collection.add(new CardCollectionCard(1L, 1L, 1L, "attacker-card-reference", "", "MAGE", 100L, 50L, 25L, 0, 2, CardRarityEnum.COMMON));
         UserAccount validUser = new UserAccount(
                 "valid-username",
                 1L,
@@ -136,7 +136,7 @@ public class CollectionCardFighterServiceTest {
         );
 
         List<CardCollectionCard> collection2 = new ArrayList<>();
-        collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        collection2.add(new CardCollectionCard(1L, 2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
         UserAccount validUser2 = new UserAccount(
                 "valid-username2",
                 1L,
@@ -166,7 +166,7 @@ public class CollectionCardFighterServiceTest {
     public void fightShouldReturnAttackerCardWhenAttackerCardWins() throws CleanCodeException {
 
         List<CardCollectionCard> collection = new ArrayList<>();
-        collection.add(new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        collection.add(new CardCollectionCard(1L, 1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
         UserAccount validUser = new UserAccount(
                 "valid-username",
                 1L,
@@ -178,7 +178,7 @@ public class CollectionCardFighterServiceTest {
         );
 
         List<CardCollectionCard> collection2 = new ArrayList<>();
-        collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        collection2.add(new CardCollectionCard(1L, 2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
         UserAccount validUser2 = new UserAccount(
                 "valid-username2",
                 1L,
@@ -202,7 +202,7 @@ public class CollectionCardFighterServiceTest {
     public void fightShouldReturnAttackedCardWhenAttackerCardLoses() throws CleanCodeException {
 
         List<CardCollectionCard> collection = new ArrayList<>();
-        collection.add(new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        collection.add(new CardCollectionCard(1L, 1L, 1L, "attacker-card-reference", "", "MAGE", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
         UserAccount validUser = new UserAccount(
                 "valid-username",
                 1L,
@@ -214,7 +214,7 @@ public class CollectionCardFighterServiceTest {
         );
 
         List<CardCollectionCard> collection2 = new ArrayList<>();
-        collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        collection2.add(new CardCollectionCard(2L, 2L, 2L, "attacked-card-reference", "", "TANK", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
         UserAccount validUser2 = new UserAccount(
                 "valid-username2",
                 1L,
@@ -238,7 +238,7 @@ public class CollectionCardFighterServiceTest {
     public void fightShouldAddRewardsWhenAttackerCardWins() throws CleanCodeException {
 
         List<CardCollectionCard> collection = new ArrayList<>();
-        CardCollectionCard attackerCard = new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON);
+        CardCollectionCard attackerCard = new CardCollectionCard(1L, 1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, 0, 1, CardRarityEnum.COMMON);
         collection.add(attackerCard);
         UserAccount validUser = new UserAccount(
                 "valid-username",
@@ -251,7 +251,7 @@ public class CollectionCardFighterServiceTest {
         );
 
         List<CardCollectionCard> collection2 = new ArrayList<>();
-        collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        collection2.add(new CardCollectionCard(2L, 2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
         UserAccount validUser2 = new UserAccount(
                 "valid-username2",
                 1L,
@@ -278,7 +278,7 @@ public class CollectionCardFighterServiceTest {
     public void CardShouldLevelUpWhenAttackerCardWins() throws CleanCodeException {
 
         List<CardCollectionCard> collection = new ArrayList<>();
-        CardCollectionCard attackerCard = new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, CardCollectionCard.XP_FOR_LVL_UP - CardCollectionCard.XP_GRANTED, 1, CardRarityEnum.COMMON);
+        CardCollectionCard attackerCard = new CardCollectionCard(1L, 1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L, CardCollectionCard.XP_FOR_LVL_UP - CardCollectionCard.XP_GRANTED, 1, CardRarityEnum.COMMON);
         collection.add(attackerCard);
         UserAccount validUser = new UserAccount(
                 "valid-username",
@@ -291,7 +291,7 @@ public class CollectionCardFighterServiceTest {
         );
 
         List<CardCollectionCard> collection2 = new ArrayList<>();
-        collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        collection2.add(new CardCollectionCard(2L, 2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
         UserAccount validUser2 = new UserAccount(
                 "valid-username2",
                 1L,
@@ -318,7 +318,7 @@ public class CollectionCardFighterServiceTest {
     public void UserShouldWinCoinWhenAttackerCardWins() throws CleanCodeException {
 
         List<CardCollectionCard> collection = new ArrayList<>();
-        CardCollectionCard attackerCard = new CardCollectionCard(1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L,  0, 1, CardRarityEnum.COMMON);
+        CardCollectionCard attackerCard = new CardCollectionCard(1L, 1L, 1L, "attacker-card-reference", "", "MAGE", 1000L, 50L, 25L,  0, 1, CardRarityEnum.COMMON);
         collection.add(attackerCard);
         UserAccount validUser = new UserAccount(
                 "valid-username",
@@ -331,7 +331,7 @@ public class CollectionCardFighterServiceTest {
         );
 
         List<CardCollectionCard> collection2 = new ArrayList<>();
-        collection2.add(new CardCollectionCard(2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
+        collection2.add(new CardCollectionCard(2L, 2L, 2L, "attacked-card-reference", "", "TANK", 100L, 50L, 25L, 0, 1, CardRarityEnum.COMMON));
         UserAccount validUser2 = new UserAccount(
                 "valid-username2",
                 1L,

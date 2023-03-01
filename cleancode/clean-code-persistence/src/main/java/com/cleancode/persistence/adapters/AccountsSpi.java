@@ -20,10 +20,8 @@ public class AccountsSpi implements UserAccountPersistencePort {
     private static final Logger LOGGER = Logger.getLogger(AccountsSpi.class.getName());
     private final UserRepository userRepository;
 
-    private final CollectionCardsRepository collectionCardsRepository;
-    public AccountsSpi(UserRepository userRepository, CollectionCardsRepository collectionCardsRepository){
+    public AccountsSpi(UserRepository userRepository){
         this.userRepository = userRepository;
-        this.collectionCardsRepository = collectionCardsRepository;
     }
 
     /**
@@ -34,7 +32,6 @@ public class AccountsSpi implements UserAccountPersistencePort {
     public Maybe<UserAccount> findUserByUserName(String userName) {
         LOGGER.log(Level.INFO, "Calling DB service findOneUserByUserFunctionalId");
         UsersEntity foundUser = userRepository.findByUserName(userName);
-
         LOGGER.log(Level.INFO, String.format("Found User : %s", foundUser));
         UserAccount mappedUserToBsUser = UserEntityMapper.INSTANCE.fromDbToBs(foundUser);
         return Maybe.maybe(mappedUserToBsUser);
