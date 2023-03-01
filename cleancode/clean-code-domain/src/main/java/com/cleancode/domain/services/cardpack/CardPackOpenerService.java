@@ -116,6 +116,7 @@ public class CardPackOpenerService implements CardPackOpener {
         Card card = cardPersistencePort.findOneCardByRarity(rarity);
         CardSpecialty specialtyToUse = card.getCardSpecialty().getSpecialtyValue();
         var toSave =  new CardCollectionCard(
+                null,
                 card.getTechnicalId(),
                 userAccount.getUserCardCollection().getTechnicalId(),
                 UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, ""),
