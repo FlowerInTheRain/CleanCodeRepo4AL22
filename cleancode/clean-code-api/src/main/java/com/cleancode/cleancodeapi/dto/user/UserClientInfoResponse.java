@@ -12,12 +12,34 @@ public class UserClientInfoResponse extends User {
     @JsonIgnore
     private final Timestamp clientCreationDate;
 
+    private long businessUserCCCoinWallet;
+
+    public long getBusinessUserCCCoinWallet() {
+        return businessUserCCCoinWallet;
+    }
+
+    public void setBusinessUserCCCoinWallet(long businessUserCCCoinWallet) {
+        this.businessUserCCCoinWallet = businessUserCCCoinWallet;
+    }
+
+    public Integer getBusinessUserCountWin() {
+        return businessUserCountWin;
+    }
+
+    public void setBusinessUserCountWin(Integer businessUserCountWin) {
+        this.businessUserCountWin = businessUserCountWin;
+    }
+
+    private Integer businessUserCountWin;
+
     private final CardCollectionResponse userCardCollectionResponse;
 
-    public UserClientInfoResponse(String userName, String clientReference, Timestamp clientCreationDate, CardCollectionResponse userCardCollectionResponse) {
+    public UserClientInfoResponse(String userName, String clientReference, Timestamp clientCreationDate, long businessUserCCCoinWallet, Integer businessUserCountWin, CardCollectionResponse userCardCollectionResponse) {
         super(userName);
         this.clientReference = clientReference;
         this.clientCreationDate = clientCreationDate;
+        this.businessUserCCCoinWallet = businessUserCCCoinWallet;
+        this.businessUserCountWin = businessUserCountWin;
         this.userCardCollectionResponse = userCardCollectionResponse;
     }
 
@@ -37,13 +59,4 @@ public class UserClientInfoResponse extends User {
     }
 
 
-    public static UserClientInfoResponse createOneUserClientInfo(
-             String userName, String clientReference, Timestamp clientCreationDate, CardCollectionResponse userResponseCardCollectionsList
-            ){
-        return new UserClientInfoResponse( userName, clientReference, clientCreationDate, userResponseCardCollectionsList);
-    }
-
-    public static void userClientInfo(){
-
-    }
 }
