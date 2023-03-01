@@ -90,9 +90,7 @@ public class CardCollectionCard {
         this.lifePoints = lifePoints;
     }
 
-    public void removeLifePoints(Long damage) {
-        this.lifePoints -= damage;
-    }
+
 
     public Long getPower() {
         return power;

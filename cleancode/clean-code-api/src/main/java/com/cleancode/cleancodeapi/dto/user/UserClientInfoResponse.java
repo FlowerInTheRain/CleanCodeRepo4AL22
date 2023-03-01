@@ -43,7 +43,4 @@ public class UserClientInfoResponse extends User {
         return new UserClientInfoResponse( userName, clientReference, clientCreationDate, userResponseCardCollectionsList);
     }
 
-    public static void userClientInfo(){
-
-    }
 }

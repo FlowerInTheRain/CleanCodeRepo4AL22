@@ -9,8 +9,8 @@ INSERT INTO cards (card_reference, card_rarity, card_specialty, card_name, xp, l
 INSERT INTO card_collections (card_collection_id, card_collection_reference, card_collection_name) VALUES (1, '223e4567-e89b-42d3-a456-55664244', 'user1');
 INSERT INTO card_collections (card_collection_id, card_collection_reference, card_collection_name) VALUES (2, '223e4567-e89b-42d3-a456-55664245', 'user2');
 
-INSERT INTO users (user_reference, username, cccoin_wallet, win_count, creation_date, card_collection_id) VALUES ('323e4567-e89b-42d3-a456-55664241', 'user1', 4, 1, '2020-01-01', 1);
-INSERT INTO users (user_reference, username, cccoin_wallet, win_count, creation_date, card_collection_id) VALUES ('323e4567-e89b-42d3-a456-55664242', 'user2', 4, 2, '2020-01-01', 2);
+INSERT INTO users (user_reference, username, cccoin_wallet, win_count, creation_date, card_collection_id) VALUES ('323e4567-e89b-42d3-a456-55664241', 'user1', 4, 0, '2020-01-01', 1);
+INSERT INTO users (user_reference, username, cccoin_wallet, win_count, creation_date, card_collection_id) VALUES ('323e4567-e89b-42d3-a456-55664242', 'user2', 4, 0, '2020-01-01', 2);
 
 
 

@@ -42,12 +42,11 @@ public class CardCollectionCardsSpi implements CardCollectionCardPort {
     }
 
     @Override
-    public CardCollectionCard saveCollectionCard(CardCollectionCard collectionCardToSave) {
+    public void saveCollectionCard(CardCollectionCard collectionCardToSave) {
         LOGGER.log(Level.INFO, String.format("Calling DB service saveCollectionCard, Card : %s", collectionCardToSave));
         CardCollectionCardsEntity cardToSave = CardCollectionCardMapper.INSTANCE.fromCardCollectionCardToCardCollectionCards(collectionCardToSave);
         cardToSave.setCardId(collectionCardToSave.getCardId());
         cardToSave.setCollectionId(collectionCardToSave.getCollectionId());
         repository.save(cardToSave);
-        return collectionCardToSave;
     }
 }

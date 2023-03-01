@@ -33,7 +33,7 @@ public class CardFinderServiceTest {
     private CardFinderService cardCreator;
 
     @Test
-    public void shouldFindAllCards() throws Exception {
+    public void shouldFindAllCards() {
         List<Card> toReturn = new ArrayList<>();
         for(long i = 0L; i < 8; i++){
             Card card = new Card(

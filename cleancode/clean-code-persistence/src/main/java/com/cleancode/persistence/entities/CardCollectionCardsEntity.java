@@ -14,12 +14,12 @@ public class CardCollectionCardsEntity {
     @Column(name = "COLLECTION_CARD_ID")
     Long id;
 
-    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
+    @ManyToOne
     @MapsId("cardId")
     @JoinColumn(name = "CARD_ID")
     Long cardId;
 
-    @ManyToOne(fetch = jakarta.persistence.FetchType.EAGER)
+    @ManyToOne
     @MapsId("collectionId")
     @JoinColumn(name = "COLLECTION_ID")
     Long collectionId;
